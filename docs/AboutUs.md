@@ -3,8 +3,7 @@
 Display | Name | Github Profile | Portfolio 
 --------|:----:|:--------------:|:---------:
 ![](https://avatars.githubusercontent.com/u/26685970?v=4) | Tan Jia Le | [Github](https://github.com/rizemon) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Don Joe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
+![](https://media.discordapp.net/attachments/285692337357586432/892962858546114560/photo_2021-05-07_15-04-25.jpg?text=BreadDog) | Sean Phang | [Github](https://github.com/SeenFang) | [Portfolio](docs/team/johndoe.md)
 ![](https://via.placeholder.com/100.png?text=Photo) | Ron John | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
 ![](https://via.placeholder.com/100.png?text=Photo) | John Roe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
 ![](https://via.placeholder.com/100.png?text=Photo) | Don Roe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-
