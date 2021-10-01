@@ -13,7 +13,7 @@ public class Duke {
             + "|____/ \\__,_|_|\\_\\___|\n";
 
     /**
-     * Command Prefix Constants
+     * Command Prefix Constants.
      */
     private static final String EXIT_COMMAND = "exit";
 
@@ -31,7 +31,7 @@ public class Duke {
             switch (userInput) {
             case EXIT_COMMAND:
                 System.out.println("Goodbye!");
-                System.exit(0);
+                break;
             default:
                 // Skeletal - Just "echos" back to us.
                 System.out.println(userInput);
