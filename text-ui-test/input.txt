@@ -1,1 +1,5 @@
-James Gosling
+whoami
+bring me thanos
+hi
+bye
+exit
