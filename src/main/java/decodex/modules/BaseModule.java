@@ -10,7 +10,9 @@ public abstract class BaseModule {
     protected String name;
     protected String description;
 
-    public BaseModule() {
+    public BaseModule(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
     public String getName() {
