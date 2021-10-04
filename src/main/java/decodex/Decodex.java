@@ -1,8 +1,8 @@
-package seedu.duke;
+package decodex;
 
 import java.util.Scanner;
 
-public class Duke {
+public class Decodex {
     /**
      * Logo to be changed - possibly to a welcome message instead for Decodex.
      */
@@ -18,7 +18,7 @@ public class Duke {
     private static final String EXIT_COMMAND = "exit";
 
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * Decodex entry-point for the java.decodex.Decodex application.
      */
     public static void main(String[] args) {
         System.out.println("Hello from\n" + LOGO);
