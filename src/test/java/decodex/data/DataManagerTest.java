@@ -2,6 +2,8 @@ package decodex.data;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 class DataManagerTest {
@@ -13,7 +15,9 @@ class DataManagerTest {
 
         testManager.resetToOriginalData();
 
-        assertTrue(testManager.getCurrentData() == originalData);
+        Data currentData = testManager.getCurrentData();
+
+        assertTrue(Arrays.equals(currentData.getRawBytes(), originalData.getRawBytes()));
     }
 
     @Test
@@ -25,6 +29,8 @@ class DataManagerTest {
 
         testManager.resetToOriginalData();
 
-        assertTrue(testManager.getCurrentData() == originalData);
+        Data currentData = testManager.getCurrentData();
+
+        assertTrue(Arrays.equals(currentData.getRawBytes(), originalData.getRawBytes()));
     }
 }
