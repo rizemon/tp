@@ -48,7 +48,7 @@ public class Decodex {
                 System.out.println(userInput);
             }
 
-            if (command != null){
+            if (command != null) {
                 command.run(dataManager, moduleManager, ui);
                 isExit = command.isExit();
             }
