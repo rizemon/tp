@@ -8,8 +8,11 @@ public class Base64Decoder extends BaseModule {
 
     private final Base64.Decoder base64Decoder;
 
-    public Base64Decoder(String name, String description) {
-        super(name, description);
+    public static final String MODULE_NAME = "base64decode";
+    public static final String MODULE_DESCRIPTION = "Decodes the data using Base64 format.";
+
+    public Base64Decoder() {
+        super(MODULE_NAME, MODULE_DESCRIPTION);
         base64Decoder = Base64.getDecoder();
     }
 
