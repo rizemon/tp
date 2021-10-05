@@ -18,9 +18,10 @@ public class HexDecode extends BaseModule {
     }
 
     /**
-     * Decodes the given hexadecimal string back into its raw value
-     * @param data Data object to be decoded
-     * @return new Data object representing the decoded input
+     * Decodes the given hexadecimal string back into its raw value.
+     *
+     * @param data Data object to be decoded.
+     * @return new Data object representing the decoded input.
      */
     @Override
     public Data run(Data data) {
@@ -29,7 +30,7 @@ public class HexDecode extends BaseModule {
 
         String DecodedString = Arrays
                 .stream(inputString.split("(?<=\\G..)"))
-                .map(s -> Character.toString((char)Integer.parseInt(s, 16)))
+                .map(s -> Character.toString((char) Integer.parseInt(s, 16)))
                 .collect(Collectors.joining());
 
         return new Data(DecodedString);
