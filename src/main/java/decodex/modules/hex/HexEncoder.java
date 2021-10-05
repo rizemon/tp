@@ -8,7 +8,6 @@ public class HexEncoder extends BaseModule {
     public static final String MODULE_NAME = "hex-encode";
 
     public static final String MODULE_DESCRIPTION = "Converts the input string to hexadecimal bytes";
-    public static final String MODULE_EXAMPLE = "\"takoyaki\" becomes \"74 61 6b 6f 79 61 6b 69\"";
 
     public HexEncoder() {
         super(MODULE_NAME, MODULE_DESCRIPTION);
