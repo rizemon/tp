@@ -16,9 +16,10 @@ public class HexEncode extends BaseModule {
     }
 
     /**
-     * Encodes the given Data object to Hexadecimal
-     * @param data Data object to be encoded
-     * @return new Data object representing the encoded input
+     * Encodes the given Data object to Hexadecimal.
+     *
+     * @param data Data object to be encoded.
+     * @return new Data object representing the encoded input.
      */
     @Override
     public Data run(Data data) {
