@@ -4,6 +4,9 @@ import java.util.Base64;
 
 import decodex.data.Data;
 
+/**
+ * Base64Encoder serves to carry out the Base64 decoding operations.
+ */
 public class Base64Decoder extends BaseModule {
 
     private final Base64.Decoder base64Decoder;
