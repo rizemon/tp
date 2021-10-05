@@ -5,14 +5,14 @@ import decodex.modules.BaseModule;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public class HexDecode extends BaseModule {
+public class HexDecoder extends BaseModule {
 
     public static final String MODULE_NAME = "hex-decode";
 
     public static final String MODULE_DESCRIPTION = "Converts a hexadecimal string back into its raw value";
     public static final String MODULE_EXAMPLE = "\"74 61 6b 6f 79 61 6b 69\" becomes \"takoyaki\"";
 
-    public HexDecode() {
+    public HexDecoder() {
         super(MODULE_NAME, MODULE_DESCRIPTION);
 
     }

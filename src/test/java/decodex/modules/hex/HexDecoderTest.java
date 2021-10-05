@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import decodex.data.Data;
 import org.junit.jupiter.api.Test;
 
-class HexDecodeTest {
+class HexDecoderTest {
 
     @Test
     void run_HexEncoding_expectascii() {
@@ -13,10 +13,10 @@ class HexDecodeTest {
                 + "3C 3D 3E 3F 40 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 5B 5C"
                 + " 5D 5E 5F 60 61 62 63 64 65 66 67 68 69 6A 6B 6C 6D 6E 6F 70 71 72 73 74 75 76 77 78 79 7A 7B 7C "
                 + "7D 7E";
-        HexDecode hexDecode = new HexDecode();
+        HexDecoder hexDecoder = new HexDecoder();
         Data inputData = new Data(inputString);
 
-        Data result = hexDecode.run(inputData);
+        Data result = hexDecoder.run(inputData);
         String expectedString = " !\"#$%&'()*+,-./0123456789:;"
                 + "<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
 
