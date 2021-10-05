@@ -7,6 +7,7 @@ public class DataManager {
 
     /* Data provided by the user */
     private final Data originalData;
+
     /* Data to perform the encoding/decoding operations on */
     private Data currentData;
 
