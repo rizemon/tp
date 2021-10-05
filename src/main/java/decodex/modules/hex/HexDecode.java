@@ -28,11 +28,11 @@ public class HexDecode extends BaseModule {
         String inputString = data.toString();
         inputString = inputString.replace(" ", "");
 
-        String DecodedString = Arrays
+        String decodedString = Arrays
                 .stream(inputString.split("(?<=\\G..)"))
                 .map(s -> Character.toString((char) Integer.parseInt(s, 16)))
                 .collect(Collectors.joining());
 
-        return new Data(DecodedString);
+        return new Data(decodedString);
     }
 }
