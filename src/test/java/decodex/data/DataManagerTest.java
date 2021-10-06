@@ -1,36 +1,77 @@
 package decodex.data;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
+import decodex.data.exception.DataManagerException;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 class DataManagerTest {
 
     @Test
-    public void resetCurrentData_noUpdates_originalData() {
-        Data originalData = new Data("hi");
-        DataManager testManager = new DataManager(originalData);
-
-        testManager.resetToOriginalData();
-
-        Data currentData = testManager.getCurrentData();
-
-        assertTrue(Arrays.equals(currentData.getRawBytes(), originalData.getRawBytes()));
+    public void getOriginalData_noData_expectException() {
+        DataManager testManager = new DataManager();
+        assertThrows(DataManagerException.class, () -> testManager.getOriginalData());
     }
 
     @Test
-    public void resetCurrentData_updateWithNewData_originalData() {
+    public void getCurrentData_noData_expectException() {
+        DataManager testManager = new DataManager();
+        assertThrows(DataManagerException.class, () -> testManager.getCurrentData());
+    }
+
+    @Test
+    public void getCurrentData_withOriginalData_originalData() throws DataManagerException {
+        DataManager testManager = new DataManager();
         Data originalData = new Data("hi");
+        testManager.setOriginalData(originalData);
+        assertTrue(Arrays.equals(testManager.getCurrentData().getRawBytes(), originalData.getRawBytes()));
+    }
+
+    @Test
+    public void setOriginalData_withOriginalData_originalData() throws DataManagerException {
+        DataManager testManager = new DataManager();
+        Data originalData = new Data("hi");
+        testManager.setOriginalData(originalData);
+        assertTrue(Arrays.equals(testManager.getOriginalData().getRawBytes(), originalData.getRawBytes()));
+    }
+
+    @Test
+    public void setCurrentData_noData_expectException() {
+        DataManager testManager = new DataManager();
         Data newData = new Data("bye");
-        DataManager testManager = new DataManager(originalData);
+        assertThrows(DataManagerException.class, () -> testManager.setCurrentData(newData));
+    }
+
+    @Test
+    public void setCurrentData_newData_newData() throws DataManagerException {
+        DataManager testManager = new DataManager();
+        Data originalData = new Data("hi");
+        testManager.setOriginalData(originalData);
+        Data newData = new Data("bye");
         testManager.setCurrentData(newData);
+        assertTrue(Arrays.equals(testManager.getCurrentData().getRawBytes(), newData.getRawBytes()));
+    }
 
+    @Test
+    public void resetToOriginalData_noUpdates_originalData() throws DataManagerException {
+        DataManager testManager = new DataManager();
+        Data originalData = new Data("hi");
+        testManager.setOriginalData(originalData);
         testManager.resetToOriginalData();
+        assertTrue(Arrays.equals(testManager.getCurrentData().getRawBytes(), originalData.getRawBytes()));
+    }
 
-        Data currentData = testManager.getCurrentData();
-
-        assertTrue(Arrays.equals(currentData.getRawBytes(), originalData.getRawBytes()));
+    @Test
+    public void resetToOriginalData_newData_originalData() throws DataManagerException {
+        DataManager testManager = new DataManager();
+        Data originalData = new Data("hi");
+        testManager.setOriginalData(originalData);
+        Data newData = new Data("bye");
+        testManager.setCurrentData(newData);
+        testManager.resetToOriginalData();
+        assertTrue(Arrays.equals(testManager.getCurrentData().getRawBytes(), originalData.getRawBytes()));
     }
 }
