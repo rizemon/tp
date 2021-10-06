@@ -18,7 +18,6 @@ public class HexDecoder extends BaseModule {
 
     public HexDecoder() {
         super(MODULE_NAME, MODULE_DESCRIPTION);
-
     }
 
     /**
@@ -29,8 +28,7 @@ public class HexDecoder extends BaseModule {
      */
     @Override
     public Data run(Data data) {
-        String inputString = data.toString();
-        inputString = inputString.replace(" ", "");
+        String inputString = data.toString().replace(" ", "");
 
         String decodedString = Arrays
                 .stream(inputString.split(REGEX_SPLIT_EVERY_2_CHARS))
