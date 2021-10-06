@@ -15,8 +15,7 @@ public class ModuleManager {
     /**
      * Array of available modules.
      */
-    private final BaseModule[] modules = {new Base64Encoder(), new Base64Decoder(), new HexEncoder(), new HexDecoder()
-    };
+    private final BaseModule[] modules = {new Base64Encoder(), new Base64Decoder(), new HexEncoder(), new HexDecoder()};
 
     public ModuleManager() {
     }
