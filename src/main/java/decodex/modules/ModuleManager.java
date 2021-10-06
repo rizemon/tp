@@ -1,7 +1,6 @@
-package decodex.data;
+package decodex.modules;
 
 import decodex.data.exception.UnknownModuleException;
-import decodex.modules.BaseModule;
 import decodex.modules.base64.Base64Decoder;
 import decodex.modules.base64.Base64Encoder;
 import decodex.modules.hex.HexDecoder;
