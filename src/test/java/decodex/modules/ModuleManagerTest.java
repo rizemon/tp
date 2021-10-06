@@ -1,16 +1,15 @@
-package decodex.data;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+package decodex.modules;
 
 import decodex.data.exception.UnknownModuleException;
 import decodex.modules.base64.Base64Decoder;
 import decodex.modules.base64.Base64Encoder;
 import decodex.modules.hex.HexDecoder;
 import decodex.modules.hex.HexEncoder;
-import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
 
 public class ModuleManagerTest {
 
