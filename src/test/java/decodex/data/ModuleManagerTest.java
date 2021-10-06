@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import decodex.data.exception.UnknownModuleException;
-import decodex.modules.Base64Decoder;
-import decodex.modules.Base64Encoder;
-import decodex.modules.HexDecoder;
-import decodex.modules.HexEncoder;
+import decodex.modules.base64.Base64Decoder;
+import decodex.modules.base64.Base64Encoder;
+import decodex.modules.hex.HexDecoder;
+import decodex.modules.hex.HexEncoder;
 import org.junit.jupiter.api.Test;
 
 

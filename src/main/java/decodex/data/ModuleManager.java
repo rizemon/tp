@@ -1,11 +1,11 @@
 package decodex.data;
 
 import decodex.data.exception.UnknownModuleException;
-import decodex.modules.Base64Decoder;
-import decodex.modules.Base64Encoder;
 import decodex.modules.BaseModule;
-import decodex.modules.HexDecoder;
-import decodex.modules.HexEncoder;
+import decodex.modules.base64.Base64Decoder;
+import decodex.modules.base64.Base64Encoder;
+import decodex.modules.hex.HexDecoder;
+import decodex.modules.hex.HexEncoder;
 
 /**
  * ModuleManager maintains the list of available modules and returns selected modules.
