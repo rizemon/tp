@@ -9,15 +9,11 @@ public class UnknownModuleException extends Exception {
     private final String unknownModuleName;
 
     public UnknownModuleException(String unknownModuleName) {
+        super(EXCEPTION_MESSAGE);
         this.unknownModuleName = unknownModuleName;
     }
 
     public String getUnknownModuleName() {
         return unknownModuleName;
-    }
-
-    @Override
-    public String getMessage() {
-        return EXCEPTION_MESSAGE;
     }
 }
