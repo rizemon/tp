@@ -1,4 +1,4 @@
-package decodex.modules;
+package decodex.modules.base64;
 
 import decodex.data.Data;
 import org.junit.jupiter.api.Test;
