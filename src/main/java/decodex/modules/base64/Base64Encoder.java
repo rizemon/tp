@@ -1,5 +1,6 @@
-package decodex.modules;
+package decodex.modules.base64;
 
+import decodex.modules.BaseModule;
 import java.util.Base64;
 
 import decodex.data.Data;
