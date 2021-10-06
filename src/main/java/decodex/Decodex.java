@@ -30,14 +30,12 @@ public class Decodex {
 
         Scanner in = new Scanner(System.in);
 
-        boolean isExit = false;
+        // Temporary code, command functions will be moved to parser
+        Command command = null;
 
-        while (!isExit) {
+        do {
             System.out.print("Decodex > ");
             String userInput = in.nextLine();
-
-            // Temporary code, command functions will be moved to parser
-            Command command = null;
 
             switch (userInput) {
             case ExitCommand.COMMAND_WORD:
@@ -46,13 +44,12 @@ public class Decodex {
             default:
                 // Skeletal - Just "echos" back to us.
                 System.out.println(userInput);
+                continue;
             }
 
-            if (command != null) {
-                command.run(dataManager, moduleManager, ui);
-                isExit = command.isExit();
-            }
-        }
+            command.run(dataManager, moduleManager, ui);
+
+        } while (!(command instanceof ExitCommand));
 
         System.out.print("Goodbye!");
         System.exit(0);
