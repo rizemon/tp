@@ -8,17 +8,16 @@ import org.junit.jupiter.api.Test;
 class HexEncoderTest {
 
     @Test
-    void run_ascii_expectHexEncoding() {
+    void run_allAsciiChars_expectHexEncoding() {
         String inputString = " !\"#$%&'()*+,-./0123456789:;"
                 + "<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
         HexEncoder hexEncoder = new HexEncoder();
         Data inputData = new Data(inputString);
 
         Data result = hexEncoder.run(inputData);
-        String expectedString = "20 21 22 23 24 25 26 27 28 29 2A 2B 2C 2D 2E 2F 30 31 32 33 34 35 36 37 38 39 3A 3B "
-                + "3C 3D 3E 3F 40 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 5B 5C"
-                + " 5D 5E 5F 60 61 62 63 64 65 66 67 68 69 6A 6B 6C 6D 6E 6F 70 71 72 73 74 75 76 77 78 79 7A 7B 7C "
-                + "7D 7E";
+        String expectedString = "202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f40"
+                + "4142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768"
+                + "696a6b6c6d6e6f707172737475767778797a7b7c7d7e";
 
         assertEquals(expectedString, result.toString());
     }

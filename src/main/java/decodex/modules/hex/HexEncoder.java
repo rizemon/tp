@@ -3,10 +3,12 @@ package decodex.modules.hex;
 import decodex.data.Data;
 import decodex.modules.BaseModule;
 
+/**
+ * The HexEncoder class converts the input string to hexadecimal bytes.
+ */
 public class HexEncoder extends BaseModule {
 
-    public static final String MODULE_NAME = "hex-encode";
-
+    public static final String MODULE_NAME = "hexencode";
     public static final String MODULE_DESCRIPTION = "Converts the input string to hexadecimal bytes";
 
     public HexEncoder() {
@@ -25,7 +27,7 @@ public class HexEncoder extends BaseModule {
         StringBuilder encodedStringBuilder = new StringBuilder();
 
         for (byte b : data.getRawBytes()) {
-            encodedStringBuilder.append(String.format("%02X ", b));
+            encodedStringBuilder.append(String.format("%02x", b));
         }
 
         String encodedString = encodedStringBuilder.toString().trim();
