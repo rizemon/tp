@@ -1,26 +1,46 @@
 package decodex.data;
 
+import decodex.data.exception.DataManagerException;
+
 /**
  * The DataManager class manages the current state of the data.
  */
 public class DataManager {
 
     /* Data provided by the user */
-    private final Data originalData;
+    private Data originalData;
 
     /* Data to perform the encoding/decoding operations on */
     private Data currentData;
 
-    public DataManager(Data originalData) {
-        this.originalData = originalData;
-        currentData = originalData;
+    public DataManager() {
+        originalData = null;
+        currentData = null;
     }
 
-    public Data getCurrentData() {
+    public Data getOriginalData() throws DataManagerException {
+        if (originalData == null) {
+            throw new DataManagerException("No data found");
+        }
+        return originalData;
+    }
+
+    public Data getCurrentData() throws DataManagerException {
+        if (currentData == null) {
+            throw new DataManagerException("No data found");
+        }
         return currentData;
     }
 
-    public void setCurrentData(Data currentData) {
+    public void setOriginalData(Data originalData) {
+        this.originalData = originalData;
+        resetToOriginalData();
+    }
+
+    public void setCurrentData(Data currentData) throws DataManagerException {
+        if (originalData == null) {
+            throw new DataManagerException("No data found");
+        }
         this.currentData = currentData;
     }
 
