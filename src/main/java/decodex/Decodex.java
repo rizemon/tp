@@ -39,7 +39,7 @@ public class Decodex {
 
             switch (userInput) {
             case ExitCommand.COMMAND_WORD:
-                command = new ExitCommand();
+                command = new ExitCommand(dataManager, moduleManager, ui);
                 break;
             default:
                 // Skeletal - Just "echos" back to us.
@@ -47,11 +47,10 @@ public class Decodex {
                 continue;
             }
 
-            command.run(dataManager, moduleManager, ui);
+            command.run();
 
         } while (!(command instanceof ExitCommand));
 
-        System.out.print("Goodbye!");
         System.exit(0);
     }
 }
