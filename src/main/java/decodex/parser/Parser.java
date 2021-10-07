@@ -36,6 +36,7 @@ public class Parser {
      * @return The type of command.
      */
     public String getCommandType(String userInput) throws ParserException {
+        userInput = userInput.strip();
         if (userInput.isEmpty()) {
             throw new ParserException(ParserException.MISSING_COMMAND_TYPE_MESSAGE);
         }
