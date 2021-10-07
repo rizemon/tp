@@ -6,6 +6,7 @@ import decodex.commands.ExitCommand;
 import decodex.data.DataManager;
 import decodex.modules.ModuleManager;
 import decodex.parser.Parser;
+import decodex.parser.exception.ParserException;
 import decodex.ui.Ui;
 
 import java.util.Scanner;
@@ -49,17 +50,16 @@ public class Decodex {
         printGreeting();
         initDecodex();
 
-        // Temporary code, command functions will be moved to parser
         Command command = null;
 
         do {
             printPromptHeader();
             String userInput = in.nextLine();
 
-            command = parser.parseCommand(userInput, dataManager, moduleManager, ui);
-
-            if (command == null) {
-                echoUserInput(userInput);
+            try {
+                command = parser.parseCommand(userInput, dataManager, moduleManager, ui);
+            } catch (ParserException err) {
+                printErrorMessage(err.getMessage());
                 continue;
             }
             command.run();
@@ -82,7 +82,12 @@ public class Decodex {
         System.out.print("Decodex > ");
     }
 
-    public static void echoUserInput(String userInput) {
-        System.out.println(userInput);
+    /**
+     * Prints the handled error messages.
+     *
+     * @param errorMessage The respective error message.
+     */
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
     }
 }
