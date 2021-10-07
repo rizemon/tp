@@ -8,6 +8,7 @@ import decodex.ui.Ui;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -39,13 +40,13 @@ class ParserTest {
     }
 
     @Test
-    void getUserArgument_userInputWithOneSpaceSeparator_expectArgumentString() {
+    void getUserArguments_userInputWithOneSpaceSeparator_expectArrayOfOneArgument() {
         String testInput = "test data";
-        String expectedOutput = "data";
+        String[] expectedOutput = new String[]{"data"};
 
-        String argumentString = parser.getUserArgument(testInput);
+        String[] arguments = parser.getUserArguments(testInput);
 
-        assertEquals(expectedOutput, argumentString);
+        assertArrayEquals(expectedOutput, arguments);
     }
 
     @Test

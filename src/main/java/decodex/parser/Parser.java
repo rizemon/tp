@@ -6,6 +6,8 @@ import decodex.data.DataManager;
 import decodex.modules.ModuleManager;
 import decodex.ui.Ui;
 
+import java.util.Arrays;
+
 /**
  * Parses and validates the user input.
  */
@@ -28,13 +30,13 @@ public class Parser {
      * @param userInput The input specified by the user.
      * @return The argument portion of the user input.
      */
-    public String getUserArgument(String userInput) {
+    public String[] getUserArguments(String userInput) {
         try {
             String[] tokens = userInput.split(" ");
-            return tokens[1];
+            return Arrays.copyOfRange(tokens,1, tokens.length);
         } catch (ArrayIndexOutOfBoundsException err) {
             // Temporary error handling
-            return "";
+            return null;
         }
     }
 
