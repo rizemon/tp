@@ -54,7 +54,8 @@ public class Parser {
      * @param ui            The Ui object
      * @return The respective Command object.
      */
-    public Command parseCommand(String userInput, DataManager dataManager, ModuleManager moduleManager, Ui ui) throws ParserException {
+    public Command parseCommand(String userInput, DataManager dataManager, ModuleManager moduleManager, Ui ui)
+            throws ParserException {
         Command command;
         try {
             String commandType = getCommandType(userInput);
