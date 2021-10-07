@@ -1,0 +1,43 @@
+package decodex.commands;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+
+import decodex.data.Data;
+import decodex.data.DataManager;
+import decodex.data.exception.CommandException;
+import decodex.data.exception.DataManagerException;
+import decodex.modules.ModuleManager;
+import decodex.ui.Ui;
+
+public class DataCommandTest {
+
+    @Test
+    public void run_missingArguments_expectException() {
+        DataManager dataManager = new DataManager();
+        ModuleManager moduleManager = new ModuleManager();
+        Ui ui = new Ui();
+        String[] testArguments = {};
+        Command testCommand = new DataCommand(testArguments);
+
+        assertThrows(CommandException.class, () -> testCommand.run(dataManager, moduleManager, ui));
+    }
+
+    @Test
+    public void run_insertData_insertedData() throws CommandException, DataManagerException {
+        DataManager dataManager = new DataManager();
+        ModuleManager moduleManager = new ModuleManager();
+        Ui ui = new Ui();
+        String dataString = "something";
+        String[] testArguments = {dataString};
+        Command testCommand = new DataCommand(testArguments);
+        testCommand.run(dataManager, moduleManager, ui);
+
+        Data testData = new Data(dataString);
+        assertTrue(Arrays.equals(dataManager.getOriginalData().getRawBytes(), testData.getRawBytes()));
+    }
+}

@@ -3,6 +3,7 @@ package decodex;
 import decodex.commands.Command;
 import decodex.commands.ExitCommand;
 import decodex.data.DataManager;
+import decodex.data.exception.CommandException;
 import decodex.modules.ModuleManager;
 import decodex.parser.Parser;
 import decodex.data.exception.ParserException;
@@ -45,7 +46,7 @@ public class Decodex {
     /**
      * Decodex entry-point for the java.decodex.Decodex application.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CommandException {
         printGreeting();
         initDecodex();
 
