@@ -21,11 +21,19 @@ public class Parser {
      * @return The type of command.
      */
     public String getCommandType(String userInput) throws ParserException {
-        String[] tokens = userInput.split(" ");
-        String commandType = tokens[0];
-        if (commandType.isEmpty()) {
+        if (userInput.isEmpty()) {
             throw new ParserException(ParserException.MISSING_COMMAND_TYPE_MESSAGE);
         }
+
+        String[] tokens = userInput.split(" ");
+        String commandType = tokens[0];
+
+        boolean isInvalidTokensLength = tokens.length < 1;
+
+        if (isInvalidTokensLength) {
+            throw new ParserException(ParserException.WEIRD_COMMAND_TYPE_MESSAGE);
+        }
+
         return tokens[0];
     }
 
@@ -57,18 +65,15 @@ public class Parser {
     public Command parseCommand(String userInput, DataManager dataManager, ModuleManager moduleManager, Ui ui)
             throws ParserException {
         Command command;
-        try {
-            String commandType = getCommandType(userInput);
 
-            switch (commandType) {
-            case ExitCommand.COMMAND_WORD:
-                command = new ExitCommand(dataManager, moduleManager, ui);
-                break;
-            default:
-                throw new ParserException(userInput + " !To be replaced with invalid command message!");
-            }
-        } catch (ParserException err) {
-            throw new ParserException(err.getMessage());
+        String commandType = getCommandType(userInput);
+
+        switch (commandType) {
+        case ExitCommand.COMMAND_WORD:
+            command = new ExitCommand(dataManager, moduleManager, ui);
+            break;
+        default:
+            throw new ParserException(userInput + " !To be replaced with invalid command message!");
         }
         return command;
     }
