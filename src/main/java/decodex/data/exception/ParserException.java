@@ -1,4 +1,4 @@
-package decodex.parser.exception;
+package decodex.data.exception;
 
 public class ParserException extends Exception {
 
