@@ -5,7 +5,7 @@ import decodex.commands.ExitCommand;
 import decodex.data.DataManager;
 import decodex.modules.ModuleManager;
 import decodex.parser.Parser;
-import decodex.parser.exception.ParserException;
+import decodex.data.exception.ParserException;
 import decodex.ui.Ui;
 
 import java.util.Scanner;
