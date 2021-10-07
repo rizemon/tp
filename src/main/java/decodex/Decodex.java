@@ -1,6 +1,5 @@
 package decodex;
 
-
 import decodex.commands.Command;
 import decodex.commands.ExitCommand;
 import decodex.data.DataManager;

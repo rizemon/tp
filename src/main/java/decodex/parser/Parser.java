@@ -15,6 +15,21 @@ import java.util.Arrays;
 public class Parser {
 
     /**
+     * Specifies the index of the tokens where command can be found.
+     */
+    private static final int COMMAND_INDEX = 0;
+
+    /**
+     * Specifies the starting index where the arguments can be found.
+     */
+    private static final int STARTING_ARGUMENTS_INDEX = 1;
+
+    /**
+     * Specifies the valid length of the tokens and used to check validity of tokens.
+     */
+    private static final int VALID_TOKENS_LENGTH = 1;
+
+    /**
      * Returns the type of command that user has entered.
      *
      * @param userInput The input specified by the user.
@@ -27,12 +42,12 @@ public class Parser {
 
         String[] tokens = userInput.split(" ");
 
-        boolean isInvalidTokensLength = tokens.length < 1;
+        boolean isInvalidTokensLength = tokens.length < VALID_TOKENS_LENGTH;
 
         if (isInvalidTokensLength) {
             throw new ParserException(ParserException.WEIRD_COMMAND_TYPE_MESSAGE);
         }
-        return tokens[0];
+        return tokens[COMMAND_INDEX];
     }
 
     /**
@@ -44,10 +59,10 @@ public class Parser {
     public String[] getUserArguments(String userInput) throws ParserException {
         String[] tokens = userInput.split(" ");
 
-        if (tokens.length <= 1) {
+        if (tokens.length <= VALID_TOKENS_LENGTH) {
             throw new ParserException(ParserException.MISSING_COMMAND_ARGS_MESSAGE);
         }
-        return Arrays.copyOfRange(tokens, 1, tokens.length);
+        return Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length);
     }
 
     /**
