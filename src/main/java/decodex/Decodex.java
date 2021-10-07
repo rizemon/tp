@@ -43,7 +43,7 @@ public class Decodex {
             if (tokens.length < 1) {
                 continue;
             }
-            String[] arguments = Arrays.copyOfRange(tokens,1, tokens.length);
+            String[] arguments = Arrays.copyOfRange(tokens, 1, tokens.length);
 
             switch (tokens[0]) {
             case DataCommand.COMMAND_WORD:
