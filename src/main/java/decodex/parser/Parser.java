@@ -33,7 +33,7 @@ public class Parser {
     public String[] getUserArguments(String userInput) {
         try {
             String[] tokens = userInput.split(" ");
-            return Arrays.copyOfRange(tokens,1, tokens.length);
+            return Arrays.copyOfRange(tokens, 1, tokens.length);
         } catch (ArrayIndexOutOfBoundsException err) {
             // Temporary error handling
             return null;
