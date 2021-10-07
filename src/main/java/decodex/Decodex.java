@@ -1,6 +1,12 @@
 package decodex;
 
+
+import decodex.commands.Command;
+import decodex.commands.ExitCommand;
+import decodex.data.DataManager;
+import decodex.modules.ModuleManager;
 import decodex.parser.Parser;
+import decodex.ui.Ui;
 
 import java.util.Scanner;
 
@@ -21,11 +27,6 @@ public class Decodex {
             + "|____/ \\__,_|_|\\_\\___|\n";
 
     /**
-     * Command Prefix Constants.
-     */
-    private static final String EXIT_COMMAND = "exit";
-
-    /**
      * Initializes the necessary Objects for Decodex.
      */
     public static void initDecodex() {
@@ -36,25 +37,38 @@ public class Decodex {
      * Decodex entry-point for the java.decodex.Decodex application.
      */
     public static void main(String[] args) {
+        DataManager dataManager = new DataManager();
+        ModuleManager moduleManager = new ModuleManager();
+        Ui ui = new Ui();
+
         System.out.println("Hello from\n" + LOGO);
         initDecodex();
 
         Scanner in = new Scanner(System.in);
-        while (true) {
+
+        // Temporary code, command functions will be moved to parser
+        Command command = null;
+
+        do {
             System.out.print("Decodex > ");
             String userInput = in.nextLine();
-            String command = parser.getCommandType(userInput);
-            String userArgument = parser.getUserArgument(userInput);
+            //String command = parser.getCommandType(userInput);
+            //String userArgument = parser.getUserArgument(userInput);
 
-            switch (command) {
-            case EXIT_COMMAND:
-                System.out.print("Goodbye!");
-                System.exit(0);
+            switch (userInput) {
+            case ExitCommand.COMMAND_WORD:
+                command = new ExitCommand(dataManager, moduleManager, ui);
                 break;
             default:
                 // Skeletal - Just "echos" back to us.
                 System.out.println(userInput);
+                continue;
             }
-        }
+
+            command.run();
+
+        } while (!(command instanceof ExitCommand));
+
+        System.exit(0);
     }
 }
