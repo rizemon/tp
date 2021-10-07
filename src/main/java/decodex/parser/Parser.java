@@ -26,14 +26,12 @@ public class Parser {
         }
 
         String[] tokens = userInput.split(" ");
-        String commandType = tokens[0];
 
         boolean isInvalidTokensLength = tokens.length < 1;
 
         if (isInvalidTokensLength) {
             throw new ParserException(ParserException.WEIRD_COMMAND_TYPE_MESSAGE);
         }
-
         return tokens[0];
     }
 
@@ -44,12 +42,12 @@ public class Parser {
      * @return The argument portion of the user input.
      */
     public String[] getUserArguments(String userInput) throws ParserException {
-        try {
-            String[] tokens = userInput.split(" ");
-            return Arrays.copyOfRange(tokens, 1, tokens.length);
-        } catch (ArrayIndexOutOfBoundsException err) {
+        String[] tokens = userInput.split(" ");
+
+        if (tokens.length <= 1) {
             throw new ParserException(ParserException.MISSING_COMMAND_ARGS_MESSAGE);
         }
+        return Arrays.copyOfRange(tokens, 1, tokens.length);
     }
 
     /**
