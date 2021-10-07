@@ -27,7 +27,8 @@ public class Parser {
     /**
      * Specifies the valid length of the tokens and used to check validity of tokens.
      */
-    private static final int VALID_TOKENS_LENGTH = 1;
+    private static final int VALID_TOKENS_LENGTH_FOR_COMMAND = 1;
+    private static final int VALID_TOKENS_LENGTH_FOR_ARGUMENTS = 2;
 
     /**
      * Returns the type of command that user has entered.
@@ -43,7 +44,7 @@ public class Parser {
 
         String[] tokens = userInput.split(" ");
 
-        boolean isInvalidTokensLength = tokens.length < VALID_TOKENS_LENGTH;
+        boolean isInvalidTokensLength = tokens.length < VALID_TOKENS_LENGTH_FOR_COMMAND;
 
         if (isInvalidTokensLength) {
             throw new ParserException(ParserException.WEIRD_COMMAND_TYPE_MESSAGE);
@@ -60,7 +61,7 @@ public class Parser {
     public String[] getUserArguments(String userInput) throws ParserException {
         String[] tokens = userInput.split(" ");
 
-        if (tokens.length <= VALID_TOKENS_LENGTH) {
+        if (tokens.length < VALID_TOKENS_LENGTH_FOR_ARGUMENTS) {
             throw new ParserException(ParserException.MISSING_COMMAND_ARGS_MESSAGE);
         }
         return Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length);
