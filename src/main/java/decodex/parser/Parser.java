@@ -19,8 +19,7 @@ public class Parser {
      */
     public String getCommandType(String userInput) {
         String[] tokens = userInput.split(" ");
-        String commandType = tokens[0];
-        return commandType;
+        return tokens[0];
     }
 
     /**
@@ -32,8 +31,7 @@ public class Parser {
     public String getUserArgument(String userInput) {
         try {
             String[] tokens = userInput.split(" ");
-            String userArgument = tokens[1];
-            return userArgument;
+            return tokens[1];
         } catch (ArrayIndexOutOfBoundsException err) {
             // Temporary error handling
             return "";
@@ -61,7 +59,6 @@ public class Parser {
         default:
             return null;
         }
-
         return command;
     }
 }
