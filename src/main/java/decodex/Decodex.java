@@ -55,21 +55,14 @@ public class Decodex {
         do {
             printPromptHeader();
             String userInput = in.nextLine();
-            String commandType = parser.getCommandType(userInput);
-            //String userArgument = parser.getUserArgument(userInput);
 
-            switch (commandType) {
-            case ExitCommand.COMMAND_WORD:
-                command = new ExitCommand(dataManager, moduleManager, ui);
-                break;
-            default:
-                // Skeletal - Just "echos" back to us.
+            command = parser.parseCommand(userInput, dataManager, moduleManager, ui);
+
+            if (command == null) {
                 echoUserInput(userInput);
                 continue;
             }
-
             command.run();
-
         } while (!(command instanceof ExitCommand));
 
         System.exit(0);
