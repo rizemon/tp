@@ -4,10 +4,23 @@ import decodex.commands.Command;
 import decodex.commands.ExitCommand;
 import decodex.data.DataManager;
 import decodex.modules.ModuleManager;
+import decodex.parser.Parser;
+import decodex.parser.exception.ParserException;
 import decodex.ui.Ui;
+
 import java.util.Scanner;
 
 public class Decodex {
+
+    /**
+     * Necessary objects to be initialized for Decodex to work properly.
+     */
+    private static DataManager dataManager;
+    private static ModuleManager moduleManager;
+    private static Parser parser;
+    private static Scanner in;
+    private static Ui ui;
+
 
     /**
      * Logo to be changed - possibly to a welcome message instead for Decodex.
@@ -19,38 +32,61 @@ public class Decodex {
             + "|____/ \\__,_|_|\\_\\___|\n";
 
     /**
+     * Initializes the necessary Objects for Decodex.
+     */
+    public static void initDecodex() {
+        dataManager = new DataManager();
+        moduleManager = new ModuleManager();
+        parser = new Parser();
+        in = new Scanner(System.in);
+        ui = new Ui();
+    }
+
+    /**
      * Decodex entry-point for the java.decodex.Decodex application.
      */
     public static void main(String[] args) {
-        DataManager dataManager = new DataManager();
-        ModuleManager moduleManager = new ModuleManager();
-        Ui ui = new Ui();
+        printGreeting();
+        initDecodex();
 
-        System.out.println("Hello from\n" + LOGO);
-
-        Scanner in = new Scanner(System.in);
-
-        // Temporary code, command functions will be moved to parser
         Command command = null;
 
         do {
-            System.out.print("Decodex > ");
+            printPromptHeader();
             String userInput = in.nextLine();
 
-            switch (userInput) {
-            case ExitCommand.COMMAND_WORD:
-                command = new ExitCommand(dataManager, moduleManager, ui);
-                break;
-            default:
-                // Skeletal - Just "echos" back to us.
-                System.out.println(userInput);
+            try {
+                command = parser.parseCommand(userInput, dataManager, moduleManager, ui);
+            } catch (ParserException err) {
+                printErrorMessage(err.getMessage());
                 continue;
             }
-
             command.run();
-
         } while (!(command instanceof ExitCommand));
 
         System.exit(0);
+    }
+
+    /**
+     * Prints the greeting message.
+     */
+    public static void printGreeting() {
+        System.out.println("Hello from\n" + LOGO);
+    }
+
+    /**
+     * Prints the prompt header.
+     */
+    public static void printPromptHeader() {
+        System.out.print("Decodex > ");
+    }
+
+    /**
+     * Prints the handled error messages.
+     *
+     * @param errorMessage The respective error message.
+     */
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
     }
 }

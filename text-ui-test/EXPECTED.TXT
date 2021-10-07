@@ -5,8 +5,8 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-Decodex > whoami
-Decodex > bring me thanos
-Decodex > hi
-Decodex > bye
+Decodex > whoami !To be replaced with invalid command message!
+Decodex > bring me thanos !To be replaced with invalid command message!
+Decodex > hi !To be replaced with invalid command message!
+Decodex > bye !To be replaced with invalid command message!
 Decodex > Goodbye!
