@@ -8,5 +8,7 @@ Hello from
 Decodex > whoami
 Decodex > bring me thanos
 Decodex > hi
+Decodex > [-] Missing arguments
+Decodex > [+] Input: something
 Decodex > bye
 Decodex > Goodbye!

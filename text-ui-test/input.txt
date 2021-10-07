@@ -1,5 +1,7 @@
 whoami
 bring me thanos
 hi
+data
+data something
 bye
 exit

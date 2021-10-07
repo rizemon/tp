@@ -1,6 +1,7 @@
 package decodex.commands;
 
 import decodex.data.DataManager;
+import decodex.data.exception.CommandException;
 import decodex.modules.ModuleManager;
 import decodex.ui.Ui;
 
@@ -19,6 +20,6 @@ public abstract class Command {
         this.ui = ui;
     }
 
-    public abstract void run();
+    public abstract void run() throws CommandException;
 
 }

@@ -1,10 +1,13 @@
 package decodex;
 
 import decodex.commands.Command;
+import decodex.commands.DataCommand;
 import decodex.commands.ExitCommand;
 import decodex.data.DataManager;
+import decodex.data.exception.CommandException;
 import decodex.modules.ModuleManager;
 import decodex.ui.Ui;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Decodex {
@@ -36,8 +39,16 @@ public class Decodex {
         do {
             System.out.print("Decodex > ");
             String userInput = in.nextLine();
+            String[] tokens = userInput.split(" ");
+            if (tokens.length < 1) {
+                continue;
+            }
+            String[] arguments = Arrays.copyOfRange(tokens,1, tokens.length);
 
-            switch (userInput) {
+            switch (tokens[0]) {
+            case DataCommand.COMMAND_WORD:
+                command = new DataCommand(dataManager, moduleManager, ui, arguments);
+                break;
             case ExitCommand.COMMAND_WORD:
                 command = new ExitCommand(dataManager, moduleManager, ui);
                 break;
@@ -46,8 +57,11 @@ public class Decodex {
                 System.out.println(userInput);
                 continue;
             }
-
-            command.run();
+            try {
+                command.run();
+            } catch (CommandException err) {
+                System.out.println(err.getMessage());
+            }
 
         } while (!(command instanceof ExitCommand));
 
