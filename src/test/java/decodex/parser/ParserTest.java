@@ -4,6 +4,7 @@ import decodex.commands.Command;
 import decodex.commands.ExitCommand;
 import decodex.data.DataManager;
 import decodex.modules.ModuleManager;
+import decodex.parser.exception.ParserException;
 import decodex.ui.Ui;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,7 @@ class ParserTest {
     Ui ui = new Ui();
 
     @Test
-    void getCommandType_stringWithNoSeparator_expectCommandTypeString() {
+    void getCommandType_stringWithNoSeparator_expectCommandTypeString() throws ParserException {
         String testInput = "test";
         String expectedOutput = "test";
 
@@ -30,7 +31,7 @@ class ParserTest {
     }
 
     @Test
-    void getCommandType_stringWithOneSpaceSeparator_expectCommandTypeString() {
+    void getCommandType_stringWithOneSpaceSeparator_expectCommandTypeString() throws ParserException {
         String testInput = "test data";
         String expectedOutput = "test";
 
@@ -40,7 +41,7 @@ class ParserTest {
     }
 
     @Test
-    void getUserArguments_userInputWithOneSpaceSeparator_expectArrayOfOneArgument() {
+    void getUserArguments_userInputWithOneSpaceSeparator_expectArrayOfOneArgument() throws ParserException {
         String testInput = "test data";
         String[] expectedOutput = new String[]{"data"};
 
@@ -50,7 +51,7 @@ class ParserTest {
     }
 
     @Test
-    void parseCommand_userInputSpecifyingExit_expectExitCommand() {
+    void parseCommand_userInputSpecifyingExit_expectExitCommand() throws ParserException {
         String userInput = "exit";
 
         Command command = parser.parseCommand(userInput, dataManager, moduleManager, ui);
