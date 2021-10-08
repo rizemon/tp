@@ -21,9 +21,8 @@ public class DataCommandTest {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
-        String[] testArguments = {};
-        Command testCommand = new DataCommand(testArguments);
-
+        String dataString = "";
+        Command testCommand = new DataCommand(dataString);
         assertThrows(CommandException.class, () -> testCommand.run(dataManager, moduleManager, ui));
     }
 
@@ -33,10 +32,8 @@ public class DataCommandTest {
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
         String dataString = "something";
-        String[] testArguments = {dataString};
-        Command testCommand = new DataCommand(testArguments);
+        Command testCommand = new DataCommand(dataString);
         testCommand.run(dataManager, moduleManager, ui);
-
         Data testData = new Data(dataString);
         assertTrue(Arrays.equals(dataManager.getOriginalData().getRawBytes(), testData.getRawBytes()));
     }

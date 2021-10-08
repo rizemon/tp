@@ -9,21 +9,20 @@ import decodex.ui.Ui;
 public class DataCommand extends Command {
 
     public static final String COMMAND_WORD = "data";
-    public static final int DATA_STRING_INDEX = 0;
-    public static final int ARGUMENT_COUNT = 1;
-    private final String[] arguments;
 
-    public DataCommand(String[] arguments) {
+    private final String argument;
+
+    public DataCommand(String argument) {
         super();
-        this.arguments = arguments;
+        this.argument = argument;
     }
 
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui) throws CommandException {
-        if (arguments.length < ARGUMENT_COUNT) {
-            throw new CommandException("[-] Missing arguments");
+        if (argument.isEmpty()) {
+            throw new CommandException("[-] Missing argument");
         }
-        String dataString = arguments[DATA_STRING_INDEX];
+        String dataString = argument;
         Data userData = new Data(dataString);
         dataManager.setOriginalData(userData);
         System.out.printf("[+] Input: %s\n", dataString);
