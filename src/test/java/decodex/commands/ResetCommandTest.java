@@ -22,7 +22,7 @@ class ResetCommandTest {
 
         Data originalData = new Data("hi");
         dataManager.setOriginalData(originalData);
-        
+
         Command testCommand = new ResetCommand();
         testCommand.run(dataManager, moduleManager, ui);
         assertTrue(Arrays.equals(dataManager.getCurrentData().getRawBytes(), originalData.getRawBytes()));
