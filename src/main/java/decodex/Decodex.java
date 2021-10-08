@@ -46,7 +46,7 @@ public class Decodex {
     /**
      * Decodex entry-point for the java.decodex.Decodex application.
      */
-    public static void main(String[] args) throws CommandException {
+    public static void main(String[] args) {
         printGreeting();
         initDecodex();
 
@@ -58,11 +58,11 @@ public class Decodex {
 
             try {
                 command = parser.parseCommand(userInput);
-            } catch (ParserException err) {
+                command.run(dataManager, moduleManager, ui);
+            } catch (ParserException | CommandException err) {
                 printErrorMessage(err.getMessage());
                 continue;
             }
-            command.run(dataManager, moduleManager, ui);
         } while (!(command instanceof ExitCommand));
 
         System.exit(0);
