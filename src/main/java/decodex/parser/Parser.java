@@ -68,16 +68,13 @@ public class Parser {
     }
 
     /**
-     * Parses the user input provided by user and returns its respective command.
-     * Returns a null object if the command is invalid.
+     * Parses the user input provided by user and returns its respective command. Returns a null object if the command
+     * is invalid.
      *
-     * @param userInput     The user input specified by the user.
-     * @param dataManager   The DataManager object
-     * @param moduleManager The ModuleManager object
-     * @param ui            The Ui object
+     * @param userInput The user input specified by the user.
      * @return The respective Command object.
      */
-    public Command parseCommand(String userInput, DataManager dataManager, ModuleManager moduleManager, Ui ui)
+    public Command parseCommand(String userInput)
             throws ParserException {
         Command command;
 
@@ -85,7 +82,7 @@ public class Parser {
 
         switch (commandType) {
         case ExitCommand.COMMAND_WORD:
-            command = new ExitCommand(dataManager, moduleManager, ui);
+            command = new ExitCommand();
             break;
         default:
             throw new ParserException(userInput + " !To be replaced with invalid command message!");
