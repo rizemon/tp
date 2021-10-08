@@ -74,8 +74,7 @@ public class Parser {
      * @param userInput The user input specified by the user.
      * @return The respective Command object.
      */
-    public Command parseCommand(String userInput)
-            throws ParserException {
+    public Command parseCommand(String userInput) throws ParserException {
         Command command;
 
         String commandType = getCommandType(userInput);
