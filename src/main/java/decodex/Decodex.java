@@ -3,6 +3,7 @@ package decodex;
 import decodex.commands.Command;
 import decodex.commands.ExitCommand;
 import decodex.data.DataManager;
+import decodex.data.exception.CommandException;
 import decodex.modules.ModuleManager;
 import decodex.parser.Parser;
 import decodex.data.exception.ParserException;
@@ -57,11 +58,11 @@ public class Decodex {
 
             try {
                 command = parser.parseCommand(userInput);
-            } catch (ParserException err) {
+                command.run(dataManager, moduleManager, ui);
+            } catch (ParserException | CommandException err) {
                 printErrorMessage(err.getMessage());
                 continue;
             }
-            command.run(dataManager, moduleManager, ui);
         } while (!(command instanceof ExitCommand));
 
         System.exit(0);
