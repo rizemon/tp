@@ -11,7 +11,7 @@ public class DataCommand extends Command {
     public static final String COMMAND_WORD = "data";
     public static final int DATA_STRING_INDEX = 0;
     public static final int ARGUMENT_COUNT = 1;
-    private String[] arguments;
+    private final String[] arguments;
 
     public DataCommand(String[] arguments) {
         super();
