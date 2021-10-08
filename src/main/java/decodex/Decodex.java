@@ -1,13 +1,11 @@
 package decodex;
 
 import decodex.commands.Command;
-import decodex.commands.DataCommand;
 import decodex.commands.ExitCommand;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.modules.ModuleManager;
 import decodex.ui.Ui;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Decodex {
@@ -24,7 +22,7 @@ public class Decodex {
     /**
      * Decodex entry-point for the java.decodex.Decodex application.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CommandException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
@@ -39,16 +37,8 @@ public class Decodex {
         do {
             System.out.print("Decodex > ");
             String userInput = in.nextLine();
-            String[] tokens = userInput.split(" ");
-            if (tokens.length < 1) {
-                continue;
-            }
-            String[] arguments = Arrays.copyOfRange(tokens, 1, tokens.length);
 
-            switch (tokens[0]) {
-            case DataCommand.COMMAND_WORD:
-                command = new DataCommand(dataManager, moduleManager, ui, arguments);
-                break;
+            switch (userInput) {
             case ExitCommand.COMMAND_WORD:
                 command = new ExitCommand(dataManager, moduleManager, ui);
                 break;
@@ -57,11 +47,8 @@ public class Decodex {
                 System.out.println(userInput);
                 continue;
             }
-            try {
-                command.run();
-            } catch (CommandException err) {
-                System.out.println(err.getMessage());
-            }
+
+            command.run();
 
         } while (!(command instanceof ExitCommand));
 
