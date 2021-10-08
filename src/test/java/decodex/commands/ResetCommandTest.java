@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 import decodex.data.Data;
 import decodex.data.DataManager;
+import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;
 import decodex.modules.ModuleManager;
 import decodex.ui.Ui;
@@ -15,7 +16,7 @@ import decodex.ui.Ui;
 class ResetCommandTest {
 
     @Test
-    public void run_noChanges_sameOriginalData() throws DataManagerException {
+    public void run_noChanges_sameOriginalData() throws CommandException, DataManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
@@ -29,7 +30,7 @@ class ResetCommandTest {
     }
 
     @Test
-    public void run_newData_sameOriginalData() throws DataManagerException {
+    public void run_newData_sameOriginalData() throws CommandException, DataManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
