@@ -10,19 +10,18 @@ public class DataCommand extends Command {
 
     public static final String COMMAND_WORD = "data";
 
-    private final String argument;
+    private final String dataString;
 
-    public DataCommand(String argument) {
+    public DataCommand(String dataString) {
         super();
-        this.argument = argument;
+        this.dataString = dataString;
     }
 
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui) throws CommandException {
-        if (argument.isEmpty()) {
+        if (dataString.isEmpty()) {
             throw new CommandException("[-] Missing argument");
         }
-        String dataString = argument;
         Data userData = new Data(dataString);
         dataManager.setOriginalData(userData);
         System.out.printf("[+] Input: %s\n", dataString);
