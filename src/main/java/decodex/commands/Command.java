@@ -9,16 +9,8 @@ import decodex.ui.Ui;
  */
 public abstract class Command {
 
-    protected DataManager dataManager;
-    protected ModuleManager moduleManager;
-    protected Ui ui;
-
-    public Command(DataManager dataManager, ModuleManager moduleManager, Ui ui) {
-        this.dataManager = dataManager;
-        this.moduleManager = moduleManager;
-        this.ui = ui;
+    public Command() {
     }
 
-    public abstract void run();
-
+    public abstract void run(DataManager dataManager, ModuleManager moduleManager, Ui ui);
 }

@@ -56,12 +56,12 @@ public class Decodex {
             String userInput = in.nextLine();
 
             try {
-                command = parser.parseCommand(userInput, dataManager, moduleManager, ui);
+                command = parser.parseCommand(userInput);
             } catch (ParserException err) {
                 printErrorMessage(err.getMessage());
                 continue;
             }
-            command.run();
+            command.run(dataManager, moduleManager, ui);
         } while (!(command instanceof ExitCommand));
 
         System.exit(0);

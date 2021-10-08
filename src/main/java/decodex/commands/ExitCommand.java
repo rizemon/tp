@@ -8,12 +8,12 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
 
-    public ExitCommand(DataManager dataManager, ModuleManager moduleManager, Ui ui) {
-        super(dataManager, moduleManager, ui);
+    public ExitCommand() {
+        super();
     }
 
     @Override
-    public void run() {
+    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui) {
         System.out.print("Goodbye!");
     }
 }

@@ -2,10 +2,7 @@ package decodex.parser;
 
 import decodex.commands.Command;
 import decodex.commands.ExitCommand;
-import decodex.data.DataManager;
-import decodex.modules.ModuleManager;
 import decodex.data.exception.ParserException;
-import decodex.ui.Ui;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,10 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ParserTest {
 
-    DataManager dataManager = new DataManager();
-    ModuleManager moduleManager = new ModuleManager();
     Parser parser = new Parser();
-    Ui ui = new Ui();
 
     @Test
     void getCommandType_stringWithNoSeparator_expectCommandTypeString() throws ParserException {
@@ -54,7 +48,7 @@ class ParserTest {
     void parseCommand_userInputSpecifyingExit_expectExitCommand() throws ParserException {
         String userInput = "exit";
 
-        Command command = parser.parseCommand(userInput, dataManager, moduleManager, ui);
+        Command command = parser.parseCommand(userInput);
 
         assertTrue(command instanceof ExitCommand);
     }
