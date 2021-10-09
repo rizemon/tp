@@ -40,7 +40,7 @@ public class SelectCommandTest {
         dataCommand.run(dataManager, moduleManager, ui);
 
         String moduleName = "";
-        Command selectCommand = new SelectCommand(moduleName);
+        SelectCommand selectCommand = new SelectCommand(moduleName);
 
         assertThrows(CommandException.class, () -> selectCommand.run(dataManager, moduleManager, ui));
     }
@@ -55,7 +55,7 @@ public class SelectCommandTest {
         dataCommand.run(dataManager, moduleManager, ui);
 
         String moduleName = "unknownModule";
-        Command selectCommand = new SelectCommand(moduleName);
+        SelectCommand selectCommand = new SelectCommand(moduleName);
 
         assertThrows(UnknownModuleException.class, () -> selectCommand.run(dataManager, moduleManager, ui));
     }
