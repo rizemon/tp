@@ -4,6 +4,8 @@ import decodex.commands.Command;
 import decodex.commands.ExitCommand;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
+import decodex.data.exception.DataManagerException;
+import decodex.data.exception.UnknownModuleException;
 import decodex.modules.ModuleManager;
 import decodex.parser.Parser;
 import decodex.data.exception.ParserException;
@@ -59,9 +61,8 @@ public class Decodex {
             try {
                 command = parser.parseCommand(userInput);
                 command.run(dataManager, moduleManager, ui);
-            } catch (ParserException | CommandException err) {
+            } catch (ParserException | CommandException | UnknownModuleException | DataManagerException err) {
                 printErrorMessage(err.getMessage());
-                continue;
             }
         } while (!(command instanceof ExitCommand));
 

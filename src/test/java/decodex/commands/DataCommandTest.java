@@ -3,6 +3,7 @@ package decodex.commands;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import decodex.data.exception.UnknownModuleException;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -27,7 +28,7 @@ public class DataCommandTest {
     }
 
     @Test
-    public void run_insertData_insertedData() throws CommandException, DataManagerException {
+    public void run_insertData_insertedData() throws CommandException, DataManagerException, UnknownModuleException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
