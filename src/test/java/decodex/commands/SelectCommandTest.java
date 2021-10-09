@@ -3,6 +3,7 @@ package decodex.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import decodex.data.Data;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;
@@ -19,11 +20,11 @@ public class SelectCommandTest {
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
 
-        DataCommand dataCommand = new DataCommand("hello world");
-        dataCommand.run(dataManager, moduleManager, ui);
+        Data data = new Data("hello world");
+        dataManager.setOriginalData(data);
 
         String moduleName = "base64encode";
-        Command selectCommand = new SelectCommand(moduleName);
+        SelectCommand selectCommand = new SelectCommand(moduleName);
         selectCommand.run(dataManager, moduleManager, ui);
 
         assertEquals("aGVsbG8gd29ybGQ=", dataManager.getCurrentData().toString());
