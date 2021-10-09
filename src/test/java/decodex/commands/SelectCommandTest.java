@@ -36,8 +36,8 @@ public class SelectCommandTest {
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
 
-        DataCommand dataCommand = new DataCommand("hello world");
-        dataCommand.run(dataManager, moduleManager, ui);
+        Data data = new Data("hello world");
+        dataManager.setOriginalData(data);
 
         String moduleName = "";
         SelectCommand selectCommand = new SelectCommand(moduleName);
@@ -51,8 +51,8 @@ public class SelectCommandTest {
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
 
-        DataCommand dataCommand = new DataCommand("hello world");
-        dataCommand.run(dataManager, moduleManager, ui);
+        Data data = new Data("hello world");
+        dataManager.setOriginalData(data);
 
         String moduleName = "unknownModule";
         SelectCommand selectCommand = new SelectCommand(moduleName);
