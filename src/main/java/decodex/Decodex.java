@@ -49,6 +49,10 @@ public class Decodex {
      * Decodex entry-point for the java.decodex.Decodex application.
      */
     public static void main(String[] args) {
+        new Decodex().run();
+    }
+
+    public void run() {
         printGreeting();
         initDecodex();
 
