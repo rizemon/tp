@@ -1,7 +1,6 @@
 package decodex.modules;
 
 import decodex.data.Data;
-import decodex.data.exception.ModuleException;
 
 /**
  * BaseModule serves as a foundation for other modules to be built upon.
@@ -29,5 +28,5 @@ public abstract class BaseModule {
      *
      * @return Data object containing new processed data.
      */
-    public abstract Data run(Data data) throws ModuleException;
+    public abstract Data run(Data data);
 }
