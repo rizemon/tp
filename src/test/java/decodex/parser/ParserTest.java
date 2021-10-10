@@ -1,6 +1,11 @@
 package decodex.parser;
 
-import decodex.commands.*;
+import decodex.commands.Command;
+import decodex.commands.DataCommand;
+import decodex.commands.ExitCommand;
+import decodex.commands.ListCommand;
+import decodex.commands.ResetCommand;
+import decodex.commands.SelectCommand;
 import decodex.data.exception.ParserException;
 
 import org.junit.jupiter.api.Test;
