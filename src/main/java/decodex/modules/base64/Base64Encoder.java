@@ -13,7 +13,7 @@ public class Base64Encoder extends BaseModule {
     private final Base64.Encoder base64Encoder;
 
     public static final String MODULE_NAME = "base64encode";
-    public static final String MODULE_DESCRIPTION = "Base64-encodes the data";
+    public static final String MODULE_DESCRIPTION = "Encodes the data using Base64 format.";
 
     public Base64Encoder() {
         super(MODULE_NAME, MODULE_DESCRIPTION);
