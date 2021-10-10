@@ -2,10 +2,7 @@ package decodex.parser;
 
 import decodex.commands.Command;
 import decodex.commands.ExitCommand;
-import decodex.data.DataManager;
-import decodex.modules.ModuleManager;
 import decodex.data.exception.ParserException;
-import decodex.ui.Ui;
 
 import java.util.Arrays;
 
