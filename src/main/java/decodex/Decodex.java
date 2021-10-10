@@ -34,6 +34,11 @@ public class Decodex {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
+    public Decodex() {
+        printGreeting();
+        initDecodex();
+    }
+
     /**
      * Initializes the necessary Objects for Decodex.
      */
@@ -53,9 +58,6 @@ public class Decodex {
     }
 
     public void run() {
-        printGreeting();
-        initDecodex();
-
         Command command = null;
 
         do {
