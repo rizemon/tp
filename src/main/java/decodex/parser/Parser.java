@@ -130,7 +130,7 @@ public class Parser {
      *
      * @return The Exit command.
      */
-    private Command craftExitCommand () {
+    private Command craftExitCommand() {
         return new ExitCommand();
     }
 
@@ -139,7 +139,7 @@ public class Parser {
      *
      * @param userInput The user input specified by the user.
      * @return The Data command
-     * @throws ParserException
+     * @throws ParserException ParserException
      */
     private Command craftDataCommand(String userInput) throws ParserException {
         String arguments = getUserArgumentsAsString(userInput);
@@ -169,7 +169,7 @@ public class Parser {
      *
      * @param userInput The user input specified by the user.
      * @return The Select command.
-     * @throws ParserException
+     * @throws ParserException ParserException
      */
     private Command craftSelectCommand(String userInput) throws ParserException {
         String moduleName = getUserArgumentsAsString(userInput);
