@@ -9,7 +9,6 @@ import decodex.commands.SelectCommand;
 import decodex.data.exception.ParserException;
 
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Parses and validates the user input.
