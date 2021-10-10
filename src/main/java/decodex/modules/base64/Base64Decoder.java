@@ -5,8 +5,6 @@ import decodex.modules.BaseModule;
 
 import java.util.Base64;
 
-
-
 /**
  * Base64Encoder serves to carry out the Base64 decoding operations.
  */
