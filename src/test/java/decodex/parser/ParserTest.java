@@ -39,7 +39,7 @@ class ParserTest {
         String testInput = "test data";
         String[] expectedOutput = new String[]{"data"};
 
-        String[] arguments = parser.getUserArguments(testInput);
+        String[] arguments = parser.getUserArgumentsAsArray(testInput);
 
         assertArrayEquals(expectedOutput, arguments);
     }
