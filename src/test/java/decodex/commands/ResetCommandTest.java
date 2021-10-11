@@ -2,6 +2,7 @@ package decodex.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import decodex.data.exception.ModuleException;
 import decodex.data.exception.UnknownModuleException;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +18,8 @@ import decodex.ui.Ui;
 class ResetCommandTest {
 
     @Test
-    public void run_noChanges_sameOriginalData() throws CommandException, DataManagerException, UnknownModuleException {
+    public void run_noChanges_sameOriginalData()
+            throws CommandException, DataManagerException, UnknownModuleException, ModuleException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
@@ -31,7 +33,8 @@ class ResetCommandTest {
     }
 
     @Test
-    public void run_newData_sameOriginalData() throws CommandException, DataManagerException, UnknownModuleException {
+    public void run_newData_sameOriginalData()
+            throws CommandException, DataManagerException, UnknownModuleException, ModuleException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
