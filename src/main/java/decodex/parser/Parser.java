@@ -49,7 +49,7 @@ public class Parser {
         boolean isInvalidTokensLength = tokens.length < VALID_TOKENS_LENGTH_FOR_COMMAND;
 
         if (isInvalidTokensLength) {
-            throw new ParserException(ParserException.INVALID_TOKENS_LENGTH);
+            throw new ParserException(ParserException.MISSING_COMMAND_TYPE_MESSAGE);
         }
         return tokens[COMMAND_INDEX];
     }
