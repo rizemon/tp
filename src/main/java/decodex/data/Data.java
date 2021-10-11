@@ -1,5 +1,7 @@
 package decodex.data;
 
+import java.util.Arrays;
+
 /**
  * The Data class manages the data that is to be encoded or decoded.
  */
@@ -9,10 +11,12 @@ public class Data {
 
     public Data(byte[] rawBytes) {
         this.rawBytes = rawBytes;
+        assert !Arrays.equals(this.rawBytes, new byte[0]);
     }
 
     public Data(String data) {
         rawBytes = data.getBytes();
+        assert !Arrays.equals(this.rawBytes, new byte[0]);
     }
 
     public byte[] getRawBytes() {
