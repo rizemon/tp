@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
 class ParserTest {
 
     Parser parser = new Parser();
@@ -37,6 +36,17 @@ class ParserTest {
 
         assertEquals(expectedOutput, commandType);
     }
+
+    @Test
+    void getUserArguments_userInputWithOneSpaceSeparator_expectOneArgumentString() throws ParserException {
+        String testInput = "test data";
+        String expectedOutput = "data";
+
+        String arguments = parser.getUserArgumentsAsString(testInput);
+
+        assertEquals(expectedOutput, arguments);
+    }
+
 
     /* The JUnit test methods below are for testing "normal" usage flows for the respective commands.*/
     @Test
