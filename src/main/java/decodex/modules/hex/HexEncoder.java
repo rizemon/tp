@@ -33,5 +33,4 @@ public class HexEncoder extends BaseModule {
         return new Data(encodedString);
     }
 
-
 }
