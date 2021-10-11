@@ -13,7 +13,6 @@ public class HexEncoder extends BaseModule {
 
     public HexEncoder() {
         super(MODULE_NAME, MODULE_DESCRIPTION);
-
     }
 
     /**
@@ -33,4 +32,6 @@ public class HexEncoder extends BaseModule {
         String encodedString = encodedStringBuilder.toString().trim();
         return new Data(encodedString);
     }
+
+
 }

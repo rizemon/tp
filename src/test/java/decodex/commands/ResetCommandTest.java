@@ -18,8 +18,13 @@ import decodex.ui.Ui;
 class ResetCommandTest {
 
     @Test
+<<<<<<< refs/remotes/AY2122S1-CS2113T-T10-3/master
     public void run_noChanges_sameOriginalData()
             throws CommandException, DataManagerException, UnknownModuleException, ModuleException {
+=======
+    public void run_noChanges_sameOriginalData() throws CommandException, DataManagerException,
+            UnknownModuleException, ModuleException {
+>>>>>>> Add checks and JUnit tests for hexencode/hexdecode
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();

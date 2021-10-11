@@ -11,6 +11,7 @@ import decodex.data.exception.ModuleException;
 import decodex.data.exception.UnknownModuleException;
 import decodex.modules.ModuleManager;
 import decodex.ui.Ui;
+
 import org.junit.jupiter.api.Test;
 
 public class SelectCommandTest {
