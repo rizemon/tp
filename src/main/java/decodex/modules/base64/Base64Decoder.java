@@ -35,7 +35,7 @@ public class Base64Decoder extends BaseModule {
             byte[] base64DecodedBytes = base64Decoder.decode(originalBytes);
             decodedData = new Data(base64DecodedBytes);
             return decodedData;
-        } catch (IllegalArgumentException err){
+        } catch (IllegalArgumentException err) {
             throw new ModuleException(ModuleException.BASE64_DECODING_FAILED_MESSAGE);
         }
     }
