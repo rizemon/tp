@@ -71,12 +71,8 @@ public class Decodex {
             try {
                 command = parser.parseCommand(userInput);
                 command.run(dataManager, moduleManager, ui);
-<<<<<<< refs/remotes/AY2122S1-CS2113T-T10-3/master
             } catch (ParserException | CommandException | UnknownModuleException
                     | DataManagerException | ModuleException err) {
-=======
-            } catch (ParserException | CommandException | UnknownModuleException | DataManagerException | ModuleException err) {
->>>>>>> Add checks and JUnit tests for hexencode/hexdecode
                 printErrorMessage(err.getMessage());
             }
         } while (!(command instanceof ExitCommand));
