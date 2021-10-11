@@ -50,8 +50,8 @@ class ParserTest {
 
     /* The JUnit test methods below are for testing "normal" usage flows for the respective commands.*/
     @Test
-    void parseCommand_userInputSpecifyingValidData_expectDataCommand() throws ParserException {
-        String userInput = "data dummyData";
+    void parseCommand_userInputSpecifyingValidData_expectInputCommand() throws ParserException {
+        String userInput = "input dummyData";
 
         Command command = parser.parseCommand(userInput);
 

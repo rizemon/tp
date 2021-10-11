@@ -96,7 +96,7 @@ public class Parser {
             command = craftExitCommand();
             break;
         case InputCommand.COMMAND_WORD:
-            command = craftDataCommand(userInput);
+            command = craftInputCommand(userInput);
             break;
         case ListCommand.COMMAND_WORD:
             command = craftListCommand();
@@ -129,7 +129,7 @@ public class Parser {
      * @return The Data command
      * @throws ParserException ParserException
      */
-    private Command craftDataCommand(String userInput) throws ParserException {
+    private Command craftInputCommand(String userInput) throws ParserException {
         String arguments = getUserArgument(userInput);
         return new InputCommand(arguments);
     }
