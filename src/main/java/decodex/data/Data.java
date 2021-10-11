@@ -12,7 +12,7 @@ public class Data {
     }
 
     public Data(String data) {
-        assert data != null;
+        assert data != null : "Data string should not be null";
         rawBytes = data.getBytes();
     }
 
