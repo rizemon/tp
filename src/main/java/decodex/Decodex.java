@@ -13,11 +13,13 @@ import decodex.data.exception.ParserException;
 import decodex.ui.Ui;
 
 import java.util.Scanner;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Decodex {
 
     public static Logger logger = Logger.getLogger(Decodex.class.getName());
+
 
     /**
      * Necessary objects to be initialized for Decodex to work properly.
@@ -47,6 +49,7 @@ public class Decodex {
      * Initializes the necessary Objects for Decodex.
      */
     public static void initDecodex() {
+        logger.setLevel(Level.INFO);
         dataManager = new DataManager();
         moduleManager = new ModuleManager();
         parser = new Parser();
@@ -74,6 +77,7 @@ public class Decodex {
             } catch (ParserException | CommandException | UnknownModuleException
                     | DataManagerException | ModuleException err) {
                 printErrorMessage(err.getMessage());
+                logger.fine(err.getMessage());
             }
         } while (!(command instanceof ExitCommand));
 
