@@ -1,5 +1,7 @@
 package decodex.data;
 
+import java.util.Arrays;
+
 /**
  * The Data class manages the data that is to be encoded or decoded.
  */

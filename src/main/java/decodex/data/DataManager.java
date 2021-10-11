@@ -1,5 +1,7 @@
 package decodex.data;
 
+import java.util.Arrays;
+
 import decodex.data.exception.DataManagerException;
 
 /**
@@ -49,5 +51,7 @@ public class DataManager {
      */
     public void resetToOriginalData() {
         currentData = originalData;
+        assert Arrays.equals(currentData.getRawBytes(), originalData.getRawBytes()) : "Current data is same as "
+                + "original data";
     }
 }
