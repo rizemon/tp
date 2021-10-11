@@ -77,7 +77,7 @@ public class Parser {
             return joinedArguments;
         }
         String singleArgument = argumentTokens[0];
-        return singleArgument.stripLeading();
+        return singleArgument;
     }
 
     /**
