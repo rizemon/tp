@@ -1,42 +1,41 @@
-# User Guide
+# Decodex User Guide
 
-## Introduction
+# Introduction
 
-{Give a product intro}
+Decodex is a **Command Line Interface (CLI) application for Capture-The-Flag (CTF) players to quickly transform data from one format to another with extreme ease**. The intuitive interaction can help speed up a player's performance during CTFs and save time without having to manually code the tedious data transformations.
 
-## Quick Start
+This user guide is tailored for CTF players who have basic understanding of information security concepts.
 
-{Give steps to get started quickly}
+> ❗ This user guide is tailored for CTF players who have basic understanding of information security concepts.
 
-1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+![carbon(6).png](images/carbon(6).png)
 
-## Features 
+# Table of Contents
+1. Introduction
+2. Table of Contents
+3. Terminologies
+4. Features
+5. Command Summary
+---
 
-{Give detailed description of each feature}
+# Terminologies
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+This section serves to help the user better understand the terminologies used in this user guide.
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+| Terminology | Definition |
+|-------------|------------|
+|             |            |
+|             |            | 
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
 
-Example of usage: 
+# Features
+<Hi, I am a placeholder!, Please replace me>
 
-`todo n/Write the rest of the User Guide d/next week`
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+# Command Summary
 
-## FAQ
-
-**Q**: How do I transfer my data to another computer? 
-
-**A**: {your answer here}
-
-## Command Summary
-
-{Give a 'cheat sheet' of commands here}
-
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+| Action | Command Format | Example Usage |
+|--------|----------------|---------------|
+|        |                |               |
+|        |                |               |
+|        |                |               |
