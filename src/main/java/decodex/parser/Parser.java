@@ -49,7 +49,7 @@ public class Parser {
         boolean isInvalidTokensLength = tokens.length < VALID_TOKENS_LENGTH_FOR_COMMAND;
 
         if (isInvalidTokensLength) {
-            throw new ParserException(ParserException.WEIRD_COMMAND_TYPE_MESSAGE);
+            throw new ParserException(ParserException.INVALID_TOKENS_LENGTH);
         }
         return tokens[COMMAND_INDEX];
     }
@@ -61,7 +61,7 @@ public class Parser {
      * @return The argument portion of the user input as an array.
      */
     public String getUserArgumentsAsString(String userInput) throws ParserException {
-        String[] tokens = userInput.split(" ");
+        String[] tokens = userInput.split(" ", -1);
 
         if (tokens.length < VALID_TOKENS_LENGTH_FOR_ARGUMENTS) {
             throw new ParserException(ParserException.MISSING_COMMAND_ARGS_MESSAGE);
