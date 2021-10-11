@@ -36,7 +36,7 @@ public class Base64Decoder extends BaseModule {
             decodedData = new Data(base64DecodedBytes);
             return decodedData;
         } catch (IllegalArgumentException err){
-            throw new ModuleException("TESTING MESSAGE FOR BROKEN BASE64 STRING");
+            throw new ModuleException(ModuleException.BASE64_DECODING_FAILED_MESSAGE);
         }
     }
 }
