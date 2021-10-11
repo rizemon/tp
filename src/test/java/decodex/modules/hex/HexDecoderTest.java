@@ -52,4 +52,17 @@ class HexDecoderTest {
 
         assertThrows(ModuleException.class, () -> hexDecoder.run(inputData));
     }
+
+    @Test
+    void run_nullHexInput_expectException() throws ModuleException {
+        String inputString = "00";
+        HexDecoder hexDecoder = new HexDecoder();
+        Data inputData = new Data(inputString);
+
+        Data result = hexDecoder.run(inputData);
+
+        String expectedString = "\00";
+
+        assertEquals(expectedString, result.toString());
+    }
 }

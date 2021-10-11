@@ -29,7 +29,7 @@ public class HexEncoder extends BaseModule {
             encodedStringBuilder.append(String.format("%02x", b));
         }
 
-        String encodedString = encodedStringBuilder.toString().trim();
+        String encodedString = encodedStringBuilder.toString();
         return new Data(encodedString);
     }
 
