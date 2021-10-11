@@ -4,9 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import decodex.data.Data;
-import decodex.data.exception.CommandException;
 import decodex.data.exception.ModuleException;
-
 import org.junit.jupiter.api.Test;
 
 class HexDecoderTest {
