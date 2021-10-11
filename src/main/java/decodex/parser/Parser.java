@@ -77,7 +77,7 @@ public class Parser {
             return joinedArguments;
         }
         String singleArgument = argumentTokens[0];
-        return singleArgument;
+        return singleArgument.stripLeading();
     }
 
     /**
@@ -108,7 +108,7 @@ public class Parser {
             command = craftSelectCommand(userInput);
             break;
         default:
-            throw new ParserException("[-] Unknown command, please enter a valid command");
+            throw new ParserException("[x] Unknown command, please enter a valid command");
         }
         return command;
     }

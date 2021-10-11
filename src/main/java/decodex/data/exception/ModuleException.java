@@ -6,7 +6,7 @@ package decodex.data.exception;
 public class ModuleException extends Exception {
 
     public static final String BASE64_DECODING_FAILED_MESSAGE = "[x] "
-            + "This data does not seem to be in Base64 format";
+            + "Your data does not seem to be in Base64 format";
 
     public ModuleException(String message) {
         super(message);
