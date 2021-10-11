@@ -60,7 +60,7 @@ public class Parser {
      * @param userInput The input specified by the user.
      * @return The argument portion of the user input as an array.
      */
-    public String getUserArguments(String userInput) throws ParserException {
+    public String getUserArgument(String userInput) throws ParserException {
         String[] tokens = userInput.split(" ", -1);
 
         if (tokens.length < VALID_TOKENS_LENGTH_FOR_ARGUMENTS) {
@@ -126,7 +126,7 @@ public class Parser {
      * @throws ParserException ParserException
      */
     private Command craftDataCommand(String userInput) throws ParserException {
-        String arguments = getUserArguments(userInput);
+        String arguments = getUserArgument(userInput);
         return new DataCommand(arguments);
     }
 
@@ -156,7 +156,7 @@ public class Parser {
      * @throws ParserException ParserException
      */
     private Command craftSelectCommand(String userInput) throws ParserException {
-        String moduleName = getUserArguments(userInput);
+        String moduleName = getUserArgument(userInput);
         return new SelectCommand(moduleName);
     }
 
