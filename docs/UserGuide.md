@@ -58,7 +58,7 @@ Examples:
 | Action                   | Command Format       | Example Usage                                 |
 | ------------------------ | -------------------- | --------------------------------------------- |
 |                          |                      |                                               |
-| List available modules   | `list`               | `list`                                        |
-| Select processing module | `select <moduleName` | `select base64decode` <br> `select hexencode` |
+|                          |                      |                                               |
+|                          |                      |                                               |
 |                          |                      |                                               |
 |                          |                      |                                               |
