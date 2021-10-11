@@ -11,12 +11,12 @@ public class Data {
 
     public Data(byte[] rawBytes) {
         this.rawBytes = rawBytes;
-        assert !Arrays.equals(this.rawBytes, new byte[0]);
+        assert !Arrays.equals(this.rawBytes, new byte[0]) : "Data is non-empty";
     }
 
     public Data(String data) {
         rawBytes = data.getBytes();
-        assert !Arrays.equals(this.rawBytes, new byte[0]);
+        assert !Arrays.equals(this.rawBytes, new byte[0]) : "Data is non-empty";
     }
 
     public byte[] getRawBytes() {

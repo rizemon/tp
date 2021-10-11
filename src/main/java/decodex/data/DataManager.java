@@ -51,6 +51,7 @@ public class DataManager {
      */
     public void resetToOriginalData() {
         currentData = originalData;
-        assert Arrays.equals(currentData.getRawBytes(), originalData.getRawBytes());
+        assert Arrays.equals(currentData.getRawBytes(), originalData.getRawBytes()) : "Current data is same as "
+                + "original data";
     }
 }
