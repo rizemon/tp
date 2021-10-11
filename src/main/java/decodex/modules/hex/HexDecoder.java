@@ -4,6 +4,8 @@ import decodex.data.Data;
 import decodex.data.exception.ModuleException;
 import decodex.modules.BaseModule;
 import java.util.Arrays;
+import java.util.Locale;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
