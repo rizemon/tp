@@ -70,7 +70,7 @@ public class Decodex {
         do {
             printPromptHeader();
             String userInput = in.nextLine();
-
+            logger.fine("User input: " + userInput);
             try {
                 command = parser.parseCommand(userInput);
                 command.run(dataManager, moduleManager, ui);
