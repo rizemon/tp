@@ -9,6 +9,9 @@ import decodex.modules.hex.HexEncoder;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * ModuleManager maintains the list of available modules and returns selected modules.
  */
@@ -42,6 +45,7 @@ public class ModuleManager {
     public BaseModule selectModule(String moduleName) throws UnknownModuleException {
         for (BaseModule module : modules) {
             if (module.getName().equals(moduleName)) {
+                logger.fine(String.format("Selected %s", module.getName()));
                 return module;
             }
         }
