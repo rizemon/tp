@@ -13,8 +13,11 @@ import decodex.data.exception.ParserException;
 import decodex.ui.Ui;
 
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class Decodex {
+
+    public static Logger logger = Logger.getLogger(Decodex.class.getName());
 
     /**
      * Necessary objects to be initialized for Decodex to work properly.
