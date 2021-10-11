@@ -31,7 +31,7 @@ public class HexDecoder extends BaseModule {
      */
     @Override
     public Data run(Data data) throws ModuleException {
-        String inputString = data.toString().toLowerCase(Locale.ROOT);
+        String inputString = data.toString().toLowerCase();
 
         if (!isValidHex(inputString)) {
             throw new ModuleException("Invalid hexadecimal String");
