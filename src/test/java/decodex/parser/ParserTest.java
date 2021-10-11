@@ -1,7 +1,7 @@
 package decodex.parser;
 
 import decodex.commands.Command;
-import decodex.commands.DataCommand;
+import decodex.commands.InputCommand;
 import decodex.commands.ExitCommand;
 import decodex.commands.ListCommand;
 import decodex.commands.ResetCommand;
@@ -55,7 +55,7 @@ class ParserTest {
 
         Command command = parser.parseCommand(userInput);
 
-        assertTrue(command instanceof DataCommand);
+        assertTrue(command instanceof InputCommand);
     }
 
 

@@ -6,13 +6,13 @@ import decodex.data.exception.CommandException;
 import decodex.modules.ModuleManager;
 import decodex.ui.Ui;
 
-public class DataCommand extends Command {
+public class InputCommand extends Command {
 
-    public static final String COMMAND_WORD = "data";
+    public static final String COMMAND_WORD = "input";
 
     private final String dataString;
 
-    public DataCommand(String dataString) {
+    public InputCommand(String dataString) {
         super();
         this.dataString = dataString;
     }
