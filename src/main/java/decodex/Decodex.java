@@ -68,7 +68,8 @@ public class Decodex {
             try {
                 command = parser.parseCommand(userInput);
                 command.run(dataManager, moduleManager, ui);
-            } catch (ParserException | CommandException | UnknownModuleException | DataManagerException | ModuleException err) {
+            } catch (ParserException | CommandException | UnknownModuleException
+                    | DataManagerException | ModuleException err) {
                 printErrorMessage(err.getMessage());
             }
         } while (!(command instanceof ExitCommand));
