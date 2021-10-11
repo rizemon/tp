@@ -55,22 +55,6 @@ public class Parser {
     }
 
     /**
-     * Returns the Argument portion of the user input as an array.
-     * NOTE - Might be removed since DataCommand takes in only String rather than array.
-     *
-     * @param userInput The input specified by the user.
-     * @return The argument portion of the user input as an array.
-     */
-    public String[] getUserArgumentsAsArray(String userInput) throws ParserException {
-        String[] tokens = userInput.split(" ");
-
-        if (tokens.length < VALID_TOKENS_LENGTH_FOR_ARGUMENTS) {
-            throw new ParserException(ParserException.MISSING_COMMAND_ARGS_MESSAGE);
-        }
-        return Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length);
-    }
-
-    /**
      * Returns the Argument portion of the user input as a whole string.
      *
      * @param userInput The input specified by the user.

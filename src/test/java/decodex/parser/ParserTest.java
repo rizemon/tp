@@ -10,7 +10,6 @@ import decodex.data.exception.ParserException;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -38,17 +37,6 @@ class ParserTest {
 
         assertEquals(expectedOutput, commandType);
     }
-
-    @Test
-    void getUserArguments_userInputWithOneSpaceSeparator_expectArrayOfOneArgument() throws ParserException {
-        String testInput = "test data";
-        String[] expectedOutput = new String[]{"data"};
-
-        String[] arguments = parser.getUserArgumentsAsArray(testInput);
-
-        assertArrayEquals(expectedOutput, arguments);
-    }
-
 
     /* The JUnit test methods below are for testing "normal" usage flows for the respective commands.*/
     @Test
