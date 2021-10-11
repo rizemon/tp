@@ -39,12 +39,12 @@ public class Parser {
      * @return The type of command.
      */
     public String getCommandType(String userInput) throws ParserException {
-        userInput = userInput.strip();
-        if (userInput.isEmpty()) {
+        String strippedUserInput = userInput.stripLeading();
+        if (strippedUserInput.isEmpty()) {
             throw new ParserException(ParserException.MISSING_COMMAND_TYPE_MESSAGE);
         }
 
-        String[] tokens = userInput.split(" ");
+        String[] tokens = strippedUserInput.split(" ");
 
         boolean isInvalidTokensLength = tokens.length < VALID_TOKENS_LENGTH_FOR_COMMAND;
 
@@ -61,7 +61,8 @@ public class Parser {
      * @return The argument portion of the user input as an array.
      */
     public String getUserArgument(String userInput) throws ParserException {
-        String[] tokens = userInput.split(" ", -1);
+        String strippedUserInput = userInput.stripLeading();
+        String[] tokens = strippedUserInput.split(" ", -1);
 
         if (tokens.length < VALID_TOKENS_LENGTH_FOR_ARGUMENTS) {
             throw new ParserException(ParserException.MISSING_COMMAND_ARGS_MESSAGE);
