@@ -15,7 +15,7 @@ public class ModuleManagerTest {
         String moduleName = "base64encode";
         ModuleManager moduleManager = new ModuleManager();
 
-        BaseModule module = moduleManager.selectModule(moduleName);
+        Module module = moduleManager.selectModule(moduleName);
         assertTrue(module instanceof Base64Encoder);
     }
 

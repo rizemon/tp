@@ -6,10 +6,6 @@ import decodex.modules.base64.Base64Decoder;
 import decodex.modules.base64.Base64Encoder;
 import decodex.modules.hex.HexDecoder;
 import decodex.modules.hex.HexEncoder;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -22,16 +18,16 @@ public class ModuleManager {
     /**
      * Array of available modules.
      */
-    private final BaseModule[] modules = {new Base64Encoder(), new Base64Decoder(), new HexEncoder(), new HexDecoder()};
+    private final Module[] modules = {new Base64Encoder(), new Base64Decoder(), new HexEncoder(), new HexDecoder()};
 
     public ModuleManager() {
         // Log available modules
-        for (BaseModule module : modules) {
+        for (Module module : modules) {
             logger.fine(String.format("Loaded %s", module.getName()));
         }
     }
 
-    public BaseModule[] getModules() {
+    public Module[] getModules() {
         return modules;
     }
 
@@ -42,8 +38,8 @@ public class ModuleManager {
      * @return Selected module.
      * @throws UnknownModuleException Not a module name of an available module.
      */
-    public BaseModule selectModule(String moduleName) throws UnknownModuleException {
-        for (BaseModule module : modules) {
+    public Module selectModule(String moduleName) throws UnknownModuleException {
+        for (Module module : modules) {
             if (module.getName().equals(moduleName)) {
                 logger.fine(String.format("Selected %s", module.getName()));
                 return module;

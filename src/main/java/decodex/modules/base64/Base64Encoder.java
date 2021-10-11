@@ -1,14 +1,14 @@
 package decodex.modules.base64;
 
 import decodex.data.Data;
-import decodex.modules.BaseModule;
+import decodex.modules.Module;
 
 import java.util.Base64;
 
 /**
  * Base64Encoder serves to carry out the Base64 encoding operations.
  */
-public class Base64Encoder extends BaseModule {
+public class Base64Encoder extends Module {
 
     private final Base64.Encoder base64Encoder;
 

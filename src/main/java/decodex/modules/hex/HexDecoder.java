@@ -2,14 +2,14 @@ package decodex.modules.hex;
 
 import decodex.data.Data;
 import decodex.data.exception.ModuleException;
-import decodex.modules.BaseModule;
+import decodex.modules.Module;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
 /**
  * The HexDecoder class converts a hexadecimal string back into its raw value.
  */
-public class HexDecoder extends BaseModule {
+public class HexDecoder extends Module {
 
     public static final String MODULE_NAME = "hexdecode";
     public static final String MODULE_DESCRIPTION = "Converts a hexadecimal string back into its raw value";
