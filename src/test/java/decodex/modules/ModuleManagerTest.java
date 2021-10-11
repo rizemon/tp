@@ -11,15 +11,12 @@ import org.junit.jupiter.api.Test;
 public class ModuleManagerTest {
 
     @Test
-    public void selectModule_base64encode_success() {
+    public void selectModule_base64encode_success() throws UnknownModuleException {
         String moduleName = "base64encode";
         ModuleManager moduleManager = new ModuleManager();
-        try {
-            BaseModule module = moduleManager.selectModule(moduleName);
-            assertTrue(module instanceof Base64Encoder);
-        } catch (UnknownModuleException e) {
-            fail();
-        }
+
+        BaseModule module = moduleManager.selectModule(moduleName);
+        assertTrue(module instanceof Base64Encoder);
     }
 
     @Test
