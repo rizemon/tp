@@ -73,6 +73,7 @@ public class Decodex {
             logger.fine("User input: " + userInput);
             try {
                 command = parser.parseCommand(userInput);
+                assert command != null : "Command should not be null";
                 command.run(dataManager, moduleManager, ui);
             } catch (ParserException | CommandException | UnknownModuleException
                     | DataManagerException | ModuleException err) {
@@ -80,8 +81,6 @@ public class Decodex {
                 logger.fine(err.getMessage());
             }
         } while (!(command instanceof ExitCommand));
-
-        System.exit(0);
     }
 
     /**
