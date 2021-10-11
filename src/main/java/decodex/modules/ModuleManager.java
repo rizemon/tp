@@ -24,7 +24,7 @@ public class ModuleManager {
     public ModuleManager() {
         // Log available modules
         for (BaseModule module : modules) {
-            logger.log(Level.FINE, String.format("Loaded %s", module.getName()));
+            logger.fine(String.format("Loaded %s", module.getName()));
         }
     }
 
