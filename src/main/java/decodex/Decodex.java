@@ -30,16 +30,6 @@ public class Decodex {
     private static Scanner in;
     private static Ui ui;
 
-
-    /**
-     * Logo to be changed - possibly to a welcome message instead for Decodex.
-     */
-    private static final String LOGO = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
-
     public Decodex() {
         printGreeting();
         initDecodex();
@@ -87,7 +77,9 @@ public class Decodex {
      * Prints the greeting message.
      */
     public static void printGreeting() {
-        System.out.println("Hello from\n" + LOGO);
+        System.out.println("======================== Decodex ===========================\n"
+                + "Welcome to Decodex, transforming data with ease\n"
+                + "============================================================");
     }
 
     /**
