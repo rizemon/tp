@@ -42,7 +42,7 @@ class ParserTest {
         String testInput = "test data";
         String expectedOutput = "data";
 
-        String arguments = parser.getUserArgumentsAsString(testInput);
+        String arguments = parser.getUserArguments(testInput);
 
         assertEquals(expectedOutput, arguments);
     }
