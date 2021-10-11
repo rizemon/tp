@@ -18,8 +18,8 @@ import decodex.ui.Ui;
 class ResetCommandTest {
 
     @Test
-    public void run_noChanges_sameOriginalData()
-            throws CommandException, DataManagerException, UnknownModuleException, ModuleException {
+    public void run_noChanges_sameOriginalData() throws CommandException, DataManagerException,
+            UnknownModuleException, ModuleException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
