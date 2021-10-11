@@ -1,7 +1,5 @@
 package decodex.data;
 
-import java.util.Arrays;
-
 /**
  * The Data class manages the data that is to be encoded or decoded.
  */
@@ -14,6 +12,7 @@ public class Data {
     }
 
     public Data(String data) {
+        assert data != null;
         rawBytes = data.getBytes();
     }
 
