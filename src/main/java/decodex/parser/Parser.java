@@ -51,7 +51,10 @@ public class Parser {
         if (isInvalidTokensLength) {
             throw new ParserException(ParserException.MISSING_COMMAND_TYPE_MESSAGE);
         }
-        return tokens[COMMAND_INDEX];
+
+        String commandType = tokens[COMMAND_INDEX];
+        assert !commandType.isEmpty() : "Command Type should not be empty";
+        return commandType;
     }
 
     /**
