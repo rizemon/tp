@@ -16,7 +16,7 @@ public class ListCommand extends Command {
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui) {
         BaseModule[] modules = moduleManager.getModules();
-        assert modules.length > 0 : "number of modules should be greater than 0";
+        assert modules.length > 0 : "Number of modules should be greater than 0";
 
         StringBuilder moduleListString = new StringBuilder();
         int maxNameWidth = 0;
