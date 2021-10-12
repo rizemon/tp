@@ -53,10 +53,18 @@ Examples:
 
 ![carbon(9).png](images/carbon(9).png)
 
+## Exiting the program: `exit`
+
+Exit the program.
+
+Format: `exit`
+
 # Command Summary
 
-| Action | Command Format | Example Usage |
-| ------ | -------------- | ------------- |
-|        |                |               |
-|        |                |               |
-|        |                |               |
+| Action                   | Command Format          | Example Usage                                 |
+|--------------------------|-------------------------|-----------------------------------------------|
+| Enter input data         | `data` `<textData>`     | `data HelloWorld!`<br>`data SGVsbG9Xb3JsZA==` |
+| List available modules   | `list`                  | `list`                                        |
+| Select processing module | `select` `<moduleName>` | `select base64decode`<br>`select hexencode`   |
+| Reset to original data   | `reset`                 | `reset`                                       |
+| Exit program             | `exit`                  | `select hexencode`                            |
