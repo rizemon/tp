@@ -19,6 +19,7 @@ public class Parser {
      * Specifies the index of the tokens where specific parameters can be found.
      */
     private static final int COMMAND_INDEX = 0;
+    private static final int MODULE_NAME_INDEX_IN_TOKENS = 0;
 
 
     /**
@@ -80,6 +81,31 @@ public class Parser {
         return singleArgument;
     }
 
+    public String getModuleName(String userInput) throws ParserException {
+        String strippedUserInput = userInput.stripLeading();
+        String[] tokens = strippedUserInput.split(" ", -1);
+
+        String[] argumentTokens = Arrays.stream(Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length))
+                .filter(value -> !value.isBlank())
+                .toArray(size -> new String[size]);
+        if (argumentTokens.length == 0) {
+            throw new ParserException("[-] Module name is missing");
+        }
+        return argumentTokens[MODULE_NAME_INDEX_IN_TOKENS];
+    }
+
+    public String getInputString(String userInput) throws ParserException {
+        String strippedUserInput = userInput.stripLeading();
+        String[] tokens = strippedUserInput.split(" ", -1);
+
+        if (tokens.length < VALID_TOKENS_LENGTH_FOR_ARGUMENTS) {
+            throw new ParserException("[-] Your input is empty, please do \"input i am a string\"");
+        }
+        String argumentString = String.join(" ",
+                Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length));
+        return argumentString;
+    }
+
     /**
      * Parses the user input provided by user and returns its respective command. Returns a null object if the command
      * is invalid.
@@ -130,8 +156,8 @@ public class Parser {
      * @throws ParserException ParserException
      */
     private Command craftDataCommand(String userInput) throws ParserException {
-        String arguments = getUserArgument(userInput);
-        return new DataCommand(arguments);
+        String inputData = getInputString(userInput);
+        return new DataCommand(inputData);
     }
 
     /**
@@ -160,7 +186,7 @@ public class Parser {
      * @throws ParserException ParserException
      */
     private Command craftSelectCommand(String userInput) throws ParserException {
-        String moduleName = getUserArgument(userInput);
+        String moduleName = getModuleName(userInput);
         return new SelectCommand(moduleName);
     }
 
