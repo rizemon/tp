@@ -19,6 +19,7 @@ public class Parser {
      * Specifies the index of the tokens where specific parameters can be found.
      */
     private static final int COMMAND_INDEX = 0;
+    private static final int MODULE_NAME_INDEX_IN_TOKENS = 0;
 
 
     /**
@@ -30,7 +31,6 @@ public class Parser {
      * Specifies the valid length of the tokens and used to check validity of tokens.
      */
     private static final int VALID_TOKENS_LENGTH_FOR_COMMAND = 1;
-    private static final int VALID_TOKENS_LENGTH_FOR_ARGUMENTS = 2;
 
     /**
      * Returns the type of command that user has entered.
@@ -58,26 +58,40 @@ public class Parser {
     }
 
     /**
-     * Returns the Argument portion of the user input as a whole string.
+     * Returns the Module Name that user has specified.
      *
      * @param userInput The input specified by the user.
-     * @return The argument portion of the user input as an array.
+     * @return The Module name.
      */
-    public String getUserArgument(String userInput) throws ParserException {
+    public String getModuleName(String userInput) throws ParserException {
         String strippedUserInput = userInput.stripLeading();
         String[] tokens = strippedUserInput.split(" ", -1);
 
-        if (tokens.length < VALID_TOKENS_LENGTH_FOR_ARGUMENTS) {
-            throw new ParserException(ParserException.MISSING_COMMAND_ARGS_MESSAGE);
+        String[] argumentTokens = Arrays.stream(Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length))
+                .filter(value -> !value.isBlank())
+                .toArray(size -> new String[size]);
+        if (argumentTokens.length == 0) {
+            throw new ParserException("[-] Module name is missing");
         }
-        String[] argumentTokens = Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length);
+        return argumentTokens[MODULE_NAME_INDEX_IN_TOKENS];
+    }
 
-        if (argumentTokens.length > 1) {
-            String joinedArguments = String.join(" ", argumentTokens);
-            return joinedArguments;
+    /**
+     * Returns the input data string that user has specified.
+     *
+     * @param userInput The input specified by the user.
+     * @return The input data string.
+     */
+    public String getInputString(String userInput) throws ParserException {
+        String strippedUserInput = userInput.stripLeading();
+        String[] tokens = strippedUserInput.split(" ", -1);
+
+        String argumentString = String.join(" ",
+                Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length));
+        if (argumentString.isEmpty()) {
+            throw new ParserException("[-] Your input is empty");
         }
-        String singleArgument = argumentTokens[0];
-        return singleArgument;
+        return argumentString;
     }
 
     /**
@@ -108,7 +122,7 @@ public class Parser {
             command = craftSelectCommand(userInput);
             break;
         default:
-            throw new ParserException("[-] Unknown command, please enter a valid command");
+            throw new ParserException("[x] Unknown command, please enter a valid command");
         }
         return command;
     }
@@ -130,8 +144,8 @@ public class Parser {
      * @throws ParserException ParserException
      */
     private Command craftInputCommand(String userInput) throws ParserException {
-        String arguments = getUserArgument(userInput);
-        return new InputCommand(arguments);
+        String inputData = getInputString(userInput);
+        return new InputCommand(inputData);
     }
 
     /**
@@ -160,7 +174,7 @@ public class Parser {
      * @throws ParserException ParserException
      */
     private Command craftSelectCommand(String userInput) throws ParserException {
-        String moduleName = getUserArgument(userInput);
+        String moduleName = getModuleName(userInput);
         return new SelectCommand(moduleName);
     }
 
