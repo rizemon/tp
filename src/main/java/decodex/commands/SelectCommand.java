@@ -32,6 +32,6 @@ public class SelectCommand extends Command {
         Data newData = module.run(dataManager.getCurrentData());
         dataManager.setCurrentData(newData);
 
-        System.out.printf("[+] Output: %s\n", newData.toString());
+        System.out.printf("[+] Output: \"%s\"\n", newData.toString());
     }
 }
