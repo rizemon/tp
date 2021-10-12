@@ -42,12 +42,12 @@ Format: `input <data>`
 
 Examples:
 
-- `input HelloWorld!` Enter plain text as data.
 - `input SGVsbG9Xb3JsZA==` Enter base64-encoded data.
+- <code>input  hello world </code> Enter plain text as data.
 
 ![carbon(1).png](images/carbon(1).png)
 
-> :exclamation: Note that the program will take in whatever characters after the first space character as seen in the second command in the above screenshot. Observe the leading and trailing whitespaces.
+> :exclamation: Note that the program will consider all characters as data following the first space character in the input command. Observe the leading and trailing whitespaces for result of the second command in the above screenshot.
 
 ## List available modules: `list`
 
