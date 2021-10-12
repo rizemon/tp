@@ -16,7 +16,7 @@ import decodex.data.exception.DataManagerException;
 import decodex.modules.ModuleManager;
 import decodex.ui.Ui;
 
-public class DataCommandTest {
+public class InputCommandTest {
 
     @Test
     public void run_missingArguments_expectException() {
@@ -24,7 +24,7 @@ public class DataCommandTest {
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
         String dataString = "";
-        Command testCommand = new DataCommand(dataString);
+        Command testCommand = new InputCommand(dataString);
         assertThrows(CommandException.class, () -> testCommand.run(dataManager, moduleManager, ui));
     }
 
@@ -35,7 +35,7 @@ public class DataCommandTest {
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
         String dataString = "something";
-        Command testCommand = new DataCommand(dataString);
+        Command testCommand = new InputCommand(dataString);
         testCommand.run(dataManager, moduleManager, ui);
         Data testData = new Data(dataString);
         assertTrue(Arrays.equals(dataManager.getOriginalData().getRawBytes(), testData.getRawBytes()));

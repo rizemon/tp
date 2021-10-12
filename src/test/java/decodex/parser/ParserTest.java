@@ -1,7 +1,7 @@
 package decodex.parser;
 
 import decodex.commands.Command;
-import decodex.commands.DataCommand;
+import decodex.commands.InputCommand;
 import decodex.commands.ExitCommand;
 import decodex.commands.ListCommand;
 import decodex.commands.ResetCommand;
@@ -50,12 +50,12 @@ class ParserTest {
 
     /* The JUnit test methods below are for testing "normal" usage flows for the respective commands.*/
     @Test
-    void parseCommand_userInputSpecifyingValidData_expectDataCommand() throws ParserException {
-        String userInput = "data dummyData";
+    void parseCommand_userInputSpecifyingValidData_expectInputCommand() throws ParserException {
+        String userInput = "input dummyData";
 
         Command command = parser.parseCommand(userInput);
 
-        assertTrue(command instanceof DataCommand);
+        assertTrue(command instanceof InputCommand);
     }
 
 
