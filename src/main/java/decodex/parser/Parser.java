@@ -31,7 +31,6 @@ public class Parser {
      * Specifies the valid length of the tokens and used to check validity of tokens.
      */
     private static final int VALID_TOKENS_LENGTH_FOR_COMMAND = 1;
-    private static final int VALID_TOKENS_LENGTH_FOR_ARGUMENTS = 2;
 
     /**
      * Returns the type of command that user has entered.
@@ -58,29 +57,6 @@ public class Parser {
         return commandType;
     }
 
-    /**
-     * Returns the Argument portion of the user input as a whole string.
-     *
-     * @param userInput The input specified by the user.
-     * @return The argument portion of the user input as an array.
-     */
-    public String getUserArgument(String userInput) throws ParserException {
-        String strippedUserInput = userInput.stripLeading();
-        String[] tokens = strippedUserInput.split(" ", -1);
-
-        if (tokens.length < VALID_TOKENS_LENGTH_FOR_ARGUMENTS) {
-            throw new ParserException(ParserException.MISSING_COMMAND_ARGS_MESSAGE);
-        }
-        String[] argumentTokens = Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length);
-
-        if (argumentTokens.length > 1) {
-            String joinedArguments = String.join(" ", argumentTokens);
-            return joinedArguments;
-        }
-        String singleArgument = argumentTokens[0];
-        return singleArgument;
-    }
-
     public String getModuleName(String userInput) throws ParserException {
         String strippedUserInput = userInput.stripLeading();
         String[] tokens = strippedUserInput.split(" ", -1);
@@ -98,11 +74,11 @@ public class Parser {
         String strippedUserInput = userInput.stripLeading();
         String[] tokens = strippedUserInput.split(" ", -1);
 
-        if (tokens.length < VALID_TOKENS_LENGTH_FOR_ARGUMENTS) {
-            throw new ParserException("[-] Your input is empty, please do \"input i am a string\"");
-        }
         String argumentString = String.join(" ",
                 Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length));
+        if (argumentString.isEmpty()) {
+            throw new ParserException("[-] Your input is empty, please do \"input i am a string\"");
+        }
         return argumentString;
     }
 
