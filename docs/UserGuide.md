@@ -16,6 +16,7 @@ This user guide is tailored for CTF players who have basic understanding of info
 - [Features](#features)
   - [List available modules: `list`](#list-available-modules-list)
   - [Selection of module: `select`](#selection-of-module-select)
+- [Exiting the program: `exit`](#exiting-the-program-exit)
 - [Command Summary](#command-summary)
 
 # Terminologies
@@ -61,10 +62,10 @@ Format: `exit`
 
 # Command Summary
 
-| Action                   | Command Format          | Example Usage                                 |
-|--------------------------|-------------------------|-----------------------------------------------|
-| Enter input data         | `data` `<textData>`     | `data HelloWorld!`<br>`data SGVsbG9Xb3JsZA==` |
-| List available modules   | `list`                  | `list`                                        |
-| Select processing module | `select` `<moduleName>` | `select base64decode`<br>`select hexencode`   |
-| Reset to original data   | `reset`                 | `reset`                                       |
-| Exit program             | `exit`                  | `select hexencode`                            |
+| Action                   | Command Format        | Example Usage                                   |
+|--------------------------|-----------------------|-------------------------------------------------|
+| Enter input data         | `input <data>`        | `input hello world`<br>`input SGVsbG9Xb3JsZA==` |
+| List available modules   | `list`                | `list`                                          |
+| Select processing module | `select <moduleName>` | `select base64decode`<br>`select hexencode`     |
+| Reset to original data   | `reset`               | `reset`                                         |
+| Exit program             | `exit`                | `exit`                                          |
