@@ -16,7 +16,7 @@ This user guide is tailored for CTF players who have basic understanding of info
 - [Features](#features)
   - [List available modules: `list`](#list-available-modules-list)
   - [Selection of module: `select`](#selection-of-module-select)
-- [Exiting the program: `exit`](#exiting-the-program-exit)
+  - [Exiting the program: `exit`](#exiting-the-program-exit)
 - [Command Summary](#command-summary)
 
 # Terminologies
