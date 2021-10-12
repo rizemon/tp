@@ -24,6 +24,6 @@ public class InputCommand extends Command {
         }
         Data userData = new Data(dataString);
         dataManager.setOriginalData(userData);
-        System.out.printf("[+] Input: %s\n", dataString);
+        System.out.printf("[+] Input: \"%s\"\n", dataString);
     }
 }
