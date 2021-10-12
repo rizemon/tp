@@ -14,8 +14,10 @@ This user guide is tailored for CTF players who have basic understanding of info
 - [Introduction](#introduction)
 - [Terminologies](#terminologies)
 - [Features](#features)
+  - [Input of data: `input`](#input-of-data-input)
   - [List available modules: `list`](#list-available-modules-list)
   - [Selection of module: `select`](#selection-of-module-select)
+  - [Resetting of data: `reset`](#resetting-of-data-reset)
 - [Command Summary](#command-summary)
 
 # Terminologies
@@ -29,6 +31,19 @@ This section serves to help the user better understand the terminologies used in
 
 
 # Features
+
+## Input of data: `input`
+
+Stores the data to be processed by modules.
+
+Format: `input <data>`
+
+Examples:
+
+- `input HelloWorld!` Enter plain text as data.
+- `input SGVsbG9Xb3JsZA==` Enter base64-encoded data.
+
+![carbon(1).png](images/carbon(1).png)
 
 ## List available modules: `list`
 
@@ -52,6 +67,12 @@ Examples:
 - `select hexencode` Encode the data into hexadecimal format.
 
 ![carbon(9).png](images/carbon(9).png)
+
+## Resetting of data: `reset`
+
+Resets the transformed data back to the original input.
+
+Format: `reset`
 
 # Command Summary
 
