@@ -62,10 +62,10 @@ Format: `exit`
 
 # Command Summary
 
-| Action                   | Command Format        | Example Usage                                   |
-|--------------------------|-----------------------|-------------------------------------------------|
-| Enter input data         | `input <data>`        | `input hello world`<br>`input SGVsbG9Xb3JsZA==` |
-| List available modules   | `list`                | `list`                                          |
-| Select processing module | `select <moduleName>` | `select base64decode`<br>`select hexencode`     |
-| Reset to original data   | `reset`               | `reset`                                         |
-| Exit program             | `exit`                | `exit`                                          |
+| Action                   | Command Format        | Example Usage                                                      |
+|--------------------------|-----------------------|--------------------------------------------------------------------|
+| Enter input data         | `input <data>`        | `input SGVsbG9Xb3JsZA==`<br><code>input  hello world </code> |
+| List available modules   | `list`                | `list`                                                             |
+| Select processing module | `select <moduleName>` | `select base64decode`<br>`select hexencode`                        |
+| Reset to original data   | `reset`               | `reset`                                                            |
+| Exit program             | `exit`                | `exit`                                                             |
