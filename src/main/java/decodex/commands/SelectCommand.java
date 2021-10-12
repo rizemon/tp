@@ -6,7 +6,7 @@ import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;
 import decodex.data.exception.ModuleException;
 import decodex.data.exception.UnknownModuleException;
-import decodex.modules.BaseModule;
+import decodex.modules.Module;
 import decodex.modules.ModuleManager;
 import decodex.ui.Ui;
 
@@ -28,7 +28,7 @@ public class SelectCommand extends Command {
             throw new CommandException("[-] Missing module name");
         }
 
-        BaseModule module = moduleManager.selectModule(moduleName);
+        Module module = moduleManager.selectModule(moduleName);
         Data newData = module.run(dataManager.getCurrentData());
         dataManager.setCurrentData(newData);
 

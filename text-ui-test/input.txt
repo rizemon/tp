@@ -1,6 +1,6 @@
 whoami
 bring me thanos
-data I am a lab rat
+input I am a lab rat
 select base64encode
 select base64decode
 select hexencode

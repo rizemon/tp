@@ -1,7 +1,7 @@
 package decodex.parser;
 
 import decodex.commands.Command;
-import decodex.commands.DataCommand;
+import decodex.commands.InputCommand;
 import decodex.commands.ExitCommand;
 import decodex.commands.ListCommand;
 import decodex.commands.ResetCommand;
@@ -109,8 +109,8 @@ public class Parser {
         case ExitCommand.COMMAND_WORD:
             command = craftExitCommand();
             break;
-        case DataCommand.COMMAND_WORD:
-            command = craftDataCommand(userInput);
+        case InputCommand.COMMAND_WORD:
+            command = craftInputCommand(userInput);
             break;
         case ListCommand.COMMAND_WORD:
             command = craftListCommand();
@@ -143,9 +143,9 @@ public class Parser {
      * @return The Data command
      * @throws ParserException ParserException
      */
-    private Command craftDataCommand(String userInput) throws ParserException {
+    private Command craftInputCommand(String userInput) throws ParserException {
         String inputData = getInputString(userInput);
-        return new DataCommand(inputData);
+        return new InputCommand(inputData);
     }
 
     /**
