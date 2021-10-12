@@ -57,6 +57,12 @@ public class Parser {
         return commandType;
     }
 
+    /**
+     * Returns the Module Name that user has specified.
+     *
+     * @param userInput The input specified by the user.
+     * @return The Module name.
+     */
     public String getModuleName(String userInput) throws ParserException {
         String strippedUserInput = userInput.stripLeading();
         String[] tokens = strippedUserInput.split(" ", -1);
@@ -70,6 +76,12 @@ public class Parser {
         return argumentTokens[MODULE_NAME_INDEX_IN_TOKENS];
     }
 
+    /**
+     * Returns the input data string that user has specified.
+     *
+     * @param userInput The input specified by the user.
+     * @return The input data string.
+     */
     public String getInputString(String userInput) throws ParserException {
         String strippedUserInput = userInput.stripLeading();
         String[] tokens = strippedUserInput.split(" ", -1);
@@ -77,7 +89,7 @@ public class Parser {
         String argumentString = String.join(" ",
                 Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length));
         if (argumentString.isEmpty()) {
-            throw new ParserException("[-] Your input is empty, please do \"input i am a string\"");
+            throw new ParserException("[-] Your input is empty");
         }
         return argumentString;
     }
