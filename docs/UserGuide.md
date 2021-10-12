@@ -6,7 +6,7 @@ Decodex is a **Command Line Interface (CLI) application for Capture-The-Flag (CT
 
 This user guide is tailored for CTF players who have basic understanding of information security concepts.
 
-> ❗ This user guide is tailored for CTF players who have basic understanding of information security concepts.
+> :information_source: This user guide is tailored for CTF players who have basic understanding of information security concepts.
 
 ![carbon(6).png](images/carbon(6).png)
 
@@ -14,8 +14,10 @@ This user guide is tailored for CTF players who have basic understanding of info
 - [Introduction](#introduction)
 - [Terminologies](#terminologies)
 - [Features](#features)
+  - [Input of data: `input`](#input-of-data-input)
   - [List available modules: `list`](#list-available-modules-list)
   - [Selection of module: `select`](#selection-of-module-select)
+  - [Resetting of data: `reset`](#resetting-of-data-reset)
   - [Exiting the program: `exit`](#exiting-the-program-exit)
 - [Command Summary](#command-summary)
 
@@ -30,6 +32,23 @@ This section serves to help the user better understand the terminologies used in
 
 
 # Features
+
+## Input of data: `input`
+
+Stores the data to be processed by modules.
+
+Format: `input <data>`
+
+> :information_source: `data` will be treated as text.
+
+Examples:
+
+- `input SGVsbG9Xb3JsZA==` Enter base64-encoded data.
+- <code>input  hello world </code> Enter plain text as data.
+
+![carbon(1).png](images/carbon(1).png)
+
+> :exclamation: Note that the program will consider all characters as data following the first space character in the input command. Observe the leading and trailing whitespaces for result of the second command in the above screenshot.
 
 ## List available modules: `list`
 
@@ -53,6 +72,12 @@ Examples:
 - `select hexencode` Encode the data into hexadecimal format.
 
 ![carbon(9).png](images/carbon(9).png)
+
+## Resetting of data: `reset`
+
+Resets the transformed data back to the original input.
+
+Format: `reset`
 
 ## Exiting the program: `exit`
 
