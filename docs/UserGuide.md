@@ -38,6 +38,9 @@ Stores the data to be processed by modules.
 
 Format: `input <data>`
 
+> 💡 `data` will be treated as text. Also, note that the program will take whatever characters after the first space character after the `input` command as `data`.  
+
+
 Examples:
 
 - `input HelloWorld!` Enter plain text as data.
