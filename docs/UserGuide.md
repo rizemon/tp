@@ -6,7 +6,7 @@ Decodex is a **Command Line Interface (CLI) application for Capture-The-Flag (CT
 
 This user guide is tailored for CTF players who have basic understanding of information security concepts.
 
-> ❗ This user guide is tailored for CTF players who have basic understanding of information security concepts.
+> :information_source: This user guide is tailored for CTF players who have basic understanding of information security concepts.
 
 ![carbon(6).png](images/carbon(6).png)
 
@@ -38,8 +38,7 @@ Stores the data to be processed by modules.
 
 Format: `input <data>`
 
-> 💡 `data` will be treated as text. Also, note that the program will take whatever characters after the first space character after the `input` command as `data`.  
-
+> :information_source: `data` will be treated as text.
 
 Examples:
 
@@ -47,6 +46,8 @@ Examples:
 - `input SGVsbG9Xb3JsZA==` Enter base64-encoded data.
 
 ![carbon(1).png](images/carbon(1).png)
+
+> :exclamation: Note that the program will take in whatever characters after the first space character as seen in the second command in the above screenshot. Observe the leading and trailing whitespaces.
 
 ## List available modules: `list`
 
