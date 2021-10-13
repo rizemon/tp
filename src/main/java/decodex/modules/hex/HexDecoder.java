@@ -32,7 +32,7 @@ public class HexDecoder extends Module {
         String inputString = data.toString().toLowerCase();
 
         if (!isValidHex(inputString)) {
-            throw new ModuleException("Invalid hexadecimal string");
+            throw new ModuleException("[x] Invalid hexadecimal string");
         }
 
         String decodedString = Arrays
