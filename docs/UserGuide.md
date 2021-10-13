@@ -18,6 +18,7 @@ This user guide is tailored for CTF players who have basic understanding of info
   - [List available modules: `list`](#list-available-modules-list)
   - [Selection of module: `select`](#selection-of-module-select)
   - [Resetting of data: `reset`](#resetting-of-data-reset)
+  - [Exiting the program: `exit`](#exiting-the-program-exit)
 - [Command Summary](#command-summary)
 
 # Terminologies
@@ -78,10 +79,18 @@ Resets the transformed data back to the original input.
 
 Format: `reset`
 
+## Exiting the program: `exit`
+
+Exit the program.
+
+Format: `exit`
+
 # Command Summary
 
-| Action | Command Format | Example Usage |
-| ------ | -------------- | ------------- |
-|        |                |               |
-|        |                |               |
-|        |                |               |
+| Action                   | Command Format        | Example Usage                                                      |
+|--------------------------|-----------------------|--------------------------------------------------------------------|
+| Enter input data         | `input <data>`        | `input SGVsbG9Xb3JsZA==`<br><code>input  hello world </code> |
+| List available modules   | `list`                | `list`                                                             |
+| Select processing module | `select <moduleName>` | `select base64decode`<br>`select hexencode`                        |
+| Reset to original data   | `reset`               | `reset`                                                            |
+| Exit program             | `exit`                | `exit`                                                             |
