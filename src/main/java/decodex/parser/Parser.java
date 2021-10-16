@@ -58,7 +58,7 @@ public class Parser {
     }
 
     /**
-     * Returns the module name that the user has specified.
+     * Returns the name of the module that the user has specified.
      *
      * @param userInput The input specified by the user.
      * @return The name of the module.
