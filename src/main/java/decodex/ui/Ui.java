@@ -35,11 +35,11 @@ public class Ui {
     /**
      * Reads user input from console.
      *
+     * @param in Scanner object.
      * @return String of the user input.
      */
-    public String readInput() {
+    public String readInput(Scanner in) {
         printPromptHeader();
-        Scanner in = new Scanner(System.in);
         return in.nextLine();
     }
 
@@ -51,7 +51,7 @@ public class Ui {
     public void printInput(String input) {
         assert input != null : AssertMessages.INPUT_NOT_NULL;
         assert !input.isBlank() : AssertMessages.INPUT_NOT_EMPTY;
-        printSuccess(String.format("%s \"%s\"\n", INPUT_PREFIX, input));
+        printSuccess(String.format("%s \"%s\"", INPUT_PREFIX, input));
     }
 
     /**
@@ -61,7 +61,7 @@ public class Ui {
      */
     public void printOutput(String output) {
         assert output != null : AssertMessages.OUTPUT_NOT_NULL;
-        printSuccess(String.format("%s \"%s\"\n", OUTPUT_PREFIX, output));
+        printSuccess(String.format("%s \"%s\"", OUTPUT_PREFIX, output));
     }
 
     /**
