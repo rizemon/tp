@@ -130,7 +130,7 @@ public class Parser {
     }
 
     /**
-     * Crafts and returns the ExitCommand object.
+     * Prepares and returns the ExitCommand object.
      *
      * @return The ExitCommand object.
      */
@@ -139,7 +139,7 @@ public class Parser {
     }
 
     /**
-     * Crafts and returns the InputCommand object using the specified user input.
+     * Prepares and returns the InputCommand object using the specified user input.
      *
      * @param userInput The user input specified by the user.
      * @return The InputCommand object.
@@ -150,7 +150,7 @@ public class Parser {
     }
 
     /**
-     * Crafts and returns the ListCommand object.
+     * Prepares and returns the ListCommand object.
      *
      * @return The ListCommand object.
      */
@@ -159,7 +159,7 @@ public class Parser {
     }
 
     /**
-     * Crafts and returns the ResetCommand object.
+     * Prepares and returns the ResetCommand object.
      *
      * @return The ResetCommand object.
      */
@@ -168,7 +168,7 @@ public class Parser {
     }
 
     /**
-     * Crafts and returns the SelectCommand object using the specified user input.
+     * Prepares and returns the SelectCommand object using the specified user input.
      *
      * @param userInput The user input specified by the user.
      * @return The SelectCommand object.
