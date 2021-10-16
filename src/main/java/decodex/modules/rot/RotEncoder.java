@@ -12,9 +12,7 @@ public class RotEncoder extends Module {
     public static final String MODULE_DESCRIPTION = "Rotates the alphabets in the input string by a specified amount";
 
     private static final char LOWERCASE_A = 'a';
-    private static final char LOWERCASE_Z = 'z';
     private static final char UPPERCASE_A = 'A';
-    private static final char UPPERCASE_Z = 'Z';
     private static final int ALPHABETS_COUNT = 26;
 
     private final int rotateOffset;
@@ -27,8 +25,8 @@ public class RotEncoder extends Module {
     /**
      * Applies the rotation to the given Data object.
      *
-     * @param data Data object to encode.
-     * @return new Data object representing the result.
+     * @param data The given Data object.
+     * @return A Data object with its alphabetical characters rotated.
      */
     @Override
     public Data run(Data data) {
@@ -36,10 +34,10 @@ public class RotEncoder extends Module {
 
         for (byte b : data.getRawBytes()) {
             char updatedChar = (char) b;
-            if (isLowercaseAlphabet((char) b)) {
+            if (Character.isLowerCase((char) b)) {
                 updatedChar = rotateLowercaseAlphabet((char) b, rotateOffset);
 
-            } else if (isUppercaseAlphabet((char) b)) {
+            } else if (Character.isUpperCase((char) b)) {
                 updatedChar = rotateUppercaseAlphabet((char) b, rotateOffset);
             }
             encodedStringBuilder.append(updatedChar);
@@ -47,26 +45,6 @@ public class RotEncoder extends Module {
 
         String encodedString = encodedStringBuilder.toString();
         return new Data(encodedString);
-    }
-
-    /**
-     * Checks if the given character is a lowercase alphabet.
-     *
-     * @param c The given character to check.
-     * @return True if the character is a lowercase alphabet.
-     */
-    private boolean isLowercaseAlphabet(char c) {
-        return LOWERCASE_A <= c && c <= LOWERCASE_Z;
-    }
-
-    /**
-     * Checks if the given character is an uppercase alphabet.
-     *
-     * @param c The given character to check.
-     * @return True if the character is an uppercase alphabet.
-     */
-    private boolean isUppercaseAlphabet(char c) {
-        return UPPERCASE_A <= c && c <= UPPERCASE_Z;
     }
 
     /**
