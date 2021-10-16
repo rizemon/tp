@@ -97,11 +97,11 @@ public class Parser {
     }
 
     /**
-     * Parses the user input specified by the user and returns its corresponding Command object.
+     * Parses the user input specified by the user and returns its corresponding Command.
      *
      * @param userInput The user input specified by the user.
      * @return The corresponding Command object.
-     * @throws ParserException If the command type is unknown/invalid.
+     * @throws ParserException If the command type is unknown or invalid.
      */
     public Command parseCommand(String userInput) throws ParserException {
         Command command;
@@ -130,7 +130,7 @@ public class Parser {
     }
 
     /**
-     * Prepares and returns the ExitCommand object.
+     * Prepares and returns the ExitCommand.
      *
      * @return The ExitCommand object.
      */
@@ -139,7 +139,7 @@ public class Parser {
     }
 
     /**
-     * Prepares and returns the InputCommand object using the specified user input.
+     * Prepares and returns the InputCommand using the specified user input.
      *
      * @param userInput The user input specified by the user.
      * @return The InputCommand object.
@@ -150,7 +150,7 @@ public class Parser {
     }
 
     /**
-     * Prepares and returns the ListCommand object.
+     * Prepares and returns the ListCommand.
      *
      * @return The ListCommand object.
      */
@@ -159,7 +159,7 @@ public class Parser {
     }
 
     /**
-     * Prepares and returns the ResetCommand object.
+     * Prepares and returns the ResetCommand.
      *
      * @return The ResetCommand object.
      */
@@ -168,7 +168,7 @@ public class Parser {
     }
 
     /**
-     * Prepares and returns the SelectCommand object using the specified user input.
+     * Prepares and returns the SelectCommand using the specified user input.
      *
      * @param userInput The user input specified by the user.
      * @return The SelectCommand object.

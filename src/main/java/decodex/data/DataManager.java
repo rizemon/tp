@@ -73,7 +73,7 @@ public class DataManager {
     }
 
     /**
-     * Undoes all modifications done to the data and resets it to its original data.
+     * Reverts the current data to its original data.
      */
     public void resetToOriginalData() {
         currentData = originalData;
