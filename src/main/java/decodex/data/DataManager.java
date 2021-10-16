@@ -16,7 +16,7 @@ public class DataManager {
     private Data currentData;
 
     /**
-     * Constructor for DataManager.
+     * Instantiates a new DataManager.
      */
     public DataManager() {
         originalData = null;
