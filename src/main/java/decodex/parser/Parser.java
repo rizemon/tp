@@ -97,7 +97,7 @@ public class Parser {
     }
 
     /**
-     * Parses the user input specified by the user and returns its respective Command object.
+     * Parses the user input specified by the user and returns its corresponding Command object.
      *
      * @param userInput The user input specified by the user.
      * @return The corresponding Command object.
