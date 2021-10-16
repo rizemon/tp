@@ -55,7 +55,10 @@ public class RotEncoder extends Module {
      * @return The updated alphabet.
      */
     private char rotateLowercaseAlphabet(char c, int rotateOffset) {
-        return (char) (Math.floorMod(c - LOWERCASE_A + rotateOffset, ALPHABETS_COUNT) + LOWERCASE_A);
+        int originalAlphabetIndex = c - LOWERCASE_A;
+        int updatedAlphabetIndex = Math.floorMod(originalAlphabetIndex + rotateOffset, ALPHABETS_COUNT);
+
+        return (char) (LOWERCASE_A + updatedAlphabetIndex);
     }
 
     /**
@@ -66,6 +69,9 @@ public class RotEncoder extends Module {
      * @return The updated alphabet.
      */
     private char rotateUppercaseAlphabet(char c, int rotateOffset) {
-        return (char) (Math.floorMod(c - UPPERCASE_A + rotateOffset, ALPHABETS_COUNT) + UPPERCASE_A);
+        int originalAlphabetIndex = c - UPPERCASE_A;
+        int updatedAlphabetIndex = Math.floorMod(originalAlphabetIndex + rotateOffset, ALPHABETS_COUNT);
+
+        return (char) (UPPERCASE_A + updatedAlphabetIndex);
     }
 }
