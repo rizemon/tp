@@ -143,6 +143,7 @@ public class Parser {
      *
      * @param userInput The user input specified by the user.
      * @return The InputCommand object.
+     * @throws ParserException If the argument string is empty.
      */
     private InputCommand craftInputCommand(String userInput) throws ParserException {
         String inputData = getInputString(userInput);
