@@ -1,13 +1,14 @@
 package decodex.parser;
 
 import decodex.commands.Command;
-import decodex.commands.InputCommand;
 import decodex.commands.ExitCommand;
+import decodex.commands.InputCommand;
 import decodex.commands.ListCommand;
 import decodex.commands.ResetCommand;
 import decodex.commands.SelectCommand;
 import decodex.data.exception.ParserException;
-
+import decodex.ui.messages.AssertMessages;
+import decodex.ui.messages.ErrorMessages;
 import java.util.Arrays;
 
 /**
@@ -41,7 +42,7 @@ public class Parser {
     public String getCommandType(String userInput) throws ParserException {
         String strippedUserInput = userInput.stripLeading();
         if (strippedUserInput.isEmpty()) {
-            throw new ParserException(ParserException.MISSING_COMMAND_TYPE_MESSAGE);
+            throw new ParserException(ErrorMessages.MISSING_COMMAND_TYPE);
         }
 
         String[] tokens = strippedUserInput.split(" ");
@@ -49,11 +50,11 @@ public class Parser {
         boolean isInvalidTokensLength = tokens.length < VALID_TOKENS_LENGTH_FOR_COMMAND;
 
         if (isInvalidTokensLength) {
-            throw new ParserException(ParserException.MISSING_COMMAND_TYPE_MESSAGE);
+            throw new ParserException(ErrorMessages.MISSING_COMMAND_TYPE);
         }
 
         String commandType = tokens[COMMAND_INDEX];
-        assert !commandType.isEmpty() : "Command Type should not be empty";
+        assert !commandType.isEmpty() : AssertMessages.COMMAND_TYPE_NOT_EMPTY;
         return commandType;
     }
 
@@ -71,7 +72,7 @@ public class Parser {
                 .filter(value -> !value.isBlank())
                 .toArray(size -> new String[size]);
         if (argumentTokens.length == 0) {
-            throw new ParserException("[-] Module name is missing");
+            throw new ParserException(ErrorMessages.MISSING_MODULE_NAME);
         }
         return argumentTokens[MODULE_NAME_INDEX_IN_TOKENS];
     }
@@ -89,7 +90,7 @@ public class Parser {
         String argumentString = String.join(" ",
                 Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length));
         if (argumentString.isEmpty()) {
-            throw new ParserException("[-] Your input is empty");
+            throw new ParserException(ErrorMessages.INPUT_EMPTY);
         }
         return argumentString;
     }
@@ -122,7 +123,7 @@ public class Parser {
             command = craftSelectCommand(userInput);
             break;
         default:
-            throw new ParserException("[x] Unknown command, please enter a valid command");
+            throw new ParserException(ErrorMessages.UNKNOWN_COMMAND);
         }
         return command;
     }

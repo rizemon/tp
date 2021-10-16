@@ -1,5 +1,7 @@
 package decodex.data;
 
+import decodex.ui.messages.AssertMessages;
+
 /**
  * The Data class manages the data that is to be encoded or decoded.
  */
@@ -12,7 +14,7 @@ public class Data {
     }
 
     public Data(String data) {
-        assert data != null : "Data string should not be null";
+        assert data != null : AssertMessages.DATA_NOT_NULL;
         rawBytes = data.getBytes();
     }
 
