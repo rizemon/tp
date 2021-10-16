@@ -172,6 +172,7 @@ public class Parser {
      *
      * @param userInput The user input specified by the user.
      * @return The SelectCommand object.
+     * @throws ParserException If the user input is missing the module name.
      */
     private SelectCommand craftSelectCommand(String userInput) throws ParserException {
         String moduleName = getModuleName(userInput);

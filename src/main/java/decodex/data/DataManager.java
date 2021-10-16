@@ -50,7 +50,7 @@ public class DataManager {
     }
 
     /**
-     * Sets the original Data given the original Data object.
+     * Sets the original Data.
      *
      * @param originalData The original Data object.
      */
@@ -60,7 +60,7 @@ public class DataManager {
     }
 
     /**
-     * Sets the current Data given the new current Data object.
+     * Sets the current Data.
      *
      * @param currentData The new current Data Object.
      * @throws DataManagerException If the original Data object does not exist.
