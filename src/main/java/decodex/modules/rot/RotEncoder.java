@@ -15,6 +15,7 @@ public class RotEncoder extends Module {
     private static final char LOWERCASE_Z = 'z';
     private static final char UPPERCASE_A = 'A';
     private static final char UPPERCASE_Z = 'Z';
+    private static final int ALPHABETS_COUNT = 26;
 
     private final int rotateOffset;
 
@@ -76,7 +77,7 @@ public class RotEncoder extends Module {
      * @return The updated alphabet.
      */
     private char rotateLowercaseAlphabet(char c, int rotateOffset) {
-        return (char) (Math.floorMod(c - LOWERCASE_A + rotateOffset, 26) + LOWERCASE_A);
+        return (char) (Math.floorMod(c - LOWERCASE_A + rotateOffset, ALPHABETS_COUNT) + LOWERCASE_A);
     }
 
     /**
@@ -87,6 +88,6 @@ public class RotEncoder extends Module {
      * @return The updated alphabet.
      */
     private char rotateUppercaseAlphabet(char c, int rotateOffset) {
-        return (char) (Math.floorMod(c - UPPERCASE_A + rotateOffset, 26) + UPPERCASE_A);
+        return (char) (Math.floorMod(c - UPPERCASE_A + rotateOffset, ALPHABETS_COUNT) + UPPERCASE_A);
     }
 }
