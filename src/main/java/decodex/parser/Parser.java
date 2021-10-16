@@ -11,7 +11,7 @@ import decodex.data.exception.ParserException;
 import java.util.Arrays;
 
 /**
- * The Parser class parses and validates the user input.
+ * The Parser class handles the parsing and validation of the user input.
  */
 public class Parser {
 
@@ -100,7 +100,7 @@ public class Parser {
      * Parses the user input specified by the user and returns its respective Command object.
      *
      * @param userInput The user input specified by the user.
-     * @return The respective Command object.
+     * @return The corresponding Command object.
      * @throws ParserException If the command type is unknown/invalid.
      */
     public Command parseCommand(String userInput) throws ParserException {

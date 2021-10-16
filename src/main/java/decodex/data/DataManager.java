@@ -5,7 +5,7 @@ import java.util.Arrays;
 import decodex.data.exception.DataManagerException;
 
 /**
- * The DataManager class manages the current state of the data.
+ * The DataManager class handles the management of the current state of the data.
  */
 public class DataManager {
 
