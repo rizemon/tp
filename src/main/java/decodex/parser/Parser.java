@@ -11,7 +11,7 @@ import decodex.data.exception.ParserException;
 import java.util.Arrays;
 
 /**
- * Parses and validates the user input.
+ * The Parser class parses and validates the user input.
  */
 public class Parser {
 
