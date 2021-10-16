@@ -36,7 +36,6 @@ public class RotEncoder extends Module {
             char updatedChar = (char) b;
             if (Character.isLowerCase((char) b)) {
                 updatedChar = rotateLowercaseAlphabet((char) b, rotateOffset);
-
             } else if (Character.isUpperCase((char) b)) {
                 updatedChar = rotateUppercaseAlphabet((char) b, rotateOffset);
             }
@@ -57,7 +56,6 @@ public class RotEncoder extends Module {
     private char rotateLowercaseAlphabet(char c, int rotateOffset) {
         int originalAlphabetIndex = c - LOWERCASE_A;
         int updatedAlphabetIndex = Math.floorMod(originalAlphabetIndex + rotateOffset, ALPHABETS_COUNT);
-
         return (char) (LOWERCASE_A + updatedAlphabetIndex);
     }
 
@@ -71,7 +69,6 @@ public class RotEncoder extends Module {
     private char rotateUppercaseAlphabet(char c, int rotateOffset) {
         int originalAlphabetIndex = c - UPPERCASE_A;
         int updatedAlphabetIndex = Math.floorMod(originalAlphabetIndex + rotateOffset, ALPHABETS_COUNT);
-
         return (char) (UPPERCASE_A + updatedAlphabetIndex);
     }
 }
