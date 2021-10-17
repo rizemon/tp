@@ -5,7 +5,7 @@ import java.util.Arrays;
 import decodex.data.exception.DataManagerException;
 
 /**
- * The DataManager class manages the current state of the data.
+ * The DataManager class handles the management of the current state of the data.
  */
 public class DataManager {
 
@@ -15,11 +15,20 @@ public class DataManager {
     /* Data to perform the encoding/decoding operations on */
     private Data currentData;
 
+    /**
+     * Instantiates a new DataManager.
+     */
     public DataManager() {
         originalData = null;
         currentData = null;
     }
 
+    /**
+     * Returns the original Data object.
+     *
+     * @return The original Data object.
+     * @throws DataManagerException If the original Data object does not exist.
+     */
     public Data getOriginalData() throws DataManagerException {
         if (originalData == null) {
             throw new DataManagerException("No data found");
@@ -27,6 +36,12 @@ public class DataManager {
         return originalData;
     }
 
+    /**
+     * Returns the current Data object.
+     *
+     * @return The current Data object.
+     * @throws DataManagerException If the current Data object does not exist.
+     */
     public Data getCurrentData() throws DataManagerException {
         if (currentData == null) {
             throw new DataManagerException("No data found");
@@ -34,11 +49,22 @@ public class DataManager {
         return currentData;
     }
 
+    /**
+     * Sets the original Data.
+     *
+     * @param originalData The original Data object.
+     */
     public void setOriginalData(Data originalData) {
         this.originalData = originalData;
         resetToOriginalData();
     }
 
+    /**
+     * Sets the current Data.
+     *
+     * @param currentData The new current Data Object.
+     * @throws DataManagerException If the original Data object does not exist.
+     */
     public void setCurrentData(Data currentData) throws DataManagerException {
         if (originalData == null) {
             throw new DataManagerException("No data found");
@@ -47,7 +73,7 @@ public class DataManager {
     }
 
     /**
-     * Undo all modifications done to the data.
+     * Reverts the current data to its original data.
      */
     public void resetToOriginalData() {
         currentData = originalData;

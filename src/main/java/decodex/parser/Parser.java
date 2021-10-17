@@ -11,7 +11,7 @@ import decodex.data.exception.ParserException;
 import java.util.Arrays;
 
 /**
- * Parses and validates the user input.
+ * The Parser class handles the parsing and validation of the user input.
  */
 public class Parser {
 
@@ -20,7 +20,6 @@ public class Parser {
      */
     private static final int COMMAND_INDEX = 0;
     private static final int MODULE_NAME_INDEX_IN_TOKENS = 0;
-
 
     /**
      * Specifies the starting index where the arguments can be found.
@@ -33,10 +32,11 @@ public class Parser {
     private static final int VALID_TOKENS_LENGTH_FOR_COMMAND = 1;
 
     /**
-     * Returns the type of command that user has entered.
+     * Returns the type of command that the user has specified.
      *
      * @param userInput The input specified by the user.
-     * @return The type of command.
+     * @return The type of the command.
+     * @throws ParserException If the user input is empty or missing the command type.
      */
     public String getCommandType(String userInput) throws ParserException {
         String strippedUserInput = userInput.stripLeading();
@@ -58,10 +58,11 @@ public class Parser {
     }
 
     /**
-     * Returns the Module Name that user has specified.
+     * Returns the name of the module that the user has specified.
      *
      * @param userInput The input specified by the user.
-     * @return The Module name.
+     * @return The name of the module.
+     * @throws ParserException If the user input is missing the module name.
      */
     public String getModuleName(String userInput) throws ParserException {
         String strippedUserInput = userInput.stripLeading();
@@ -77,10 +78,11 @@ public class Parser {
     }
 
     /**
-     * Returns the input data string that user has specified.
+     * Returns the InputCommand's argument string that the user has specified.
      *
      * @param userInput The input specified by the user.
-     * @return The input data string.
+     * @return The argument string.
+     * @throws ParserException If the argument string is empty.
      */
     public String getInputString(String userInput) throws ParserException {
         String strippedUserInput = userInput.stripLeading();
@@ -95,11 +97,11 @@ public class Parser {
     }
 
     /**
-     * Parses the user input provided by user and returns its respective command. Returns a null object if the command
-     * is invalid.
+     * Parses the user input specified by the user and returns its corresponding Command.
      *
      * @param userInput The user input specified by the user.
-     * @return The respective Command object.
+     * @return The corresponding Command object.
+     * @throws ParserException If the command type is unknown or invalid.
      */
     public Command parseCommand(String userInput) throws ParserException {
         Command command;
@@ -128,52 +130,52 @@ public class Parser {
     }
 
     /**
-     * Crafts and returns the Exit Command.
+     * Prepares and returns the ExitCommand.
      *
-     * @return The Exit command.
+     * @return The ExitCommand object.
      */
-    private Command craftExitCommand() {
+    private ExitCommand craftExitCommand() {
         return new ExitCommand();
     }
 
     /**
-     * Crafts and returns the Data Command given the user input.
+     * Prepares and returns the InputCommand using the specified user input.
      *
      * @param userInput The user input specified by the user.
-     * @return The Data command
-     * @throws ParserException ParserException
+     * @return The InputCommand object.
+     * @throws ParserException If the argument string is empty.
      */
-    private Command craftInputCommand(String userInput) throws ParserException {
+    private InputCommand craftInputCommand(String userInput) throws ParserException {
         String inputData = getInputString(userInput);
         return new InputCommand(inputData);
     }
 
     /**
-     * Crafts and returns the List Command.
+     * Prepares and returns the ListCommand.
      *
-     * @return The List command.
+     * @return The ListCommand object.
      */
-    private Command craftListCommand() {
+    private ListCommand craftListCommand() {
         return new ListCommand();
     }
 
     /**
-     * Crafts and returns the Reset Command.
+     * Prepares and returns the ResetCommand.
      *
-     * @return The Reset command.
+     * @return The ResetCommand object.
      */
-    private Command craftResetCommand() {
+    private ResetCommand craftResetCommand() {
         return new ResetCommand();
     }
 
     /**
-     * Crafts and returns the Select Command.
+     * Prepares and returns the SelectCommand using the specified user input.
      *
      * @param userInput The user input specified by the user.
-     * @return The Select command.
-     * @throws ParserException ParserException
+     * @return The SelectCommand object.
+     * @throws ParserException If the user input is missing the module name.
      */
-    private Command craftSelectCommand(String userInput) throws ParserException {
+    private SelectCommand craftSelectCommand(String userInput) throws ParserException {
         String moduleName = getModuleName(userInput);
         return new SelectCommand(moduleName);
     }
