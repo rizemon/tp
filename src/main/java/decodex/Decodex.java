@@ -26,7 +26,6 @@ public class Decodex {
     private static DataManager dataManager;
     private static ModuleManager moduleManager;
     private static Parser parser;
-    private static Scanner in;
     private static Ui ui;
 
     public Decodex() {
@@ -41,7 +40,6 @@ public class Decodex {
         dataManager = new DataManager();
         moduleManager = new ModuleManager();
         parser = new Parser();
-        in = new Scanner(System.in);
         ui = new Ui();
     }
 
@@ -58,7 +56,7 @@ public class Decodex {
         Command command = null;
 
         do {
-            String userInput = ui.readInput(in);
+            String userInput = ui.readInput();
             logger.fine("User input: " + userInput);
             try {
                 command = parser.parseCommand(userInput);

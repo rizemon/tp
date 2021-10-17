@@ -14,7 +14,10 @@ public class Ui {
     private static final String INPUT_PREFIX = "Input:";
     private static final String OUTPUT_PREFIX = "Output:";
 
+    private final Scanner in;
+
     public Ui() {
+        in = new Scanner(System.in);
     }
 
     /**
@@ -34,10 +37,9 @@ public class Ui {
     /**
      * Reads user input from console.
      *
-     * @param in Scanner object.
      * @return String of the user input.
      */
-    public String readInput(Scanner in) {
+    public String readInput() {
         printPromptHeader();
         return in.nextLine();
     }
