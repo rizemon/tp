@@ -7,7 +7,6 @@ import decodex.commands.ListCommand;
 import decodex.commands.ResetCommand;
 import decodex.commands.SelectCommand;
 import decodex.data.exception.ParserException;
-import decodex.ui.messages.AssertMessages;
 import decodex.ui.messages.ErrorMessages;
 import java.util.Arrays;
 
@@ -54,7 +53,7 @@ public class Parser {
         }
 
         String commandType = tokens[COMMAND_INDEX];
-        assert !commandType.isEmpty() : AssertMessages.COMMAND_TYPE_NOT_EMPTY;
+        assert !commandType.isEmpty() : "Command Type should not be empty";
         return commandType;
     }
 

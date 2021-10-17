@@ -11,7 +11,6 @@ import decodex.data.exception.UnknownModuleException;
 import decodex.modules.ModuleManager;
 import decodex.parser.Parser;
 import decodex.ui.Ui;
-import decodex.ui.messages.AssertMessages;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,7 +62,7 @@ public class Decodex {
             logger.fine("User input: " + userInput);
             try {
                 command = parser.parseCommand(userInput);
-                assert command != null : AssertMessages.COMMAND_NOT_NULL;
+                assert command != null : "Command should not be null";
                 command.run(dataManager, moduleManager, ui);
             } catch (ParserException | CommandException | UnknownModuleException
                     | DataManagerException | ModuleException err) {

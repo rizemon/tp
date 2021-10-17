@@ -1,6 +1,5 @@
 package decodex.ui;
 
-import decodex.ui.messages.AssertMessages;
 import decodex.ui.messages.RegularMessages;
 import java.util.Scanner;
 
@@ -49,8 +48,8 @@ public class Ui {
      * @param input The user input read.
      */
     public void printInput(String input) {
-        assert input != null : AssertMessages.INPUT_NOT_NULL;
-        assert !input.isBlank() : AssertMessages.INPUT_NOT_EMPTY;
+        assert input != null : "Input should not be null";
+        assert !input.isBlank() : "Input should not be empty";
         printSuccess(String.format("%s \"%s\"", INPUT_PREFIX, input));
     }
 
@@ -60,7 +59,7 @@ public class Ui {
      * @param output String output of the data.
      */
     public void printOutput(String output) {
-        assert output != null : AssertMessages.OUTPUT_NOT_NULL;
+        assert output != null : "Output should not be null";
         printSuccess(String.format("%s \"%s\"", OUTPUT_PREFIX, output));
     }
 
@@ -70,8 +69,8 @@ public class Ui {
      * @param moduleList String of the list of available modules.
      */
     public void printModuleList(String moduleList) {
-        assert moduleList != null : AssertMessages.MODULE_LIST_NOT_NULL;
-        assert !moduleList.isBlank() : AssertMessages.MODULE_LIST_NOT_EMPTY;
+        assert moduleList != null : "Module list should not be null";
+        assert !moduleList.isBlank() : "Module list should not be empty";
         System.out.println(RegularMessages.LIST_MODULES + "\n" + moduleList);
     }
 
@@ -81,8 +80,8 @@ public class Ui {
      * @param message Success message
      */
     public void printSuccess(String message) {
-        assert message != null : AssertMessages.MESSAGE_NOT_NULL;
-        assert !message.isBlank() : AssertMessages.MESSAGE_NOT_EMPTY;
+        assert message != null : "Message should not be null";
+        assert !message.isBlank() : "Message should not be empty";
         System.out.println(SUCCESS_ICON + " " + message);
     }
 
@@ -92,8 +91,8 @@ public class Ui {
      * @param exception The thrown exception.
      */
     public void printError(Exception exception) {
-        assert exception.getMessage() != null : AssertMessages.EXCEPTION_MESSAGE_NOT_NULL;
-        assert !exception.getMessage().isBlank() : AssertMessages.EXCEPTION_MESSAGE_NOT_EMPTY;
+        assert exception.getMessage() != null : "Exception message should not be null";
+        assert !exception.getMessage().isBlank() : "Exception message should not be empty";
         System.out.println(ERROR_ICON + " " + exception.getMessage());
     }
 

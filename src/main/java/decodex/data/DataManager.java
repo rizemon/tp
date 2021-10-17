@@ -1,7 +1,6 @@
 package decodex.data;
 
 import decodex.data.exception.DataManagerException;
-import decodex.ui.messages.AssertMessages;
 import decodex.ui.messages.ErrorMessages;
 import java.util.Arrays;
 
@@ -53,6 +52,6 @@ public class DataManager {
     public void resetToOriginalData() {
         currentData = originalData;
         assert Arrays.equals(currentData.getRawBytes(),
-                originalData.getRawBytes()) : AssertMessages.CURRENT_DATA_SAME_AS_ORIGINAL_DATA;
+                originalData.getRawBytes()) : "Current data is same as original data";
     }
 }

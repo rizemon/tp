@@ -4,7 +4,6 @@ import decodex.data.DataManager;
 import decodex.modules.Module;
 import decodex.modules.ModuleManager;
 import decodex.ui.Ui;
-import decodex.ui.messages.AssertMessages;
 
 public class ListCommand extends Command {
 
@@ -17,7 +16,7 @@ public class ListCommand extends Command {
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui) {
         Module[] modules = moduleManager.getModules();
-        assert modules.length > 0 : AssertMessages.MODULES_GREATER_THAN_ZERO;
+        assert modules.length > 0 : "Number of modules should be greater than 0";
 
         StringBuilder moduleListString = new StringBuilder();
         int maxNameWidth = 0;
