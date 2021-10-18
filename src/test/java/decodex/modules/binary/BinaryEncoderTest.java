@@ -13,7 +13,7 @@ public class BinaryEncoderTest {
     public void run_asciiString_binaryString() {
         Data data = new Data("test");
         Data newData = binaryEncoder.run(data);
-        assertEquals(newData.toString(), "01110100 01100101 01110011 01110100");
+        assertEquals(newData.toString(), "01110100011001010111001101110100");
     }
 
     @Test

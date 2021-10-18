@@ -12,22 +12,8 @@ public class BinaryDecoderTest {
     BinaryDecoder binaryDecoder = new BinaryDecoder();
 
     @Test
-    public void run_binaryStringWithSpaces_asciiString() throws ModuleException {
-        Data data = new Data(" 01110100 01100101 01110011 01110100 ");
-        Data newData = binaryDecoder.run(data);
-        assertEquals(newData.toString(), "test");
-    }
-
-    @Test
-    public void run_binaryStringWithoutSpaces_asciiString() throws ModuleException {
+    public void run_validBinaryString_asciiString() throws ModuleException {
         Data data = new Data("01110100011001010111001101110100");
-        Data newData = binaryDecoder.run(data);
-        assertEquals(newData.toString(), "test");
-    }
-
-    @Test
-    public void run_binaryStringMixSpaces_asciiString() throws ModuleException {
-        Data data = new Data(" 01110100 0110010101110011 01110100");
         Data newData = binaryDecoder.run(data);
         assertEquals(newData.toString(), "test");
     }
@@ -47,8 +33,14 @@ public class BinaryDecoderTest {
     }
 
     @Test
+    public void run_binaryStringWithSpaces_moduleExceptionThrown() {
+        Data data = new Data("01110100 01100101 01110011 01110100");
+        assertThrows(ModuleException.class, () -> binaryDecoder.run(data));
+    }
+
+    @Test
     public void run_invalidBinaryString_moduleExceptionThrown() {
-        Data data = new Data("01110100 1110100");
+        Data data = new Data("1110100");
         assertThrows(ModuleException.class, () -> binaryDecoder.run(data));
     }
 }
