@@ -16,6 +16,7 @@ public class BinaryDecoder extends Module {
 
     private static final int BINARY_RADIX = 2;
     private static final String VALID_BINARY_REGEX = "^([01]{8})*$";
+    private static final int BYTE_LENGTH = 8;
 
     public BinaryDecoder() {
         super(MODULE_NAME, MODULE_DESCRIPTION);
@@ -26,7 +27,7 @@ public class BinaryDecoder extends Module {
      *
      * @param data The Data to be decoded.
      * @return A Data object containing the binary decoded data.
-     * @throws ModuleException The Data is not in binary format.
+     * @throws ModuleException If the Data is not in binary format.
      */
     @Override
     public Data run(Data data) throws ModuleException {
@@ -36,11 +37,11 @@ public class BinaryDecoder extends Module {
             throw new ModuleException("Invalid binary string");
         }
 
-        String[] splitBinaryString = splitBinaryString(binString);
+        String[] binaryTokens = splitBinaryString(binString);
 
-        byte[] newBytes = new byte[splitBinaryString.length];
-        for (int i = 0; i < splitBinaryString.length; i++) {
-            newBytes[i] = Byte.parseByte(splitBinaryString[i], BINARY_RADIX);
+        byte[] newBytes = new byte[binaryTokens.length];
+        for (int i = 0; i < binaryTokens.length; i++) {
+            newBytes[i] = Byte.parseByte(binaryTokens[i], BINARY_RADIX);
         }
 
         return new Data(newBytes);
@@ -65,12 +66,12 @@ public class BinaryDecoder extends Module {
      * @return A String array of 8 character binary strings.
      */
     private String[] splitBinaryString(String binString) {
-        assert binString.length() % 8 == 0 : "Binary string should be valid";
+        assert binString.length() % BYTE_LENGTH == 0 : "Binary string should be valid";
 
-        String[] splitString = new String[binString.length() / 8];
+        String[] splitString = new String[binString.length() / BYTE_LENGTH];
 
-        for (int i = 0; i < binString.length(); i += 8) {
-            splitString[i / 8] = binString.substring(i, i + 8);
+        for (int i = 0; i < binString.length(); i += BYTE_LENGTH) {
+            splitString[i / BYTE_LENGTH] = binString.substring(i, i + BYTE_LENGTH);
         }
 
         return splitString;
