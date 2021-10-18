@@ -1,41 +1,18 @@
 package decodex.recipes;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import decodex.data.exception.RecipeException;
-import decodex.modules.Module;
 import decodex.modules.base64.Base64Decoder;
 import decodex.modules.base64.Base64Encoder;
 import decodex.modules.hex.HexDecoder;
 import decodex.modules.hex.HexEncoder;
+import decodex.modules.Module;
 import org.junit.jupiter.api.Test;
 
 class RecipeTest {
-
-    @Test
-    void getName_recipeName() {
-        Recipe recipe = new Recipe("testRecipe");
-        String expectedName = "testRecipe";
-
-        assertEquals(recipe.getName(), expectedName);
-    }
-
-    @Test
-    void setName_validName_newRecipeName() {
-        Recipe recipe = new Recipe("testRecipe");
-        String newName = "chocolate pancakes";
-        recipe.setName(newName);
-
-        assertEquals(recipe.getName(), newName);
-    }
-
-    @Test
-    void getModuleList_newRecipe_returnsNotNull() {
-        Recipe recipe = new Recipe("testRecipe");
-        assertNotNull(recipe.getModuleList());
-    }
 
     @Test
     void push_singleModule_recipeContainsOneModule() {
@@ -74,7 +51,7 @@ class RecipeTest {
 
         recipe.reset();
 
-        assertEquals(recipe.getModuleList().size(), 0);
+        assertTrue(recipe.getModuleList().isEmpty());
     }
 
 }

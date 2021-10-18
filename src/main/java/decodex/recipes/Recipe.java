@@ -1,10 +1,11 @@
 package decodex.recipes;
 
+import java.util.ArrayList;
+import java.util.logging.Logger;
+
 import decodex.Decodex;
 import decodex.data.exception.RecipeException;
 import decodex.modules.Module;
-import java.util.ArrayList;
-import java.util.logging.Logger;
 
 /**
  * The Recipe class manages a list of Modules to be run sequentially.
@@ -48,7 +49,7 @@ public class Recipe {
      * @return Module that was popped from the list
      */
     public Module pop() throws RecipeException {
-        if (moduleList.size() <= 0) {
+        if (moduleList.isEmpty()) {
             throw new RecipeException(RecipeException.EMPTY_RECIPE_MESSAGE);
         }
 
