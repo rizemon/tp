@@ -3,12 +3,12 @@ package decodex.storage;
 import decodex.ui.messages.ErrorMessages;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 
 public class Storage {
 
@@ -33,22 +33,19 @@ public class Storage {
      * Reads the contents from the default input file.
      *
      * @param fileName The name of the file specified by the user.
-     * @return The contents from the default input file.
+     * @return The byte contents from the default input file.
      * @throws IOException If the default input file does not exist.
      */
-    public String readFromDefaultInputFile(String fileName) throws FileNotFoundException {
-        String inputContent = "";
+    public byte[] readFromDefaultInputFile(String fileName) throws IOException {
+        byte[] inputContent;
         File inputDirectory = new File(DEFAULT_INPUT_DIRECTORY);
         File inputFile = new File(inputDirectory, fileName);
+        Path inputFilePath = inputFile.toPath();
 
         try {
-            Scanner in = new Scanner(inputFile);
-            while (in.hasNext()) {
-                String fileLine = in.nextLine();
-                inputContent = inputContent + fileLine;
-            }
-        } catch (FileNotFoundException e) {
-            throw new FileNotFoundException(ErrorMessages.DEFAULT_INPUT_FILE_DOES_NOT_EXIST_MESSAGE);
+            inputContent = Files.readAllBytes(inputFilePath);
+        } catch (IOException e) {
+            throw new IOException(ErrorMessages.DEFAULT_INPUT_FILE_DOES_NOT_EXIST_MESSAGE);
         }
         return inputContent;
     }
@@ -58,7 +55,7 @@ public class Storage {
      *
      * @param output The encoded or decoded output.
      * @throws IOException If an I/O exception is caught when creating the output file
-     *                       or when writing to the output file.
+     *                     or when writing to the output file.
      */
     public void writeOutputToFile(String output) throws IOException {
         LocalDateTime currentDateTime = LocalDateTime.now();
