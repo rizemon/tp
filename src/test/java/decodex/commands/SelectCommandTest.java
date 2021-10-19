@@ -27,10 +27,29 @@ public class SelectCommandTest {
         dataManager.setOriginalData(data);
 
         String moduleName = "base64encode";
-        SelectCommand selectCommand = new SelectCommand(moduleName);
+        String[] parameters = null;
+        SelectCommand selectCommand = new SelectCommand(moduleName, parameters);
         selectCommand.run(dataManager, moduleManager, ui);
 
         assertEquals("aGVsbG8gd29ybGQ=", dataManager.getCurrentData().toString());
+    }
+
+    @Test
+    public void run_moduleWithParameters_success()
+            throws UnknownModuleException, CommandException, ModuleException, DataManagerException {
+        DataManager dataManager = new DataManager();
+        ModuleManager moduleManager = new ModuleManager();
+        Ui ui = new Ui();
+
+        Data data = new Data("hello world");
+        dataManager.setOriginalData(data);
+
+        String moduleName = "rotencode";
+        String[] parameters = {"13"};
+        SelectCommand selectCommand = new SelectCommand(moduleName, parameters);
+        selectCommand.run(dataManager, moduleManager, ui);
+
+        assertEquals("uryyb jbeyq", dataManager.getCurrentData().toString());
     }
 
     @Test
@@ -43,7 +62,8 @@ public class SelectCommandTest {
         dataManager.setOriginalData(data);
 
         String moduleName = "";
-        SelectCommand selectCommand = new SelectCommand(moduleName);
+        String[] parameters = null;
+        SelectCommand selectCommand = new SelectCommand(moduleName, parameters);
 
         assertThrows(CommandException.class, () -> selectCommand.run(dataManager, moduleManager, ui));
     }
@@ -58,7 +78,8 @@ public class SelectCommandTest {
         dataManager.setOriginalData(data);
 
         String moduleName = "unknownModule";
-        SelectCommand selectCommand = new SelectCommand(moduleName);
+        String[] parameters = null;
+        SelectCommand selectCommand = new SelectCommand(moduleName, parameters);
 
         assertThrows(UnknownModuleException.class, () -> selectCommand.run(dataManager, moduleManager, ui));
     }

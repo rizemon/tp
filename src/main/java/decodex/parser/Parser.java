@@ -1,5 +1,7 @@
 package decodex.parser;
 
+import java.util.Arrays;
+
 import decodex.commands.Command;
 import decodex.commands.ExitCommand;
 import decodex.commands.InputCommand;
@@ -8,7 +10,6 @@ import decodex.commands.ResetCommand;
 import decodex.commands.SelectCommand;
 import decodex.data.exception.ParserException;
 import decodex.ui.messages.ErrorMessages;
-import java.util.Arrays;
 
 /**
  * The Parser class handles the parsing and validation of the user input.
@@ -25,6 +26,16 @@ public class Parser {
      * Specifies the starting index where the arguments can be found.
      */
     private static final int STARTING_ARGUMENTS_INDEX = 1;
+
+    /**
+     * Specifies the starting index where the module parameters can be found.
+     */
+    private static final int MODULE_PARAMETERS_INDEX = 2;
+
+    /**
+     * Specifies the token used to split the user input by.
+     */
+    private static final String SPLIT_REGEX = "\\s+";
 
     /**
      * Specifies the valid length of the tokens and used to check validity of tokens.
@@ -75,6 +86,22 @@ public class Parser {
             throw new ParserException(ErrorMessages.MISSING_MODULE_NAME);
         }
         return argumentTokens[MODULE_NAME_INDEX_IN_TOKENS];
+    }
+
+    /**
+     * Returns the module parameters that the user has specified.
+     *
+     * @param userInput The input specified by the user.
+     * @return A String array of module parameters if provided. Otherwise, returns null.
+     */
+    public String[] getModuleParameters(String userInput) {
+        String strippedUserInput = userInput.stripLeading();
+        String[] tokens = strippedUserInput.split(SPLIT_REGEX);
+        String[] parameters = Arrays.copyOfRange(tokens, MODULE_PARAMETERS_INDEX, tokens.length);
+        if (parameters.length > 0) {
+            return parameters;
+        }
+        return null;
     }
 
     /**
@@ -177,7 +204,8 @@ public class Parser {
      */
     private SelectCommand craftSelectCommand(String userInput) throws ParserException {
         String moduleName = getModuleName(userInput);
-        return new SelectCommand(moduleName);
+        String[] parameters = getModuleParameters(userInput);
+        return new SelectCommand(moduleName, parameters);
     }
 
 }

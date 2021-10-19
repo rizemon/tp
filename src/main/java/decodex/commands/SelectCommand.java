@@ -16,10 +16,12 @@ public class SelectCommand extends Command {
     public static final String COMMAND_WORD = "select";
 
     private final String moduleName;
+    private final String[] parameters;
 
-    public SelectCommand(String moduleName) {
+    public SelectCommand(String moduleName, String[] parameters) {
         super();
         this.moduleName = moduleName;
+        this.parameters = parameters;
     }
 
     @Override
@@ -29,7 +31,7 @@ public class SelectCommand extends Command {
             throw new CommandException(ErrorMessages.MISSING_MODULE_NAME);
         }
 
-        Module module = moduleManager.selectModule(moduleName);
+        Module module = moduleManager.selectModule(moduleName, parameters);
         Data newData = module.run(dataManager.getCurrentData());
         dataManager.setCurrentData(newData);
 
