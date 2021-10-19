@@ -15,9 +15,15 @@ public class Recipe {
     private Logger logger = Decodex.logger;
 
     private String name;
-    private ArrayList<Module> moduleList = new ArrayList<>();
+    private ArrayList<Module> moduleList;
 
+    /**
+     * Instantiates a new recipe of modules.
+     *
+     * @param name The name of the recipe object to be created.
+     */
     public Recipe(String name) {
+        moduleList = new ArrayList<>();
         this.name = name;
     }
 
@@ -26,6 +32,7 @@ public class Recipe {
     }
 
     public void setName(String name) {
+        assert name != null;
         this.name = name;
     }
 
@@ -36,7 +43,7 @@ public class Recipe {
     /**
      * Appends a new module to the end of the module list.
      *
-     * @param module Module to be added to the recipe.
+     * @param module The module to be added to the recipe.
      */
     public void push(Module module) {
         moduleList.add(module);
@@ -46,7 +53,7 @@ public class Recipe {
     /**
      * Removes the latest module that was added to the list.
      *
-     * @return Module that was popped from the list
+     * @return The module that was popped from the list.
      */
     public Module pop() throws RecipeException {
         if (moduleList.isEmpty()) {

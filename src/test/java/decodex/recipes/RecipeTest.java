@@ -31,7 +31,7 @@ class RecipeTest {
 
         Module poppedModule = recipe.pop();
 
-        assertEquals(poppedModule, poppedModule);
+        assertEquals(module, poppedModule);
     }
 
     @Test
