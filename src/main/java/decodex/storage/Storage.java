@@ -26,7 +26,7 @@ public class Storage {
     /**
      * Initializes a new Storage.
      */
-    public Storage() throws FileException {
+    public Storage() throws IOException {
         instantiateDirectories();
         instantiateInputFile();
     }
@@ -37,7 +37,7 @@ public class Storage {
      * @return The contents from the default input file.
      * @throws FileException If the default input file does not exist.
      */
-    public String readFromDefaultInputFile() throws FileException {
+    public String readFromDefaultInputFile() throws FileNotFoundException {
         String inputContent = "";
         File inputDirectory = new File(DEFAULT_INPUT_DIRECTORY);
         File inputFile = new File(inputDirectory, DEFAULT_INPUT_FILE);
@@ -49,7 +49,7 @@ public class Storage {
                 inputContent = inputContent + fileLine;
             }
         } catch (FileNotFoundException e) {
-            throw new FileException(FileException.DEFAULT_INPUT_FILE_DOES_NOT_EXIST_MESSAGE);
+            throw new FileNotFoundException(FileException.DEFAULT_INPUT_FILE_DOES_NOT_EXIST_MESSAGE);
         }
         return inputContent;
     }
@@ -61,7 +61,7 @@ public class Storage {
      * @throws FileException If an I/O exception is caught when creating the output file
      *                       or when writing to the output file.
      */
-    public void writeOutputToFile(String output) throws FileException {
+    public void writeOutputToFile(String output) throws IOException {
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-dd-MM__HH.mm.ss");
         String formattedDateTime = currentDateTime.format(dateTimeFormatter);
@@ -73,7 +73,7 @@ public class Storage {
         try {
             outputFile.createNewFile();
         } catch (IOException e) {
-            throw new FileException(FileException.FILE_CREATION_ERROR_MESSAGE);
+            throw new IOException(FileException.FILE_CREATION_ERROR_MESSAGE);
         }
 
         try {
@@ -81,7 +81,7 @@ public class Storage {
             fw.write(output + "\n");
             fw.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IOException(FileException.FILE_WRITE_ERROR_MESSAGE);
         }
     }
 
@@ -118,7 +118,7 @@ public class Storage {
      *
      * @throws FileException If an I/O exception is caught when creating the file.
      */
-    private void instantiateInputFile() throws FileException {
+    private void instantiateInputFile() throws IOException {
         File inputDirectory = new File(DEFAULT_INPUT_DIRECTORY);
         File inputFile = new File(inputDirectory, DEFAULT_INPUT_FILE);
 
@@ -129,7 +129,7 @@ public class Storage {
         try {
             inputFile.createNewFile();
         } catch (IOException e) {
-            throw new FileException(FileException.FILE_CREATION_ERROR_MESSAGE);
+            throw new IOException(FileException.DEFAULT_INPUT_FILE_CREATION_ERROR_MESSAGE);
         }
     }
 }

@@ -38,7 +38,7 @@ public class Decodex {
     /**
      * Initializes the necessary Objects for Decodex.
      */
-    public static void initDecodex() {
+    private static void initDecodex() {
         logger.setLevel(Level.INFO);
         dataManager = new DataManager();
         moduleManager = new ModuleManager();
