@@ -16,7 +16,6 @@ public class Storage {
      * Variables for loading from the default input filepath.
      */
     public static final String DEFAULT_INPUT_DIRECTORY = "input";
-    public static final String DEFAULT_INPUT_FILE = "input.txt";
 
     /**
      * Variable for the default output directory.
@@ -33,13 +32,14 @@ public class Storage {
     /**
      * Reads the contents from the default input file.
      *
+     * @param fileName The name of the file specified by the user.
      * @return The contents from the default input file.
      * @throws IOException If the default input file does not exist.
      */
-    public String readFromDefaultInputFile() throws FileNotFoundException {
+    public String readFromDefaultInputFile(String fileName) throws FileNotFoundException {
         String inputContent = "";
         File inputDirectory = new File(DEFAULT_INPUT_DIRECTORY);
-        File inputFile = new File(inputDirectory, DEFAULT_INPUT_FILE);
+        File inputFile = new File(inputDirectory, fileName);
 
         try {
             Scanner in = new Scanner(inputFile);
