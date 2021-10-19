@@ -54,6 +54,7 @@ public class Recipe {
      * Removes the latest module that was added to the list.
      *
      * @return The module that was popped from the list.
+     * @throws RecipeException If there are no modules in the recipe.
      */
     public Module pop() throws RecipeException {
         if (moduleList.isEmpty()) {
