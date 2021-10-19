@@ -68,12 +68,12 @@ public class BinaryDecoder extends Module {
     private String[] splitBinaryString(String binString) {
         assert binString.length() % BYTE_LENGTH == 0 : "Binary string should be valid";
 
-        String[] splitString = new String[binString.length() / BYTE_LENGTH];
+        String[] binaryTokens = new String[binString.length() / BYTE_LENGTH];
 
         for (int i = 0; i < binString.length(); i += BYTE_LENGTH) {
-            splitString[i / BYTE_LENGTH] = binString.substring(i, i + BYTE_LENGTH);
+            binaryTokens[i / BYTE_LENGTH] = binString.substring(i, i + BYTE_LENGTH);
         }
 
-        return splitString;
+        return binaryTokens;
     }
 }
