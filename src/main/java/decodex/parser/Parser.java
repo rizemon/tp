@@ -109,19 +109,19 @@ public class Parser {
 
         switch (commandType) {
         case ExitCommand.COMMAND_WORD:
-            command = craftExitCommand();
+            command = prepareExitCommand();
             break;
         case InputCommand.COMMAND_WORD:
-            command = craftInputCommand(userInput);
+            command = prepareInputCommand(userInput);
             break;
         case ListCommand.COMMAND_WORD:
-            command = craftListCommand();
+            command = prepareListCommand();
             break;
         case ResetCommand.COMMAND_WORD:
-            command = craftResetCommand();
+            command = prepareResetCommand();
             break;
         case SelectCommand.COMMAND_WORD:
-            command = craftSelectCommand(userInput);
+            command = prepareSelectCommand(userInput);
             break;
         default:
             throw new ParserException(ErrorMessages.UNKNOWN_COMMAND);
@@ -134,7 +134,7 @@ public class Parser {
      *
      * @return The ExitCommand object.
      */
-    private ExitCommand craftExitCommand() {
+    private ExitCommand prepareExitCommand() {
         return new ExitCommand();
     }
 
@@ -145,7 +145,7 @@ public class Parser {
      * @return The InputCommand object.
      * @throws ParserException If the argument string is empty.
      */
-    private InputCommand craftInputCommand(String userInput) throws ParserException {
+    private InputCommand prepareInputCommand(String userInput) throws ParserException {
         String inputData = getInputString(userInput);
         return new InputCommand(inputData);
     }
@@ -155,7 +155,7 @@ public class Parser {
      *
      * @return The ListCommand object.
      */
-    private ListCommand craftListCommand() {
+    private ListCommand prepareListCommand() {
         return new ListCommand();
     }
 
@@ -164,7 +164,7 @@ public class Parser {
      *
      * @return The ResetCommand object.
      */
-    private ResetCommand craftResetCommand() {
+    private ResetCommand prepareResetCommand() {
         return new ResetCommand();
     }
 
@@ -175,7 +175,7 @@ public class Parser {
      * @return The SelectCommand object.
      * @throws ParserException If the user input is missing the module name.
      */
-    private SelectCommand craftSelectCommand(String userInput) throws ParserException {
+    private SelectCommand prepareSelectCommand(String userInput) throws ParserException {
         String moduleName = getModuleName(userInput);
         return new SelectCommand(moduleName);
     }

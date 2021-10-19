@@ -28,7 +28,6 @@ public class Storage {
      */
     public Storage() throws IOException {
         instantiateDirectories();
-        instantiateInputFile();
     }
 
     /**
@@ -110,26 +109,6 @@ public class Storage {
         File outputDirectory = new File(DEFAULT_OUTPUT_DIRECTORY);
         if (!outputDirectory.exists()) {
             outputDirectory.mkdir();
-        }
-    }
-
-    /**
-     * Instantiates the default input file.
-     *
-     * @throws IOException If an I/O exception is caught when creating the file.
-     */
-    private void instantiateInputFile() throws IOException {
-        File inputDirectory = new File(DEFAULT_INPUT_DIRECTORY);
-        File inputFile = new File(inputDirectory, DEFAULT_INPUT_FILE);
-
-        if (inputFile.exists()) {
-            return;
-        }
-
-        try {
-            inputFile.createNewFile();
-        } catch (IOException e) {
-            throw new IOException(ErrorMessages.DEFAULT_INPUT_FILE_CREATION_ERROR_MESSAGE);
         }
     }
 }
