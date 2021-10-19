@@ -1,6 +1,6 @@
 package decodex.storage;
 
-import decodex.data.exception.FileException;
+import decodex.ui.messages.ErrorMessages;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -35,7 +35,7 @@ public class Storage {
      * Reads the contents from the default input file.
      *
      * @return The contents from the default input file.
-     * @throws FileException If the default input file does not exist.
+     * @throws IOException If the default input file does not exist.
      */
     public String readFromDefaultInputFile() throws FileNotFoundException {
         String inputContent = "";
@@ -49,7 +49,7 @@ public class Storage {
                 inputContent = inputContent + fileLine;
             }
         } catch (FileNotFoundException e) {
-            throw new FileNotFoundException(FileException.DEFAULT_INPUT_FILE_DOES_NOT_EXIST_MESSAGE);
+            throw new FileNotFoundException(ErrorMessages.DEFAULT_INPUT_FILE_DOES_NOT_EXIST_MESSAGE);
         }
         return inputContent;
     }
@@ -58,7 +58,7 @@ public class Storage {
      * Writes the given output into a file.
      *
      * @param output The encoded or decoded output.
-     * @throws FileException If an I/O exception is caught when creating the output file
+     * @throws IOException If an I/O exception is caught when creating the output file
      *                       or when writing to the output file.
      */
     public void writeOutputToFile(String output) throws IOException {
@@ -73,7 +73,7 @@ public class Storage {
         try {
             outputFile.createNewFile();
         } catch (IOException e) {
-            throw new IOException(FileException.FILE_CREATION_ERROR_MESSAGE);
+            throw new IOException(ErrorMessages.FILE_CREATION_ERROR_MESSAGE);
         }
 
         try {
@@ -81,7 +81,7 @@ public class Storage {
             fw.write(output + "\n");
             fw.close();
         } catch (IOException e) {
-            throw new IOException(FileException.FILE_WRITE_ERROR_MESSAGE);
+            throw new IOException(ErrorMessages.FILE_WRITE_ERROR_MESSAGE);
         }
     }
 
@@ -116,7 +116,7 @@ public class Storage {
     /**
      * Instantiates the default input file.
      *
-     * @throws FileException If an I/O exception is caught when creating the file.
+     * @throws IOException If an I/O exception is caught when creating the file.
      */
     private void instantiateInputFile() throws IOException {
         File inputDirectory = new File(DEFAULT_INPUT_DIRECTORY);
@@ -129,7 +129,7 @@ public class Storage {
         try {
             inputFile.createNewFile();
         } catch (IOException e) {
-            throw new IOException(FileException.DEFAULT_INPUT_FILE_CREATION_ERROR_MESSAGE);
+            throw new IOException(ErrorMessages.DEFAULT_INPUT_FILE_CREATION_ERROR_MESSAGE);
         }
     }
 }
