@@ -2,6 +2,7 @@ package decodex.commands;
 
 import decodex.data.DataManager;
 import decodex.modules.ModuleManager;
+import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
 import decodex.ui.messages.RegularMessages;
 
@@ -14,7 +15,7 @@ public class ResetCommand extends Command {
     }
 
     @Override
-    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui) {
+    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager) {
         dataManager.resetToOriginalData();
         ui.printSuccess(RegularMessages.REVERTED_ALL_CHANGES);
     }

@@ -4,6 +4,7 @@ import decodex.data.Data;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.modules.ModuleManager;
+import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
 import decodex.ui.messages.ErrorMessages;
 
@@ -19,7 +20,8 @@ public class InputCommand extends Command {
     }
 
     @Override
-    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui) throws CommandException {
+    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager)
+            throws CommandException {
         if (dataString.isEmpty()) {
             throw new CommandException(ErrorMessages.MISSING_ARGUMENT);
         }
