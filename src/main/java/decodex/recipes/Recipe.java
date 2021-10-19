@@ -32,7 +32,7 @@ public class Recipe {
     }
 
     public void setName(String name) {
-        assert name != null;
+        assert name != null : "Recipe name should not be null";
         this.name = name;
     }
 
