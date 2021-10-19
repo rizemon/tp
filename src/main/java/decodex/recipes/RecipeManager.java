@@ -2,7 +2,7 @@ package decodex.recipes;
 
 import decodex.Decodex;
 import decodex.data.exception.RecipeManagerException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 /**
@@ -12,40 +12,35 @@ public class RecipeManager {
 
     private Logger logger = Decodex.logger;
 
-    ArrayList<Recipe> recipeList;
+    HashMap<String, Recipe> recipeList;
 
     /**
      * Creates a new RecipeManager with no recipes.
      */
     public RecipeManager() {
-        this.recipeList = new ArrayList<>();
-    }
-
-    /**
-     * Creates a new RecipeManager with a predefined list of recipes.
-     *
-     * @param recipeList list of recipes to be loaded.
-     */
-    public RecipeManager(ArrayList<Recipe> recipeList) {
-        this.recipeList = recipeList;
+        recipeList = new HashMap<>();
     }
 
     /**
      * Adds a recipe to recipe manager to be managed.
      *
-     * @param recipe Recipe to be added to the recipe manager.
+     * @param recipe The recipe to be added to the recipe manager.
+     * @throws RecipeManagerException If the given recipe name already exists in recipe manager.
      */
-    public void addRecipe(Recipe recipe) {
-        recipeList.add(recipe);
+    public void addRecipe(Recipe recipe) throws RecipeManagerException {
+        if (recipeList.containsKey(recipe.getName())) {
+            throw new RecipeManagerException(RecipeManagerException.DUPLICATE_RECIPE_NAME_MESSAGE);
+        }
+        recipeList.put(recipe.getName(), recipe);
         logger.fine(String.format("[RecipeManager] Added recipe %s", recipe.getName()));
     }
 
     /**
      * Removes a recipe from the recipe manager.
      *
-     * @param name Name of the recipe to be removed.
-     * @return Recipe that was removed.
-     * @throws RecipeManagerException Recipe could not be found in the recipe manager.
+     * @param name The name of the recipe to be removed.
+     * @return The recipe that was removed.
+     * @throws RecipeManagerException If the recipe could not be found in the recipe manager.
      */
     public Recipe removeRecipe(String name) throws RecipeManagerException {
         Recipe recipeToRemove = getRecipe(name);
@@ -57,17 +52,15 @@ public class RecipeManager {
     /**
      * Get a Recipe object from the recipe manager by name.
      *
-     * @param name Name of the recipe to get.
-     * @return Recipe that was found.
-     * @throws RecipeManagerException Recipe could not be found in the recipe manager.
+     * @param name The name of the recipe to get.
+     * @return The recipe that was found.
+     * @throws RecipeManagerException If the recipe could not be found in the recipe manager.
      */
     public Recipe getRecipe(String name) throws RecipeManagerException {
-        for (Recipe recipe : recipeList) {
-            if (recipe.getName().equals(name)) {
-                return recipe;
-            }
+        if (!recipeList.containsKey(name)) {
+            throw new RecipeManagerException(RecipeManagerException.RECIPE_NOT_FOUND_MESSAGE);
         }
-        throw new RecipeManagerException(RecipeManagerException.RECIPIE_NOT_FOUND_MESSAGE);
+        return recipeList.get(name);
     }
 
 }

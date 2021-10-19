@@ -5,8 +5,8 @@ package decodex.data.exception;
  */
 public class RecipeManagerException extends Exception {
 
-    public static final String EMPTY_RECIPELIST_MESSAGE = "[x] There is nothing to be removed.";
-    public static final String RECIPIE_NOT_FOUND_MESSAGE = "[x] Given recipe could not be found.";
+    public static final String DUPLICATE_RECIPE_NAME_MESSAGE = "[x] A recipe with the given name already exists.";
+    public static final String RECIPE_NOT_FOUND_MESSAGE = "[x] The given recipe could not be found.";
 
     public RecipeManagerException(String message) {
         super(message);
