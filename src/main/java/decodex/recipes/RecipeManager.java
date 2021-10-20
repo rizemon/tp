@@ -1,11 +1,13 @@
 package decodex.recipes;
 
+import java.util.HashMap;
+import java.util.logging.Logger;
+
 import decodex.Decodex;
 import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
 import decodex.modules.Module;
-import java.util.HashMap;
-import java.util.logging.Logger;
+import decodex.ui.messages.ErrorMessages;
 
 /**
  * RecipeManager manages a list of all recipes that were created/loaded.
@@ -33,7 +35,7 @@ public class RecipeManager {
      */
     public void addRecipe(Recipe recipe) throws RecipeManagerException {
         if (recipeList.containsKey(recipe.getName())) {
-            throw new RecipeManagerException(RecipeManagerException.DUPLICATE_RECIPE_NAME_MESSAGE);
+            throw new RecipeManagerException(ErrorMessages.DUPLICATE_RECIPE_NAME_MESSAGE);
         }
         recipeList.put(recipe.getName(), recipe);
         logger.fine(String.format("[RecipeManager] Added recipe %s", recipe.getName()));
@@ -65,21 +67,21 @@ public class RecipeManager {
      */
     public Recipe getRecipe(String name) throws RecipeManagerException {
         if (!recipeList.containsKey(name)) {
-            throw new RecipeManagerException(RecipeManagerException.RECIPE_NOT_FOUND_MESSAGE);
+            throw new RecipeManagerException(ErrorMessages.RECIPE_NOT_FOUND_MESSAGE);
         }
         return recipeList.get(name);
     }
 
     public Recipe getEditedRecipe() throws RecipeManagerException {
         if (editedRecipeName == null) {
-            throw new RecipeManagerException("No recipe selected");
+            throw new RecipeManagerException(ErrorMessages.EDITED_RECIPE_NOT_FOUND_MESSAGE);
         }
         return getRecipe(editedRecipeName);
     }
 
     public void selectRecipe(String name) throws RecipeManagerException {
         if (!recipeList.containsKey(name)) {
-            throw new RecipeManagerException(RecipeManagerException.RECIPE_NOT_FOUND_MESSAGE);
+            throw new RecipeManagerException(ErrorMessages.RECIPE_NOT_FOUND_MESSAGE);
         }
         editedRecipeName = name;
     }

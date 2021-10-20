@@ -3,10 +3,10 @@ package decodex.recipes;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import decodex.data.exception.RecipeException;
 import org.junit.jupiter.api.Test;
 
 import decodex.data.exception.RecipeManagerException;
+import decodex.data.exception.RecipeException;
 import decodex.modules.hex.HexEncoder;
 import decodex.modules.Module;
 
