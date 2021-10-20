@@ -1,0 +1,185 @@
+package decodex.recipes;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import decodex.data.exception.RecipeException;
+import org.junit.jupiter.api.Test;
+
+import decodex.data.exception.RecipeManagerException;
+import decodex.modules.hex.HexEncoder;
+import decodex.modules.Module;
+
+class RecipeManagerTest {
+
+    @Test
+    void addRecipe_repeatedRecipeName_expectException() throws RecipeManagerException {
+        RecipeManager recipeManager = new RecipeManager();
+        Recipe newRecipe = new Recipe("sameRecipeName");
+        recipeManager.addRecipe(newRecipe);
+
+        Recipe repeatedRecipe = new Recipe("sameRecipeName");
+        assertThrows(RecipeManagerException.class, () -> recipeManager.addRecipe(repeatedRecipe));
+    }
+
+    @Test
+    void removeRecipe_oneRecipe_removedRecipeIsTheOneRecipe() throws RecipeManagerException {
+        RecipeManager recipeManager = new RecipeManager();
+        String testRecipeName = "testRecipeName";
+        Recipe testRecipe = new Recipe(testRecipeName);
+        recipeManager.addRecipe(testRecipe);
+        Recipe removedRecipe = recipeManager.removeRecipe(testRecipeName);
+        assertEquals(removedRecipe.getName(), testRecipeName);
+    }
+
+    @Test
+    void removeRecipe_noRecipe_expectException() {
+        RecipeManager recipeManager = new RecipeManager();
+        String testRecipeName = "testRecipeName";
+        assertThrows(RecipeManagerException.class, () -> recipeManager.removeRecipe(testRecipeName));
+    }
+
+    @Test
+    void removeRecipe_recipeIsEditedRecipe_expectException() throws RecipeManagerException {
+        RecipeManager recipeManager = new RecipeManager();
+        String testRecipeName = "testRecipeName";
+        Recipe testRecipe = new Recipe(testRecipeName);
+        recipeManager.addRecipe(testRecipe);
+
+        recipeManager.selectRecipe(testRecipeName);
+        recipeManager.removeRecipe(testRecipeName);
+        assertThrows(RecipeManagerException.class, () -> recipeManager.getEditedRecipe());
+    }
+
+    @Test
+    void getRecipe_oneRecipe_managerContainOneRecipe() throws RecipeManagerException {
+        RecipeManager recipeManager = new RecipeManager();
+        String testRecipeName = "testRecipeName";
+        Recipe testRecipe = new Recipe(testRecipeName);
+        recipeManager.addRecipe(testRecipe);
+
+        Recipe retrievedRecipe = recipeManager.getRecipe(testRecipeName);
+        assertEquals(testRecipe.getName(), retrievedRecipe.getName());
+    }
+
+    @Test
+    void getRecipe_noRecipe_expectException() {
+        RecipeManager recipeManager = new RecipeManager();
+        String testRecipeName = "testRecipeName";
+        assertThrows(RecipeManagerException.class, () -> recipeManager.getRecipe(testRecipeName));
+    }
+
+    @Test
+    void getEditedRecipe_oneEditedRecipe_editedRecipe() throws RecipeManagerException {
+        RecipeManager recipeManager = new RecipeManager();
+        String testRecipeName = "testRecipeName";
+        Recipe testRecipe = new Recipe(testRecipeName);
+        recipeManager.addRecipe(testRecipe);
+        recipeManager.selectRecipe(testRecipeName);
+
+        assertEquals(recipeManager.getEditedRecipe().getName(), testRecipeName);
+    }
+
+    @Test
+    void getEditedRecipe_noEditedRecipe_expectException() {
+        RecipeManager recipeManager = new RecipeManager();
+        String testRecipeName = "testRecipeName";
+
+        assertThrows(RecipeManagerException.class, () -> recipeManager.selectRecipe(testRecipeName));
+    }
+
+    @Test
+    void selectRecipe_oneEditedRecipe_editedRecipe() throws RecipeManagerException {
+        RecipeManager recipeManager = new RecipeManager();
+        String testRecipeName = "testRecipeName";
+        Recipe testRecipe = new Recipe(testRecipeName);
+        recipeManager.addRecipe(testRecipe);
+
+        recipeManager.selectRecipe(testRecipeName);
+        assertEquals(recipeManager.getEditedRecipe().getName(), testRecipeName);
+    }
+
+    @Test
+    void selectRecipe_nonExistentRecipeName_expectException() {
+        RecipeManager recipeManager = new RecipeManager();
+        String testRecipeName = "testRecipeName";
+
+        assertThrows(RecipeManagerException.class, () -> recipeManager.selectRecipe(testRecipeName));
+    }
+
+    @Test
+    void pushModuleIntoEditedRecipe_oneEditedRecipe_oneModuele() throws RecipeManagerException {
+        RecipeManager recipeManager = new RecipeManager();
+        String testRecipeName = "testRecipeName";
+        Recipe testRecipe = new Recipe(testRecipeName);
+        recipeManager.addRecipe(testRecipe);
+        recipeManager.selectRecipe(testRecipeName);
+
+        HexEncoder insertedModule = new HexEncoder();
+
+        recipeManager.pushModuleIntoEditedRecipe(insertedModule);
+
+        assertEquals(recipeManager.getEditedRecipe().getModuleList().size(), 1);
+    }
+
+    @Test
+    void pushModuleIntoEditedRecipe_noEditedRecipe_expectException() throws RecipeManagerException {
+        RecipeManager recipeManager = new RecipeManager();
+        String testRecipeName = "testRecipeName";
+        Recipe testRecipe = new Recipe(testRecipeName);
+        recipeManager.addRecipe(testRecipe);
+
+        Module insertedModule = new HexEncoder();
+
+        assertThrows(RecipeManagerException.class, () -> recipeManager.pushModuleIntoEditedRecipe(insertedModule));
+    }
+
+    @Test
+    void popModuleFromEditedRecipe_oneEditedRecipe_poppedModule() throws RecipeException, RecipeManagerException {
+        RecipeManager recipeManager = new RecipeManager();
+        String testRecipeName = "testRecipeName";
+        Recipe testRecipe = new Recipe(testRecipeName);
+        Module insertedModule = new HexEncoder();
+        testRecipe.push(insertedModule);
+        recipeManager.addRecipe(testRecipe);
+        recipeManager.selectRecipe(testRecipeName);
+
+        Module poppedModule = recipeManager.popModuleFromEditedRecipe();
+        assertEquals(insertedModule.getName(), poppedModule.getName());
+    }
+
+    @Test
+    void popModuleFromEditedRecipe_noEditedRecipe_expectException() throws RecipeManagerException {
+        RecipeManager recipeManager = new RecipeManager();
+        String testRecipeName = "testRecipeName";
+        Recipe testRecipe = new Recipe(testRecipeName);
+        Module insertedModule = new HexEncoder();
+        testRecipe.push(insertedModule);
+        recipeManager.addRecipe(testRecipe);
+
+        assertThrows(RecipeManagerException.class, () -> recipeManager.popModuleFromEditedRecipe());
+    }
+
+    @Test
+    void resetEditedRecipe_oneEditedRecipe_noError() throws RecipeManagerException {
+        RecipeManager recipeManager = new RecipeManager();
+        String testRecipeName = "testRecipeName";
+        Recipe testRecipe = new Recipe(testRecipeName);
+        recipeManager.addRecipe(testRecipe);
+        recipeManager.selectRecipe(testRecipeName);
+
+        recipeManager.resetEditedRecipe();
+
+        assertEquals(recipeManager.getEditedRecipe().getModuleList().size(), 0);
+    }
+
+    @Test
+    void resetEditedRecipe_noEditedRecipe_expectException() throws RecipeManagerException {
+        RecipeManager recipeManager = new RecipeManager();
+        String testRecipeName = "testRecipeName";
+        Recipe testRecipe = new Recipe(testRecipeName);
+        recipeManager.addRecipe(testRecipe);
+
+        assertThrows(RecipeManagerException.class, () -> recipeManager.resetEditedRecipe());
+    }
+}

@@ -1,7 +1,9 @@
 package decodex.recipes;
 
 import decodex.Decodex;
+import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
+import decodex.modules.Module;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
@@ -12,13 +14,15 @@ public class RecipeManager {
 
     private Logger logger = Decodex.logger;
 
-    HashMap<String, Recipe> recipeList;
+    private HashMap<String, Recipe> recipeList;
+    private String editedRecipeName;
 
     /**
      * Creates a new RecipeManager with no recipes.
      */
     public RecipeManager() {
         recipeList = new HashMap<>();
+        editedRecipeName = null;
     }
 
     /**
@@ -44,7 +48,10 @@ public class RecipeManager {
      */
     public Recipe removeRecipe(String name) throws RecipeManagerException {
         Recipe recipeToRemove = getRecipe(name);
-        recipeList.remove(recipeToRemove);
+        recipeList.remove(name);
+        if (editedRecipeName != null && editedRecipeName.equals(name)) {
+            editedRecipeName = null;
+        }
         logger.fine(String.format("[RecipeManager] Removed recipe %s", recipeToRemove.getName()));
         return recipeToRemove;
     }
@@ -63,4 +70,32 @@ public class RecipeManager {
         return recipeList.get(name);
     }
 
+    public Recipe getEditedRecipe() throws RecipeManagerException {
+        if (editedRecipeName == null) {
+            throw new RecipeManagerException("No recipe selected");
+        }
+        return getRecipe(editedRecipeName);
+    }
+
+    public void selectRecipe(String name) throws RecipeManagerException {
+        if (!recipeList.containsKey(name)) {
+            throw new RecipeManagerException(RecipeManagerException.RECIPE_NOT_FOUND_MESSAGE);
+        }
+        editedRecipeName = name;
+    }
+
+    public void pushModuleIntoEditedRecipe(Module module) throws RecipeManagerException {
+        Recipe editedRecipe = getEditedRecipe();
+        editedRecipe.push(module);
+    }
+
+    public Module popModuleFromEditedRecipe() throws RecipeManagerException, RecipeException {
+        Recipe editedRecipe = getEditedRecipe();
+        return editedRecipe.pop();
+    }
+
+    public void resetEditedRecipe() throws RecipeManagerException {
+        Recipe editedRecipe = getEditedRecipe();
+        editedRecipe.reset();
+    }
 }
