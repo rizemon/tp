@@ -4,8 +4,11 @@ import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;
 import decodex.data.exception.ModuleException;
+import decodex.data.exception.RecipeException;
+import decodex.data.exception.RecipeManagerException;
 import decodex.data.exception.UnknownModuleException;
 import decodex.modules.ModuleManager;
+import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
 
 /**
@@ -16,6 +19,7 @@ public abstract class Command {
     public Command() {
     }
 
-    public abstract void run(DataManager dataManager, ModuleManager moduleManager, Ui ui)
-            throws CommandException, UnknownModuleException, DataManagerException, ModuleException;
+    public abstract void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager)
+            throws CommandException, UnknownModuleException, DataManagerException, ModuleException, RecipeException,
+            RecipeManagerException;
 }
