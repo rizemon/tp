@@ -14,6 +14,5 @@ public class ErrorMessages {
             + "removed.";
     public static final String DUPLICATE_RECIPE_NAME_MESSAGE = "A recipe with the given name already exists.";
     public static final String RECIPE_NOT_FOUND_MESSAGE = "The given recipe could not be found.";
-    public static final String EDITED_RECIPE_NOT_FOUND_MESSAGE = "No recipe selected. Please select using the "
-            + "\"recipe select\" command.";
+    public static final String EDITING_RECIPE_NOT_FOUND_MESSAGE = "No recipe selected for editing/modification.";
 }

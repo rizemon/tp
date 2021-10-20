@@ -46,9 +46,9 @@ class RecipeManagerTest {
         Recipe testRecipe = new Recipe(testRecipeName);
         recipeManager.addRecipe(testRecipe);
 
-        recipeManager.selectRecipe(testRecipeName);
+        recipeManager.selectRecipeForEditing(testRecipeName);
         recipeManager.removeRecipe(testRecipeName);
-        assertThrows(RecipeManagerException.class, () -> recipeManager.getEditedRecipe());
+        assertThrows(RecipeManagerException.class, () -> recipeManager.getEditingRecipe());
     }
 
     @Test
@@ -75,9 +75,9 @@ class RecipeManagerTest {
         String testRecipeName = "testRecipeName";
         Recipe testRecipe = new Recipe(testRecipeName);
         recipeManager.addRecipe(testRecipe);
-        recipeManager.selectRecipe(testRecipeName);
+        recipeManager.selectRecipeForEditing(testRecipeName);
 
-        assertEquals(recipeManager.getEditedRecipe().getName(), testRecipeName);
+        assertEquals(recipeManager.getEditingRecipe().getName(), testRecipeName);
     }
 
     @Test
@@ -85,7 +85,7 @@ class RecipeManagerTest {
         RecipeManager recipeManager = new RecipeManager();
         String testRecipeName = "testRecipeName";
 
-        assertThrows(RecipeManagerException.class, () -> recipeManager.selectRecipe(testRecipeName));
+        assertThrows(RecipeManagerException.class, () -> recipeManager.selectRecipeForEditing(testRecipeName));
     }
 
     @Test
@@ -95,8 +95,8 @@ class RecipeManagerTest {
         Recipe testRecipe = new Recipe(testRecipeName);
         recipeManager.addRecipe(testRecipe);
 
-        recipeManager.selectRecipe(testRecipeName);
-        assertEquals(recipeManager.getEditedRecipe().getName(), testRecipeName);
+        recipeManager.selectRecipeForEditing(testRecipeName);
+        assertEquals(recipeManager.getEditingRecipe().getName(), testRecipeName);
     }
 
     @Test
@@ -104,7 +104,7 @@ class RecipeManagerTest {
         RecipeManager recipeManager = new RecipeManager();
         String testRecipeName = "testRecipeName";
 
-        assertThrows(RecipeManagerException.class, () -> recipeManager.selectRecipe(testRecipeName));
+        assertThrows(RecipeManagerException.class, () -> recipeManager.selectRecipeForEditing(testRecipeName));
     }
 
     @Test
@@ -113,13 +113,13 @@ class RecipeManagerTest {
         String testRecipeName = "testRecipeName";
         Recipe testRecipe = new Recipe(testRecipeName);
         recipeManager.addRecipe(testRecipe);
-        recipeManager.selectRecipe(testRecipeName);
+        recipeManager.selectRecipeForEditing(testRecipeName);
 
         HexEncoder insertedModule = new HexEncoder();
 
         recipeManager.pushModuleIntoEditedRecipe(insertedModule);
 
-        assertEquals(recipeManager.getEditedRecipe().getModuleList().size(), 1);
+        assertEquals(recipeManager.getEditingRecipe().getModuleList().size(), 1);
     }
 
     @Test
@@ -142,7 +142,7 @@ class RecipeManagerTest {
         Module insertedModule = new HexEncoder();
         testRecipe.push(insertedModule);
         recipeManager.addRecipe(testRecipe);
-        recipeManager.selectRecipe(testRecipeName);
+        recipeManager.selectRecipeForEditing(testRecipeName);
 
         Module poppedModule = recipeManager.popModuleFromEditedRecipe();
         assertEquals(insertedModule.getName(), poppedModule.getName());
@@ -166,11 +166,11 @@ class RecipeManagerTest {
         String testRecipeName = "testRecipeName";
         Recipe testRecipe = new Recipe(testRecipeName);
         recipeManager.addRecipe(testRecipe);
-        recipeManager.selectRecipe(testRecipeName);
+        recipeManager.selectRecipeForEditing(testRecipeName);
 
         recipeManager.resetEditedRecipe();
 
-        assertEquals(recipeManager.getEditedRecipe().getModuleList().size(), 0);
+        assertEquals(recipeManager.getEditingRecipe().getModuleList().size(), 0);
     }
 
     @Test

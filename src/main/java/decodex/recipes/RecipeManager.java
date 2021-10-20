@@ -16,15 +16,22 @@ public class RecipeManager {
 
     private Logger logger = Decodex.logger;
 
+    /**
+     * Stores mapping between recipe name and recipe.
+     */
     private HashMap<String, Recipe> recipeList;
-    private String editedRecipeName;
+
+    /**
+     * Name of the recipe that is selected for editing/modification.
+     */
+    private String editingRecipeName;
 
     /**
      * Creates a new RecipeManager with no recipes.
      */
     public RecipeManager() {
         recipeList = new HashMap<>();
-        editedRecipeName = null;
+        editingRecipeName = null;
     }
 
     /**
@@ -51,15 +58,15 @@ public class RecipeManager {
     public Recipe removeRecipe(String name) throws RecipeManagerException {
         Recipe recipeToRemove = getRecipe(name);
         recipeList.remove(name);
-        if (editedRecipeName != null && editedRecipeName.equals(name)) {
-            editedRecipeName = null;
+        if (editingRecipeName != null && editingRecipeName.equals(name)) {
+            editingRecipeName = null;
         }
         logger.fine(String.format("[RecipeManager] Removed recipe %s", recipeToRemove.getName()));
         return recipeToRemove;
     }
 
     /**
-     * Get a Recipe object from the recipe manager by name.
+     * Gets a Recipe object from the recipe manager by name.
      *
      * @param name The name of the recipe to get.
      * @return The recipe that was found.
@@ -72,32 +79,60 @@ public class RecipeManager {
         return recipeList.get(name);
     }
 
-    public Recipe getEditedRecipe() throws RecipeManagerException {
-        if (editedRecipeName == null) {
-            throw new RecipeManagerException(ErrorMessages.EDITED_RECIPE_NOT_FOUND_MESSAGE);
+    /**
+     * Gets the Recipe object that is currently being edited.
+     *
+     * @return The current recipe being edited.
+     * @throws RecipeManagerException If no recipe is selected as currently being edited.
+     */
+    public Recipe getEditingRecipe() throws RecipeManagerException {
+        if (editingRecipeName == null) {
+            throw new RecipeManagerException(ErrorMessages.EDITING_RECIPE_NOT_FOUND_MESSAGE);
         }
-        return getRecipe(editedRecipeName);
+        return getRecipe(editingRecipeName);
     }
 
-    public void selectRecipe(String name) throws RecipeManagerException {
+    /**
+     * Sets the recipe of the given name to be the recipe currently being edited.
+     * @param name The name of the recipe to select.
+     * @throws RecipeManagerException If the recipe could not be found in the recipe manager.
+     */
+    public void selectRecipeForEditing(String name) throws RecipeManagerException {
         if (!recipeList.containsKey(name)) {
             throw new RecipeManagerException(ErrorMessages.RECIPE_NOT_FOUND_MESSAGE);
         }
-        editedRecipeName = name;
+        editingRecipeName = name;
     }
 
+    /**
+     * Appends a new module to the end of the recipe currently being edited.
+     *
+     * @param module The module to be added to the recipe.
+     * @throws RecipeManagerException If no recipe is selected as currently being edited.
+     */
     public void pushModuleIntoEditedRecipe(Module module) throws RecipeManagerException {
-        Recipe editedRecipe = getEditedRecipe();
-        editedRecipe.push(module);
+        Recipe editingRecipe = getEditingRecipe();
+        editingRecipe.push(module);
     }
 
+    /**
+     * Removes the latest module from the recipe currently being edited.
+     *
+     * @return The module that was popped from the recipe.
+     * @throws RecipeManagerException If no recipe is selected as currently being edited.
+     */
     public Module popModuleFromEditedRecipe() throws RecipeManagerException, RecipeException {
-        Recipe editedRecipe = getEditedRecipe();
-        return editedRecipe.pop();
+        Recipe editingRecipe = getEditingRecipe();
+        return editingRecipe.pop();
     }
 
+    /**
+     * Completely removes all the modules from the recipe currently being edited.
+     *
+     * @throws RecipeManagerException If no recipe is selected as currently being edited.
+     */
     public void resetEditedRecipe() throws RecipeManagerException {
-        Recipe editedRecipe = getEditedRecipe();
-        editedRecipe.reset();
+        Recipe editingRecipe = getEditingRecipe();
+        editingRecipe.reset();
     }
 }
