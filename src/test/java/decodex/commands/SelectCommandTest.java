@@ -27,7 +27,7 @@ public class SelectCommandTest {
         dataManager.setOriginalData(data);
 
         String moduleName = "base64encode";
-        String[] parameters = null;
+        String[] parameters = {};
         SelectCommand selectCommand = new SelectCommand(moduleName, parameters);
         selectCommand.run(dataManager, moduleManager, ui);
 
@@ -62,7 +62,7 @@ public class SelectCommandTest {
         dataManager.setOriginalData(data);
 
         String moduleName = "";
-        String[] parameters = null;
+        String[] parameters = {};
         SelectCommand selectCommand = new SelectCommand(moduleName, parameters);
 
         assertThrows(CommandException.class, () -> selectCommand.run(dataManager, moduleManager, ui));
@@ -78,7 +78,7 @@ public class SelectCommandTest {
         dataManager.setOriginalData(data);
 
         String moduleName = "unknownModule";
-        String[] parameters = null;
+        String[] parameters = {};
         SelectCommand selectCommand = new SelectCommand(moduleName, parameters);
 
         assertThrows(UnknownModuleException.class, () -> selectCommand.run(dataManager, moduleManager, ui));

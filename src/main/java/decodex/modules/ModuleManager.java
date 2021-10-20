@@ -24,14 +24,19 @@ public class ModuleManager {
     private static final int MODULE_NAME_INDEX = 0;
 
     /**
-     * Available modules.
+     * List of available modules.
      */
     private static final String[][] MODULE_LIST = {
             {Base64Encoder.MODULE_NAME, Base64Encoder.MODULE_DESCRIPTION},
-            {HexEncoder.MODULE_NAME, HexDecoder.MODULE_DESCRIPTION},
-            {BinaryEncoder.MODULE_NAME, BinaryDecoder.MODULE_DESCRIPTION},
+            {Base64Decoder.MODULE_NAME, Base64Decoder.MODULE_DESCRIPTION},
+            {HexEncoder.MODULE_NAME, HexEncoder.MODULE_DESCRIPTION},
+            {HexDecoder.MODULE_NAME, HexDecoder.MODULE_DESCRIPTION},
+            {BinaryEncoder.MODULE_NAME, BinaryEncoder.MODULE_DESCRIPTION},
+            {BinaryDecoder.MODULE_NAME, BinaryDecoder.MODULE_DESCRIPTION},
             {RotEncoder.MODULE_NAME, RotEncoder.MODULE_DESCRIPTION}
     };
+
+    private static final int MODULE_PARAMETER_INDEX = 0;
 
     public ModuleManager() {
         // Log available modules
@@ -45,29 +50,43 @@ public class ModuleManager {
     }
 
     /**
-     * Select module from a provided module name.
+     * Selects module from a provided module name.
      *
      * @param moduleName Name of selected module.
      * @param parameters Parameters for specific commands.
      * @return Selected module.
      * @throws UnknownModuleException If provided module name is not an available module.
-     * @throws ModuleException If module parameters are invalid.
+     * @throws ModuleException        If module parameters are invalid.
      */
     public Module selectModule(String moduleName, String[] parameters) throws UnknownModuleException, ModuleException {
+        assert parameters != null : "parameters should not be null";
+
         Module module;
 
         switch (moduleName) {
         case Base64Encoder.MODULE_NAME:
+            hasNoParameters(parameters);
             module = prepareBase64Encoder();
             break;
         case Base64Decoder.MODULE_NAME:
+            hasNoParameters(parameters);
             module = prepareBase64Decoder();
             break;
         case HexEncoder.MODULE_NAME:
+            hasNoParameters(parameters);
             module = prepareHexEncoder();
             break;
         case HexDecoder.MODULE_NAME:
+            hasNoParameters(parameters);
             module = prepareHexDecoder();
+            break;
+        case BinaryEncoder.MODULE_NAME:
+            hasNoParameters(parameters);
+            module = prepareBinaryEncoder();
+            break;
+        case BinaryDecoder.MODULE_NAME:
+            hasNoParameters(parameters);
+            module = prepareBinaryDecoder();
             break;
         case RotEncoder.MODULE_NAME:
             module = prepareRotEncoder(parameters);
@@ -78,6 +97,18 @@ public class ModuleManager {
 
         logger.fine(String.format("Selected %s", module.getName()));
         return module;
+    }
+
+    /**
+     * Throws ModuleException if the module parameters are empty.
+     *
+     * @param parameters Parameters for specific commands.
+     * @throws ModuleException If the String array of module parameters is not empty.
+     */
+    private void hasNoParameters(String[] parameters) throws ModuleException {
+        if (parameters.length > 0) {
+            throw new ModuleException(ErrorMessages.TOO_MANY_MODULE_PARAMETERS);
+        }
     }
 
     /**
@@ -117,6 +148,24 @@ public class ModuleManager {
     }
 
     /**
+     * Prepares and returns the BinaryEncoder.
+     *
+     * @return The BinaryEncoder object.
+     */
+    private Module prepareBinaryEncoder() {
+        return new BinaryEncoder();
+    }
+
+    /**
+     * Prepares and returns the BinaryDecoder.
+     *
+     * @return The BinaryDecoder object.
+     */
+    private Module prepareBinaryDecoder() {
+        return new BinaryDecoder();
+    }
+
+    /**
      * Prepares and returns the RotEncoder with specified rotation.
      *
      * @param parameters String array of module parameters.
@@ -124,18 +173,16 @@ public class ModuleManager {
      * @throws ModuleException If the number of parameters are incorrect or invalid.
      */
     private Module prepareRotEncoder(String[] parameters) throws ModuleException {
-        if (parameters == null) {
+        if (parameters.length == 0) {
             throw new ModuleException(ErrorMessages.MISSING_MODULE_PARAMETERS);
-        }
-
-        if (parameters.length > 1) {
+        } else if (parameters.length > 1) {
             throw new ModuleException(ErrorMessages.TOO_MANY_MODULE_PARAMETERS);
         }
 
         // First parameter is the rotation offset
         try {
-            return new RotEncoder(Integer.parseInt(parameters[0]));
-        } catch (NumberFormatException e) {
+            return new RotEncoder(Integer.parseInt(parameters[MODULE_PARAMETER_INDEX]));
+        } catch (NumberFormatException err) {
             throw new ModuleException(ErrorMessages.INVALID_MODULE_PARAMETERS);
         }
     }

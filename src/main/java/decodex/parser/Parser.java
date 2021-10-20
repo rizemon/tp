@@ -92,15 +92,12 @@ public class Parser {
      * Returns the module parameters that the user has specified.
      *
      * @param userInput The input specified by the user.
-     * @return A String array of module parameters if provided. Otherwise, returns null.
+     * @return A String array of module parameters.
      */
     public String[] getModuleParameters(String userInput) {
         String strippedUserInput = userInput.stripLeading();
         String[] tokens = strippedUserInput.split(SPLIT_REGEX);
         String[] parameters = Arrays.copyOfRange(tokens, MODULE_PARAMETERS_INDEX, tokens.length);
-        if (parameters.length == 0) {
-            return null;
-        }
         return parameters;
     }
 
