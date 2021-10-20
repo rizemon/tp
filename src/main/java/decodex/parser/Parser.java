@@ -98,10 +98,10 @@ public class Parser {
         String strippedUserInput = userInput.stripLeading();
         String[] tokens = strippedUserInput.split(SPLIT_REGEX);
         String[] parameters = Arrays.copyOfRange(tokens, MODULE_PARAMETERS_INDEX, tokens.length);
-        if (parameters.length > 0) {
-            return parameters;
+        if (parameters.length == 0) {
+            return null;
         }
-        return null;
+        return parameters;
     }
 
     /**
