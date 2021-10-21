@@ -41,10 +41,12 @@ public class SelectCommandTest {
 
     @Test
     public void run_moduleWithParameters_success()
-            throws UnknownModuleException, CommandException, ModuleException, DataManagerException {
+            throws UnknownModuleException, CommandException, ModuleException, DataManagerException, RecipeException,
+            RecipeManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
+        RecipeManager recipeManager = new RecipeManager();
 
         Data data = new Data("hello world");
         dataManager.setOriginalData(data);
@@ -52,7 +54,7 @@ public class SelectCommandTest {
         String moduleName = "rotencode";
         String[] parameters = {"13"};
         SelectCommand selectCommand = new SelectCommand(moduleName, parameters);
-        selectCommand.run(dataManager, moduleManager, ui);
+        selectCommand.run(dataManager, moduleManager, ui, recipeManager);
 
         assertEquals("uryyb jbeyq", dataManager.getCurrentData().toString());
     }
@@ -89,6 +91,6 @@ public class SelectCommandTest {
         SelectCommand selectCommand = new SelectCommand(moduleName, parameters);
 
         assertThrows(UnknownModuleException.class,
-            () -> selectCommand.run(dataManager, moduleManager, ui, recipeManager));
+                () -> selectCommand.run(dataManager, moduleManager, ui, recipeManager));
     }
 }
