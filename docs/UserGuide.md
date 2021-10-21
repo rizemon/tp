@@ -1,6 +1,6 @@
 # Decodex User Guide <!-- omit in toc -->
 
-# Introduction
+## Introduction
 
 Decodex is a **Command Line Interface (CLI) application for Capture-The-Flag (CTF) players to quickly transform data from one format to another with extreme ease**. The intuitive interaction can help speed up a player's performance during CTFs and save time without having to manually code the tedious data transformations.
 
@@ -8,7 +8,7 @@ Decodex is a **Command Line Interface (CLI) application for Capture-The-Flag (CT
 
 ![carbon(6).png](images/carbon(6).png)
 
-# Table of Contents <!-- omit in toc -->
+## Table of Contents <!-- omit in toc -->
 - [Introduction](#introduction)
 - [Terminologies](#terminologies)
 - [Features](#features)
@@ -19,7 +19,7 @@ Decodex is a **Command Line Interface (CLI) application for Capture-The-Flag (CT
   - [Exiting the program: `exit`](#exiting-the-program-exit)
 - [Command Summary](#command-summary)
 
-# Terminologies
+## Terminologies
 
 This section serves to help the user better understand the terminologies used in this user guide.
 
@@ -30,9 +30,9 @@ This section serves to help the user better understand the terminologies used in
 | Base64, Hexadecimal | Common types of data encoding standards.                                |
 | Module              | A self-contained set of instructions to process data into another form. |
 
-# Features
+## Features
 
-## Input of data: `input`
+### Input of data: `input`
 
 Stores the data to be processed by modules.
 
@@ -51,7 +51,7 @@ Examples:
 
 > :exclamation: Non-printable characters (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
 
-## List available modules: `list`
+### List available modules: `list`
 
 Shows a list of all available modules.
 
@@ -59,7 +59,7 @@ Format: `list`
 
 ![carbon(8).png](images/carbon(8).png)
 
-## Selection of module: `select`
+### Selection of module: `select`
 
 Selects a module and processes the data accordingly. Subsequent selection of modules will process the transformed data output from the previous module.
 
@@ -76,19 +76,19 @@ Examples:
 
 > :exclamation: Non-printable characters (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
 
-## Resetting of data: `reset`
+### Resetting of data: `reset`
 
 Resets the transformed data back to the original input.
 
 Format: `reset`
 
-## Exiting the program: `exit`
+### Exiting the program: `exit`
 
 Exit the program.
 
 Format: `exit`
 
-# Command Summary
+## Command Summary
 
 | Action                   | Command Format        | Example Usage                                                |
 | ------------------------ | --------------------- | ------------------------------------------------------------ |
