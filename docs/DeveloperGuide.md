@@ -47,6 +47,25 @@
 
 ### Architecture
 
+![Architecture diagram](images/architecture.png "Architecture diagram")
+
+The ***Architecture Diagram*** given above explains the high-level design of Decodex.
+
+Given below is a quick overview of the main components and how they interact with one another.
+
+**Main Components of the architecture**
+
+`Decodex` is responsible initialising the components at launch.
+
+The rest of the program consists of 6 other components:
+
+- `UI`: Handles user input and message output to the console
+- `Logic`: Parses user input and executes commands
+- `Recipe`: Manages a list of module sequences
+- `Module`: Manages a set of encoding and decoding processes
+- `Data`: Holds the data that is to be encoded or decoded
+- `Storage`: Manages the reading and writing of data to disk
+
 ### UI Component
 
 ### Logic Component
