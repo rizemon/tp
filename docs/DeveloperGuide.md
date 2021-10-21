@@ -29,7 +29,21 @@
 1. Verifying setup
     1. Run the `decodex.Decodex.java` and try a few commands.
     2. [Run the tests](https://se-education.org/addressbook-level3/Testing.html) to ensure they all pass.
+    
+### Before writing code
 
+1. Configure the coding style
+   1. If using IDEA, follow the guide [[se-edu/guides] IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to set up IDEA’s coding style to match ours.
+   > :bulb: Tip: Optionally, you can follow the guide [[se-edu/guides] Using Checkstyle](https://se-education.org/guides/tutorials/checkstyle.html) to find how to use the CheckStyle within IDEA e.g., to report problems as you write code.
+2. Set up CI
+   1. This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, it will run the CI for your project automatically at each push to the `master` branch or to any PR. No set up required.
+3. About our code structure
+   1. OOP standardized
+   2. Modularized.
+      1. Any changes/additions to the current commands would simply require the changes within `Parser.java`.
+      2. For any changes/additions to the modules, would simply require changes within the `src/main/java/decodex/modules` folder.
+   3. This structure makes it easier for us as well as developers like you to maintain and further extend the capabilities of our application.
+   
 ## Design
 
 ### Architecture
