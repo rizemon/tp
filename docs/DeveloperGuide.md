@@ -1,38 +1,29 @@
-# Developer Guide
+# Decodex V2.0 Developer Guide <!-- omit in toc -->
 
-## Acknowledgements
+# Design
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+## Architecture
 
-## Design & implementation
+## UI Component
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+## Logic Component
 
+## Data Component
 
-## Product scope
-### Target user profile
+## Module Component
 
-{Describe the target user profile}
+## Recipe Component
 
-### Value proposition
+## Storage Component
 
-{Describe the value proposition: what problem does it solve?}
+# Documentation, Logging, Testing, Configuration and Dev-Ops
 
-## User Stories
+# Appendix A: Product Scope
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+# Appendix B: User Stories
 
-## Non-Functional Requirements
+# Appendix C: Non Functional Requirements
 
-{Give non-functional requirements}
+# Appendix D: Glossary
 
-## Glossary
-
-* *glossary item* - Definition
-
-## Instructions for manual testing
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+# Appendix E: Instructions for Manual Testing
