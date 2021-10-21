@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import decodex.Decodex;
 import decodex.data.exception.RecipeException;
 import decodex.modules.Module;
+import decodex.ui.messages.ErrorMessages;
 
 /**
  * The Recipe class manages a list of Modules to be run sequentially.
@@ -58,7 +59,7 @@ public class Recipe {
      */
     public Module pop() throws RecipeException {
         if (moduleList.isEmpty()) {
-            throw new RecipeException(RecipeException.EMPTY_RECIPE_MESSAGE);
+            throw new RecipeException(ErrorMessages.EMPTY_RECIPE_MESSAGE);
         }
 
         Module removedModule = moduleList.remove(moduleList.size() - 1);
