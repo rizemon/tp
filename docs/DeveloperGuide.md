@@ -1,5 +1,34 @@
 # Decodex Developer Guide <!-- omit in toc -->
 
+## Table of Contents
+
+- Acknowledgements
+- Setting Up, Getting Started
+   - Setting Up
+      - Forking and cloning repository
+      - Editor
+      - Configure JDK
+      - Importing project
+      - Verifying setup
+   - Before writing code
+      - Configure the coding style
+      - Set up CI
+      - About our code structure
+- Design
+   - Architecture
+   - UI Component
+   - Logic Component
+   - Data Component
+   - Module Component
+   - Recipe Component
+   - Storage Component
+- Documentation, Logging, Testing, Configuration, Dev-Ops
+- Appendix A: Product Scope
+- Appendix B: User Stories
+- Appendix C: Non Functional Requirements
+- Appendix D: Glossary
+- Appendix E: Instructions for Manual Testing (more details below)
+
 ## Acknowledgements
 
 1. SE-EDU
