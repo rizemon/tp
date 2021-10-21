@@ -1,29 +1,29 @@
-# Decodex V2.0 Developer Guide <!-- omit in toc -->
+# Decodex Developer Guide <!-- omit in toc -->
 
-# Design
+## Design
 
-## Architecture
+### Architecture
 
-## UI Component
+### UI Component
 
-## Logic Component
+### Logic Component
 
-## Data Component
+### Data Component
 
-## Module Component
+### Module Component
 
-## Recipe Component
+### Recipe Component
 
-## Storage Component
+### Storage Component
 
-# Documentation, Logging, Testing, Configuration and Dev-Ops
+## Documentation, Logging, Testing, Configuration and Dev-Ops
 
-# Appendix A: Product Scope
+## Appendix A: Product Scope
 
-# Appendix B: User Stories
+## Appendix B: User Stories
 
-# Appendix C: Non Functional Requirements
+## Appendix C: Non Functional Requirements
 
-# Appendix D: Glossary
+## Appendix D: Glossary
 
-# Appendix E: Instructions for Manual Testing
+## Appendix E: Instructions for Manual Testing
