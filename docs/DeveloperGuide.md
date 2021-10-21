@@ -1,4 +1,4 @@
-# Developer Guide
+# Decodex Developer Guide <!-- omit in toc -->
 
 ## Acknowledgements
 
@@ -24,9 +24,36 @@
     1. Follow the guide at *[[se-edu/guides] IDEA: Configuring the JDK](https://se-education.org/guides/tutorials/intellijJdk.html)* to ensure Intellij is configured to use **JDK 11**.
 3. Importing project
     1. Follow the guide at *[[se-edu/guides] IDEA: Importing a Gradle project](https://se-education.org/guides/tutorials/intellijImportGradleProject.html)* to import the forked project into Intellij.
-
 > Note: Importing a Gradle project is slightly different from importing a normal Java project.
 >
 1. Verifying setup
     1. Run the `decodex.Decodex.java` and try a few commands.
     2. [Run the tests](https://se-education.org/addressbook-level3/Testing.html) to ensure they all pass.
+
+## Design
+
+### Architecture
+
+### UI Component
+
+### Logic Component
+
+### Data Component
+
+### Module Component
+
+### Recipe Component
+
+### Storage Component
+
+## Documentation, Logging, Testing, Configuration and Dev-Ops
+
+## Appendix A: Product Scope
+
+## Appendix B: User Stories
+
+## Appendix C: Non Functional Requirements
+
+## Appendix D: Glossary
+
+## Appendix E: Instructions for Manual Testing
