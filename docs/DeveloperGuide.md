@@ -1,15 +1,15 @@
 # Developer Guide
 
-# Acknowledgements
+## Acknowledgements
 
 1. SE-EDU
     1. [AB3 Developer Guide Format](https://se-education.org/addressbook-level3/DeveloperGuide.html)
     2. [Setting up and getting started page and related links](https://se-education.org/addressbook-level3/SettingUp.html)
     3. [AB2 Code Structure](https://github.com/se-edu/addressbook-level2)
 
-# Setting Up, Getting Started
+## Setting Up, Getting Started
 
-## Setting up the on your computer
+### Setting up the on your computer
 
 1. Forking and cloning
     1. **Fork** our repository.
