@@ -22,6 +22,7 @@ public class ModuleManager {
     private final Logger logger = Decodex.logger;
 
     private static final int MODULE_NAME_INDEX = 0;
+    private static final int MODULE_PARAMETER_INDEX = 0;
 
     /**
      * List of available modules.
@@ -35,8 +36,6 @@ public class ModuleManager {
             {BinaryDecoder.MODULE_NAME, BinaryDecoder.MODULE_DESCRIPTION},
             {RotEncoder.MODULE_NAME, RotEncoder.MODULE_DESCRIPTION}
     };
-
-    private static final int MODULE_PARAMETER_INDEX = 0;
 
     public ModuleManager() {
         // Log available modules
