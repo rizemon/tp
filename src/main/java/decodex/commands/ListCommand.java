@@ -1,7 +1,6 @@
 package decodex.commands;
 
 import decodex.data.DataManager;
-import decodex.modules.Module;
 import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
@@ -9,6 +8,8 @@ import decodex.ui.Ui;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
+    private static final int MODULE_NAME_INDEX = 0;
+    private static final int MODULE_DESCRIPTION_INDEX = 1;
 
     public ListCommand() {
         super();
@@ -16,24 +17,24 @@ public class ListCommand extends Command {
 
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager) {
-        Module[] modules = moduleManager.getModules();
+        String[][] modules = moduleManager.getModules();
         assert modules.length > 0 : "Number of modules should be greater than 0";
 
         StringBuilder moduleListString = new StringBuilder();
         int maxNameWidth = 0;
 
         // Find number of characters of the longest module name
-        for (Module module : modules) {
-            String moduleName = module.getName();
+        for (String[] module : modules) {
+            String moduleName = module[MODULE_NAME_INDEX];
             if (moduleName.length() > maxNameWidth) {
                 maxNameWidth = moduleName.length();
             }
         }
 
         // Prepare and format list of modules
-        for (Module module : modules) {
-            String moduleName = module.getName();
-            String moduleDescription = module.getDescription();
+        for (String[] module : modules) {
+            String moduleName = module[MODULE_NAME_INDEX];
+            String moduleDescription = module[MODULE_DESCRIPTION_INDEX];
             moduleListString.append(String.format("  %-" + maxNameWidth + "s - %s\n", moduleName, moduleDescription));
         }
 

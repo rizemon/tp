@@ -32,10 +32,31 @@ public class SelectCommandTest {
         dataManager.setOriginalData(data);
 
         String moduleName = "base64encode";
-        SelectCommand selectCommand = new SelectCommand(moduleName);
+        String[] parameters = {};
+        SelectCommand selectCommand = new SelectCommand(moduleName, parameters);
         selectCommand.run(dataManager, moduleManager, ui, recipeManager);
 
         assertEquals("aGVsbG8gd29ybGQ=", dataManager.getCurrentData().toString());
+    }
+
+    @Test
+    public void run_moduleWithParameters_success()
+            throws UnknownModuleException, CommandException, ModuleException, DataManagerException, RecipeException,
+            RecipeManagerException {
+        DataManager dataManager = new DataManager();
+        ModuleManager moduleManager = new ModuleManager();
+        Ui ui = new Ui();
+        RecipeManager recipeManager = new RecipeManager();
+
+        Data data = new Data("hello world");
+        dataManager.setOriginalData(data);
+
+        String moduleName = "rotencode";
+        String[] parameters = {"13"};
+        SelectCommand selectCommand = new SelectCommand(moduleName, parameters);
+        selectCommand.run(dataManager, moduleManager, ui, recipeManager);
+
+        assertEquals("uryyb jbeyq", dataManager.getCurrentData().toString());
     }
 
     @Test
@@ -49,7 +70,8 @@ public class SelectCommandTest {
         dataManager.setOriginalData(data);
 
         String moduleName = "";
-        SelectCommand selectCommand = new SelectCommand(moduleName);
+        String[] parameters = {};
+        SelectCommand selectCommand = new SelectCommand(moduleName, parameters);
 
         assertThrows(CommandException.class, () -> selectCommand.run(dataManager, moduleManager, ui, recipeManager));
     }
@@ -65,9 +87,10 @@ public class SelectCommandTest {
         dataManager.setOriginalData(data);
 
         String moduleName = "unknownModule";
-        SelectCommand selectCommand = new SelectCommand(moduleName);
+        String[] parameters = {};
+        SelectCommand selectCommand = new SelectCommand(moduleName, parameters);
 
-        assertThrows(UnknownModuleException.class,
-            () -> selectCommand.run(dataManager, moduleManager, ui, recipeManager));
+        assertThrows(UnknownModuleException.class, () -> selectCommand.run(dataManager, moduleManager, ui,
+                recipeManager));
     }
 }
