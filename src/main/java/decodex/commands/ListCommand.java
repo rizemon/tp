@@ -19,24 +19,22 @@ public class ListCommand extends Command {
 
     public ListCommand(String listCategory) {
         super();
-        if (listCategory != null) {
-            listCategory = listCategory.strip();
-        }
         this.listCategory = listCategory;
     }
 
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager)
             throws CommandException {
-        if (listCategory == null) {
-            // Print both module and recipe list
+        boolean isPrintModuleList = listCategory == null || listCategory.equals(LIST_CATEGORY_MODULES);
+        boolean isPrintRecipeList = listCategory == null || listCategory.equals(LIST_CATEGORY_RECIPE);
+
+        if (isPrintModuleList) {
             ui.printModuleList(getModuleList(moduleManager));
+        }
+        if (isPrintRecipeList) {
             ui.printRecipeList(getRecipeList(recipeManager));
-        } else if (listCategory.equals(LIST_CATEGORY_MODULES)) {
-            ui.printModuleList(getModuleList(moduleManager));
-        } else if (listCategory.equals(LIST_CATEGORY_RECIPE)) {
-            ui.printRecipeList(getRecipeList(recipeManager));
-        } else {
+        }
+        if (!isPrintModuleList && !isPrintRecipeList) {
             throw new CommandException(ErrorMessages.INVALID_LIST_CATEGORY);
         }
     }

@@ -44,6 +44,13 @@ public class Parser {
     private static final int VALID_TOKENS_LENGTH_FOR_COMMAND = 1;
 
     /**
+     * Specifies the number of arguments for list command with no category and with a category.
+     */
+    private static final int LIST_ARGUMENT_LENGTH_NO_CATEGORY = 0;
+    private static final int LIST_ARGUMENT_LENGTH_HAS_CATEGORY = 1;
+    private static final int LIST_ARGUMENT_STARTING_INDEX = 0;
+
+    /**
      * Returns the type of command that the user has specified.
      *
      * @param userInput The input specified by the user.
@@ -184,13 +191,13 @@ public class Parser {
      * @throws CommandException If the command has more than 1 argument.
      */
     private String getListCategory(String userInput) throws CommandException {
-        String[] arguments = userInput.split(SPLIT_REGEX);
-        assert arguments.length > 0 : "userInput should have command word";
+        String[] tokens = userInput.split(SPLIT_REGEX);
+        String[] arguments = Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length);
 
-        if (arguments.length == 1) {
+        if (arguments.length == LIST_ARGUMENT_LENGTH_NO_CATEGORY) {
             return null;
-        } else if (arguments.length == 2) {
-            return arguments[STARTING_ARGUMENTS_INDEX];
+        } else if (arguments.length == LIST_ARGUMENT_LENGTH_HAS_CATEGORY) {
+            return arguments[LIST_ARGUMENT_STARTING_INDEX];
         } else {
             throw new CommandException(ErrorMessages.TOO_MANY_COMMAND_ARGUMENTS);
         }
@@ -204,6 +211,9 @@ public class Parser {
      */
     private ListCommand craftListCommand(String userInput) throws CommandException {
         String listCategory = getListCategory(userInput);
+        if (listCategory != null) {
+            listCategory = listCategory.strip();
+        }
         return new ListCommand(listCategory);
     }
 
