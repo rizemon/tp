@@ -9,7 +9,7 @@ import decodex.data.exception.ModuleException;
 import decodex.data.exception.ParserException;
 import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
-import decodex.data.exception.UnknownModuleException;
+import decodex.data.exception.ModuleManagerException;
 import decodex.modules.ModuleManager;
 import decodex.parser.Parser;
 import decodex.recipes.RecipeManager;
@@ -66,7 +66,7 @@ public class Decodex {
                 command = parser.parseCommand(userInput);
                 assert command != null : "Command should not be null";
                 command.run(dataManager, moduleManager, ui, recipeManager);
-            } catch (ParserException | CommandException | UnknownModuleException
+            } catch (ParserException | CommandException | ModuleManagerException
                     | DataManagerException | ModuleException | RecipeException | RecipeManagerException err) {
                 ui.printError(err);
                 logger.fine(err.getMessage());

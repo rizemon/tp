@@ -10,7 +10,7 @@ import decodex.data.exception.DataManagerException;
 import decodex.data.exception.ModuleException;
 import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
-import decodex.data.exception.UnknownModuleException;
+import decodex.data.exception.ModuleManagerException;
 import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
@@ -21,7 +21,7 @@ public class SelectCommandTest {
 
     @Test
     public void run_validModuleName_success()
-            throws UnknownModuleException, CommandException, DataManagerException, ModuleException, RecipeException,
+            throws ModuleManagerException, CommandException, DataManagerException, ModuleException, RecipeException,
             RecipeManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
@@ -41,7 +41,7 @@ public class SelectCommandTest {
 
     @Test
     public void run_moduleWithParameters_success()
-            throws UnknownModuleException, CommandException, ModuleException, DataManagerException, RecipeException,
+            throws ModuleManagerException, CommandException, ModuleException, DataManagerException, RecipeException,
             RecipeManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
@@ -90,7 +90,7 @@ public class SelectCommandTest {
         String[] parameters = {};
         SelectCommand selectCommand = new SelectCommand(moduleName, parameters);
 
-        assertThrows(UnknownModuleException.class, () -> selectCommand.run(dataManager, moduleManager, ui,
+        assertThrows(ModuleManagerException.class, () -> selectCommand.run(dataManager, moduleManager, ui,
                 recipeManager));
     }
 }
