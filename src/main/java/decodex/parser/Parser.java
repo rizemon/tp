@@ -8,6 +8,7 @@ import decodex.commands.InputCommand;
 import decodex.commands.ListCommand;
 import decodex.commands.ResetCommand;
 import decodex.commands.SelectCommand;
+import decodex.data.exception.CommandException;
 import decodex.data.exception.ParserException;
 import decodex.ui.messages.ErrorMessages;
 
@@ -125,9 +126,10 @@ public class Parser {
      *
      * @param userInput The user input specified by the user.
      * @return The corresponding Command object.
-     * @throws ParserException If the command type is unknown or invalid.
+     * @throws ParserException  If the command type is unknown or invalid.
+     * @throws CommandException If the command has invalid number of arguments.
      */
-    public Command parseCommand(String userInput) throws ParserException {
+    public Command parseCommand(String userInput) throws ParserException, CommandException {
         Command command;
         String commandType = getCommandType(userInput);
 
@@ -139,7 +141,7 @@ public class Parser {
             command = craftInputCommand(userInput);
             break;
         case ListCommand.COMMAND_WORD:
-            command = craftListCommand();
+            command = craftListCommand(userInput);
             break;
         case ResetCommand.COMMAND_WORD:
             command = craftResetCommand();
@@ -175,12 +177,34 @@ public class Parser {
     }
 
     /**
+     * Returns the list category for the list command.
+     *
+     * @param userInput The user input specified by the user.
+     * @return The list category String.
+     * @throws CommandException If the command has more than 1 argument.
+     */
+    private String getListCategory(String userInput) throws CommandException {
+        String[] arguments = userInput.split(SPLIT_REGEX);
+        assert arguments.length > 0 : "userInput should have command word";
+
+        if (arguments.length == 1) {
+            return null;
+        } else if (arguments.length == 2) {
+            return arguments[STARTING_ARGUMENTS_INDEX];
+        } else {
+            throw new CommandException(ErrorMessages.TOO_MANY_COMMAND_ARGUMENTS);
+        }
+    }
+
+    /**
      * Prepares and returns the ListCommand.
      *
      * @return The ListCommand object.
+     * @throws CommandException If the number of command argument is invalid.
      */
-    private ListCommand craftListCommand() {
-        return new ListCommand();
+    private ListCommand craftListCommand(String userInput) throws CommandException {
+        String listCategory = getListCategory(userInput);
+        return new ListCommand(listCategory);
     }
 
     /**

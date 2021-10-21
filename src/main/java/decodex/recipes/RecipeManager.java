@@ -1,9 +1,11 @@
 package decodex.recipes;
 
-import decodex.Decodex;
-import decodex.data.exception.RecipeManagerException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.logging.Logger;
+
+import decodex.Decodex;
+import decodex.data.exception.RecipeManagerException;
 
 /**
  * RecipeManager manages a list of all recipes that were created/loaded.
@@ -12,13 +14,26 @@ public class RecipeManager {
 
     private Logger logger = Decodex.logger;
 
-    HashMap<String, Recipe> recipeList;
+    private static int RECIPE_NAME_STRING_INDEX = 0;
+
+    private final HashMap<String, Recipe> recipeList;
 
     /**
      * Creates a new RecipeManager with no recipes.
      */
     public RecipeManager() {
         recipeList = new HashMap<>();
+    }
+
+    /**
+     * Returns a sorted list of recipe names.
+     *
+     * @return A sorted String array of recipe names.
+     */
+    public String[] getRecipeNames() {
+        String[] recipeNames = recipeList.keySet().toArray(new String[RECIPE_NAME_STRING_INDEX]);
+        Arrays.sort(recipeNames);
+        return recipeNames;
     }
 
     /**
