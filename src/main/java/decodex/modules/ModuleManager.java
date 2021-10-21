@@ -64,28 +64,22 @@ public class ModuleManager {
 
         switch (moduleName) {
         case Base64Encoder.MODULE_NAME:
-            hasNoParameters(parameters);
-            module = prepareBase64Encoder();
+            module = prepareBase64Encoder(parameters);
             break;
         case Base64Decoder.MODULE_NAME:
-            hasNoParameters(parameters);
-            module = prepareBase64Decoder();
+            module = prepareBase64Decoder(parameters);
             break;
         case HexEncoder.MODULE_NAME:
-            hasNoParameters(parameters);
-            module = prepareHexEncoder();
+            module = prepareHexEncoder(parameters);
             break;
         case HexDecoder.MODULE_NAME:
-            hasNoParameters(parameters);
-            module = prepareHexDecoder();
+            module = prepareHexDecoder(parameters);
             break;
         case BinaryEncoder.MODULE_NAME:
-            hasNoParameters(parameters);
-            module = prepareBinaryEncoder();
+            module = prepareBinaryEncoder(parameters);
             break;
         case BinaryDecoder.MODULE_NAME:
-            hasNoParameters(parameters);
-            module = prepareBinaryDecoder();
+            module = prepareBinaryDecoder(parameters);
             break;
         case RotEncoder.MODULE_NAME:
             module = prepareRotEncoder(parameters);
@@ -114,8 +108,10 @@ public class ModuleManager {
      * Prepares and returns the Base64Encoder.
      *
      * @return The Base64Encoder object.
+     * @throws ModuleException If module parameters are provided.
      */
-    private Module prepareBase64Encoder() {
+    private Module prepareBase64Encoder(String[] parameters) throws ModuleException {
+        hasNoParameters(parameters);
         return new Base64Encoder();
     }
 
@@ -123,8 +119,10 @@ public class ModuleManager {
      * Prepares and returns the Base64Decoder.
      *
      * @return The Base64Decoder object.
+     * @throws ModuleException If module parameters are provided.
      */
-    private Module prepareBase64Decoder() {
+    private Module prepareBase64Decoder(String[] parameters) throws ModuleException {
+        hasNoParameters(parameters);
         return new Base64Decoder();
     }
 
@@ -132,8 +130,10 @@ public class ModuleManager {
      * Prepares and returns the HexEncoder.
      *
      * @return The HexEncoder object.
+     * @throws ModuleException If module parameters are provided.
      */
-    private Module prepareHexEncoder() {
+    private Module prepareHexEncoder(String[] parameters) throws ModuleException {
+        hasNoParameters(parameters);
         return new HexEncoder();
     }
 
@@ -141,8 +141,10 @@ public class ModuleManager {
      * Prepares and returns the HexDecoder.
      *
      * @return The HexDecoder object.
+     * @throws ModuleException If module parameters are provided.
      */
-    private Module prepareHexDecoder() {
+    private Module prepareHexDecoder(String[] parameters) throws ModuleException {
+        hasNoParameters(parameters);
         return new HexDecoder();
     }
 
@@ -150,8 +152,10 @@ public class ModuleManager {
      * Prepares and returns the BinaryEncoder.
      *
      * @return The BinaryEncoder object.
+     * @throws ModuleException If module parameters are provided.
      */
-    private Module prepareBinaryEncoder() {
+    private Module prepareBinaryEncoder(String[] parameters) throws ModuleException {
+        hasNoParameters(parameters);
         return new BinaryEncoder();
     }
 
@@ -159,8 +163,10 @@ public class ModuleManager {
      * Prepares and returns the BinaryDecoder.
      *
      * @return The BinaryDecoder object.
+     * @throws ModuleException If module parameters are provided.
      */
-    private Module prepareBinaryDecoder() {
+    private Module prepareBinaryDecoder(String[] parameters) throws ModuleException {
+        hasNoParameters(parameters);
         return new BinaryDecoder();
     }
 
