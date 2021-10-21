@@ -60,7 +60,7 @@ public class SelectCommandTest {
     }
 
     @Test
-    public void run_blankModuleName_expectException() throws CommandException {
+    public void run_blankModuleName_expectException() {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         RecipeManager recipeManager = new RecipeManager();
@@ -90,7 +90,7 @@ public class SelectCommandTest {
         String[] parameters = {};
         SelectCommand selectCommand = new SelectCommand(moduleName, parameters);
 
-        assertThrows(UnknownModuleException.class,
-                () -> selectCommand.run(dataManager, moduleManager, ui, recipeManager));
+        assertThrows(UnknownModuleException.class, () -> selectCommand.run(dataManager, moduleManager, ui,
+                recipeManager));
     }
 }
