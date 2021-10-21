@@ -15,7 +15,7 @@
     1. **Fork** our repository.
     2. Then, **clone** the fork onto your computer.
 
-> For convenience, our repository can be found [here](https://github.com/AY2122S1-CS2113T-T10-3/tp).
+   > For convenience, our repository can be found [here](https://github.com/AY2122S1-CS2113T-T10-3/tp).
 
 1. Editor
     1. We highly recommend using Intellij IDEA, which can be downloaded from [here](https://www.jetbrains.com/idea/).
