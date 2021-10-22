@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import decodex.data.DataManager;
 import decodex.data.exception.ModuleException;
 import decodex.data.exception.RecipeManagerException;
-import decodex.data.exception.UnknownModuleException;
+import decodex.data.exception.ModuleManagerException;
 import decodex.modules.ModuleManager;
 import decodex.modules.Module;
 import decodex.recipes.Recipe;
@@ -20,7 +20,7 @@ class RecipePopCommandTest {
 
     @Test
     public void run_oneModuleToEditingRecipe_recipeSizeIsZero()
-            throws RecipeManagerException, UnknownModuleException, ModuleException, RecipeException {
+            throws RecipeManagerException, ModuleManagerException, ModuleException, RecipeException {
 
         RecipeManager recipeManager = new RecipeManager();
         String testRecipeName = "test";
