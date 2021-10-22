@@ -5,6 +5,7 @@ public class ErrorMessages {
     public static final String MISSING_ARGUMENT = "Missing argument";
     public static final String MISSING_COMMAND_TYPE = "Your command cannot be blank";
     public static final String MISSING_MODULE_NAME = "Missing module name";
+    public static final String MISSING_RECIPE_NAME = "Missing recipe name";
     public static final String INPUT_EMPTY = "Your input is empty";
     public static final String UNKNOWN_COMMAND = "Unknown command, please enter a valid command";
     public static final String NO_DATA_FOUND = "No data found";

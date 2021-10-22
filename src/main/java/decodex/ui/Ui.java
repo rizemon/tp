@@ -89,6 +89,17 @@ public class Ui {
         assert !recipeName.isBlank() : "Recipe name should not be empty";
         printSuccess(String.format(RegularMessages.ADDED_MODULE_TO_RECIPE + "\n", moduleName, recipeName));
     }
+  
+    /**
+     * Prints a message showing that a recipe was selected.
+     *
+     * @param recipeName The name of the selected recipe.
+     */
+    public void printRecipeSelected(String recipeName) {
+        assert recipeName != null : "Recipe name should not be null";
+        assert !recipeName.isBlank() : "Recipe name should not be empty";
+        printSuccess(String.format(RegularMessages.RECIPE_SELECT + "\n", recipeName));
+    }
 
     /**
      * Prints a message with a success status icon.

@@ -102,6 +102,7 @@ public class RecipeManager {
             throw new RecipeManagerException(ErrorMessages.RECIPE_NOT_FOUND_MESSAGE);
         }
         editingRecipeName = name;
+        logger.fine(String.format("[RecipeManager] Selected recipe %s", name));
     }
 
     /**
