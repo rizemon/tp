@@ -39,8 +39,7 @@ class RecipePushCommandTest {
     }
 
     @Test
-    public void run_emptyModuleName_expectException()
-            throws RecipeManagerException {
+    public void run_emptyModuleName_expectException() throws RecipeManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         RecipeManager recipeManager = new RecipeManager();
