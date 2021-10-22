@@ -76,10 +76,15 @@ public class Ui {
         System.out.println(RegularMessages.LIST_MODULES + "\n" + moduleList);
     }
 
+    /**
+     * Prints a message showing that a recipe was selected.
+     *
+     * @param recipeName Name of the selected recipe.
+     */
     public void printRecipeSelected(String recipeName) {
-        assert recipeName != null : "Module list should not be null";
-        assert !recipeName.isBlank() : "Module list should not be empty";
-        System.out.printf(RegularMessages.RECIPE_SELECT + "\n", recipeName);
+        assert recipeName != null : "Recipe name should not be null";
+        assert !recipeName.isBlank() : "Recipe name should not be empty";
+        printSuccess(String.format(RegularMessages.RECIPE_SELECT + "\n", recipeName));
     }
 
     /**
