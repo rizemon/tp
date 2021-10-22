@@ -99,7 +99,7 @@ public class Ui {
     }
 
     /**
-     * Prints a message indicating the creation of a new recipe.
+     * Prints a message indicating the creation of a new recipe of given name.
      *
      * @param recipeName The name of the recipe created.
      */
