@@ -1,27 +1,25 @@
 package decodex.commands;
 
-import decodex.data.Data;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
-import decodex.data.exception.DataManagerException;
 import decodex.data.exception.ModuleException;
-import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
 import decodex.data.exception.ModuleManagerException;
 import decodex.modules.Module;
 import decodex.modules.ModuleManager;
+import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
 import decodex.ui.messages.ErrorMessages;
 
-public class SelectCommand extends Command {
+public class RecipePushCommand extends Command {
 
-    public static final String COMMAND_WORD = "select";
+    public static final String COMMAND_WORD = "push";
 
     private final String moduleName;
     private final String[] parameters;
 
-    public SelectCommand(String moduleName, String[] parameters) {
+    public RecipePushCommand(String moduleName, String[] parameters) {
         super();
         this.moduleName = moduleName;
         this.parameters = parameters;
@@ -29,16 +27,14 @@ public class SelectCommand extends Command {
 
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager)
-            throws ModuleManagerException, CommandException, DataManagerException, ModuleException, RecipeException,
-            RecipeManagerException {
+            throws CommandException, ModuleManagerException, ModuleException, RecipeManagerException {
         if (moduleName.isBlank()) {
             throw new CommandException(ErrorMessages.MISSING_MODULE_NAME);
         }
 
         Module module = moduleManager.selectModule(moduleName, parameters);
-        Data newData = module.run(dataManager.getCurrentData());
-        dataManager.setCurrentData(newData);
-
-        ui.printOutput(newData.toString());
+        Recipe editingRecipe =  recipeManager.getEditingRecipe();
+        recipeManager.pushModuleIntoEditedRecipe(module);
+        ui.printModuleAddedToRecipe(module.getName(),  editingRecipe.getName());
     }
 }

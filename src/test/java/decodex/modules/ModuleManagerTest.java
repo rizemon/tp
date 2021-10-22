@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import decodex.data.exception.ModuleException;
-import decodex.data.exception.UnknownModuleException;
+import decodex.data.exception.ModuleManagerException;
 import decodex.modules.base64.Base64Encoder;
 import decodex.modules.rot.RotEncoder;
 
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 public class ModuleManagerTest {
 
     @Test
-    public void selectModule_base64encode_success() throws UnknownModuleException, ModuleException {
+    public void selectModule_base64encode_success() throws ModuleManagerException, ModuleException {
         String moduleName = "base64encode";
         String[] parameters = {};
         ModuleManager moduleManager = new ModuleManager();
@@ -23,7 +23,7 @@ public class ModuleManagerTest {
     }
 
     @Test
-    public void selectModule_rotEncodeWithValidParameter_success() throws UnknownModuleException, ModuleException {
+    public void selectModule_rotEncodeWithValidParameter_success() throws ModuleManagerException, ModuleException {
         String moduleName = "rotencode";
         String[] parameters = {"13"};
         ModuleManager moduleManager = new ModuleManager();
@@ -37,7 +37,7 @@ public class ModuleManagerTest {
         String moduleName = "unknownModule";
         String[] parameters = {};
         ModuleManager moduleManager = new ModuleManager();
-        assertThrows(UnknownModuleException.class, () -> moduleManager.selectModule(moduleName, parameters));
+        assertThrows(ModuleManagerException.class, () -> moduleManager.selectModule(moduleName, parameters));
     }
 
     @Test
@@ -45,7 +45,7 @@ public class ModuleManagerTest {
         String moduleName = "";
         String[] parameters = {};
         ModuleManager moduleManager = new ModuleManager();
-        assertThrows(UnknownModuleException.class, () -> moduleManager.selectModule(moduleName, parameters));
+        assertThrows(ModuleManagerException.class, () -> moduleManager.selectModule(moduleName, parameters));
     }
 
     @Test
