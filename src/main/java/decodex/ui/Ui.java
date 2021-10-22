@@ -76,6 +76,12 @@ public class Ui {
         System.out.println(RegularMessages.LIST_MODULES + "\n" + moduleList);
     }
 
+    public void printRecipeReset(String recipeName) {
+        assert recipeName != null : "Recipe name should not be null";
+        assert !recipeName.isBlank() : "Recipe name should not be empty";
+        printSuccess(String.format(RegularMessages.RESETTED_EDITING_RECIPE, recipeName));
+    }
+
     /**
      * Prints a message with a success status icon.
      *
