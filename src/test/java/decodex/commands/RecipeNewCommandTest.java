@@ -1,6 +1,7 @@
 package decodex.commands;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
@@ -31,5 +32,19 @@ class RecipeNewCommandTest {
         newRecipeCommand.run(dataManager, moduleManager, ui, recipeManager);
 
         assertNotNull(recipeManager.getRecipe("BaconPancakes"));
+    }
+
+    @Test
+    void run_createNewRecipeWithNoName_expectException() {
+        String testRecipeName = "";
+        Command newRecipeCommand = new RecipeNewCommand(testRecipeName);
+
+        DataManager dataManager = new DataManager();
+        ModuleManager moduleManager = new ModuleManager();
+        Ui ui = new Ui();
+        RecipeManager recipeManager = new RecipeManager();
+
+        assertThrows(CommandException.class,
+            () -> newRecipeCommand.run(dataManager, moduleManager, ui, recipeManager));
     }
 }
