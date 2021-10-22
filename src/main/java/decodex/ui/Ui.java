@@ -76,6 +76,11 @@ public class Ui {
         System.out.println(RegularMessages.LIST_MODULES + "\n" + moduleList);
     }
 
+    /**
+     * Prints the message when a recipe is reset.
+     *
+     * @param recipeName Name of the recipe that was reset.
+     */
     public void printRecipeReset(String recipeName) {
         assert recipeName != null : "Recipe name should not be null";
         assert !recipeName.isBlank() : "Recipe name should not be empty";
