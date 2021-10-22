@@ -77,6 +77,20 @@ public class Ui {
     }
 
     /**
+     * Prints a message showing that a given module was added to a given recipe.
+     *
+     * @param moduleName The name of the module added.
+     * @param recipeName The name of the recipe which the module was added to.
+     */
+    public void printModuleAddedToRecipe(String moduleName, String recipeName) {
+        assert moduleName != null : "Module name should not be null";
+        assert !moduleName.isBlank() : "Module name should not be empty";
+        assert recipeName != null : "Recipe name should not be null";
+        assert !recipeName.isBlank() : "Recipe name should not be empty";
+        printSuccess(String.format(RegularMessages.ADDED_MODULE_TO_RECIPE + "\n", moduleName, recipeName));
+    }
+  
+    /**
      * Prints a message showing that a recipe was selected.
      *
      * @param recipeName The name of the selected recipe.
