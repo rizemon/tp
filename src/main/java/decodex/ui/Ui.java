@@ -79,8 +79,8 @@ public class Ui {
     /**
      * Prints a message showing that a given module was added to a given recipe.
      *
-     * @param moduleName Name of module added.
-     * @param recipeName Name of recipe which the module was added to.
+     * @param moduleName The name of the module added.
+     * @param recipeName The name of the recipe which the module was added to.
      */
     public void printModuleAddedToRecipe(String moduleName, String recipeName) {
         assert moduleName != null : "Module name should not be null";
