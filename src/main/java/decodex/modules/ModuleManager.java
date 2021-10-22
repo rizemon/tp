@@ -4,7 +4,7 @@ import java.util.logging.Logger;
 
 import decodex.Decodex;
 import decodex.data.exception.ModuleException;
-import decodex.data.exception.UnknownModuleException;
+import decodex.data.exception.ModuleManagerException;
 import decodex.modules.base64.Base64Decoder;
 import decodex.modules.base64.Base64Encoder;
 import decodex.modules.binary.BinaryDecoder;
@@ -54,10 +54,10 @@ public class ModuleManager {
      * @param moduleName Name of selected module.
      * @param parameters Parameters for specific commands.
      * @return Selected module.
-     * @throws UnknownModuleException If provided module name is not an available module.
+     * @throws ModuleManagerException If provided module name is not an available module.
      * @throws ModuleException        If module parameters are invalid.
      */
-    public Module selectModule(String moduleName, String[] parameters) throws UnknownModuleException, ModuleException {
+    public Module selectModule(String moduleName, String[] parameters) throws ModuleManagerException, ModuleException {
         assert parameters != null : "parameters should not be null";
 
         Module module;
@@ -85,7 +85,7 @@ public class ModuleManager {
             module = prepareRotEncoder(parameters);
             break;
         default:
-            throw new UnknownModuleException(moduleName);
+            throw new ModuleManagerException(ErrorMessages.UNKNOWN_MODULE_NAME);
         }
 
         logger.fine(String.format("Selected %s", module.getName()));
