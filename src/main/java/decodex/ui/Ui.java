@@ -79,7 +79,7 @@ public class Ui {
     /**
      * Prints a message showing that a recipe was selected.
      *
-     * @param recipeName Name of the selected recipe.
+     * @param recipeName The name of the selected recipe.
      */
     public void printRecipeSelected(String recipeName) {
         assert recipeName != null : "Recipe name should not be null";
