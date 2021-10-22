@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import decodex.data.DataManager;
 import decodex.data.exception.ModuleException;
 import decodex.data.exception.RecipeManagerException;
-import decodex.data.exception.UnknownModuleException;
+import decodex.data.exception.ModuleManagerException;
 import decodex.modules.ModuleManager;
 import decodex.modules.Module;
 import decodex.recipes.Recipe;
@@ -17,7 +17,7 @@ class RecipeResetCommandTest {
 
     @Test
     public void run_oneModuleInEditingRecipe_recipeSizeIsZero()
-            throws RecipeManagerException, UnknownModuleException, ModuleException {
+            throws RecipeManagerException, ModuleManagerException, ModuleException {
         RecipeManager recipeManager = new RecipeManager();
         String testRecipeName = "test";
         Recipe testRecipe = new Recipe(testRecipeName);

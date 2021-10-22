@@ -79,7 +79,7 @@ public class Ui {
     /**
      * Prints the message when a recipe is reset.
      *
-     * @param recipeName Name of the recipe that was reset.
+     * @param recipeName The name of the recipe that was reset.
      */
     public void printRecipeReset(String recipeName) {
         assert recipeName != null : "Recipe name should not be null";
