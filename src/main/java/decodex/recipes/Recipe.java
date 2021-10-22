@@ -73,7 +73,7 @@ public class Recipe {
     }
 
     /**
-     * Runs the current recipe
+     * Runs the current recipe.
      *
      * @param dataManager The dataManager containing the data to be manipulated.
      * @param ui The Ui object handling any ui operations.

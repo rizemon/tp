@@ -64,16 +64,17 @@ class RecipeTest {
     @Test
     void run_chainOfModules_encodedOutput() throws RecipeException, ModuleException, DataManagerException {
         Recipe recipe = new Recipe("rainbowTest");
-        DataManager dataManager = new DataManager();
-        Ui ui = new Ui();
-
-        Data inputData = new Data("egg");
-        dataManager.setOriginalData(inputData);
 
         recipe.push(new HexEncoder());
         recipe.push(new Base64Encoder());
         recipe.push(new RotEncoder(5));
         recipe.push(new BinaryEncoder());
+
+        DataManager dataManager = new DataManager();
+        Data inputData = new Data("egg");
+        dataManager.setOriginalData(inputData);
+
+        Ui ui = new Ui();
 
         recipe.run(dataManager, ui);
 
