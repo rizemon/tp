@@ -77,6 +77,17 @@ public class Ui {
     }
 
     /**
+     * Prints the message when a recipe is reset.
+     *
+     * @param recipeName The name of the recipe that was reset.
+     */
+    public void printRecipeReset(String recipeName) {
+        assert recipeName != null : "Recipe name should not be null";
+        assert !recipeName.isBlank() : "Recipe name should not be empty";
+        printSuccess(String.format(RegularMessages.RESETTED_EDITING_RECIPE, recipeName));
+    }
+  
+    /**  
      * Prints a message showing that a given module was removed from a given recipe.
      *
      * @param moduleName The name of the module removed.
