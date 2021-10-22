@@ -79,8 +79,8 @@ public class Ui {
     /**
      * Prints a message showing that a given module was removed from a given recipe.
      *
-     * @param moduleName Name of module removed.
-     * @param recipeName Name of recipe which the module was removed from.
+     * @param moduleName The name of the module removed.
+     * @param recipeName The name of the recipe which the module was removed from.
      */
     public void printModuleRemovedFromRecipe(String moduleName, String recipeName) {
         assert moduleName != null : "Module name should not be null";
