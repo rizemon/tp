@@ -77,6 +77,20 @@ public class Ui {
     }
 
     /**
+     * Prints a message showing that a given module was removed from a given recipe.
+     *
+     * @param moduleName The name of the module removed.
+     * @param recipeName The name of the recipe which the module was removed from.
+     */
+    public void printModuleRemovedFromRecipe(String moduleName, String recipeName) {
+        assert moduleName != null : "Module name should not be null";
+        assert !moduleName.isBlank() : "Module name should not be empty";
+        assert recipeName != null : "Recipe name should not be null";
+        assert !recipeName.isBlank() : "Recipe name should not be empty";
+        printSuccess(String.format(RegularMessages.REMOVED_RECIPE_FROM_RECIPE + "\n", moduleName, recipeName));
+    }
+  
+    /**
      * Prints a message showing that a given module was added to a given recipe.
      *
      * @param moduleName The name of the module added.
