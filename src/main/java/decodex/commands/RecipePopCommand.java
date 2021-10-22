@@ -22,6 +22,6 @@ public class RecipePopCommand extends Command {
             throws RecipeException, RecipeManagerException {
         Module module = recipeManager.popModuleFromEditedRecipe();
         Recipe editingRecipe = recipeManager.getEditingRecipe();
-        ui.printModuleRemovedFromRecipe(module.getName(), recipeManager.getEditingRecipe().getName());
+        ui.printModuleRemovedFromRecipe(module.getName(), editingRecipe.getName());
     }
 }
