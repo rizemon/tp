@@ -2,32 +2,32 @@
 
 ## Table of Contents
 
-- Acknowledgements
-- Setting Up, Getting Started
-   - Setting Up
+- [Acknowledgements](#acknowledgements)
+- [Setting Up, Getting Started](#setting-up-getting-started)
+   - [Setting Up](#setting-up-the-on-your-computer)
       - Forking and cloning repository
       - Editor
       - Configure JDK
       - Importing project
       - Verifying setup
-   - Before writing code
+   - [Before writing code](#before-writing-code)
       - Configure the coding style
       - Set up CI
       - About our code structure
-- Design
-   - Architecture
-   - UI Component
-   - Logic Component
-   - Data Component
-   - Module Component
-   - Recipe Component
-   - Storage Component
-- Documentation, Logging, Testing, Configuration, Dev-Ops
-- Appendix A: Product Scope
-- Appendix B: User Stories
-- Appendix C: Non Functional Requirements
-- Appendix D: Glossary
-- Appendix E: Instructions for Manual Testing (more details below)
+- [Design](#design)
+   - [Architecture](#architecture)
+   - [UI Component](#ui-component)
+   - [Logic Component](#logic-component)
+   - [Data Component](#data-component)
+   - [Module Component](#module-component)
+   - [Recipe Component](#recipe-component)
+   - [Storage Component](#storage-component)
+- [Documentation, Logging, Testing, Configuration, Dev-Ops](#documentation-logging-testing-configuration-and-dev-ops)
+- [Appendix A: Product Scope](#appendix-a-product-scope)
+- [Appendix B: User Stories](#appendix-b-user-stories)
+- [Appendix C: Non Functional Requirements](#appendix-c-non-functional-requirements)
+- [Appendix D: Glossary](#appendix-d-glossary)
+- [Appendix E: Instructions for Manual Testing (more details below)](#appendix-e-instructions-for-manual-testing)
 
 ## Acknowledgements
 
