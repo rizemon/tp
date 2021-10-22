@@ -4,7 +4,7 @@ import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.ModuleException;
 import decodex.data.exception.RecipeManagerException;
-import decodex.data.exception.UnknownModuleException;
+import decodex.data.exception.ModuleManagerException;
 import decodex.modules.Module;
 import decodex.modules.ModuleManager;
 import decodex.recipes.Recipe;
@@ -27,7 +27,7 @@ public class RecipePushCommand extends Command {
 
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager)
-            throws CommandException, UnknownModuleException, ModuleException, RecipeManagerException {
+            throws CommandException, ModuleManagerException, ModuleException, RecipeManagerException {
         if (moduleName.isBlank()) {
             throw new CommandException(ErrorMessages.MISSING_MODULE_NAME);
         }
