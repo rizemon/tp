@@ -76,6 +76,12 @@ public class Ui {
         System.out.println(RegularMessages.LIST_MODULES + "\n" + moduleList);
     }
 
+    public void printRecipeSelected(String recipeName) {
+        assert recipeName != null : "Module list should not be null";
+        assert !recipeName.isBlank() : "Module list should not be empty";
+        System.out.printf(RegularMessages.RECIPE_SELECT + "\n", recipeName);
+    }
+
     /**
      * Prints a message with a success status icon.
      *
