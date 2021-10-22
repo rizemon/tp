@@ -69,7 +69,7 @@ public class Ui {
     /**
      * Prints the list of supported modules.
      *
-     * @param moduleList String of the list of supported modules.
+     * @param moduleList The list of supported modules.
      */
     public void printModuleList(String moduleList) {
         assert moduleList != null : "Module list should not be null";
@@ -80,7 +80,7 @@ public class Ui {
     /**
      * Prints the list of available recipes.
      *
-     * @param recipeList String of the list of available recipes.
+     * @param recipeList The list of available recipes.
      */
     public void printRecipeList(String recipeList) {
         assert recipeList != null : "Recipe list should not be null";

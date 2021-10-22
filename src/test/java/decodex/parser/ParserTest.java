@@ -1,8 +1,8 @@
 package decodex.parser;
 
 import decodex.commands.Command;
-import decodex.commands.InputCommand;
 import decodex.commands.ExitCommand;
+import decodex.commands.InputCommand;
 import decodex.commands.ListCommand;
 import decodex.commands.ResetCommand;
 import decodex.commands.SelectCommand;
@@ -10,7 +10,6 @@ import decodex.data.exception.CommandException;
 import decodex.data.exception.ParserException;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -23,9 +22,7 @@ class ParserTest {
     public void getCommandType_stringWithNoSeparator_expectCommandTypeString() throws ParserException {
         String testInput = "test";
         String expectedOutput = "test";
-
         String commandType = parser.getCommandType(testInput);
-
         assertEquals(expectedOutput, commandType);
     }
 
@@ -33,9 +30,7 @@ class ParserTest {
     public void getCommandType_stringWithOneSpaceSeparator_expectCommandTypeString() throws ParserException {
         String testInput = "test data";
         String expectedOutput = "test";
-
         String commandType = parser.getCommandType(testInput);
-
         assertEquals(expectedOutput, commandType);
     }
 
@@ -43,9 +38,7 @@ class ParserTest {
     public void getUserArguments_userInputWithOneSpaceSeparator_expectOneArgumentString() throws ParserException {
         String testInput = "test data";
         String expectedOutput = "data";
-
         String arguments = parser.getInputString(testInput);
-
         assertEquals(expectedOutput, arguments);
     }
 
@@ -55,9 +48,7 @@ class ParserTest {
     public void parseCommand_userInputSpecifyingValidData_expectInputCommand() throws ParserException,
             CommandException {
         String userInput = "input dummyData";
-
         Command command = parser.parseCommand(userInput);
-
         assertTrue(command instanceof InputCommand);
     }
 
@@ -65,9 +56,7 @@ class ParserTest {
     @Test
     public void parseCommand_userInputSpecifyingExit_expectExitCommand() throws ParserException, CommandException {
         String userInput = "exit";
-
         Command command = parser.parseCommand(userInput);
-
         assertTrue(command instanceof ExitCommand);
     }
 
@@ -75,9 +64,7 @@ class ParserTest {
     public void parseCommand_userInputSpecifyingValidListBlank_expectListCommand() throws ParserException,
             CommandException {
         String userInput = "list";
-
         Command command = parser.parseCommand(userInput);
-
         assertTrue(command instanceof ListCommand);
     }
 
@@ -85,9 +72,7 @@ class ParserTest {
     public void parseCommand_userInputSpecifyingValidListModules_expectListCommand() throws ParserException,
             CommandException {
         String userInput = "list modules";
-
         Command command = parser.parseCommand(userInput);
-
         assertTrue(command instanceof ListCommand);
     }
 
@@ -95,9 +80,7 @@ class ParserTest {
     public void parseCommand_userInputSpecifyingValidListRecipes_expectListCommand() throws ParserException,
             CommandException {
         String userInput = "list recipes";
-
         Command command = parser.parseCommand(userInput);
-
         assertTrue(command instanceof ListCommand);
     }
 
@@ -105,9 +88,7 @@ class ParserTest {
     public void parseCommand_userInputSpecifyingValidListSpaces_expectListCommand() throws ParserException,
             CommandException {
         String userInput = "list      modules     ";
-
         Command command = parser.parseCommand(userInput);
-
         assertTrue(command instanceof ListCommand);
     }
 
@@ -120,9 +101,7 @@ class ParserTest {
     @Test
     public void parseCommand_userInputSpecifyingReset_expectResetCommand() throws ParserException, CommandException {
         String userInput = "reset";
-
         Command command = parser.parseCommand(userInput);
-
         assertTrue(command instanceof ResetCommand);
     }
 
@@ -130,9 +109,7 @@ class ParserTest {
     public void parseCommand_userInputSpecifyingValidSelect_expectSelectCommand() throws ParserException,
             CommandException {
         String userInput = "select dummyMod";
-
         Command command = parser.parseCommand(userInput);
-
         assertTrue(command instanceof SelectCommand);
     }
 }
