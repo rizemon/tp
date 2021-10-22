@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+// @@author authorName Kair0s3
 public class Storage {
 
     /**
@@ -29,14 +30,15 @@ public class Storage {
         instantiateDirectories();
     }
 
+    // @@author authorName Kair0s3
     /**
-     * Reads the contents from the default input file.
+     * Reads the contents from the provided input file.
      *
      * @param fileName The name of the file specified by the user.
      * @return The byte contents from the default input file.
      * @throws IOException If the default input file does not exist.
      */
-    public byte[] readFromDefaultInputFile(String fileName) throws IOException {
+    public byte[] readFromInputFile(String fileName) throws IOException {
         byte[] inputContent;
         File inputDirectory = new File(DEFAULT_INPUT_DIRECTORY);
         File inputFile = new File(inputDirectory, fileName);
@@ -45,11 +47,12 @@ public class Storage {
         try {
             inputContent = Files.readAllBytes(inputFilePath);
         } catch (IOException e) {
-            throw new IOException(ErrorMessages.DEFAULT_INPUT_FILE_DOES_NOT_EXIST_MESSAGE);
+            throw new IOException(ErrorMessages.INPUT_FILE_DOES_NOT_EXIST_MESSAGE);
         }
         return inputContent;
     }
 
+    // @@author authorName Kair0s3
     /**
      * Writes the given output into a file.
      *
@@ -68,11 +71,6 @@ public class Storage {
 
         try {
             outputFile.createNewFile();
-        } catch (IOException e) {
-            throw new IOException(ErrorMessages.FILE_CREATION_ERROR_MESSAGE);
-        }
-
-        try {
             FileWriter fw = new FileWriter(outputFile);
             fw.write(output + "\n");
             fw.close();
@@ -81,6 +79,7 @@ public class Storage {
         }
     }
 
+    // @@author authorName Kair0s3
     /**
      * Instantiates the necessary directories if they do not exist yet.
      */
@@ -89,6 +88,7 @@ public class Storage {
         instantiateOutputDirectory();
     }
 
+    // @@author authorName Kair0s3
     /**
      * Instantiates the default input directory.
      */
@@ -99,6 +99,7 @@ public class Storage {
         }
     }
 
+    // @@author authorName Kair0s3
     /**
      * Instantiates the default output directory.
      */
