@@ -99,6 +99,17 @@ public class Ui {
     }
 
     /**
+     * Prints a message indicating successful deletion of a recipe.
+     *
+     * @param recipeName The name of the recipe that was deleted.
+     */
+    public void printRecipeDeleted(String recipeName) {
+        assert recipeName != null : "Recipe name should not be null";
+        assert !recipeName.isBlank() : "Recipe name should not be empty";
+        printSuccess(String.format(RegularMessages.RECIPE_DELETED + "\n", recipeName));
+    }
+
+    /**
      * Prints the prompt header.
      */
     private void printPromptHeader() {
