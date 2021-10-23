@@ -10,8 +10,16 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-// @@author authorName Kair0s3
+// @@author Kair0s3
 public class Storage {
+
+    /**
+     * List of default directories used.
+     * 1. input folder - for reading user input from file.
+     * 2. output folder - for writing processed data into file.
+     * 3. recipe folder - for reading and writing recipe from and to file.
+     */
+    private final String [] DEFAULT_DIRECTORY_LIST = {"input", "output", "recipe"};
 
     /**
      * Variables for loading from the default input filepath.
@@ -30,7 +38,7 @@ public class Storage {
         instantiateDirectories();
     }
 
-    // @@author authorName Kair0s3
+    // @@author Kair0s3
     /**
      * Reads the contents from the provided input file.
      *
@@ -52,7 +60,7 @@ public class Storage {
         return inputContent;
     }
 
-    // @@author authorName Kair0s3
+    // @@author Kair0s3
     /**
      * Writes the given output into a file.
      *
@@ -79,32 +87,22 @@ public class Storage {
         }
     }
 
-    // @@author authorName Kair0s3
+    // @@author Kair0s3
     /**
-     * Instantiates the necessary directories if they do not exist yet.
+     * Instantiates the default directories if they do not exist yet.
      */
     private void instantiateDirectories() {
-        instantiateInputDirectory();
-        instantiateOutputDirectory();
-    }
-
-    // @@author authorName Kair0s3
-    /**
-     * Instantiates the default input directory.
-     */
-    private void instantiateInputDirectory() {
-        File inputDirectory = new File(DEFAULT_INPUT_DIRECTORY);
-        if (!inputDirectory.exists()) {
-            inputDirectory.mkdir();
+        for (String directoryName : DEFAULT_DIRECTORY_LIST) {
+            instantiateDirectory(directoryName);
         }
     }
 
-    // @@author authorName Kair0s3
+    // @@author Kair0s3
     /**
-     * Instantiates the default output directory.
+     * Instantiates the given directory.
      */
-    private void instantiateOutputDirectory() {
-        File outputDirectory = new File(DEFAULT_OUTPUT_DIRECTORY);
+    private void instantiateDirectory(String directoryName) {
+        File outputDirectory = new File(directoryName);
         if (!outputDirectory.exists()) {
             outputDirectory.mkdir();
         }
