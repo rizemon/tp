@@ -1,6 +1,8 @@
 package decodex.recipes;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import decodex.Decodex;
@@ -15,6 +17,8 @@ import decodex.ui.messages.ErrorMessages;
 public class RecipeManager {
 
     private Logger logger = Decodex.logger;
+
+    private static int RECIPE_NAME_STRING_INDEX = 0;
 
     /**
      * Stores mapping between recipe name and recipe.
@@ -32,6 +36,18 @@ public class RecipeManager {
     public RecipeManager() {
         recipeList = new HashMap<>();
         editingRecipeName = null;
+    }
+
+    /**
+     * Returns a sorted list of recipe names.
+     *
+     * @return A sorted String array of recipe names.
+     */
+    public String[] getRecipeNames() {
+        Set<String> recipeNameSet = recipeList.keySet();
+        String[] recipeNameArray = recipeNameSet.toArray(new String[RECIPE_NAME_STRING_INDEX]);
+        Arrays.sort(recipeNameArray);
+        return recipeNameArray;
     }
 
     /**
@@ -94,6 +110,7 @@ public class RecipeManager {
 
     /**
      * Sets the recipe of the given name to be the recipe currently being edited.
+     *
      * @param name The name of the recipe to select.
      * @throws RecipeManagerException If the recipe could not be found in the recipe manager.
      */
