@@ -29,7 +29,7 @@ public class Storage {
     private static final int RECIPE_DIRECTORY_INDEX = 2;
 
     private static final String TEXT_FILE_PREFIX = ".txt";
-    
+
     private static final String RECIPE_FILENAME_FORMAT = "yyyy-dd-MM__HH.mm.ss";
 
     /**
@@ -87,9 +87,7 @@ public class Storage {
      */
     private byte[] readFromFile(Path readFilePath) throws IOException, FileNotFoundException {
         try {
-            byte[] inputContent;
-            inputContent = Files.readAllBytes(readFilePath);
-            return inputContent;
+            return Files.readAllBytes(readFilePath);
         } catch (FileNotFoundException err) {
             throw new FileNotFoundException(ErrorMessages.INPUT_FILE_DOES_NOT_EXIST_MESSAGE);
         } catch (IOException err) {
