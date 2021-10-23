@@ -1,6 +1,7 @@
 package decodex.ui;
 
 import decodex.ui.messages.RegularMessages;
+
 import java.util.Scanner;
 
 /**
@@ -66,14 +67,28 @@ public class Ui {
     }
 
     /**
-     * Prints the list of available modules.
+     * Prints the list of supported modules.
      *
-     * @param moduleList String of the list of available modules.
+     * @param moduleList The list of supported modules.
      */
     public void printModuleList(String moduleList) {
         assert moduleList != null : "Module list should not be null";
         assert !moduleList.isBlank() : "Module list should not be empty";
         System.out.println(RegularMessages.LIST_MODULES + "\n" + moduleList);
+    }
+
+    /**
+     * Prints the list of available recipes.
+     *
+     * @param recipeList The list of available recipes.
+     */
+    public void printRecipeList(String recipeList) {
+        assert recipeList != null : "Recipe list should not be null";
+        if (!recipeList.isBlank()) {
+            System.out.println(RegularMessages.LIST_RECIPES + "\n" + recipeList);
+        } else {
+            System.out.println(RegularMessages.NO_RECIPES + "\n");
+        }
     }
 
     /**

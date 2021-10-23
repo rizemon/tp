@@ -1,22 +1,51 @@
 package decodex.commands;
 
 import decodex.data.DataManager;
+import decodex.data.exception.CommandException;
 import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
+import decodex.ui.messages.ErrorMessages;
 
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
+    public static final String LIST_CATEGORY_MODULES = "modules";
+    public static final String LIST_CATEGORY_RECIPE = "recipes";
     private static final int MODULE_NAME_INDEX = 0;
     private static final int MODULE_DESCRIPTION_INDEX = 1;
 
-    public ListCommand() {
+    private final String listCategory;
+
+    public ListCommand(String listCategory) {
         super();
+        this.listCategory = listCategory;
     }
 
     @Override
-    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager) {
+    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager)
+            throws CommandException {
+        boolean isPrintModuleList = listCategory == null || listCategory.equals(LIST_CATEGORY_MODULES);
+        boolean isPrintRecipeList = listCategory == null || listCategory.equals(LIST_CATEGORY_RECIPE);
+
+        if (isPrintModuleList) {
+            ui.printModuleList(getModuleList(moduleManager));
+        }
+        if (isPrintRecipeList) {
+            ui.printRecipeList(getRecipeList(recipeManager));
+        }
+        if (!isPrintModuleList && !isPrintRecipeList) {
+            throw new CommandException(ErrorMessages.INVALID_LIST_CATEGORY);
+        }
+    }
+
+    /**
+     * Prepares the list of supported modules.
+     *
+     * @param moduleManager The ModuleManager to retrieve supported modules.
+     * @return A formatted String of modules.
+     */
+    private String getModuleList(ModuleManager moduleManager) {
         String[][] modules = moduleManager.getModules();
         assert modules.length > 0 : "Number of modules should be greater than 0";
 
@@ -38,6 +67,25 @@ public class ListCommand extends Command {
             moduleListString.append(String.format("  %-" + maxNameWidth + "s - %s\n", moduleName, moduleDescription));
         }
 
-        ui.printModuleList(moduleListString.toString());
+        return moduleListString.toString();
+    }
+
+    /**
+     * Prepares the list of available modules.
+     *
+     * @param recipeManager The RecipeManager to retrieve available recipes.
+     * @return A formatted String of recipes.
+     */
+    private String getRecipeList(RecipeManager recipeManager) {
+        String[] recipeNames = recipeManager.getRecipeNames();
+
+        StringBuilder recipeListString = new StringBuilder();
+
+        // Prepare and format list of recipes
+        for (String recipeName : recipeNames) {
+            recipeListString.append(String.format("  %s\n", recipeName));
+        }
+
+        return recipeListString.toString();
     }
 }
