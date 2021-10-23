@@ -1,5 +1,10 @@
 package decodex.recipes;
 
+import decodex.data.Data;
+import decodex.data.DataManager;
+import decodex.data.exception.DataManagerException;
+import decodex.data.exception.ModuleException;
+import decodex.ui.Ui;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -65,6 +70,21 @@ public class Recipe {
         Module removedModule = moduleList.remove(moduleList.size() - 1);
         logger.fine(String.format("[Recipe %s] Removed module %s", name, removedModule.getName()));
         return removedModule;
+    }
+
+    /**
+     * Runs the current recipe.
+     *
+     * @param data The data to run through the recipe.
+     * @return A new data object that has gone through all the recipe modules.
+     * @throws ModuleException If the selected module cannot be found or fails.
+     */
+    public Data run(Data data) throws ModuleException {
+        Data bakedData = data;
+        for (Module module : moduleList) {
+            bakedData = module.run(bakedData);
+        }
+        return bakedData;
     }
 
     /**
