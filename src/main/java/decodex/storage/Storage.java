@@ -36,22 +36,59 @@ public class Storage {
     }
 
     // @@author Kair0s3
-
     /**
-     * Reads the contents from the provided input file.
+     * Reads and returns the input from the provided file.
      *
      * @param fileName The name of the file specified by the user.
      * @return The byte contents from the default input file.
-     * @throws IOException If the default input file does not exist.
+     * @throws IOException If something went wrong when reading the file or
+     *                     the input file does not exist.
      */
-    private byte[] readFromInputFile(String fileName) throws IOException {
+    private byte[] readInputFromFile(String fileName) throws IOException {
+        instantiateDirectoryIfNotExist(DEFAULT_DIRECTORY_LIST[INPUT_DIRECTORY_INDEX]);
+
         File inputDirectory = new File(DEFAULT_DIRECTORY_LIST[INPUT_DIRECTORY_INDEX]);
         File inputFile = new File(inputDirectory, fileName);
         Path inputFilePath = inputFile.toPath();
 
+        byte[] inputContent = readContent(inputFilePath);
+        return inputContent;
+    }
+
+    // @@author Kair0s3
+    /**
+     * Reads and returns the recipe from the provided file.
+     *
+     * @param fileName The name of the file specified by the user.
+     * @return The string formatted recipe from the provided file.
+     * @throws IOException If something went wrong when reading the file or
+     *                     the input file does not exist.
+     */
+    private String readRecipeFromFile(String fileName) throws IOException {
+        instantiateDirectoryIfNotExist(DEFAULT_DIRECTORY_LIST[RECIPE_DIRECTORY_INDEX]);
+
+        File recipeDirectory = new File(DEFAULT_DIRECTORY_LIST[RECIPE_DIRECTORY_INDEX]);
+        File recipeFile = new File(recipeDirectory, fileName);
+        Path recipeFilePath = recipeFile.toPath();
+
+        byte[] recipeContentBytes = readContent(recipeFilePath);
+        String recipeContent = recipeContentBytes.toString();
+        return recipeContent;
+    }
+
+    // @@author Kair0s3
+    /**
+     * Reads and returns the contents.
+     *
+     * @param readFilePath The Path object of the file to be read.
+     * @return The bytes of the read content.
+     * @throws IOException           If something went wrong when reading the file.
+     * @throws FileNotFoundException If the input file does not exist.
+     */
+    private byte[] readContent(Path readFilePath) throws IOException, FileNotFoundException {
         try {
             byte[] inputContent;
-            inputContent = Files.readAllBytes(inputFilePath);
+            inputContent = Files.readAllBytes(readFilePath);
             return inputContent;
         } catch (FileNotFoundException fileNotFoundError) {
             throw new FileNotFoundException(ErrorMessages.INPUT_FILE_DOES_NOT_EXIST_MESSAGE);
@@ -88,23 +125,19 @@ public class Storage {
     }
 
     // @@author Kair0s3
-    /**
-     * Instantiates the default directories if they do not exist yet.
-     */
-    private void instantiateDirectories() {
-        for (String directoryName : DEFAULT_DIRECTORY_LIST) {
-            instantiateDirectory(directoryName);
-        }
-    }
 
-    // @@author Kair0s3
     /**
-     * Instantiates the given directory.
+     * Instantiates the given directory if it does not exist yet.
      */
-    private void instantiateDirectory(String directoryName) {
+    private void instantiateDirectoryIfNotExist(String directoryName) throws IOException {
         File outputDirectory = new File(directoryName);
+        boolean isSuccessful = false;
         if (!outputDirectory.exists()) {
-            outputDirectory.mkdir();
+            isSuccessful = outputDirectory.mkdir();
+        }
+
+        if (!isSuccessful) {
+            throw new IOException("Failed to create the directory for " + directoryName);
         }
     }
 }
