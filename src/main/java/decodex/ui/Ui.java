@@ -164,6 +164,17 @@ public class Ui {
     }
 
     /**
+     * Prints a message indicating the creation of a new recipe of given name.
+     *
+     * @param recipeName The name of the recipe created.
+     */
+    public void printNewRecipeCreated(String recipeName) {
+        assert recipeName != null : "Recipe name should not be null";
+        assert !recipeName.isBlank() : "Recipe name should not be empty";
+        printSuccess(String.format(RegularMessages.NEW_RECIPE_CREATED + "\n", recipeName));
+    }
+
+    /**
      * Prints the prompt header.
      */
     private void printPromptHeader() {
