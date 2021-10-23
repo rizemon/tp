@@ -23,14 +23,11 @@ public class Storage {
     private final String [] DEFAULT_DIRECTORY_LIST = {"input", "output", "recipe"};
 
     /**
-     * Variables for loading from the default input filepath.
+     * The indexes of the corresponding directory in the list.
      */
-    public static final String DEFAULT_INPUT_DIRECTORY = "input";
-
-    /**
-     * Variable for the default output directory.
-     */
-    public static final String DEFAULT_OUTPUT_DIRECTORY = "output";
+    private final int INPUT_DIRECTORY_INDEX = 0;
+    private final int OUTPUT_DIRECTORY_INDEX = 1;
+    private final int RECIPE_DIRECTORY_INDEX = 2;
 
     /**
      * Initializes a new Storage.
@@ -48,8 +45,7 @@ public class Storage {
      * @throws IOException If the default input file does not exist.
      */
     public byte[] readFromInputFile(String fileName) throws IOException {
-
-        File inputDirectory = new File(DEFAULT_INPUT_DIRECTORY);
+        File inputDirectory = new File(DEFAULT_DIRECTORY_LIST[INPUT_DIRECTORY_INDEX]);
         File inputFile = new File(inputDirectory, fileName);
         Path inputFilePath = inputFile.toPath();
 
@@ -78,7 +74,7 @@ public class Storage {
         String formattedDateTime = currentDateTime.format(dateTimeFormatter);
         String newOutputFileName = formattedDateTime + ".txt";
 
-        File outputDirectory = new File(DEFAULT_OUTPUT_DIRECTORY);
+        File outputDirectory = new File(DEFAULT_DIRECTORY_LIST[OUTPUT_DIRECTORY_INDEX]);
         File outputFile = new File(outputDirectory, newOutputFileName);
 
         try {
