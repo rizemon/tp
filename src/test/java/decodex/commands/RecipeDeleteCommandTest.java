@@ -18,9 +18,8 @@ import org.junit.jupiter.api.Test;
 class RecipeDeleteCommandTest {
 
     @Test
-    void run_deleteValidRecipe_recipeDeleted()
-            throws CommandException, RecipeException,
-            ModuleException, RecipeManagerException, DataManagerException, ModuleManagerException {
+    void run_deleteValidRecipe_recipeDeleted() throws CommandException, RecipeException, ModuleException,
+            RecipeManagerException, DataManagerException, ModuleManagerException {
         String testRecipeName = "BaconPancakes";
 
         DataManager dataManager = new DataManager();
@@ -38,7 +37,6 @@ class RecipeDeleteCommandTest {
 
     @Test
     void run_deleteInvalidRecipe_expectException() throws RecipeManagerException {
-
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
