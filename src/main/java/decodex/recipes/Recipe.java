@@ -75,23 +75,16 @@ public class Recipe {
     /**
      * Runs the current recipe.
      *
-     * @param dataManager The dataManager containing the data to be manipulated.
-     * @param ui The Ui object handling any ui operations.
-     * @throws RecipeException If there are no modules in the recipe.
-     * @throws ModuleException If the selected module cannot be found.
-     * @throws DataManagerException If there is no data to be found.
+     * @param data The data to run through the recipe.
+     * @return A new data object that has gone through all the recipe modules.
+     * @throws ModuleException If the selected module cannot be found or fails.
      */
-    public void run(DataManager dataManager, Ui ui) throws RecipeException, ModuleException, DataManagerException {
-        if (moduleList.isEmpty()) {
-            throw new RecipeException(ErrorMessages.EMPTY_RECIPE_MESSAGE);
-        }
-
+    public Data run(Data data) throws ModuleException {
+        Data bakedData = data;
         for (Module module : moduleList) {
-            Data newData = module.run(dataManager.getCurrentData());
-            dataManager.setCurrentData(newData);
-
-            ui.printOutput(newData.toString());
+            bakedData = module.run(bakedData);
         }
+        return bakedData;
     }
 
     /**
