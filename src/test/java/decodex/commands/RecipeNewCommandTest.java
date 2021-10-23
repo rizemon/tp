@@ -18,9 +18,8 @@ import org.junit.jupiter.api.Test;
 class RecipeNewCommandTest {
 
     @Test
-    void run_createNewRecipe_newRecipeCreated()
-            throws CommandException, RecipeException,
-            ModuleException, RecipeManagerException, DataManagerException, ModuleManagerException {
+    void run_createNewRecipe_newRecipeCreated() throws CommandException, RecipeException, ModuleException,
+            RecipeManagerException, DataManagerException, ModuleManagerException {
         String testRecipeName = "BaconPancakes";
         Command newRecipeCommand = new RecipeNewCommand(testRecipeName);
 

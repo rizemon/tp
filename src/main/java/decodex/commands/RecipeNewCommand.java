@@ -31,6 +31,8 @@ public class RecipeNewCommand extends Command {
         Recipe recipe = new Recipe(recipeName);
 
         recipeManager.addRecipe(recipe);
+        recipeManager.selectRecipeForEditing(recipeName);
+
         ui.printNewRecipeCreated(recipe.getName());
     }
 }
