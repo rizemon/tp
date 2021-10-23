@@ -1,0 +1,38 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+
+abstract class "Command\n{abstract}" as Command {
+  {abstract} +run(dataManager: DataManager, moduleManager: ModuleManager, ui: Ui, recipeManager: RecipeManager): void
+}
+
+Command <|-- ExitCommand
+Command <|-- InputCommand
+Command <|-- ListCommand
+Command <|-- ResetCommand
+Command <|-- SelectCommand
+Command <|-- HelpCommand
+
+class ExitCommand {
+}
+
+note "run() method omitted \nfrom inheriting classes" as omitMessage
+
+class InputCommand {
+  - dataString: String
+}
+
+class ListCommand {
+}
+
+class ResetCommand {
+}
+
+class SelectCommand {
+  - moduleName: String
+}
+
+class HelpCommand {
+}
+
+@enduml

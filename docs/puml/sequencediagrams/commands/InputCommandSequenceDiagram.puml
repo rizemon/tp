@@ -1,0 +1,32 @@
+@startuml
+!include ../../Style.puml
+
+Participant ":InputCommand" as InputCommand
+Participant ":Data" as Data
+Participant ":DataManager" as DataManager
+Participant ":Ui" as Ui
+
+-> InputCommand: run()
+activate InputCommand
+
+alt dataString is not empty
+  create Data
+  InputCommand -> Data : new Data(data: String)
+  activate Data
+  InputCommand <-- Data: userData:Data
+  deactivate Data
+  InputCommand -> DataManager: setOriginalData(originalData: Data)
+  activate DataManager
+  InputCommand <-- DataManager
+  deactivate DataManager
+  InputCommand -> Ui: printInput(input: String)
+  activate Ui
+  InputCommand <-- Ui
+  deactivate Ui
+  <-- InputCommand
+else dataString is empty
+  <-- InputCommand: CommandException
+  deactivate InputCommand
+end
+
+@enduml

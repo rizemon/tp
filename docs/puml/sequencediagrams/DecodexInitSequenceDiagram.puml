@@ -1,0 +1,75 @@
+@startuml
+!include ../Style.puml
+Participant "<<class>>\nDecodex" as DecodexClass
+Participant ":Decodex" as Decodex
+Participant ":DataManager" as DataManager
+Participant ":ModuleManager" as ModuleManager
+Participant ":RecipeManager" as RecipeManager
+Participant ":Parser" as Parser
+Participant ":Storage" as Storage
+Participant ":Ui" as Ui
+
+-> DecodexClass: main()
+activate DecodexClass
+
+create Decodex
+DecodexClass -> Decodex: new Decodex()
+activate Decodex
+
+Decodex -> Decodex: initDecodex()
+activate Decodex
+
+create DataManager
+  Decodex -> DataManager : new DataManager()
+  activate DataManager
+  Decodex <-- DataManager
+  deactivate DataManager
+
+create ModuleManager
+  Decodex -> ModuleManager : new ModuleManager()
+  activate ModuleManager
+  Decodex <-- ModuleManager
+  deactivate ModuleManager
+
+create RecipeManager
+  Decodex -> RecipeManager : new RecipeManager()
+  activate RecipeManager
+  Decodex <-- RecipeManager
+  deactivate RecipeManager
+
+create Parser
+  Decodex -> Parser : new Parser()
+  activate Parser
+  Decodex <-- Parser
+  deactivate Parser
+
+create Storage
+  Decodex -> Storage : new Storage()
+  activate Storage
+  Decodex <-- Storage
+  deactivate Storage
+
+create Ui
+  Decodex -> Ui : new Ui()
+  activate Ui
+  Decodex <-- Ui
+  deactivate Ui
+
+Decodex --> Decodex
+deactivate Decodex
+
+DecodexClass <-- Decodex
+deactivate Decodex
+
+'DecodexClass -> Decodex: run()
+'activate Decodex
+'DecodexClass <-- Decodex
+'deactivate Decodex
+'<-- DecodexClass
+'deactivate DecodexClass
+'Decodex -[hidden]> DecodexClass
+'destroy Decodex
+
+DecodexClass <-[hidden]- Decodex
+DecodexClass <-[hidden]- Decodex
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+!include ../../Style.puml
+
+Participant ":ResetCommand" as ResetCommand
+Participant ":DataManager" as DataManager
+Participant ":Ui" as Ui
+
+-> ResetCommand: run()
+
+activate ResetCommand
+ResetCommand -> DataManager: resetToOriginalData()
+activate DataManager
+ResetCommand <-- DataManager
+deactivate DataManager
+
+ResetCommand -> Ui: printSuccess()
+activate Ui
+ResetCommand <-- Ui
+deactivate Ui
+
+<-- ResetCommand
+
+@enduml

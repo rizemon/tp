@@ -1,0 +1,45 @@
+@startuml
+!include ../../Style.puml
+
+Participant ":SelectCommand" as SelectCommand
+Participant ":ModuleManager" as ModuleManager
+Participant ":DataManager" as DataManager
+Participant ":Module" as Module
+Participant ":Ui" as Ui
+
+-> SelectCommand: run()
+activate SelectCommand
+
+alt moduleName is not blank
+  SelectCommand -> ModuleManager: selectModule(moduleName: String, parameters: String[])
+  activate ModuleManager
+  SelectCommand <-- ModuleManager: module: Module
+  deactivate ModuleManager
+
+  SelectCommand -> DataManager: getCurrentData()
+  activate DataManager
+  SelectCommand <-- DataManager: :Data
+  deactivate DataManager
+
+  SelectCommand -> Module: run(data: Data)
+  activate Module
+  SelectCommand <-- Module: newData: Data
+  deactivate Module
+
+  SelectCommand -> DataManager: setCurrentData(currentData: Data)
+  activate DataManager
+  SelectCommand <-- DataManager
+  deactivate DataManager
+
+  SelectCommand -> Ui: printOutput(newData.toString())
+  activate Ui
+  SelectCommand <-- Ui
+  deactivate Ui
+
+  <-- SelectCommand
+else moduleName is blank
+  <-- SelectCommand: CommandException
+  deactivate SelectCommand
+end
+
+@enduml

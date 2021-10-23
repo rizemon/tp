@@ -1,0 +1,31 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+
+Decodex -> "1" ModuleManager
+
+class Decodex {
+  - initDecodex(): void
+  + run(): void
+  + {static} main(): void
+}
+
+
+class ModuleManager {
+  - {static} MODULE_LIST: String[][]
+  + getModules(): String[][]
+  + selectModule(moduleName: String, parameters: String[]): Module
+  - hasNoParameters(parameters: String): void
+  - prepareXYZEncoder(parameters: String[]): Module
+  - prepareXYZDecoder(parameters: String[]): Module
+}
+
+note right
+  XYZEncoder = HexEncoder,
+  Base64Encoder, etc
+
+  XYZDecoder = HexDecoder,
+  Base64Decoder, etc
+end note
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+!include ../../Style.puml
+
+Participant ":ExitCommand" as ExitCommand
+Participant ":Ui" as Ui
+
+-> ExitCommand: run()
+activate ExitCommand
+ExitCommand -> Ui: printGoodbye()
+activate Ui
+ExitCommand <-- Ui
+deactivate Ui
+<-- ExitCommand
+
+deactivate ExitCommand
+
+
+@enduml

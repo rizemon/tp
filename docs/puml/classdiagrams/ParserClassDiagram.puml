@@ -1,0 +1,21 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+
+Decodex -> "1" Parser
+
+
+class Decodex {
+  - initDecodex(): void
+  + run(): void
+  + {static} main(): void
+}
+
+class Parser {
+  + getCommandType(userInput: String): String
+  + getModuleName(userInput: String): String
+  + getInputString(userInput: String): String
+  + parseCommand(userInput: String): Command
+}
+
+@enduml

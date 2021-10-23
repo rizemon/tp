@@ -1,0 +1,30 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+
+Decodex -> "1" DataManager
+
+DataManager ---> "0..1 \nOriginal" Data
+DataManager ---> "0..1 \nCurrent" Data
+
+
+class Decodex {
+  - initDecodex(): void
+  + run(): void
+  + {static} main(): void
+}
+
+class DataManager {
+  + getOriginalData(): Data
+  + getCurrentData(): Data
+  + setOriginalData(originalData: Data): Data
+  + setCurrentData(currentData: Data): Data
+  + resetToOriginalData(): void
+}
+
+class Data {
+  - rawBytes: byte[]
+  + getRawBytes(): byte[]
+}
+
+@enduml

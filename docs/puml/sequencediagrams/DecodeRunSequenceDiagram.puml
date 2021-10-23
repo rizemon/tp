@@ -1,0 +1,51 @@
+@startuml
+!include ../Style.puml
+
+Participant ":Decodex" as Decodex
+Participant ":Ui" as Ui
+Participant ":Parser" as Parser
+Participant ":XYZCommand" as XYZCommand
+
+-> Decodex: run()
+
+activate Decodex
+
+Decodex -> Ui : printGreeting()
+activate Ui
+Ui --> Decodex
+deactivate Ui
+
+loop command is not instance of ExitCommand
+    Decodex -> Ui : readInput()
+    activate Ui
+    Ui --> Decodex : userInput : String
+    deactivate Ui
+
+    Decodex -> Parser : parseCommand(userInput  :String)
+    activate Parser
+
+    ref over Parser, XYZCommand : Handle selection of Command
+
+    Parser --> Decodex : XYZCommand
+    deactivate Parser
+
+    Decodex -> XYZCommand : run(:DataManager, :ModuleManager, :RecipeManager, :Ui)
+    activate XYZCommand
+
+    ref over XYZCommand   : Command execution
+
+    XYZCommand --> Decodex
+    deactivate XYZCommand
+    XYZCommand -[hidden]-> Decodex
+    destroy XYZCommand
+
+end
+
+<-- Decodex :
+deactivate Decodex
+<-[hidden]- Decodex :
+
+destroy Ui
+destroy Parser
+destroy Decodex
+@enduml
