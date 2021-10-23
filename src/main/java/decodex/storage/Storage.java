@@ -35,7 +35,6 @@ public class Storage {
     public Storage() {
     }
 
-    // @@author Kair0s3
     /**
      * Reads and returns the input from the provided file.
      *
@@ -55,7 +54,6 @@ public class Storage {
         return inputContent;
     }
 
-    // @@author Kair0s3
     /**
      * Reads and returns the recipe from the provided file.
      *
@@ -76,7 +74,6 @@ public class Storage {
         return recipeContent;
     }
 
-    // @@author Kair0s3
     /**
      * Reads and returns the contents.
      *
@@ -97,7 +94,6 @@ public class Storage {
         }
     }
 
-    // @@author Kair0s3
     /**
      * Writes the given output into a file.
      *
@@ -124,7 +120,6 @@ public class Storage {
         }
     }
 
-    // @@author Kair0s3
 
     /**
      * Instantiates the given directory if it does not exist yet.
