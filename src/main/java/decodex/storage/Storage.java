@@ -32,11 +32,11 @@ public class Storage {
     /**
      * Initializes a new Storage.
      */
-    public Storage() throws IOException {
-        instantiateDirectories();
+    public Storage() {
     }
 
     // @@author Kair0s3
+
     /**
      * Reads the contents from the provided input file.
      *
