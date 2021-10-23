@@ -44,7 +44,7 @@ class RecipeTest {
     void pop_emptyRecipe_expectException() {
         Recipe recipe = new Recipe("testRecipe");
 
-        assertThrows(RecipeException.class, recipe::pop);
+        assertThrows(RecipeException.class, () -> recipe.pop());
     }
 
     @Test
