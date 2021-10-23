@@ -7,9 +7,9 @@ import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;
 import decodex.data.exception.ModuleException;
+import decodex.data.exception.ModuleManagerException;
 import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
-import decodex.data.exception.UnknownModuleException;
 import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
@@ -19,8 +19,8 @@ class RecipeNewCommandTest {
 
     @Test
     void run_createNewRecipe_newRecipeCreated()
-            throws UnknownModuleException, CommandException, RecipeException,
-            ModuleException, RecipeManagerException, DataManagerException {
+            throws CommandException, RecipeException,
+            ModuleException, RecipeManagerException, DataManagerException, ModuleManagerException {
         String testRecipeName = "BaconPancakes";
         Command newRecipeCommand = new RecipeNewCommand(testRecipeName);
 
