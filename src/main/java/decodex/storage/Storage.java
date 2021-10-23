@@ -20,14 +20,14 @@ public class Storage {
      * 2. output folder - for writing processed data into file.
      * 3. recipe folder - for reading and writing recipe from and to file.
      */
-    private final String [] DEFAULT_DIRECTORY_LIST = {"input", "output", "recipe"};
+    private static final String [] DEFAULT_DIRECTORY_LIST = {"input", "output", "recipe"};
 
     /**
      * The indexes of the corresponding directory in the list.
      */
-    private final int INPUT_DIRECTORY_INDEX = 0;
-    private final int OUTPUT_DIRECTORY_INDEX = 1;
-    private final int RECIPE_DIRECTORY_INDEX = 2;
+    private static final int INPUT_DIRECTORY_INDEX = 0;
+    private static final int OUTPUT_DIRECTORY_INDEX = 1;
+    private static final int RECIPE_DIRECTORY_INDEX = 2;
 
     /**
      * Initializes a new Storage.
