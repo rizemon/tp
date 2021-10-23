@@ -22,7 +22,7 @@ public class Storage {
 
     private static final String DATA_FILE_PREFIX = ".data";
 
-    private static final String RECIPE_FILENAME_FORMAT = "yyyy-dd-MM__HH.mm.ss";
+    private static final String OUTPUT_FILENAME_FORMAT = "yyyy-dd-MM__HH.mm.ss";
 
     /**
      * Initializes a new Storage.
@@ -98,7 +98,7 @@ public class Storage {
         instantiateDirectoryIfNotExist(DEFAULT_OUTPUT_DIRECTORY);
 
         LocalDateTime currentDateTime = LocalDateTime.now();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(RECIPE_FILENAME_FORMAT);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(OUTPUT_FILENAME_FORMAT);
         String formattedDateTime = currentDateTime.format(dateTimeFormatter);
         String newOutputFileName = formattedDateTime + DATA_FILE_PREFIX;
 
