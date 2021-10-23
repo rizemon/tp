@@ -44,7 +44,7 @@ public class Storage {
      * @return The byte contents from the default input file.
      * @throws IOException If the default input file does not exist.
      */
-    public byte[] readFromInputFile(String fileName) throws IOException {
+    private byte[] readFromInputFile(String fileName) throws IOException {
         File inputDirectory = new File(DEFAULT_DIRECTORY_LIST[INPUT_DIRECTORY_INDEX]);
         File inputFile = new File(inputDirectory, fileName);
         Path inputFilePath = inputFile.toPath();
@@ -68,7 +68,7 @@ public class Storage {
      * @throws IOException If an I/O exception is caught when creating the output file
      *                     or when writing to the output file.
      */
-    public void writeOutputToFile(String output) throws IOException {
+    private void writeOutputToFile(String output) throws IOException {
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-dd-MM__HH.mm.ss");
         String formattedDateTime = currentDateTime.format(dateTimeFormatter);
