@@ -22,9 +22,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class SelectCommandTest {
 
     @Test
-    public void run_validModuleName_success()
-            throws ModuleManagerException, CommandException, DataManagerException, ModuleException, RecipeException,
-            RecipeManagerException {
+    public void run_validModuleName_success() throws ModuleManagerException, CommandException, DataManagerException,
+            ModuleException, RecipeException, RecipeManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         RecipeManager recipeManager = new RecipeManager();
@@ -43,9 +42,8 @@ public class SelectCommandTest {
     }
 
     @Test
-    public void run_moduleWithParameters_success()
-            throws ModuleManagerException, CommandException, ModuleException, DataManagerException, RecipeException,
-            RecipeManagerException {
+    public void run_moduleWithParameters_success() throws ModuleManagerException, CommandException, ModuleException,
+            DataManagerException, RecipeException, RecipeManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
@@ -101,9 +99,8 @@ public class SelectCommandTest {
     }
 
     @Test
-    public void run_validRecipeName_success()
-            throws ModuleManagerException, CommandException, DataManagerException, ModuleException, RecipeException,
-            RecipeManagerException {
+    public void run_validRecipeName_success() throws ModuleManagerException, CommandException, DataManagerException,
+            ModuleException, RecipeException, RecipeManagerException {
         DataManager dataManager = new DataManager();
         Data data = new Data("hello world");
         dataManager.setOriginalData(data);
@@ -127,9 +124,8 @@ public class SelectCommandTest {
     }
 
     @Test
-    public void run_emptyRecipe_success()
-            throws ModuleManagerException, CommandException, DataManagerException, ModuleException, RecipeException,
-            RecipeManagerException {
+    public void run_emptyRecipe_success() throws ModuleManagerException, CommandException, DataManagerException,
+            ModuleException, RecipeException, RecipeManagerException {
         DataManager dataManager = new DataManager();
         String dataString = "hello world";
         Data data = new Data(dataString);
