@@ -127,12 +127,13 @@ public class Storage {
     private void instantiateDirectoryIfNotExist(String directoryName) throws IOException {
         File outputDirectory = new File(directoryName);
         boolean isSuccessful = false;
-        if (!outputDirectory.exists()) {
-            isSuccessful = outputDirectory.mkdir();
+        if (outputDirectory.exists()) {
+            return;
         }
 
+        isSuccessful = outputDirectory.mkdir();
         if (!isSuccessful) {
-            throw new IOException("Failed to create the directory for " + directoryName);
+            throw new IOException(ErrorMessages.DIRECTORY_INSTANTIATION_FAILED_MESSAGE + directoryName);
         }
     }
 }
