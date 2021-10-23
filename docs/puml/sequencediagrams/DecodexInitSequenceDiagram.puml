@@ -1,13 +1,27 @@
 @startuml
 !include ../Style.puml
+box DECODEX_COLOR
 Participant "<<class>>\nDecodex" as DecodexClass
 Participant ":Decodex" as Decodex
+end box
+box DATA_COLOR
 Participant ":DataManager" as DataManager
+end box
+box MODULE_COLOR
 Participant ":ModuleManager" as ModuleManager
+end box
+box RECIPE_COLOR
 Participant ":RecipeManager" as RecipeManager
+end box
+box LOGIC_COLOR
 Participant ":Parser" as Parser
+end box
+box STORAGE_COLOR
 Participant ":Storage" as Storage
+end box
+box UI_COLOR
 Participant ":Ui" as Ui
+endbox
 
 -> DecodexClass: main()
 activate DecodexClass

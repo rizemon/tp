@@ -1,8 +1,10 @@
 @startuml
 !include ../Style.puml
 
+box LOGIC_COLOR
 Participant ":Parser" as Parser
 Participant ":XYZCommand" as XYZCommand
+end box
 
 activate Parser
 -> Parser : parseCommand(userInput : String)

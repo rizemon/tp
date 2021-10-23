@@ -1,8 +1,12 @@
 @startuml
 !include ../../Style.puml
 
+box LOGIC_COLOR
 Participant ":ExitCommand" as ExitCommand
+end box
+box UI_COLOR
 Participant ":Ui" as Ui
+endbox
 
 -> ExitCommand: run()
 activate ExitCommand

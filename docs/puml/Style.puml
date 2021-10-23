@@ -1,8 +1,11 @@
-!define LOGIC_COLOR #3333C4
-!define LOGIC_COLOR_T1 #7777DB
-!define LOGIC_COLOR_T2 #5252CE
-!define LOGIC_COLOR_T3 #1616B0
-!define LOGIC_COLOR_T4 #101086
+!define DECODEX_COLOR #99D5CA
+!define UI_COLOR #FFC374
+!define LOGIC_COLOR #FF8F80
+!define DATA_COLOR #F9D2DE
+!define RECIPE_COLOR #FFDF71
+!define MODULE_COLOR #C7E8AC
+!define BLUE_COLOR #99D2F2
+!define STORAGE_COLOR #99D2F2
 
 skinparam Sequence {
     MessageAlign center

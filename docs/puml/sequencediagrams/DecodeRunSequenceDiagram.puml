@@ -1,10 +1,17 @@
 @startuml
 !include ../Style.puml
 
+box DECODEX_COLOR
 Participant ":Decodex" as Decodex
+end box
+box UI_COLOR
 Participant ":Ui" as Ui
+end box
+box LOGIC_COLOR
 Participant ":Parser" as Parser
 Participant ":XYZCommand" as XYZCommand
+end box
+
 
 -> Decodex: run()
 

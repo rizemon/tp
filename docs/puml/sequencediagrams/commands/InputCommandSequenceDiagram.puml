@@ -1,10 +1,16 @@
 @startuml
 !include ../../Style.puml
 
+box LOGIC_COLOR
 Participant ":InputCommand" as InputCommand
+end box
+box DATA_COLOR
 Participant ":Data" as Data
 Participant ":DataManager" as DataManager
+end box
+box UI_COLOR
 Participant ":Ui" as Ui
+end box
 
 -> InputCommand: run()
 activate InputCommand
