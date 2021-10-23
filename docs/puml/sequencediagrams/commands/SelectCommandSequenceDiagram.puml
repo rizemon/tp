@@ -31,7 +31,7 @@ alt moduleName is not blank
   SelectCommand <-- DataManager
   deactivate DataManager
 
-  SelectCommand -> Ui: printOutput(newData.toString())
+  SelectCommand -> Ui: printOutput(newData)
   activate Ui
   SelectCommand <-- Ui
   deactivate Ui
