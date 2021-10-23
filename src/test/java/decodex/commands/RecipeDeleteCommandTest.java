@@ -6,9 +6,9 @@ import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;
 import decodex.data.exception.ModuleException;
+import decodex.data.exception.ModuleManagerException;
 import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
-import decodex.data.exception.UnknownModuleException;
 import decodex.modules.ModuleManager;
 import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
@@ -19,8 +19,8 @@ class RecipeDeleteCommandTest {
 
     @Test
     void run_deleteValidRecipe_recipeDeleted()
-            throws UnknownModuleException, CommandException, RecipeException,
-            ModuleException, RecipeManagerException, DataManagerException {
+            throws CommandException, RecipeException,
+            ModuleException, RecipeManagerException, DataManagerException, ModuleManagerException {
         String testRecipeName = "BaconPancakes";
 
         DataManager dataManager = new DataManager();
