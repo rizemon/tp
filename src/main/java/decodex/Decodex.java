@@ -7,11 +7,13 @@ import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;
 import decodex.data.exception.ModuleException;
 import decodex.data.exception.ParserException;
-import decodex.data.exception.UnknownModuleException;
+import decodex.data.exception.RecipeException;
+import decodex.data.exception.RecipeManagerException;
+import decodex.data.exception.ModuleManagerException;
 import decodex.modules.ModuleManager;
 import decodex.parser.Parser;
+import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,6 +27,7 @@ public class Decodex {
      */
     private static DataManager dataManager;
     private static ModuleManager moduleManager;
+    private static RecipeManager recipeManager;
     private static Parser parser;
     private static Ui ui;
 
@@ -39,6 +42,7 @@ public class Decodex {
         logger.setLevel(Level.INFO);
         dataManager = new DataManager();
         moduleManager = new ModuleManager();
+        recipeManager = new RecipeManager();
         parser = new Parser();
         ui = new Ui();
     }
@@ -61,9 +65,9 @@ public class Decodex {
             try {
                 command = parser.parseCommand(userInput);
                 assert command != null : "Command should not be null";
-                command.run(dataManager, moduleManager, ui);
-            } catch (ParserException | CommandException | UnknownModuleException
-                    | DataManagerException | ModuleException err) {
+                command.run(dataManager, moduleManager, ui, recipeManager);
+            } catch (ParserException | CommandException | ModuleManagerException
+                    | DataManagerException | ModuleException | RecipeException | RecipeManagerException err) {
                 ui.printError(err);
                 logger.fine(err.getMessage());
             }

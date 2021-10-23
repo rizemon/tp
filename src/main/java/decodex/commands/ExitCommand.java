@@ -2,6 +2,7 @@ package decodex.commands;
 
 import decodex.data.DataManager;
 import decodex.modules.ModuleManager;
+import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
 
 public class ExitCommand extends Command {
@@ -13,7 +14,7 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui) {
+    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager) {
         ui.printGoodbye();
     }
 }

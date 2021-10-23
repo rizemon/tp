@@ -1,6 +1,7 @@
 package decodex.ui;
 
 import decodex.ui.messages.RegularMessages;
+
 import java.util.Scanner;
 
 /**
@@ -66,14 +67,78 @@ public class Ui {
     }
 
     /**
-     * Prints the list of available modules.
+     * Prints the list of supported modules.
      *
-     * @param moduleList String of the list of available modules.
+     * @param moduleList The list of supported modules.
      */
     public void printModuleList(String moduleList) {
         assert moduleList != null : "Module list should not be null";
         assert !moduleList.isBlank() : "Module list should not be empty";
         System.out.println(RegularMessages.LIST_MODULES + "\n" + moduleList);
+    }
+
+    /**
+     * Prints the list of available recipes.
+     *
+     * @param recipeList The list of available recipes.
+     */
+    public void printRecipeList(String recipeList) {
+        assert recipeList != null : "Recipe list should not be null";
+        if (!recipeList.isBlank()) {
+            System.out.println(RegularMessages.LIST_RECIPES + "\n" + recipeList);
+        } else {
+            System.out.println(RegularMessages.NO_RECIPES + "\n");
+        }
+    }
+
+    /**
+     * Prints the message when a recipe is reset.
+     *
+     * @param recipeName The name of the recipe that was reset.
+     */
+    public void printRecipeReset(String recipeName) {
+        assert recipeName != null : "Recipe name should not be null";
+        assert !recipeName.isBlank() : "Recipe name should not be empty";
+        printSuccess(String.format(RegularMessages.RESETTED_EDITING_RECIPE, recipeName));
+    }
+  
+    /**  
+     * Prints a message showing that a given module was removed from a given recipe.
+     *
+     * @param moduleName The name of the module removed.
+     * @param recipeName The name of the recipe which the module was removed from.
+     */
+    public void printModuleRemovedFromRecipe(String moduleName, String recipeName) {
+        assert moduleName != null : "Module name should not be null";
+        assert !moduleName.isBlank() : "Module name should not be empty";
+        assert recipeName != null : "Recipe name should not be null";
+        assert !recipeName.isBlank() : "Recipe name should not be empty";
+        printSuccess(String.format(RegularMessages.REMOVED_RECIPE_FROM_RECIPE + "\n", moduleName, recipeName));
+    }
+  
+    /**
+     * Prints a message showing that a given module was added to a given recipe.
+     *
+     * @param moduleName The name of the module added.
+     * @param recipeName The name of the recipe which the module was added to.
+     */
+    public void printModuleAddedToRecipe(String moduleName, String recipeName) {
+        assert moduleName != null : "Module name should not be null";
+        assert !moduleName.isBlank() : "Module name should not be empty";
+        assert recipeName != null : "Recipe name should not be null";
+        assert !recipeName.isBlank() : "Recipe name should not be empty";
+        printSuccess(String.format(RegularMessages.ADDED_MODULE_TO_RECIPE + "\n", moduleName, recipeName));
+    }
+  
+    /**
+     * Prints a message showing that a recipe was selected.
+     *
+     * @param recipeName The name of the selected recipe.
+     */
+    public void printRecipeSelected(String recipeName) {
+        assert recipeName != null : "Recipe name should not be null";
+        assert !recipeName.isBlank() : "Recipe name should not be empty";
+        printSuccess(String.format(RegularMessages.RECIPE_SELECT + "\n", recipeName));
     }
 
     /**
