@@ -44,11 +44,19 @@ public class Parser {
     private static final int VALID_TOKENS_LENGTH_FOR_COMMAND = 1;
 
     /**
-     * Specifies the number of arguments for list command with no category and with a category.
+     * Specifies the number of tokens for list command with no category and with a category.
      */
-    private static final int LIST_ARGUMENT_LENGTH_NO_CATEGORY = 0;
-    private static final int LIST_ARGUMENT_LENGTH_HAS_CATEGORY = 1;
-    private static final int LIST_ARGUMENT_STARTING_INDEX = 0;
+    private static final int LIST_COMMAND_LENGTH_NO_CATEGORY = 1;
+    private static final int LIST_COMMAND_LENGTH_HAS_CATEGORY = 2;
+    private static final int LIST_COMMAND_CATEGORY_STARTING_INDEX = 1;
+
+    /**
+     * Specifies the valid number of tokens and indexes for category and parameters for select command.
+     */
+    private static final int VALID_TOKENS_LENGTH_FOR_SELECT_COMMAND = 3;
+    private static final int SELECT_CATEGORY_INDEX = 1;
+    private static final int SELECT_ITEM_NAME_INDEX = 2;
+    private static final int SELECT_PARAMETERS_START_INDEX = 3;
 
     /**
      * Returns the type of command that the user has specified.
@@ -163,6 +171,17 @@ public class Parser {
     }
 
     /**
+     * Splits the user input by an arbitrary number of spaces into a list of tokens.
+     *
+     * @param userInput The user input specified by the user.
+     * @return A list of tokens.
+     */
+    private String[] getTokens(String userInput) {
+        String strippedUserInput = userInput.stripLeading();
+        return strippedUserInput.split(SPLIT_REGEX);
+    }
+
+    /**
      * Prepares and returns the ExitCommand.
      *
      * @return The ExitCommand object.
@@ -191,13 +210,12 @@ public class Parser {
      * @throws CommandException If the command has more than 1 argument.
      */
     private String getListCategory(String userInput) throws CommandException {
-        String[] tokens = userInput.split(SPLIT_REGEX);
-        String[] arguments = Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length);
+        String[] tokens = getTokens(userInput);
 
-        if (arguments.length == LIST_ARGUMENT_LENGTH_NO_CATEGORY) {
+        if (tokens.length == LIST_COMMAND_LENGTH_NO_CATEGORY) {
             return null;
-        } else if (arguments.length == LIST_ARGUMENT_LENGTH_HAS_CATEGORY) {
-            return arguments[LIST_ARGUMENT_STARTING_INDEX];
+        } else if (tokens.length == LIST_COMMAND_LENGTH_HAS_CATEGORY) {
+            return tokens[LIST_COMMAND_CATEGORY_STARTING_INDEX];
         } else {
             throw new CommandException(ErrorMessages.TOO_MANY_COMMAND_ARGUMENTS);
         }
@@ -231,12 +249,18 @@ public class Parser {
      *
      * @param userInput The user input specified by the user.
      * @return The SelectCommand object.
-     * @throws ParserException If the user input is missing the module name.
+     * @throws CommandException If the number of command arguments is invalid.
      */
-    private SelectCommand craftSelectCommand(String userInput) throws ParserException {
-        String moduleName = getModuleName(userInput);
-        String[] parameters = getModuleParameters(userInput);
-        return new SelectCommand(moduleName, parameters);
-    }
+    private SelectCommand craftSelectCommand(String userInput) throws CommandException {
+        String[] tokens = getTokens(userInput);
+        if (tokens.length < VALID_TOKENS_LENGTH_FOR_SELECT_COMMAND) {
+            throw new CommandException(ErrorMessages.MISSING_ARGUMENT);
+        }
 
+        String selectCategory = tokens[SELECT_CATEGORY_INDEX];
+        String itemName = tokens[SELECT_ITEM_NAME_INDEX];
+        String[] parameters = Arrays.copyOfRange(tokens, SELECT_PARAMETERS_START_INDEX, tokens.length);
+
+        return new SelectCommand(selectCategory, itemName, parameters);
+    }
 }

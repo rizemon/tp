@@ -106,9 +106,9 @@ class ParserTest {
     }
 
     @Test
-    public void parseCommand_userInputSpecifyingValidSelect_expectSelectCommand() throws ParserException,
+    public void parseCommand_userInputSpecifyingValidSelectModule_expectSelectCommand() throws ParserException,
             CommandException {
-        String userInput = "select dummyMod";
+        String userInput = "select module base64encode";
         Command command = parser.parseCommand(userInput);
         assertTrue(command instanceof SelectCommand);
     }
