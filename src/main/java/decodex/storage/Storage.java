@@ -154,7 +154,7 @@ public class Storage {
     /**
      * Instantiates the given directory if it does not exist yet.
      */
-    private void instantiateDirectoryIfNotExist(String directoryName) throws IOException {
+    public void instantiateDirectoryIfNotExist(String directoryName) throws IOException {
         File outputDirectory = new File(directoryName);
         boolean isSuccessful;
         if (outputDirectory.exists()) {
