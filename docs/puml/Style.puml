@@ -17,3 +17,4 @@ hide circle
 
 skinparam DefaultTextAlignment center
 skinparam Shadowing false
+skinparam SequenceGroupBodyBackGroundColor ffffff90
