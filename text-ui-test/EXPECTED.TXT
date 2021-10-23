@@ -7,6 +7,9 @@ Decodex > [+] Input: "I am a lab rat"
 Decodex > [+] Output: "SSBhbSBhIGxhYiByYXQ="
 Decodex > [+] Output: "I am a lab rat"
 Decodex > [+] Output: "4920616d2061206c616220726174"
+Decodex > [+] Output: "I am a lab rat"
+Decodex > [+] Output: "L dp d ode udw"
+Decodex > [+] Output: "I am a lab rat"
 Decodex > [+] Reverted all changes
 Decodex > [x] Unknown command, please enter a valid command
 Decodex > Goodbye!
