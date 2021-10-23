@@ -3,6 +3,7 @@ package decodex.storage;
 import decodex.ui.messages.ErrorMessages;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -47,17 +48,20 @@ public class Storage {
      * @throws IOException If the default input file does not exist.
      */
     public byte[] readFromInputFile(String fileName) throws IOException {
-        byte[] inputContent;
+
         File inputDirectory = new File(DEFAULT_INPUT_DIRECTORY);
         File inputFile = new File(inputDirectory, fileName);
         Path inputFilePath = inputFile.toPath();
 
         try {
+            byte[] inputContent;
             inputContent = Files.readAllBytes(inputFilePath);
-        } catch (IOException e) {
-            throw new IOException(ErrorMessages.INPUT_FILE_DOES_NOT_EXIST_MESSAGE);
+            return inputContent;
+        } catch (FileNotFoundException fileNotFoundError) {
+            throw new FileNotFoundException(ErrorMessages.INPUT_FILE_DOES_NOT_EXIST_MESSAGE);
+        } catch (IOException ioException) {
+            throw new IOException("Error during file read");
         }
-        return inputContent;
     }
 
     // @@author Kair0s3
