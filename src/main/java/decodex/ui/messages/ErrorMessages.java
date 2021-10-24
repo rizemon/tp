@@ -22,6 +22,7 @@ public class ErrorMessages {
     public static final String INVALID_MODULE_PARAMETERS = "Invalid module parameters";
     public static final String MISSING_MODULE_PARAMETERS = "Missing module parameters";
     public static final String TOO_MANY_MODULE_PARAMETERS = "Too many module parameters";
+    public static final String UNKNOWN_SELECTION_CATEGORY = "Unknown selection category";
     public static final String INPUT_FILE_DOES_NOT_EXIST_MESSAGE =
             "The default input file does not exists";
     public static final String FILE_WRITE_ERROR_MESSAGE = "Something went wrong while writing result to output file";
