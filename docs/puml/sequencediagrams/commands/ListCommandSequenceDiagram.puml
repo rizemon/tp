@@ -1,0 +1,39 @@
+@startuml
+!include ../../Style.puml
+
+box LOGIC_COLOR
+Participant ":ListCommand" as ListCommand
+end box
+box UI_COLOR
+Participant ":Ui" as Ui
+end box
+
+-> ListCommand: run()
+activate ListCommand
+alt isPrintModuleList
+  ListCommand -> ListCommand: getModuleList(:ModuleManager)
+  activate ListCommand
+  ListCommand --> ListCommand
+  deactivate ListCommand
+  ListCommand -> Ui: printModuleList(:String)
+  activate Ui
+  ListCommand <-- Ui
+  deactivate Ui
+  <-- ListCommand
+else isPrintRecipeList
+  ListCommand -> ListCommand: getRecipeList(:RecipeManager)
+  activate ListCommand
+  ListCommand --> ListCommand
+  deactivate ListCommand
+  ListCommand -> Ui: printRecipeList(:String)
+  activate Ui
+  ListCommand <-- Ui
+  deactivate Ui
+  <-- ListCommand
+else not isPrintModuleList and not PrintRecipeList
+  <-- ListCommand: CommandException
+end
+
+deactivate ListCommand
+
+@enduml

@@ -39,7 +39,7 @@ loop command is not instance of ExitCommand
     Decodex -> XYZCommand : run(:DataManager, :ModuleManager, :RecipeManager, :Ui)
     activate XYZCommand
 
-    ref over XYZCommand   : Command execution
+    ref over XYZCommand   : Command execution logic
 
     XYZCommand --> Decodex
     deactivate XYZCommand

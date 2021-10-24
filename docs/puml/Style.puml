@@ -18,3 +18,6 @@ hide circle
 skinparam DefaultTextAlignment center
 skinparam Shadowing false
 skinparam SequenceGroupBodyBackGroundColor ffffff90
+
+skinparam MinClassWidth 110
+skinparam ParticipantPadding 10
