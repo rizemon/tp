@@ -20,7 +20,11 @@ public class Storage {
     private static final String DEFAULT_OUTPUT_DIRECTORY = "output";
     private static final String DEFAULT_RECIPE_DIRECTORY = "recipe";
 
+    /**
+     * Specifies the corresponding file prefixes.
+     */
     private static final String DATA_FILE_PREFIX = ".data";
+    private static final String RECIPE_FILE_PREFIX = ".txt";
 
     private static final String OUTPUT_FILENAME_FORMAT = "yyyy-dd-MM__HH.mm.ss";
 
@@ -118,7 +122,7 @@ public class Storage {
     public void writeRecipeToFile(String recipeName, byte[] recipeBytes) throws IOException {
         instantiateDirectoryIfNotExist(DEFAULT_RECIPE_DIRECTORY);
 
-        String newRecipeFileName = recipeName + DATA_FILE_PREFIX;
+        String newRecipeFileName = recipeName + RECIPE_FILE_PREFIX;
 
         File recipeDirectory = new File(DEFAULT_RECIPE_DIRECTORY);
         File outputRecipeFile = new File(recipeDirectory, newRecipeFileName);
