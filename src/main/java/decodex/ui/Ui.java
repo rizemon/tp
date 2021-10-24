@@ -1,8 +1,11 @@
 package decodex.ui;
 
-import decodex.ui.messages.RegularMessages;
-
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import decodex.modules.Module;
+import decodex.recipes.Recipe;
+import decodex.ui.messages.RegularMessages;
 
 /**
  * The Ui class handles all user input and message output ot the console.
@@ -92,6 +95,26 @@ public class Ui {
     }
 
     /**
+     * Prints the modules in a recipe.
+     *
+     * @param recipe The provided recipe.
+     */
+    public void printRecipeModules(Recipe recipe) {
+        if (recipe.getModuleList().size() == 0) {
+            printSuccess(RegularMessages.RECIPE_EMPTY);
+        } else {
+            ArrayList<Module> recipeModuleList = recipe.getModuleList();
+            String[] recipeModuleNames = recipeModuleList.stream().map(Module::getName).toArray(String[]::new);
+
+            String message = RegularMessages.RECIPE_MODULES_EXECUTED
+                    + " "
+                    + String.join(", ", recipeModuleNames);
+
+            printSuccess(message);
+        }
+    }
+
+    /**
      * Prints the message when a recipe is reset.
      *
      * @param recipeName The name of the recipe that was reset.
@@ -101,8 +124,8 @@ public class Ui {
         assert !recipeName.isBlank() : "Recipe name should not be empty";
         printSuccess(String.format(RegularMessages.RESETTED_EDITING_RECIPE, recipeName));
     }
-  
-    /**  
+
+    /**
      * Prints a message showing that a given module was removed from a given recipe.
      *
      * @param moduleName The name of the module removed.
@@ -115,7 +138,7 @@ public class Ui {
         assert !recipeName.isBlank() : "Recipe name should not be empty";
         printSuccess(String.format(RegularMessages.REMOVED_RECIPE_FROM_RECIPE + "\n", moduleName, recipeName));
     }
-  
+
     /**
      * Prints a message showing that a given module was added to a given recipe.
      *
@@ -129,7 +152,7 @@ public class Ui {
         assert !recipeName.isBlank() : "Recipe name should not be empty";
         printSuccess(String.format(RegularMessages.ADDED_MODULE_TO_RECIPE + "\n", moduleName, recipeName));
     }
-  
+
     /**
      * Prints a message showing that a recipe was selected.
      *
@@ -173,7 +196,7 @@ public class Ui {
         assert !recipeName.isBlank() : "Recipe name should not be empty";
         printSuccess(String.format(RegularMessages.RECIPE_DELETED + "\n", recipeName));
     }
-  
+
     /**
      * Prints a message indicating the creation of a new recipe of given name.
      *

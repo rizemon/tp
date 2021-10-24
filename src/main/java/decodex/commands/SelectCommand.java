@@ -43,10 +43,10 @@ public class SelectCommand extends Command {
 
         switch (selectCategory) {
         case SELECT_CATEGORY_MODULE:
-            selectModule(dataManager, moduleManager, ui);
+            runModule(dataManager, moduleManager, ui);
             break;
         case SELECT_CATEGORY_RECIPE:
-            selectRecipe(dataManager, recipeManager, ui);
+            runRecipe(dataManager, recipeManager, ui);
             break;
         default:
             throw new CommandException(ErrorMessages.UNKNOWN_SELECTION_CATEGORY);
@@ -64,7 +64,7 @@ public class SelectCommand extends Command {
      * @throws ModuleException        If the module execution has failed.
      * @throws DataManagerException   If the data is invalid.
      */
-    private void selectModule(DataManager dataManager, ModuleManager moduleManager, Ui ui)
+    private void runModule(DataManager dataManager, ModuleManager moduleManager, Ui ui)
             throws CommandException, ModuleManagerException, ModuleException, DataManagerException {
         if (itemName.isBlank()) {
             throw new CommandException(ErrorMessages.MISSING_MODULE_NAME);
@@ -88,7 +88,7 @@ public class SelectCommand extends Command {
      * @throws ModuleException        If the module execution has failed.
      * @throws DataManagerException   If the data is invalid.
      */
-    private void selectRecipe(DataManager dataManager, RecipeManager recipeManager, Ui ui)
+    private void runRecipe(DataManager dataManager, RecipeManager recipeManager, Ui ui)
             throws CommandException, RecipeManagerException, ModuleException, DataManagerException {
         if (itemName.isBlank()) {
             throw new CommandException(ErrorMessages.MISSING_RECIPE_NAME);
@@ -98,6 +98,7 @@ public class SelectCommand extends Command {
         Data newData = recipe.run(dataManager.getCurrentData());
         dataManager.setCurrentData(newData);
 
+        ui.printRecipeModules(recipe);
         ui.printOutput(newData.toString());
     }
 }
