@@ -102,16 +102,14 @@ public class Ui {
     public void printRecipeModules(Recipe recipe) {
         if (recipe.getModuleList().size() == 0) {
             printSuccess(RegularMessages.RECIPE_EMPTY);
-        } else {
-            ArrayList<Module> recipeModuleList = recipe.getModuleList();
-            String[] recipeModuleNames = recipeModuleList.stream().map(Module::getName).toArray(String[]::new);
-
-            String message = RegularMessages.RECIPE_MODULES_EXECUTED
-                    + " "
-                    + String.join(", ", recipeModuleNames);
-
-            printSuccess(message);
+            return;
         }
+
+        ArrayList<Module> recipeModuleList = recipe.getModuleList();
+        String[] recipeModuleNames = recipeModuleList.stream().map(Module::getName).toArray(String[]::new);
+
+        String message = RegularMessages.RECIPE_MODULES_EXECUTED + " " + String.join(", ", recipeModuleNames);
+        printSuccess(message);
     }
 
     /**
