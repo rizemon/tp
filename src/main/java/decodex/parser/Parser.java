@@ -21,17 +21,11 @@ public class Parser {
      * Specifies the index of the tokens where specific parameters can be found.
      */
     private static final int COMMAND_INDEX = 0;
-    private static final int MODULE_NAME_INDEX_IN_TOKENS = 0;
 
     /**
      * Specifies the starting index where the arguments can be found.
      */
     private static final int STARTING_ARGUMENTS_INDEX = 1;
-
-    /**
-     * Specifies the starting index where the module parameters can be found.
-     */
-    private static final int MODULE_PARAMETERS_INDEX = 2;
 
     /**
      * Specifies the token used to split the user input by.
@@ -58,6 +52,9 @@ public class Parser {
     private static final int SELECT_ITEM_NAME_INDEX = 2;
     private static final int SELECT_PARAMETERS_START_INDEX = 3;
 
+    private static final String RECIPE_COMMAND_WORD = "recipe";
+    private static final RecipeCommandParser recipeCommandParser = new RecipeCommandParser();
+
     /**
      * Returns the type of command that the user has specified.
      *
@@ -82,39 +79,6 @@ public class Parser {
         String commandType = tokens[COMMAND_INDEX];
         assert !commandType.isEmpty() : "Command Type should not be empty";
         return commandType;
-    }
-
-    /**
-     * Returns the name of the module that the user has specified.
-     *
-     * @param userInput The input specified by the user.
-     * @return The name of the module.
-     * @throws ParserException If the user input is missing the module name.
-     */
-    public String getModuleName(String userInput) throws ParserException {
-        String strippedUserInput = userInput.stripLeading();
-        String[] tokens = strippedUserInput.split(" ", -1);
-
-        String[] argumentTokens = Arrays.stream(Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length))
-                .filter(value -> !value.isBlank())
-                .toArray(size -> new String[size]);
-        if (argumentTokens.length == 0) {
-            throw new ParserException(ErrorMessages.MISSING_MODULE_NAME);
-        }
-        return argumentTokens[MODULE_NAME_INDEX_IN_TOKENS];
-    }
-
-    /**
-     * Returns the module parameters that the user has specified.
-     *
-     * @param userInput The input specified by the user.
-     * @return A String array of module parameters.
-     */
-    public String[] getModuleParameters(String userInput) {
-        String strippedUserInput = userInput.stripLeading();
-        String[] tokens = strippedUserInput.split(SPLIT_REGEX);
-        String[] parameters = Arrays.copyOfRange(tokens, MODULE_PARAMETERS_INDEX, tokens.length);
-        return parameters;
     }
 
     /**
@@ -163,6 +127,9 @@ public class Parser {
             break;
         case SelectCommand.COMMAND_WORD:
             command = prepareSelectCommand(userInput);
+            break;
+        case RECIPE_COMMAND_WORD:
+            command = prepareRecipeSubcommands(userInput);
             break;
         default:
             throw new ParserException(ErrorMessages.UNKNOWN_COMMAND);
@@ -262,5 +229,18 @@ public class Parser {
         String[] parameters = Arrays.copyOfRange(tokens, SELECT_PARAMETERS_START_INDEX, tokens.length);
 
         return new SelectCommand(selectCategory, itemName, parameters);
+    }
+
+    /**
+     * Prepares and returns recipe subcommands using the specified user input.
+     *
+     * @param userInput The user input specified by the user.
+     * @return The respective recipe command.
+     * @throws CommandException If the recipe command is invalid.
+     */
+    private Command prepareRecipeSubcommands(String userInput) throws CommandException {
+        String[] tokens = getTokens(userInput);
+        String[] recipeCommandArguments = Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length);
+        return recipeCommandParser.parseCommand(recipeCommandArguments);
     }
 }
