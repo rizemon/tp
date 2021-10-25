@@ -9,6 +9,7 @@ import decodex.ui.messages.ErrorMessages;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -35,12 +36,25 @@ public class Storage {
 
     private static final String OUTPUT_FILENAME_FORMAT = "yyyy-dd-MM__HH.mm.ss";
 
+    private static final String LINE_BREAK_REGEX = "\\r?\\n";
+
+
+    /**
+     * Specifies the index for the corresponding fields.
+     */
+    private static final int RECIPE_NAME_INDEX = 0;
+    private static final int MODULE_NAME_INDEX = 0;
+
+    /**
+     * Other miscellaneous constants for condition checking.
+     */
+    private static final int EMPTY_LENGTH = 0;
+
     /**
      * Initializes a new Storage.
      *
-     * @param moduleManager
      */
-    public Storage(ModuleManager moduleManager) {
+    public Storage() {
     }
 
     /**
@@ -57,13 +71,16 @@ public class Storage {
         instantiateDirectoryIfNotExist(DEFAULT_RECIPE_DIRECTORY);
         File[] recipeFiles = getAllRecipeFiles();
 
-        if (recipeFiles.length == 0) {
+        if (recipeFiles.length == EMPTY_LENGTH) {
             return null;
         }
 
         ArrayList<Recipe> tempRecipeList = new ArrayList<>();
         for (File recipeFile : recipeFiles) {
-            Recipe recipe = readRecipeFromFile(recipeFile.getName(), recipeFile, moduleManager);
+            String recipeFilename = recipeFile.getName();
+            // The recipe name exists on the index 0 of the file's name.
+            String recipeName = recipeFilename.split("[.]")[RECIPE_NAME_INDEX];
+            Recipe recipe = readRecipeFromFile(recipeName, recipeFile, moduleManager);
             tempRecipeList.add(recipe);
         }
 
@@ -100,14 +117,14 @@ public class Storage {
     private Recipe parseContentToRecipe(String recipeFileName, String recipeContent, ModuleManager moduleManager)
             throws ModuleException, ModuleManagerException {
         Recipe recipe = new Recipe(recipeFileName);
-        String[] recipeLines = recipeContent.split("\\r?\\n");
+        String[] recipeLines = recipeContent.split(LINE_BREAK_REGEX);
 
         for (String recipeLine : recipeLines) {
             if (recipeLine.isEmpty()) {
                 continue;
             }
             String[] tokens = recipeLine.split(" ");
-            String moduleName = tokens[0];
+            String moduleName = tokens[MODULE_NAME_INDEX];
             String[] moduleParameters = Arrays.copyOfRange(tokens, 1, tokens.length);
             Module module = moduleManager.selectModule(moduleName, moduleParameters);
             recipe.push(module);
@@ -130,29 +147,10 @@ public class Storage {
             throws IOException, ModuleException, ModuleManagerException {
         Path recipeFilePath = recipeFile.toPath();
 
-        byte[] recipeContentBytes = readFromFile(recipeFilePath);
-        String recipeContent = new String(recipeContentBytes);
+        byte[] recipeContentBytes = readContentFromFile(recipeFilePath);
+        String recipeContent = convertByteArrayToString(recipeContentBytes);
         Recipe loadedRecipe = parseContentToRecipe(recipeFilename, recipeContent, moduleManager);
         return loadedRecipe;
-    }
-
-    /**
-     * Reads and returns the input from the provided file.
-     *
-     * @param fileName The name of the input file specified by the user.
-     * @return The byte contents from the input file.
-     * @throws IOException If something went wrong when reading the file or
-     *                     the input file does not exist.
-     */
-    public byte[] readInputFromFile(String fileName) throws IOException {
-        instantiateDirectoryIfNotExist(DEFAULT_INPUT_DIRECTORY);
-
-        File inputDirectory = new File(DEFAULT_INPUT_DIRECTORY);
-        File inputFile = new File(inputDirectory, fileName);
-        Path inputFilePath = inputFile.toPath();
-
-        byte[] inputContent = readFromFile(inputFilePath);
-        return inputContent;
     }
 
     /**
@@ -170,9 +168,28 @@ public class Storage {
         File recipeFile = new File(recipeDirectory, fileName);
         Path recipeFilePath = recipeFile.toPath();
 
-        byte[] recipeContentBytes = readFromFile(recipeFilePath);
+        byte[] recipeContentBytes = readContentFromFile(recipeFilePath);
         String recipeContent = recipeContentBytes.toString();
         return recipeContent;
+    }
+
+    /**
+     * Reads and returns the input from the provided file.
+     *
+     * @param fileName The name of the input file specified by the user.
+     * @return The byte contents from the input file.
+     * @throws IOException If something went wrong when reading the file or
+     *                     the input file does not exist.
+     */
+    public byte[] readInputFromFile(String fileName) throws IOException {
+        instantiateDirectoryIfNotExist(DEFAULT_INPUT_DIRECTORY);
+
+        File inputDirectory = new File(DEFAULT_INPUT_DIRECTORY);
+        File inputFile = new File(inputDirectory, fileName);
+        Path inputFilePath = inputFile.toPath();
+
+        byte[] inputContent = readContentFromFile(inputFilePath);
+        return inputContent;
     }
 
     /**
@@ -183,7 +200,7 @@ public class Storage {
      * @throws IOException           If something went wrong when reading the file.
      * @throws FileNotFoundException If the input file does not exist.
      */
-    private byte[] readFromFile(Path readFilePath) throws IOException, FileNotFoundException {
+    private byte[] readContentFromFile(Path readFilePath) throws IOException, FileNotFoundException {
         try {
             return Files.readAllBytes(readFilePath);
         } catch (FileNotFoundException err) {
@@ -194,13 +211,13 @@ public class Storage {
     }
 
     /**
-     * Writes the provided output into a file.
+     * Saves the provided output into a file.
      *
      * @param outputBytes The encoded or decoded output.
      * @throws IOException If something went wrong when creating the file
      *                     or when writing to the file.
      */
-    public void writeOutputToFile(byte[] outputBytes) throws IOException {
+    public void saveOutputToFile(byte[] outputBytes) throws IOException {
         instantiateDirectoryIfNotExist(DEFAULT_OUTPUT_DIRECTORY);
 
         LocalDateTime currentDateTime = LocalDateTime.now();
@@ -210,38 +227,19 @@ public class Storage {
 
         File outputDirectory = new File(DEFAULT_OUTPUT_DIRECTORY);
         File outputFile = new File(outputDirectory, newOutputFileName);
-        writeToFile(outputFile, outputBytes);
+        saveBytesToFile(outputFile, outputBytes);
     }
 
     /**
-     * Writes the provided recipe into a file.
+     * Saves the content bytes into the provided file.
      *
-     * @param recipeName  The name of the recipe.
-     * @param recipeBytes The recipe formatted in bytes.
+     * @param writeFile    The file to be saved to.
+     * @param contentBytes The bytes of the content to be saved.
      * @throws IOException If something went wrong when creating the file
      *                     or when writing to the file.
      */
-    public void writeRecipeToFile(String recipeName, byte[] recipeBytes) throws IOException {
-        instantiateDirectoryIfNotExist(DEFAULT_RECIPE_DIRECTORY);
-
-        String newRecipeFileName = recipeName + RECIPE_FILE_PREFIX;
-
-        File recipeDirectory = new File(DEFAULT_RECIPE_DIRECTORY);
-        File outputRecipeFile = new File(recipeDirectory, newRecipeFileName);
-        writeToFile(outputRecipeFile, recipeBytes);
-    }
-
-    /**
-     * Writes the contents into the provided file.
-     *
-     * @param writeFile    The file to be written to.
-     * @param contentBytes The bytes of the content to be written.
-     * @throws IOException If something went wrong when creating the file
-     *                     or when writing to the file.
-     */
-    private void writeToFile(File writeFile, byte[] contentBytes) throws IOException {
+    private void saveBytesToFile(File writeFile, byte[] contentBytes) throws IOException {
         try {
-            writeFile.createNewFile();
             Path writeFilePath = writeFile.toPath();
             Files.write(writeFilePath, contentBytes);
         } catch (IOException err) {
@@ -250,9 +248,83 @@ public class Storage {
     }
 
     /**
+     * Saves the provided recipe into a file.
+     *
+     * @param recipe The recipe to be saved.
+     * @throws IOException If something went wrong when creating the file
+     *                     or when writing to the file.
+     */
+    public void saveRecipeToFile(Recipe recipe) throws IOException {
+        instantiateDirectoryIfNotExist(DEFAULT_RECIPE_DIRECTORY);
+
+        String newRecipeFileName = recipe.getName() + RECIPE_FILE_PREFIX;
+
+        File recipeDirectory = new File(DEFAULT_RECIPE_DIRECTORY);
+        File outputRecipeFile = new File(recipeDirectory, newRecipeFileName);
+        saveRecipeModulesToFile(outputRecipeFile, recipe);
+    }
+
+    /**
+     * Saves the list of recipe's modules into the file.
+     *
+     * @param writeFile       The file to be saved to.
+     * @param recipeToBeSaved The recipe to be saved.
+     * @throws IOException If something went wrong when creating the file
+     *                     or when writing to the file.
+     */
+    private void saveRecipeModulesToFile(File writeFile, Recipe recipeToBeSaved) throws IOException {
+        ArrayList<Module> modules = recipeToBeSaved.getModuleList();
+
+        try {
+            FileWriter writer = new FileWriter(writeFile);
+            String formattedModuleList = formatModuleListForSaving(modules);
+            writer.write(formattedModuleList);
+            writer.close();
+        } catch (IOException err) {
+            throw new IOException(ErrorMessages.FILE_WRITE_ERROR_MESSAGE);
+        }
+    }
+
+    /**
+     * Formats the list of modules for saving to file.
+     *
+     * @param modules The list of modules to be saved.
+     * @return The formatted list of modules.
+     */
+    private String formatModuleListForSaving(ArrayList<Module> modules) {
+        if (modules.size() == EMPTY_LENGTH) {
+            return "";
+        }
+
+        String formattedModuleList = "";
+        for (Module module : modules) {
+            formattedModuleList = formattedModuleList + module.toString() + "\n";
+        }
+        return formattedModuleList;
+    }
+
+    /**
+     * Deletes the saved recipe file.
+     *
+     * @param recipeName The name of the deleted recipe.
+     */
+    private void deleteRecipeFile(String recipeName) {
+        String newRecipeFileName = recipeName + RECIPE_FILE_PREFIX;
+
+        File recipeDirectory = new File(DEFAULT_RECIPE_DIRECTORY);
+        File outputRecipeFile = new File(recipeDirectory, newRecipeFileName);
+
+        if (!outputRecipeFile.exists()) {
+            return;
+        }
+
+        outputRecipeFile.delete();
+    }
+
+    /**
      * Instantiates the given directory if it does not exist yet.
      */
-    public void instantiateDirectoryIfNotExist(String directoryName) throws IOException {
+    private void instantiateDirectoryIfNotExist(String directoryName) throws IOException {
         File outputDirectory = new File(directoryName);
         if (outputDirectory.exists()) {
             return;
@@ -263,5 +335,15 @@ public class Storage {
         if (!isSuccessful) {
             throw new IOException(ErrorMessages.DIRECTORY_INSTANTIATION_FAILED_MESSAGE + directoryName);
         }
+    }
+
+    /**
+     * Converts a byte array to string value.
+     *
+     * @param contentBytes The bytes of the content.
+     * @return The string value of the content.
+     */
+    private String convertByteArrayToString(byte[] contentBytes) {
+        return new String(contentBytes);
     }
 }
