@@ -49,7 +49,7 @@ public class Decodex {
         moduleManager = new ModuleManager();
         parser = new Parser();
         ui = new Ui();
-        storage = new Storage(moduleManager);
+        storage = new Storage();
         try {
             Recipe[] savedRecipes = loadSavedRecipes();
         } catch (IOException | ModuleException | ModuleManagerException err) {
