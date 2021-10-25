@@ -15,7 +15,7 @@ import decodex.ui.messages.ErrorMessages;
 /**
  * The RecipeCommandParser class handles the parsing and validation of recipe commands.
  */
-public class RecipeCommandParser {
+public class RecipeCommandParser extends Parser {
 
     private static final int SUBCOMMAND_WORD_INDEX = 0;
     private static final int SUBARGUMENT_STARTING_INDEX = 1;
@@ -29,12 +29,15 @@ public class RecipeCommandParser {
     /**
      * Parses the subcommand tokens and returns its corresponding recipe command.
      *
-     * @param subCommandTokens The list of recipe subcommand tokens.
+     * @param userInput The user input specified by the user.
      * @return The respective recipe command.
      * @throws CommandException If the number of arguments is invalid.
      */
-    public Command parseCommand(String[] subCommandTokens) throws CommandException {
-        assert subCommandTokens != null : "subCommandTokens should not be null";
+    public Command parseCommand(String userInput) throws CommandException {
+        assert userInput != null : "userInput should not be null";
+
+        String[] tokens = getTokens(userInput);
+        String[] subCommandTokens = Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length);
 
         // Check minimum subcommand length
         if (subCommandTokens.length < SUBCOMMAND_NO_ARGUMENT_LENGTH) {

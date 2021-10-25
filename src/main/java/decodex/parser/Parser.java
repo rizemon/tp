@@ -25,7 +25,7 @@ public class Parser {
     /**
      * Specifies the starting index where the arguments can be found.
      */
-    private static final int STARTING_ARGUMENTS_INDEX = 1;
+    protected static final int STARTING_ARGUMENTS_INDEX = 1;
 
     /**
      * Specifies the token used to split the user input by.
@@ -143,7 +143,7 @@ public class Parser {
      * @param userInput The user input specified by the user.
      * @return A list of tokens.
      */
-    private String[] getTokens(String userInput) {
+    protected String[] getTokens(String userInput) {
         String strippedUserInput = userInput.stripLeading();
         return strippedUserInput.split(SPLIT_REGEX);
     }
@@ -239,8 +239,6 @@ public class Parser {
      * @throws CommandException If the recipe command is invalid.
      */
     private Command prepareRecipeSubcommands(String userInput) throws CommandException {
-        String[] tokens = getTokens(userInput);
-        String[] recipeCommandArguments = Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length);
-        return recipeCommandParser.parseCommand(recipeCommandArguments);
+        return recipeCommandParser.parseCommand(userInput);
     }
 }
