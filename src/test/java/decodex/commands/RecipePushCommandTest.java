@@ -2,6 +2,8 @@ package decodex.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import decodex.data.exception.RecipeException;
 import org.junit.jupiter.api.Test;
 
 import decodex.data.DataManager;
@@ -18,7 +20,7 @@ class RecipePushCommandTest {
 
     @Test
     public void run_oneModuleToEditingRecipe_recipeSizeIsOne()
-            throws RecipeManagerException, CommandException, ModuleException, ModuleManagerException {
+            throws RecipeException, RecipeManagerException, CommandException, ModuleException, ModuleManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         RecipeManager recipeManager = new RecipeManager();
@@ -39,7 +41,7 @@ class RecipePushCommandTest {
     }
 
     @Test
-    public void run_emptyModuleName_expectException() throws RecipeManagerException {
+    public void run_emptyModuleName_expectException() throws RecipeException, RecipeManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         RecipeManager recipeManager = new RecipeManager();

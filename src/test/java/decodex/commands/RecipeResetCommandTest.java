@@ -1,6 +1,8 @@
 package decodex.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import decodex.data.exception.RecipeException;
 import org.junit.jupiter.api.Test;
 
 import decodex.data.DataManager;
@@ -16,8 +18,8 @@ import decodex.ui.Ui;
 class RecipeResetCommandTest {
 
     @Test
-    public void run_oneModuleInEditingRecipe_recipeSizeIsZero()
-            throws RecipeManagerException, ModuleManagerException, ModuleException {
+    public void run_oneModuleInEditingRecipe_recipeSizeIsZero() throws RecipeException, RecipeManagerException,
+            ModuleManagerException, ModuleException {
         RecipeManager recipeManager = new RecipeManager();
         String testRecipeName = "test";
         Recipe testRecipe = new Recipe(testRecipeName);

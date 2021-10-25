@@ -36,7 +36,7 @@ class RecipeDeleteCommandTest {
     }
 
     @Test
-    void run_deleteInvalidRecipe_expectException() throws RecipeManagerException {
+    void run_deleteInvalidRecipe_expectException() throws RecipeException, RecipeManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();

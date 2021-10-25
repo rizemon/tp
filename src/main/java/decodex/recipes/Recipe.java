@@ -1,17 +1,13 @@
 package decodex.recipes;
 
-import decodex.data.Data;
-import decodex.data.DataManager;
-import decodex.data.exception.DataManagerException;
-import decodex.data.exception.ModuleException;
-import decodex.ui.Ui;
 import java.util.ArrayList;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 import decodex.Decodex;
+import decodex.data.exception.RecipeException;
 import decodex.data.Data;
 import decodex.data.exception.ModuleException;
-import decodex.data.exception.RecipeException;
 import decodex.modules.Module;
 import decodex.ui.messages.ErrorMessages;
 
@@ -19,6 +15,8 @@ import decodex.ui.messages.ErrorMessages;
  * The Recipe class manages a list of Modules to be run sequentially.
  */
 public class Recipe {
+
+    private static final String VALID_NAME_REGEX = "^[a-zA-Z0-9_]+$";
 
     private Logger logger = Decodex.logger;
 
@@ -30,17 +28,21 @@ public class Recipe {
      *
      * @param name The name of the recipe object to be created.
      */
-    public Recipe(String name) {
+    public Recipe(String name) throws RecipeException {
         moduleList = new ArrayList<>();
-        this.name = name;
+        setName(name);
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws RecipeException {
         assert name != null : "Recipe name should not be null";
+        boolean isValidRecipeName = Pattern.matches(VALID_NAME_REGEX, name);
+        if (!isValidRecipeName) {
+            throw new RecipeException(ErrorMessages.INVALID_RECIPE_NAME);
+        }
         this.name = name;
     }
 
