@@ -31,6 +31,13 @@ public class RecipeCommandParser {
     public RecipeCommandParser() {
     }
 
+    /**
+     * Parses the subcommand tokens and returns its corresponding recipe command.
+     *
+     * @param subCommandTokens The list of recipe subcommand tokens.
+     * @return The respective recipe command.
+     * @throws CommandException If the number of arguments is invalid.
+     */
     public Command parseCommand(String[] subCommandTokens) throws CommandException {
         assert subCommandTokens != null : "subCommandTokens should not be null";
 
@@ -73,7 +80,7 @@ public class RecipeCommandParser {
      *
      * @param subCommandTokens The list of recipe subcommand tokens.
      * @param numberOfArguments      The valid number of arguments.
-     * @throws CommandException If the number of arguments is not valid.
+     * @throws CommandException If the number of arguments is invalid.
      */
     private void checkValidNumberOfArguments(String[] subCommandTokens, int numberOfArguments)
             throws CommandException {
@@ -87,7 +94,7 @@ public class RecipeCommandParser {
      *
      * @param subCommandTokens The list of recipe subcommand tokens.
      * @return The RecipeNewCommand object.
-     * @throws CommandException If the number of arguments exceed valid amount.
+     * @throws CommandException If the number of arguments is invalid.
      */
     private RecipeNewCommand prepareRecipeNewCommand(String[] subCommandTokens) throws CommandException {
         checkValidNumberOfArguments(subCommandTokens, SUBCOMMAND_WITH_ARGUMENT_LENGTH);
@@ -100,7 +107,7 @@ public class RecipeCommandParser {
      *
      * @param subCommandTokens The list of recipe subcommand tokens.
      * @return The RecipeSelectCommand object.
-     * @throws CommandException If the number of arguments exceed valid amount.
+     * @throws CommandException If the number of arguments is invalid.
      */
     private RecipeSelectCommand prepareRecipeSelectCommand(String[] subCommandTokens) throws CommandException {
         checkValidNumberOfArguments(subCommandTokens, SUBCOMMAND_WITH_ARGUMENT_LENGTH);
@@ -113,7 +120,7 @@ public class RecipeCommandParser {
      *
      * @param subCommandTokens The list of recipe subcommand tokens.
      * @return The RecipePushCommand object.
-     * @throws CommandException If the number of arguments exceed valid amount.
+     * @throws CommandException If the number of arguments is invalid.
      */
     private RecipePushCommand prepareRecipePushCommand(String[] subCommandTokens) throws CommandException {
         if (subCommandTokens.length < SUBCOMMAND_WITH_ARGUMENT_LENGTH) {
@@ -131,7 +138,7 @@ public class RecipeCommandParser {
      *
      * @param subCommandTokens The list of recipe subcommand tokens.
      * @return The RecipePopCommand object.
-     * @throws CommandException If the number of arguments exceed valid amount.
+     * @throws CommandException If the number of arguments is invalid.
      */
     private RecipePopCommand prepareRecipePopCommand(String[] subCommandTokens) throws CommandException {
         checkValidNumberOfArguments(subCommandTokens, SUBCOMMAND_NO_ARGUMENT_LENGTH);
@@ -143,7 +150,7 @@ public class RecipeCommandParser {
      *
      * @param subCommandTokens The list of recipe subcommand tokens.
      * @return The RecipeResetCommand object.
-     * @throws CommandException If the number of arguments exceed valid amount.
+     * @throws CommandException If the number of arguments is invalid.
      */
     private RecipeResetCommand prepareRecipeResetCommand(String[] subCommandTokens) throws CommandException {
         checkValidNumberOfArguments(subCommandTokens, SUBCOMMAND_NO_ARGUMENT_LENGTH);
@@ -155,7 +162,7 @@ public class RecipeCommandParser {
      *
      * @param subCommandTokens The list of recipe subcommand tokens.
      * @return The RecipeDeleteCommand object.
-     * @throws CommandException If the number of arguments exceed valid amount.
+     * @throws CommandException If the number of arguments is invalid.
      */
     private RecipeDeleteCommand prepareRecipeDeleteCommand(String[] subCommandTokens) throws CommandException {
         checkValidNumberOfArguments(subCommandTokens, SUBCOMMAND_WITH_ARGUMENT_LENGTH);
