@@ -85,7 +85,7 @@ public class Decodex {
         } while (!(command instanceof ExitCommand));
     }
 
-    public Recipe[] loadSavedRecipes() throws IOException, ModuleException, ModuleManagerException {
+    private Recipe[] loadSavedRecipes() throws IOException, ModuleException, ModuleManagerException {
         return storage.loadRecipesFromDirectory(moduleManager);
     }
 }

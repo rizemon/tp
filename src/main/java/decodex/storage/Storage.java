@@ -37,6 +37,8 @@ public class Storage {
     private static final String OUTPUT_FILENAME_FORMAT = "yyyy-dd-MM__HH.mm.ss";
 
     private static final String LINE_BREAK_REGEX = "\\r?\\n";
+    private static final String FILENAME_EXTENSION_SPLIT_REGEX = "[.]";
+
 
 
     /**
@@ -62,7 +64,7 @@ public class Storage {
      *
      * @param moduleManager The ModuleManager object.
      * @return The list of Recipe objects.
-     * @throws IOException            If something went wrong when reading the file.
+     * @throws IOException            If an error occurred when reading the file.
      * @throws ModuleException        If module parameters are invalid.
      * @throws ModuleManagerException If provided module name is not an available module.
      */
@@ -78,8 +80,7 @@ public class Storage {
         ArrayList<Recipe> tempRecipeList = new ArrayList<>();
         for (File recipeFile : recipeFiles) {
             String recipeFilename = recipeFile.getName();
-            // The recipe name exists on the index 0 of the file's name.
-            String recipeName = recipeFilename.split("[.]")[RECIPE_NAME_INDEX];
+            String recipeName = recipeFilename.split(FILENAME_EXTENSION_SPLIT_REGEX)[RECIPE_NAME_INDEX];
             Recipe recipe = readRecipeFromFile(recipeName, recipeFile, moduleManager);
             tempRecipeList.add(recipe);
         }
@@ -109,7 +110,7 @@ public class Storage {
      *
      * @param recipeFileName The name of the recipe file.
      * @param recipeContent  The contents of the recipe file.
-     * @param moduleManager  The ModuleManger object
+     * @param moduleManager  The ModuleManger object.
      * @return The Recipe object.
      * @throws ModuleException        If module parameters are invalid.
      * @throws ModuleManagerException If provided module name is not an available module.
@@ -139,7 +140,7 @@ public class Storage {
      * @param recipeFile     The recipe File object.
      * @param moduleManager  The ModuleManager object.
      * @return The Recipe object.
-     * @throws IOException            If something went wrong when reading the file.
+     * @throws IOException            If an error occurred when reading the file.
      * @throws ModuleException        If module parameters are invalid.
      * @throws ModuleManagerException If provided module name is not an available module.
      */
@@ -158,7 +159,7 @@ public class Storage {
      *
      * @param fileName The name of the recipe file specified by the user.
      * @return The string formatted recipe from the provided file.
-     * @throws IOException If something went wrong when reading the file or
+     * @throws IOException If an error occurred when reading the file or
      *                     the input file does not exist.
      */
     public String readRecipeFromFile(String fileName) throws IOException {
@@ -178,7 +179,7 @@ public class Storage {
      *
      * @param fileName The name of the input file specified by the user.
      * @return The byte contents from the input file.
-     * @throws IOException If something went wrong when reading the file or
+     * @throws IOException If an error occurred when reading the file or
      *                     the input file does not exist.
      */
     public byte[] readInputFromFile(String fileName) throws IOException {
@@ -197,7 +198,7 @@ public class Storage {
      *
      * @param readFilePath The Path object of the file to be read.
      * @return The bytes of the read content.
-     * @throws IOException           If something went wrong when reading the file.
+     * @throws IOException           If an error occurred when reading the file.
      * @throws FileNotFoundException If the input file does not exist.
      */
     private byte[] readContentFromFile(Path readFilePath) throws IOException, FileNotFoundException {
@@ -214,7 +215,7 @@ public class Storage {
      * Saves the provided output into a file.
      *
      * @param outputBytes The encoded or decoded output.
-     * @throws IOException If something went wrong when creating the file
+     * @throws IOException If an error occurred when creating the file
      *                     or when writing to the file.
      */
     public void saveOutputToFile(byte[] outputBytes) throws IOException {
@@ -235,7 +236,7 @@ public class Storage {
      *
      * @param writeFile    The file to be saved to.
      * @param contentBytes The bytes of the content to be saved.
-     * @throws IOException If something went wrong when creating the file
+     * @throws IOException If an error occurred when creating the file
      *                     or when writing to the file.
      */
     private void saveBytesToFile(File writeFile, byte[] contentBytes) throws IOException {
@@ -251,7 +252,7 @@ public class Storage {
      * Saves the provided recipe into a file.
      *
      * @param recipe The recipe to be saved.
-     * @throws IOException If something went wrong when creating the file
+     * @throws IOException If an error occurred when creating the file
      *                     or when writing to the file.
      */
     public void saveRecipeToFile(Recipe recipe) throws IOException {
@@ -269,7 +270,7 @@ public class Storage {
      *
      * @param writeFile       The file to be saved to.
      * @param recipeToBeSaved The recipe to be saved.
-     * @throws IOException If something went wrong when creating the file
+     * @throws IOException If an error occurred when creating the file
      *                     or when writing to the file.
      */
     private void saveRecipeModulesToFile(File writeFile, Recipe recipeToBeSaved) throws IOException {
