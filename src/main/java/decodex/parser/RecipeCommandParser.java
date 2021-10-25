@@ -17,11 +17,6 @@ import decodex.ui.messages.ErrorMessages;
  */
 public class RecipeCommandParser {
 
-    /**
-     * Specifies the token used to split the user input by.
-     */
-    private static final String SPLIT_REGEX = "\\s+";
-
     private static final int SUBCOMMAND_WORD_INDEX = 0;
     private static final int SUBARGUMENT_STARTING_INDEX = 1;
     private static final int MODULE_PARAMETERS_STARTING_INDEX = 2;
