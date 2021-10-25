@@ -57,6 +57,10 @@ public class Storage {
         instantiateDirectoryIfNotExist(DEFAULT_RECIPE_DIRECTORY);
         File[] recipeFiles = getAllRecipeFiles();
 
+        if (recipeFiles.length == 0) {
+            return null;
+        }
+
         ArrayList<Recipe> tempRecipeList = new ArrayList<>();
         for (File recipeFile : recipeFiles) {
             Recipe recipe = readRecipeFromFile(recipeFile.getName(), recipeFile, moduleManager);
