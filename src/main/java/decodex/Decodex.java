@@ -12,8 +12,12 @@ import decodex.data.exception.RecipeManagerException;
 import decodex.data.exception.ModuleManagerException;
 import decodex.modules.ModuleManager;
 import decodex.parser.Parser;
+import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
+import decodex.storage.Storage;
 import decodex.ui.Ui;
+
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,6 +34,7 @@ public class Decodex {
     private static RecipeManager recipeManager;
     private static Parser parser;
     private static Ui ui;
+    private static Storage storage;
 
     public Decodex() {
         initDecodex();
@@ -42,9 +47,15 @@ public class Decodex {
         logger.setLevel(Level.INFO);
         dataManager = new DataManager();
         moduleManager = new ModuleManager();
-        recipeManager = new RecipeManager();
         parser = new Parser();
         ui = new Ui();
+        storage = new Storage(moduleManager);
+        try {
+            Recipe[] savedRecipes = loadSavedRecipes();
+        } catch (IOException | ModuleException | ModuleManagerException err) {
+            ui.printError(err);
+        }
+        recipeManager = new RecipeManager();
     }
 
     /**
@@ -72,5 +83,9 @@ public class Decodex {
                 logger.fine(err.getMessage());
             }
         } while (!(command instanceof ExitCommand));
+    }
+
+    public Recipe[] loadSavedRecipes() throws IOException, ModuleException, ModuleManagerException {
+        return storage.loadRecipesFromDirectory(moduleManager);
     }
 }

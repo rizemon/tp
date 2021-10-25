@@ -1,5 +1,10 @@
 package decodex.storage;
 
+import decodex.data.exception.ModuleException;
+import decodex.data.exception.ModuleManagerException;
+import decodex.modules.ModuleManager;
+import decodex.modules.Module;
+import decodex.recipes.Recipe;
 import decodex.ui.messages.ErrorMessages;
 
 import java.io.File;
@@ -9,6 +14,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 // @@author Kair0s3
 public class Storage {
@@ -30,8 +37,99 @@ public class Storage {
 
     /**
      * Initializes a new Storage.
+     *
+     * @param moduleManager
      */
-    public Storage() {
+    public Storage(ModuleManager moduleManager) {
+    }
+
+    /**
+     * Loads all the recipes previously saved in the recipe directory.
+     *
+     * @param moduleManager The ModuleManager object.
+     * @return The list of Recipe objects.
+     * @throws IOException            If something went wrong when reading the file.
+     * @throws ModuleException        If module parameters are invalid.
+     * @throws ModuleManagerException If provided module name is not an available module.
+     */
+    public Recipe[] loadRecipesFromDirectory(ModuleManager moduleManager)
+            throws IOException, ModuleException, ModuleManagerException {
+        instantiateDirectoryIfNotExist(DEFAULT_RECIPE_DIRECTORY);
+        File[] recipeFiles = getAllRecipeFiles();
+
+        ArrayList<Recipe> tempRecipeList = new ArrayList<>();
+        for (File recipeFile : recipeFiles) {
+            Recipe recipe = readRecipeFromFile(recipeFile.getName(), recipeFile, moduleManager);
+            tempRecipeList.add(recipe);
+        }
+
+        int tempRecipeListSize = tempRecipeList.size();
+        Recipe[] recipeList = tempRecipeList.toArray(new Recipe[tempRecipeListSize]);
+        return recipeList;
+    }
+
+    /**
+     * Gets all the recipe files in the recipe directory.
+     *
+     * @return The list of recipe File objects.
+     */
+    private File[] getAllRecipeFiles() {
+        File recipeDirectory = new File(DEFAULT_RECIPE_DIRECTORY);
+        File[] files = recipeDirectory.listFiles();
+        File[] recipeFiles = Arrays.stream(files)
+                .filter(file -> file.isFile())
+                .toArray(size -> new File[size]);
+
+        return recipeFiles;
+    }
+
+    /**
+     * Parses the saved recipe content and returns the Recipe.
+     *
+     * @param recipeFileName The name of the recipe file.
+     * @param recipeContent  The contents of the recipe file.
+     * @param moduleManager  The ModuleManger object
+     * @return The Recipe object.
+     * @throws ModuleException        If module parameters are invalid.
+     * @throws ModuleManagerException If provided module name is not an available module.
+     */
+    private Recipe parseContentToRecipe(String recipeFileName, String recipeContent, ModuleManager moduleManager)
+            throws ModuleException, ModuleManagerException {
+        Recipe recipe = new Recipe(recipeFileName);
+        String[] recipeLines = recipeContent.split("\\r?\\n");
+
+        for (String recipeLine : recipeLines) {
+            if (recipeLine.isEmpty()) {
+                continue;
+            }
+            String[] tokens = recipeLine.split(" ");
+            String moduleName = tokens[0];
+            String[] moduleParameters = Arrays.copyOfRange(tokens, 1, tokens.length);
+            Module module = moduleManager.selectModule(moduleName, moduleParameters);
+            recipe.push(module);
+        }
+        return recipe;
+    }
+
+    /**
+     * Reads the recipe file contents and returns the Recipe.
+     *
+     * @param recipeFilename The name of the recipe.
+     * @param recipeFile     The recipe File object.
+     * @param moduleManager  The ModuleManager object.
+     * @return The Recipe object.
+     * @throws IOException            If something went wrong when reading the file.
+     * @throws ModuleException        If module parameters are invalid.
+     * @throws ModuleManagerException If provided module name is not an available module.
+     */
+    public Recipe readRecipeFromFile(String recipeFilename, File recipeFile, ModuleManager moduleManager)
+            throws IOException, ModuleException, ModuleManagerException {
+        Path recipeFilePath = recipeFile.toPath();
+
+        byte[] recipeContentBytes = readFromFile(recipeFilePath);
+        String recipeContent = new String(recipeContentBytes);
+        Recipe loadedRecipe = parseContentToRecipe(recipeFilename, recipeContent, moduleManager);
+        return loadedRecipe;
     }
 
     /**
