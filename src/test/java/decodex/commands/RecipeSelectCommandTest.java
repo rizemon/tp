@@ -2,8 +2,11 @@ package decodex.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import decodex.data.exception.RecipeException;
 import org.junit.jupiter.api.Test;
 
+import decodex.commands.recipe.RecipeSelectCommand;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.RecipeManagerException;
@@ -15,7 +18,8 @@ import decodex.ui.Ui;
 class RecipeSelectCommandTest {
 
     @Test
-    public void run_selectExistingRecipe_existingRecipe() throws RecipeManagerException, CommandException {
+    public void run_selectExistingRecipe_existingRecipe() throws RecipeException, RecipeManagerException,
+            CommandException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         RecipeManager recipeManager = new RecipeManager();

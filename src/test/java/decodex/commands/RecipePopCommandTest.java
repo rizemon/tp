@@ -3,6 +3,7 @@ package decodex.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import decodex.commands.recipe.RecipePopCommand;
 import decodex.data.exception.RecipeException;
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +44,7 @@ class RecipePopCommandTest {
     }
 
     @Test
-    public void run_emptyEditingRecipe_expectException() throws RecipeManagerException {
+    public void run_emptyEditingRecipe_expectException() throws RecipeException, RecipeManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         RecipeManager recipeManager = new RecipeManager();

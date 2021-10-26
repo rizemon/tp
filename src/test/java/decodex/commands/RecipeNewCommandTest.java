@@ -3,6 +3,7 @@ package decodex.commands;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import decodex.commands.recipe.RecipeNewCommand;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;

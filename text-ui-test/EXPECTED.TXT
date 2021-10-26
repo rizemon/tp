@@ -3,6 +3,7 @@ Welcome to Decodex, transforming data with ease
 ============================================================
 Decodex > [x] Unknown command, please enter a valid command
 Decodex > [x] Unknown command, please enter a valid command
+Decodex > [x] Your command cannot be blank
 Decodex > [+] Input: "I am a lab rat"
 Decodex > [+] Output: "SSBhbSBhIGxhYiByYXQ="
 Decodex > [+] Output: "I am a lab rat"
@@ -11,5 +12,32 @@ Decodex > [+] Output: "I am a lab rat"
 Decodex > [+] Output: "L dp d ode udw"
 Decodex > [+] Output: "I am a lab rat"
 Decodex > [+] Reverted all changes
+Decodex > Here is the list of supported modules:
+  base64encode - Encodes the data using Base64 format.
+  base64decode - Decodes the data using Base64 format.
+  hexencode    - Converts the input string to hexadecimal bytes
+  hexdecode    - Converts a hexadecimal string back into its raw value
+  binencode    - Encodes the data into binary.
+  bindecode    - Decodes the data from binary.
+  rotencode    - Rotates the alphabets in the input string by a specified amount
+
+You do not have any recipes
+
+Decodex > [x] The given recipe could not be found.
+Decodex > [+] Recipe testRecipe created successfully
+
+Decodex > Here is the list of available recipes:
+  testRecipe
+
+Decodex > [+] There are no modules in the recipe
+[+] Output: "I am a lab rat"
+Decodex > [+] Added hexencode module to recipe testRecipe
+
+Decodex > [+] Added base64encode module to recipe testRecipe
+
+Decodex > [+] Added rotencode module to recipe testRecipe
+
+Decodex > [+] Modules executed: hexencode, base64encode, rotencode
+[+] Output: "QGnbPGBaQpTbPGBaPmD2BcBaQmLbPGfbQmH3QD=="
 Decodex > [x] Unknown command, please enter a valid command
 Decodex > Goodbye!

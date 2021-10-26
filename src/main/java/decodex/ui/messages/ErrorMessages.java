@@ -13,6 +13,8 @@ public class ErrorMessages {
     public static final String HEX_DECODING_FAILED_MESSAGE = "Invalid hexadecimal string";
     public static final String EMPTY_RECIPE_MESSAGE = "The recipe is currently empty. There is no module to be "
             + "removed.";
+    public static final String INVALID_RECIPE_NAME = "Recipe names can contain only alphabets, numbers and "
+            + "underscores and must be non-empty.";
     public static final String DUPLICATE_RECIPE_NAME_MESSAGE = "A recipe with the given name already exists.";
     public static final String RECIPE_NOT_FOUND_MESSAGE = "The given recipe could not be found.";
     public static final String EDITING_RECIPE_NOT_FOUND_MESSAGE = "No recipe selected for editing.";
@@ -30,4 +32,5 @@ public class ErrorMessages {
     public static final String DIRECTORY_INSTANTIATION_FAILED_MESSAGE = "Failed to create the directory for ";
     public static final String RECIPE_FILE_DELETE_FAILED_MESSAGE = "Failed to delete the corresponding recipe file";
     public static final String FAILED_TO_LOAD_RECIPE_FILE_MESSAGE = " failed to be loaded into Decodex";
+    public static final String INVALID_RECIPE_COMMAND = "Invalid recipe command";
 }
