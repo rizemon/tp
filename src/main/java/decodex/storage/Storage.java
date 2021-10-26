@@ -326,7 +326,7 @@ public class Storage {
             return;
         }
 
-        if (!outputRecipeFile.delete()){
+        if (!outputRecipeFile.delete()) {
             throw new IOException(ErrorMessages.RECIPE_FILE_DELETE_FAILED_MESSAGE);
         }
     }
