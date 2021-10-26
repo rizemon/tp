@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import decodex.data.Data;
 import decodex.data.exception.ModuleException;
+import decodex.ui.messages.ErrorMessages;
 
 /**
  * The BinaryDecoder class handles the binary decoding operations.
@@ -34,7 +35,7 @@ public class BinaryDecoder extends Module {
         String binString = data.toString();
 
         if (!isValidBinary(binString)) {
-            throw new ModuleException("Invalid binary string");
+            throw new ModuleException(ErrorMessages.BINARY_DECODING_FAILED_MESSAGE);
         }
 
         String[] binaryTokens = splitBinaryString(binString);
