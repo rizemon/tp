@@ -16,5 +16,9 @@ bin/
 # Recipe files
 /recipe/*
 
+# Input, Output files
+/input/*
+/output/*
+
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
