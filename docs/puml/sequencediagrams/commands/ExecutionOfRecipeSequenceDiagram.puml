@@ -28,7 +28,7 @@ else itemName is not blank
 
   SelectCommand -> DataManager: getCurrentData()
   activate DataManager
-  SelectCommand <-- DataManager: :DataManager
+  SelectCommand <-- DataManager: :Data
   deactivate DataManager
 
   SelectCommand -> Recipe: run(:Data)
@@ -45,6 +45,11 @@ else itemName is not blank
   activate Ui
   SelectCommand <-- Ui
   deactivate Ui
+
+  SelectCommand -> Ui: printOutput(:String)
+    activate Ui
+    SelectCommand <-- Ui
+    deactivate Ui
 
   <-- SelectCommand
 end

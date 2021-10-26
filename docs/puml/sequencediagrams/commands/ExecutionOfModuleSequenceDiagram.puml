@@ -45,6 +45,7 @@ else itemName is not blank
   activate Ui
   SelectCommand <-- Ui
   deactivate Ui
+
   SelectCommand <-[hidden]- Ui
   destroy Module
   <-- SelectCommand

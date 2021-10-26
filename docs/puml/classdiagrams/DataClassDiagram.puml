@@ -2,19 +2,21 @@
 skinparam classAttributeIconSize 0
 hide circle
 
+!include colors.puml
+
 Decodex -> "1" DataManager
 
 DataManager ---> "0..1 \nOriginal" Data
 DataManager ---> "0..1 \nCurrent" Data
 
 
-class Decodex {
+class Decodex DECODEX_COLOR {
   - initDecodex(): void
   + run(): void
   + {static} main(): void
 }
 
-class DataManager {
+class DataManager DATA_COLOR {
   + getOriginalData(): Data
   + getCurrentData(): Data
   + setOriginalData(originalData: Data): Data
@@ -22,7 +24,7 @@ class DataManager {
   + resetToOriginalData(): void
 }
 
-class Data {
+class Data DATA_COLOR {
   - rawBytes: byte[]
   + getRawBytes(): byte[]
 }

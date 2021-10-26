@@ -2,16 +2,18 @@
 skinparam classAttributeIconSize 0
 hide circle
 
+!include colors.puml
+
 Decodex -> "1" ModuleManager
 
-class Decodex {
+class Decodex DECODEX_COLOR {
   - initDecodex(): void
   + run(): void
   + {static} main(): void
 }
 
 
-class ModuleManager {
+class ModuleManager MODULE_COLOR {
   - {static} MODULE_LIST: String[][]
   + getModules(): String[][]
   + selectModule(moduleName: String, parameters: String[]): Module

@@ -26,9 +26,9 @@ else recipeName is not blank
   deactivate RecipeManager
 end
 
-RecipeListCommand -> RecipeListCommand: getModuleList(:String)
+RecipeListCommand -> RecipeListCommand: getModuleList(:Recipe)
 activate RecipeListCommand
-RecipeListCommand --> RecipeListCommand
+RecipeListCommand --> RecipeListCommand: :String
 deactivate RecipeListCommand
 
 RecipeListCommand -> Ui: printRecipeModulesList(:String, :String)

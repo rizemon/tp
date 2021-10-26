@@ -10,7 +10,7 @@ end box
 
 -> ListCommand: run()
 activate ListCommand
-alt isPrintModuleList
+opt isPrintModuleList
   ListCommand -> ListCommand: getModuleList(:ModuleManager)
   activate ListCommand
   ListCommand --> ListCommand
@@ -19,8 +19,8 @@ alt isPrintModuleList
   activate Ui
   ListCommand <-- Ui
   deactivate Ui
-  <-- ListCommand
-else isPrintRecipeList
+end
+opt isPrintRecipeList
   ListCommand -> ListCommand: getRecipeList(:RecipeManager)
   activate ListCommand
   ListCommand --> ListCommand
@@ -29,8 +29,10 @@ else isPrintRecipeList
   activate Ui
   ListCommand <-- Ui
   deactivate Ui
+end
+alt isPrintModuleList or isPrintRecipeList
   <-- ListCommand
-else not isPrintModuleList and not PrintRecipeList
+else not isPrintModuleList and not isPrintRecipeList
   <-- ListCommand: CommandException
 end
 
