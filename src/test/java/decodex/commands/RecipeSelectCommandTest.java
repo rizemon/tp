@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import decodex.data.exception.RecipeException;
+import decodex.storage.Storage;
+import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
 import decodex.commands.recipe.RecipeSelectCommand;
@@ -19,10 +21,11 @@ class RecipeSelectCommandTest {
 
     @Test
     public void run_selectExistingRecipe_existingRecipe() throws RecipeException, RecipeManagerException,
-            CommandException {
+            CommandException, IOException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
         Ui ui = new Ui();
 
         String testRecipeName = "test";
@@ -38,7 +41,8 @@ class RecipeSelectCommandTest {
     public void run_selectNonExistentRecipe_expectException() {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
         Ui ui = new Ui();
 
         String testRecipeName = "test";
@@ -52,7 +56,8 @@ class RecipeSelectCommandTest {
     public void run_nullRecipe_expectException() {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
         Ui ui = new Ui();
 
         String testRecipeName = "";

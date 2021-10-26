@@ -9,6 +9,7 @@ import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
 import decodex.ui.messages.ErrorMessages;
+import java.io.IOException;
 
 public class RecipeDeleteCommand extends Command {
 
@@ -25,7 +26,7 @@ public class RecipeDeleteCommand extends Command {
 
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager)
-            throws CommandException, ModuleException, RecipeManagerException {
+            throws CommandException, ModuleException, RecipeManagerException, IOException {
         if (recipeName.isBlank()) {
             throw new CommandException(ErrorMessages.MISSING_RECIPE_NAME);
         }

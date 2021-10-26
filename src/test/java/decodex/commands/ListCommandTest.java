@@ -3,6 +3,7 @@ package decodex.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import decodex.storage.Storage;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -23,7 +24,8 @@ public class ListCommandTest {
 
     private final DataManager dataManager = new DataManager();
     private final ModuleManager moduleManager = new ModuleManager();
-    private final RecipeManager recipeManager = new RecipeManager();
+    private final Storage storage = new Storage();
+    private final RecipeManager recipeManager = new RecipeManager(storage);
     private final Ui ui = new Ui();
 
     @BeforeEach

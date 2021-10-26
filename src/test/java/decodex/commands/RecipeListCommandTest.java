@@ -16,8 +16,10 @@ import decodex.modules.hex.HexEncoder;
 import decodex.modules.rot.RotEncoder;
 import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
+import decodex.storage.Storage;
 import decodex.ui.Ui;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,11 +34,12 @@ class RecipeListCommandTest {
 
     private final DataManager dataManager = new DataManager();
     private final ModuleManager moduleManager = new ModuleManager();
-    private final RecipeManager recipeManager = new RecipeManager();
+    private final Storage storage = new Storage();
+    private final RecipeManager recipeManager = new RecipeManager(storage);
     private final Ui ui = new Ui();
 
     @BeforeEach
-    public void createTestRecipe() throws RecipeManagerException, RecipeException {
+    public void createTestRecipe() throws RecipeManagerException, RecipeException, IOException {
         Recipe recipe = new Recipe(TEST_RECIPE_NAME);
 
         recipe.push(new HexEncoder());

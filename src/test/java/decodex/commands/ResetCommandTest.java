@@ -2,6 +2,7 @@ package decodex.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import decodex.storage.Storage;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -20,7 +21,8 @@ class ResetCommandTest {
     public void run_noChanges_sameOriginalData() throws DataManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
         Ui ui = new Ui();
 
         Data originalData = new Data("hi");
@@ -35,7 +37,8 @@ class ResetCommandTest {
     public void run_newData_sameOriginalData() throws DataManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
         Ui ui = new Ui();
 
         Data originalData = new Data("hi");

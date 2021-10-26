@@ -13,8 +13,10 @@ import decodex.modules.base64.Base64Encoder;
 import decodex.modules.hex.HexEncoder;
 import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
+import decodex.storage.Storage;
 import decodex.ui.Ui;
 
+import java.io.IOException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -26,7 +28,8 @@ public class SelectCommandTest {
             ModuleException, RecipeException, RecipeManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
         Ui ui = new Ui();
 
         Data data = new Data("hello world");
@@ -47,7 +50,8 @@ public class SelectCommandTest {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
 
         Data data = new Data("hello world");
         dataManager.setOriginalData(data);
@@ -65,7 +69,8 @@ public class SelectCommandTest {
     public void run_blankModuleName_expectException() {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
         Ui ui = new Ui();
 
         Data data = new Data("hello world");
@@ -83,7 +88,8 @@ public class SelectCommandTest {
     public void run_unknownModuleName_expectException() {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
         Ui ui = new Ui();
 
         Data data = new Data("hello world");
@@ -100,12 +106,13 @@ public class SelectCommandTest {
 
     @Test
     public void run_validRecipeName_success() throws ModuleManagerException, CommandException, DataManagerException,
-            ModuleException, RecipeException, RecipeManagerException {
+            ModuleException, RecipeException, RecipeManagerException, IOException {
         DataManager dataManager = new DataManager();
         Data data = new Data("hello world");
         dataManager.setOriginalData(data);
 
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
         String recipeName = "testRecipe";
         Recipe recipe = new Recipe(recipeName);
         recipe.push(new HexEncoder());
@@ -125,13 +132,14 @@ public class SelectCommandTest {
 
     @Test
     public void run_emptyRecipe_success() throws ModuleManagerException, CommandException, DataManagerException,
-            ModuleException, RecipeException, RecipeManagerException {
+            ModuleException, RecipeException, RecipeManagerException, IOException {
         DataManager dataManager = new DataManager();
         String dataString = "hello world";
         Data data = new Data(dataString);
         dataManager.setOriginalData(data);
 
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
         String recipeName = "testRecipe";
         Recipe recipe = new Recipe(recipeName);
         recipeManager.addRecipe(recipe);
@@ -151,7 +159,8 @@ public class SelectCommandTest {
     public void run_blankRecipeName_expectRecipeManagerException() {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
         Ui ui = new Ui();
 
         String selectCategory = "recipe";
@@ -167,7 +176,8 @@ public class SelectCommandTest {
     public void run_unknownRecipe_expectRecipeManagerException() {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
         Ui ui = new Ui();
 
         String selectCategory = "recipe";
@@ -183,7 +193,8 @@ public class SelectCommandTest {
     public void run_invalidSelectCategory_expectCommandException() {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
         Ui ui = new Ui();
 
         String selectCategory = "unknownCategory";

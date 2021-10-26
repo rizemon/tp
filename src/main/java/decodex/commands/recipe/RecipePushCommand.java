@@ -12,6 +12,7 @@ import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
 import decodex.ui.messages.ErrorMessages;
+import java.io.IOException;
 
 public class RecipePushCommand extends Command {
 
@@ -30,7 +31,7 @@ public class RecipePushCommand extends Command {
 
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager)
-            throws CommandException, ModuleManagerException, ModuleException, RecipeManagerException {
+            throws CommandException, ModuleManagerException, ModuleException, RecipeManagerException, IOException {
         if (moduleName.isBlank()) {
             throw new CommandException(ErrorMessages.MISSING_MODULE_NAME);
         }

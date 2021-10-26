@@ -2,6 +2,7 @@ package decodex.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import decodex.storage.Storage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,8 @@ class HelpCommandTest {
 
     private final DataManager dataManager = new DataManager();
     private final ModuleManager moduleManager = new ModuleManager();
-    private final RecipeManager recipeManager = new RecipeManager();
+    private final Storage storage = new Storage();
+    private final RecipeManager recipeManager = new RecipeManager(storage);
     private final Ui ui = new Ui();
 
     @BeforeEach

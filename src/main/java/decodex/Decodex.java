@@ -6,17 +6,15 @@ import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;
 import decodex.data.exception.ModuleException;
+import decodex.data.exception.ModuleManagerException;
 import decodex.data.exception.ParserException;
 import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
-import decodex.data.exception.ModuleManagerException;
 import decodex.modules.ModuleManager;
 import decodex.parser.Parser;
-import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
 import decodex.ui.Ui;
-
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,7 +48,7 @@ public class Decodex {
         parser = new Parser();
         ui = new Ui();
         storage = new Storage();
-        recipeManager = new RecipeManager();
+        recipeManager = new RecipeManager(storage);
         try {
             loadSavedRecipes();
         } catch (IOException err) {
@@ -78,8 +76,8 @@ public class Decodex {
                 command = parser.parseCommand(userInput);
                 assert command != null : "Command should not be null";
                 command.run(dataManager, moduleManager, ui, recipeManager);
-            } catch (ParserException | CommandException | ModuleManagerException
-                    | DataManagerException | ModuleException | RecipeException | RecipeManagerException err) {
+            } catch (ParserException | CommandException | ModuleManagerException | DataManagerException |
+                    ModuleException | RecipeException | RecipeManagerException | IOException err) {
                 ui.printError(err);
                 logger.fine(err.getMessage());
             }

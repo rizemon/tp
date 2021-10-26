@@ -13,21 +13,24 @@ import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
 import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
+import decodex.storage.Storage;
 import decodex.ui.Ui;
+import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
 class RecipeNewCommandTest {
 
     @Test
     void run_createNewRecipe_newRecipeCreated() throws CommandException, RecipeException, ModuleException,
-            RecipeManagerException, DataManagerException, ModuleManagerException {
+            RecipeManagerException, DataManagerException, ModuleManagerException, IOException {
         String testRecipeName = "BaconPancakes";
         Command newRecipeCommand = new RecipeNewCommand(testRecipeName);
 
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
 
         newRecipeCommand.run(dataManager, moduleManager, ui, recipeManager);
 
@@ -42,7 +45,8 @@ class RecipeNewCommandTest {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
 
         assertThrows(CommandException.class,
             () -> newRecipeCommand.run(dataManager, moduleManager, ui, recipeManager));
