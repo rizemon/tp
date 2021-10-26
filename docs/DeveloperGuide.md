@@ -16,18 +16,56 @@ The purpose of this guide is to provide more information on our application, Dec
 This developer guide is made for developers who wish to further understand and/or develop **Decodex**.
 This guide includes the setup instructions, design, implementation, testing, product scope, and other sections to give developers a better understanding of the application.
 
-## Table of Contents
-| Terminology                 | Definition                                                                                                                                                    |
-|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Data transformation         | The conversion of one data format to another.                                                                                                                 |
-| Application, Program        | Refer to the `Decodex` program. This two terms are used interchangeably in this User Guide.                                                                   |
-| Encoding                    | Convert a message into a coded form.                                                                                                                          |
-| Decoding                    | Convert a coded message into an intelligible form                                                                                                             |
-| Base64, Binary, Hexadecimal | Common types of data encoding standards.                                                                                                                      |
-| Console                     | This refers to your command prompt window.                                                                                                                    |
-| Argument                    | The additional information you provide to the program's command.                                                                                              |
-| Module                      | A self-contained set of instructions to process your data into another form.                                                                                  |
-| Recipe                      | Acts as a container for you to select your modules. When multiple modules are selected, this forms a "module chain". By default, you do not have any recipes. |
+## Table of Contents <!-- omit in toc -->
+- [Introduction](#introduction)
+  - [Purpose of This Guide](#purpose-of-this-guide)
+  - [Developer Guide Usage](#developer-guide-usage)
+- [Acknowledgements](#acknowledgements)
+  - [Terminologies](#terminologies)
+  - [Symbols](#symbols)
+- [Getting Started](#getting-started)
+  - [Setting Up the Project](#setting-up-the-project)
+  - [Additional Considerations](#additional-considerations)
+- [Design](#design)
+- [Design](#design-1)
+  - [Architecture](#architecture)
+  - [UI Component](#ui-component)
+  - [Logic Component](#logic-component)
+  - [Data Component](#data-component)
+  - [Module Component](#module-component)
+  - [Recipe Component](#recipe-component)
+  - [Storage Component](#storage-component)
+- [Implementation](#implementation)
+  - [Decodex Initialisation](#decodex-initialisation)
+  - [Decodex Main Logic](#decodex-main-logic)
+  - [Parser - Basic Command Logic](#parser---basic-command-logic)
+  - [Parser - Recipe Command Logic](#parser---recipe-command-logic)
+  - [Modules](#modules)
+    - [Implemented Modules:](#implemented-modules)
+  - [List of Commands](#list-of-commands)
+    - [InputCommand](#inputcommand)
+    - [ExitCommand](#exitcommand)
+    - [ResetCommand](#resetcommand)
+    - [SelectCommand](#selectcommand)
+      - [SelectCommand (Module)](#selectcommand-module)
+      - [SelectCommand (Recipe)](#selectcommand-recipe)
+    - [ListCommand](#listcommand)
+- [Recipe Commands](#recipe-commands)
+  - [RecipeNewCommand](#recipenewcommand)
+  - [RecipeSelectCommand](#recipeselectcommand)
+  - [RecipeListCommand](#recipelistcommand)
+  - [RecipePushCommand](#recipepushcommand)
+  - [RecipePopCommand](#recipepopcommand)
+  - [RecipeResetCommand](#reciperesetcommand)
+  - [RecipeDeleteCommand](#recipedeletecommand)
+- [Appendix A: Product Scope](#appendix-a-product-scope)
+  - [Target User Profile](#target-user-profile)
+  - [Value Proposition](#value-proposition)
+- [Appendix B: User Stories](#appendix-b-user-stories)
+- [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
+- [Appendix D: Glossary](#appendix-d-glossary)
+- [Appendix E: Instructions for Manual Testing](#appendix-e-instructions-for-manual-testing)
+
 ## Acknowledgements
 
 1. SE-EDU
@@ -36,13 +74,12 @@ This guide includes the setup instructions, design, implementation, testing, pro
     3. [AB3 Setting up and getting started page and related links](https://se-education.org/addressbook-level3/SettingUp.html)
     4. [AB3 Appendix: Requirements](https://se-education.org/addressbook-level3/DeveloperGuide.html#appendix-requirements)
     5. [AB2 Code Structure](https://github.com/se-edu/addressbook-level2)
-2. [AY2021S2-CS2113-T10-1](https://github.com/AY2021S2-CS2113-T10-1) (Our TA, kwokyto's Team)
-    1. [Developer Guide](https://github.com/AY2021S2-CS2113-T10-1/tp)
+2. [AY2021S2-CS2113-T10-1's Developer Guide](https://ay2021s2-cs2113-t10-1.github.io/tp/DeveloperGuide.html)
 
 ### Terminologies
 
 | Terminology                 | Definition                                                                                                                                                    |
-|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Data transformation         | The conversion of one data format to another.                                                                                                                 |
 | Application, Program        | Refer to the `Decodex` program. This two terms are used interchangeably in this User Guide.                                                                   |
 | Encoding                    | Convert a message into a coded form.                                                                                                                          |
@@ -56,7 +93,7 @@ This guide includes the setup instructions, design, implementation, testing, pro
 ### Symbols
 
 | Name                 | Definition                                                                                            |
-|----------------------|-------------------------------------------------------------------------------------------------------|
+| -------------------- | ----------------------------------------------------------------------------------------------------- |
 | :bulb:               | Represents a good tip for you.                                                                        |
 | :exclamation:        | Represents something important that you should take note of.                                          |
 | :information_source: | Represents additional information regarding commands/features for you better understand how it works. |
@@ -239,6 +276,163 @@ To add on, the `Storage` component is designed to access only the following fold
 
 ## Implementation
 
+This section focuses on explaining the specific applications flows and the interactions between the classes and their methods.
+
+💡 The lifeline of the objects should terminate at the destroy marker (`X`), however due to a limitation of the PlantUML software, the lifeline extends beyond the destroy marker.
+
+### Decodex Initialisation
+
+Below shows the sequence diagram of the initialisation of Decodex.
+
+![Decodex Initialisation](images/dg/DecodexInitSeq.png)
+
+During the initialisation sequence of Decodex, all the dependencies (i.e `DataManager`, `ModuleManager` .etc) are instantiated, which will later on be passed to the relevant commands and methods for usage.
+
+### Decodex Main Logic
+
+Below is the sequence diagram showing the overall flow of Decodex.
+
+![Decodex Main Logic](images/dg/DecodexMainSeq.png)
+
+This main logic occurs after the initialisation sequence in the previous figure. It comprises of the main loop that provides the interactivity to the user by reading input from them and attempting to execute it as a command. The loop terminates when the user enters the `exit` command.
+
+### Parser - Basic Command Logic
+
+Below is the sequence diagram that shows the overall flow of the `Parser` logic.
+
+![Parser Basic Command Logic](images/dg/ParserBasicSeq.png)
+
+The flow of the `Parser` logic:
+
+1. Receives the user input and parses it to get the command type.
+2. Prepares the corresponding `XYZCommand`.
+    1. However, if the command is a `Recipe*Command` , it will be passed to `RecipeCommandParser` for subcommand parsing.
+3. Returns the command back to `Decodex`.
+
+### Parser - Recipe Command Logic
+
+Below is the sequence diagram that shows the overall flow of the `RecipeCommandParser` logic.
+
+![Parser Recipe Command Logic](images/dg/ParserRecipeSeq.png)
+
+The general process of the `RecipeCommandParser` logic consists of:
+
+1. Receives the user input from `Parser` then parses it to get the subcommand type.
+2. Prepares the corresponding `RecipeXYZCommand`
+3. Returns the command back to `Decodex`
+
+### Modules
+
+The abstract `Module` class serves as the base class for all modules to be inherited from. It contains essential information that must be present in every module developed for Decodex.
+
+- `name`: The name of the module
+- `description`: The description of the module
+- `run(Data data)`: The abstract method to process the provided `Data`
+
+The `name` and `description` variables must be set during the instantiation of the module, that is to say in the constructor.
+
+The abstract `run(Data data)` method should be implemented to return a `Data` object as the purpose of this method is solely for data processing.
+
+There are two groups of modules supported by Decodex:
+
+- Modules that do not take in any parameters
+- Modules that take in at least one parameter
+
+Modules that do not take in any parameters
+
+This group of modules do not require any additional parameters as their encoding and decoding processes are fixed. Hence, the constructors of these modules should not receive any parameters.
+
+Modules that take in at least one parameter
+
+This group of modules require at least one additional parameter as their encoding and decoding processes are dependent on the provided parameters. The constructors of these modules should receive parameters as required and stored in private variables. These variables will then be used in their respective `run(Data data)` method.
+
+The current implementation of the abstract `Module` class provides a strong foundation top be inherited by much more complex modules, and developed into full-functioning modules for Decodex.
+
+#### Implemented Modules:
+
+| No Parameters                                                                                | At Least One Parameter |
+| -------------------------------------------------------------------------------------------- | ---------------------- |
+| Base64Encoder<br>Base64Decoder<br>HexEncoder<br>HexDecoder<br>BinaryEncoder<br>BinaryDecoder | RotEncoder             |
+
+### List of Commands
+
+#### InputCommand
+
+![InputCommand](images/dg/InputCommand.png)
+
+When the `Parser` recognises the `input` keyword from the user input, an `InputCommand` is instantiated.
+
+1. Create a `Data` object from the user input.
+2. Set the created `Data` object as the `originalData` in the `DataManager` .
+3. Prints `input` to the console.
+
+#### ExitCommand
+
+![ExitCommand](images/dg/ExitCommand.png)
+
+When the `Parser` recognises the `exit` keyword from the user input, an `ExitCommand` is instantiated.
+
+1. Prints the goodbye message to the console.
+
+#### ResetCommand
+
+![ResetCommand](images/dg/ResetCommand.png)
+
+When the `Parser` recognises the `reset` keyword from the user input, a `ResetCommand` is instantiated.
+
+1. Replace the contents of `currentData` in `DataManager` with that of `originalData`.
+2. Prints a successful reset message to the console.
+
+#### SelectCommand
+
+![SelectCommand](images/dg/SelectCommand.png)
+
+When the `Parser` recognises the `select` keyword from the user input, a `SelectCommand` is instantiated.
+
+1. If `selectCategory` is
+    1. `module`, The selected `Module` is retrieved and executed on the provided `Data`. See [SelectCommand (Module)](#selectcommand-module) for the full sequence diagram.
+    2. `recipe`, The selected `Recipe` is retrieved and its `Module`objects are executed on the provided `Data`. See [SelectCommand (Recipe)](#selectcommand-recipe) for the full sequence diagram.
+
+##### SelectCommand (Module)
+
+![SelectCommand](images/dg/SelectCommandModule.png)
+
+1. Retrieves the corresponding `Module` with the provided `itemName` and `parameters` from `ModuleManager`.
+2. Retrieves the current `Data` object from `DataManager`.
+3. Executes the selected `Module` on the retrieved `Data` object and stores the processed content in a new `Data` object.
+4. Sets the new `Data` object as the current data in `DataManager`.
+5. Prints the contents of the new `Data` object to the console.
+6. Retrieves the current `Data` object from `DataManager`.
+7. Executes the selected `Module` on the retrieved `Data` object and creates a new `Data` object.
+8. Sets the new `Data` object as the current data in `DataManager`.
+9. Prints the content of the new `Data` object to the console.
+
+##### SelectCommand (Recipe)
+
+![SelectCommand (Recipe)](images/dg/SelectCommandRecipe.png)
+
+1. Retrieves the corresponding Recipe with the provided `itemName` from `RecipeManager`.
+2. Retrieves the current `Data` object from `DataManager`.
+3. Executes the selected `Recipe` on the retrieved `Data` object and stores the processed content in a new `Data` object.
+4. Sets the new `Data` object as the current data in `DataManager`.
+5. Prints the `Module`s in the `Recipe` to the console.
+6. Prints the content of the new `Data` object to the console.
+
+#### ListCommand
+
+![ListCommand](images/dg/ListCommand.png)
+
+When the `Parser` recognises the `list` keyword from the user input, a `ListCommand` is instantiated.
+
+The `ListCommand` would then parse any optional arguments, setting the `isPrintModuleList` and `isPrintRecipeList` boolean variables appropriately.
+
+1. If `isPrintModuleList` is true
+    1. Retrieves a list of all `Module` objects from `ModuleManager`. 
+    2. Prints the retrieved list of `Module` objects to the console.
+2. If `isPrintRecipeList` is true
+    1. Retrieves a list of all `Recipe` objects from `RecipeManager`.
+    2. Prints the retrieved list of `Recipe` objects to the console.
+
 ## Recipe Commands
 
 The following commands are specific to managing modules within recipes.
@@ -341,25 +535,25 @@ To sum it up, this application helps users to reduce the time needed to transfor
 
 ## Appendix B: User Stories
 
-| version | priority | as a ... | I want to... | so that i can ... |
-|----|----|----|---|----|
-| V1.0 | *** | user | input data | perform data manipulation on it |
-| V1.0 | *** | user | see the output of my processed data | see the effects of the change |
-| V1.0 | *** | user | view a list of modules | see what modules I can use on my data |
-| V1.0 | *** | user | add a module | decided to process data with the selected module |
-| V1.0 | *** | user | run a module | process data with the selected module |
-| V2.0| *** | user | create a new recipe | create different combinations of module chains |
-| V2.0 | *** | user | view a list of modules while creating recipe | decide what modules to be added to the recipe |
-| V2.0 | *** | user | add a module to the recipe | use it process my data |
-| V1.0 | ** | user | remove all modules in the recipe | see my original input data |
-| V2.0 | ** | expert user | read input data from a file |  process data that are not printable or terminal-friendly |
-| V2.0 | ** | expert user | edit the exported recipes | inspect and modify it in an editor |
-| V2.0 | ** | user | see the list of the commands | know what commands I can use |
-| V2.0 | ** | user | see the syntax of the commands | know how to use the commands |
-| V2.0 | ** | CTF Participant | save my decoded output | reuse the output later |
-| V2.0 | ** | user | import recipes from a file | I do not have to create the recipe from scratch/manually |
-| V2.0 | ** | user | save my recipes to a file | I can reuse the recipe on a different computer |
-| V2.0 | ** | user | list the recipes I have | use them again |
+| version | priority | as a ...        | I want to...                                 | so that i can ...                                        |
+| ------- | -------- | --------------- | -------------------------------------------- | -------------------------------------------------------- |
+| V1.0    | ***      | user            | input data                                   | perform data manipulation on it                          |
+| V1.0    | ***      | user            | see the output of my processed data          | see the effects of the change                            |
+| V1.0    | ***      | user            | view a list of modules                       | see what modules I can use on my data                    |
+| V1.0    | ***      | user            | add a module                                 | decided to process data with the selected module         |
+| V1.0    | ***      | user            | run a module                                 | process data with the selected module                    |
+| V2.0    | ***      | user            | create a new recipe                          | create different combinations of module chains           |
+| V2.0    | ***      | user            | view a list of modules while creating recipe | decide what modules to be added to the recipe            |
+| V2.0    | ***      | user            | add a module to the recipe                   | use it process my data                                   |
+| V1.0    | **       | user            | remove all modules in the recipe             | see my original input data                               |
+| V2.0    | **       | expert user     | read input data from a file                  | process data that are not printable or terminal-friendly |
+| V2.0    | **       | expert user     | edit the exported recipes                    | inspect and modify it in an editor                       |
+| V2.0    | **       | user            | see the list of the commands                 | know what commands I can use                             |
+| V2.0    | **       | user            | see the syntax of the commands               | know how to use the commands                             |
+| V2.0    | **       | CTF Participant | save my decoded output                       | reuse the output later                                   |
+| V2.0    | **       | user            | import recipes from a file                   | I do not have to create the recipe from scratch/manually |
+| V2.0    | **       | user            | save my recipes to a file                    | I can reuse the recipe on a different computer           |
+| V2.0    | **       | user            | list the recipes I have                      | use them again                                           |
 
 ## Appendix C: Non-Functional Requirements
 
