@@ -54,7 +54,9 @@ public class RecipeListCommand extends Command {
             return RegularMessages.RECIPE_EMPTY;
         }
 
-        String[] recipeModuleNames = recipeModuleList.stream().map(Module::toString).toArray(String[]::new);
+        String[] recipeModuleNames = recipeModuleList.stream()
+                .map(Module::toString)
+                .toArray(String[]::new);
         StringBuilder recipeListString = new StringBuilder();
 
         for (int index = 1; index <= recipeModuleNames.length; index++) {

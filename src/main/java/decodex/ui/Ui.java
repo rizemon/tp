@@ -106,7 +106,9 @@ public class Ui {
         }
 
         ArrayList<Module> recipeModuleList = recipe.getModuleList();
-        String[] recipeModuleNames = recipeModuleList.stream().map(Module::toString).toArray(String[]::new);
+        String[] recipeModuleNames = recipeModuleList.stream()
+                .map(Module::toString)
+                .toArray(String[]::new);
 
         String message = RegularMessages.RECIPE_MODULES_EXECUTED + " " + String.join(", ", recipeModuleNames);
         printSuccess(message);
