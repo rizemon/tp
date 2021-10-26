@@ -16,15 +16,11 @@ class ModuleManager {
   + getModules(): String[][]
   + selectModule(moduleName: String, parameters: String[]): Module
   - hasNoParameters(parameters: String): void
-  - prepareXYZEncoder(parameters: String[]): Module
-  - prepareXYZDecoder(parameters: String[]): Module
+  - prepareXYZModule(parameters: String[]): Module
 }
 
 note right
-  XYZEncoder = HexEncoder,
-  Base64Encoder, etc
-
-  XYZDecoder = HexDecoder,
+  XYZModule = HexEncoder,
   Base64Decoder, etc
 end note
 
