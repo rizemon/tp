@@ -71,8 +71,7 @@ public class Storage {
      * @throws ModuleException        If module parameters are invalid.
      * @throws ModuleManagerException If provided module name is not an available module.
      */
-    public Recipe[] loadRecipesFromDirectory(ModuleManager moduleManager, Ui ui)
-            throws IOException, ModuleException, ModuleManagerException {
+    public Recipe[] loadRecipesFromDirectory(ModuleManager moduleManager, Ui ui) throws IOException {
         instantiateDirectoryIfNotExist(DEFAULT_RECIPE_DIRECTORY);
         File[] recipeFiles = getAllRecipeFiles();
 
