@@ -2,6 +2,7 @@ package decodex.storage;
 
 import decodex.data.exception.ModuleException;
 import decodex.data.exception.ModuleManagerException;
+import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
 import decodex.modules.ModuleManager;
 import decodex.modules.Module;
@@ -88,7 +89,7 @@ public class Storage {
             try {
                 Recipe recipe = readRecipeFromFile(recipeName, recipeFile, moduleManager);
                 recipeManager.addRecipe(recipe);
-            } catch (IOException | ModuleException | ModuleManagerException | RecipeManagerException err) {
+            } catch (IOException | ModuleException | ModuleManagerException | RecipeManagerException | RecipeException err) {
                 String failedToLoadMessage = recipeName + ErrorMessages.FAILED_TO_LOAD_RECIPE_FILE_MESSAGE;
                 errorsOfFailedRecipeLoads.add(failedToLoadMessage);
             }
@@ -126,7 +127,7 @@ public class Storage {
      * @throws ModuleManagerException If provided module name is not an available module.
      */
     private Recipe parseContentToRecipe(String recipeFileName, String recipeContent, ModuleManager moduleManager)
-            throws ModuleException, ModuleManagerException {
+            throws ModuleException, ModuleManagerException, RecipeException {
         Recipe recipe = new Recipe(recipeFileName);
         String[] recipeLines = recipeContent.split(LINE_BREAK_REGEX);
 
@@ -156,7 +157,7 @@ public class Storage {
      * @throws ModuleManagerException If provided module name is not an available module.
      */
     public Recipe readRecipeFromFile(String recipeFilename, File recipeFile, ModuleManager moduleManager)
-            throws IOException, ModuleException, ModuleManagerException {
+            throws IOException, ModuleException, ModuleManagerException, RecipeException {
         Path recipeFilePath = recipeFile.toPath();
 
         byte[] recipeContentBytes = readContentFromFile(recipeFilePath);
