@@ -88,7 +88,6 @@ public class Storage {
                 tempRecipeList.add(recipe);
             } catch (IOException | ModuleException | ModuleManagerException err) {
                 ui.printError(err);
-                continue;
             }
         }
 
@@ -178,7 +177,7 @@ public class Storage {
         Path recipeFilePath = recipeFile.toPath();
 
         byte[] recipeContentBytes = readContentFromFile(recipeFilePath);
-        String recipeContent = recipeContentBytes.toString();
+        String recipeContent = convertByteArrayToString(recipeContentBytes);
         return recipeContent;
     }
 
@@ -307,7 +306,7 @@ public class Storage {
 
         String formattedModuleList = "";
         for (Module module : modules) {
-            formattedModuleList = formattedModuleList + module.toString() + "\n";
+            formattedModuleList = formattedModuleList.concat(module.toString() + "\n");
         }
         return formattedModuleList;
     }
@@ -317,7 +316,7 @@ public class Storage {
      *
      * @param recipeName The name of the deleted recipe.
      */
-    private void deleteRecipeFile(String recipeName) {
+    public void deleteRecipeFile(String recipeName) throws IOException {
         String newRecipeFileName = recipeName + RECIPE_FILE_PREFIX;
 
         File recipeDirectory = new File(DEFAULT_RECIPE_DIRECTORY);
@@ -327,7 +326,9 @@ public class Storage {
             return;
         }
 
-        outputRecipeFile.delete();
+        if (!outputRecipeFile.delete()){
+            throw new IOException(ErrorMessages.RECIPE_FILE_DELETE_FAILED_MESSAGE);
+        }
     }
 
     /**
