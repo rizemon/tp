@@ -9,6 +9,7 @@ import decodex.commands.recipe.RecipePopCommand;
 import decodex.commands.recipe.RecipePushCommand;
 import decodex.commands.recipe.RecipeResetCommand;
 import decodex.commands.recipe.RecipeSelectCommand;
+import decodex.commands.recipe.RecipeListCommand;
 import decodex.data.exception.CommandException;
 import decodex.ui.messages.ErrorMessages;
 
@@ -62,6 +63,9 @@ public class RecipeCommandParser extends Parser {
             break;
         case RecipeResetCommand.COMMAND_WORD:
             recipeCommand = prepareRecipeResetCommand(subCommandTokens);
+            break;
+        case RecipeListCommand.COMMAND_WORD:
+            recipeCommand = prepareRecipeListCommand(subCommandTokens);
             break;
         case RecipeDeleteCommand.COMMAND_WORD:
             recipeCommand = prepareRecipeDeleteCommand(subCommandTokens);
@@ -166,5 +170,23 @@ public class RecipeCommandParser extends Parser {
         checkValidNumberOfArguments(subCommandTokens, SUBCOMMAND_WITH_ARGUMENT_LENGTH);
         String recipeName = subCommandTokens[SUBARGUMENT_STARTING_INDEX];
         return new RecipeDeleteCommand(recipeName);
+    }
+
+    /**
+     * Prepares and returns the RecipeListCommand.
+     *
+     * @param subCommandTokens The list of recipe subcommand tokens.
+     * @return The RecipeListCommand object.
+     * @throws CommandException If the number of arguments is invalid.
+     */
+    private RecipeListCommand prepareRecipeListCommand(String[] subCommandTokens) throws CommandException {
+        if (subCommandTokens.length == SUBCOMMAND_NO_ARGUMENT_LENGTH) {
+            return new RecipeListCommand("");
+        }
+        if (subCommandTokens.length == SUBCOMMAND_WITH_ARGUMENT_LENGTH) {
+            String recipeName = subCommandTokens[SUBARGUMENT_STARTING_INDEX];
+            return new RecipeListCommand(recipeName);
+        }
+        throw new CommandException(ErrorMessages.TOO_MANY_COMMAND_ARGUMENTS);
     }
 }

@@ -148,7 +148,7 @@ public class Ui {
         assert !moduleName.isBlank() : "Module name should not be empty";
         assert recipeName != null : "Recipe name should not be null";
         assert !recipeName.isBlank() : "Recipe name should not be empty";
-        printSuccess(String.format(RegularMessages.REMOVED_RECIPE_FROM_RECIPE + "\n", moduleName, recipeName));
+        printSuccess(String.format(RegularMessages.REMOVED_RECIPE_FROM_RECIPE, moduleName, recipeName));
     }
 
     /**
@@ -162,7 +162,7 @@ public class Ui {
         assert !moduleName.isBlank() : "Module name should not be empty";
         assert recipeName != null : "Recipe name should not be null";
         assert !recipeName.isBlank() : "Recipe name should not be empty";
-        printSuccess(String.format(RegularMessages.ADDED_MODULE_TO_RECIPE + "\n", moduleName, recipeName));
+        printSuccess(String.format(RegularMessages.ADDED_MODULE_TO_RECIPE, moduleName, recipeName));
     }
 
     /**
@@ -173,7 +173,7 @@ public class Ui {
     public void printRecipeSelected(String recipeName) {
         assert recipeName != null : "Recipe name should not be null";
         assert !recipeName.isBlank() : "Recipe name should not be empty";
-        printSuccess(String.format(RegularMessages.RECIPE_SELECT + "\n", recipeName));
+        printSuccess(String.format(RegularMessages.RECIPE_SELECT, recipeName));
     }
 
     /**
@@ -206,7 +206,7 @@ public class Ui {
     public void printRecipeDeleted(String recipeName) {
         assert recipeName != null : "Recipe name should not be null";
         assert !recipeName.isBlank() : "Recipe name should not be empty";
-        printSuccess(String.format(RegularMessages.RECIPE_DELETED + "\n", recipeName));
+        printSuccess(String.format(RegularMessages.RECIPE_DELETED, recipeName));
     }
 
     /**
@@ -217,7 +217,7 @@ public class Ui {
     public void printNewRecipeCreated(String recipeName) {
         assert recipeName != null : "Recipe name should not be null";
         assert !recipeName.isBlank() : "Recipe name should not be empty";
-        printSuccess(String.format(RegularMessages.NEW_RECIPE_CREATED + "\n", recipeName));
+        printSuccess(String.format(RegularMessages.NEW_RECIPE_CREATED, recipeName));
     }
 
     /**

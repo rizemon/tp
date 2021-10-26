@@ -51,7 +51,7 @@ public class RecipeListCommand extends Command {
         ArrayList<Module> recipeModuleList = recipe.getModuleList();
 
         if (recipeModuleList.isEmpty()) {
-            return RegularMessages.RECIPE_EMPTY;
+            return "  " + RegularMessages.RECIPE_EMPTY;
         }
 
         String[] recipeModuleNames = recipeModuleList.stream().map(Module::getName).toArray(String[]::new);
