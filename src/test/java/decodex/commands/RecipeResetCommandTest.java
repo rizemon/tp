@@ -3,6 +3,7 @@ package decodex.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
+import decodex.commands.recipe.RecipeResetCommand;
 import decodex.data.DataManager;
 import decodex.data.exception.ModuleException;
 import decodex.data.exception.RecipeManagerException;

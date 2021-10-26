@@ -28,4 +28,5 @@ public class ErrorMessages {
     public static final String FILE_WRITE_ERROR_MESSAGE = "Something went wrong while writing result to output file";
     public static final String FILE_READ_ERROR_MESSAGE = "Something went wrong when reading from the file";
     public static final String DIRECTORY_INSTANTIATION_FAILED_MESSAGE = "Failed to create the directory for ";
+    public static final String INVALID_RECIPE_COMMAND = "Invalid recipe command";
 }
