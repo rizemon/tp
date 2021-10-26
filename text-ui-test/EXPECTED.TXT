@@ -28,12 +28,16 @@ Decodex > [+] Recipe testRecipe created successfully
 Decodex > Here is the list of available recipes:
   testRecipe
 
+Decodex > Here is the list of modules in recipe testRecipe:
+There are no modules in the recipe
+Decodex > Here is the list of modules in recipe testRecipe:
+There are no modules in the recipe
 Decodex > [+] There are no modules in the recipe
 [+] Output: "I am a lab rat"
 Decodex > [+] Added hexencode module to recipe testRecipe
 Decodex > [+] Added base64encode module to recipe testRecipe
 Decodex > [+] Added rotencode module to recipe testRecipe
-Decodex > [+] Modules executed: hexencode, base64encode, rotencode
+Decodex > [+] Modules executed: hexencode, base64encode, rotencode 3
 [+] Output: "QGnbPGBaQpTbPGBaPmD2BcBaQmLbPGfbQmH3QD=="
 Decodex > [x] Unknown command, please enter a valid command
 Decodex > Goodbye!

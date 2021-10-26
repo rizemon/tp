@@ -13,6 +13,8 @@ list
 select recipe testRecipe
 recipe new testRecipe
 list recipes
+recipe list
+recipe list testRecipe
 select recipe testRecipe
 recipe push hexencode
 recipe push base64encode
