@@ -13,6 +13,8 @@ import decodex.ui.Ui;
 public class RecipePopCommand extends Command {
 
     public static final String COMMAND_WORD = "pop";
+    public static final String COMMAND_HELP_MESSAGE = "Remove module from recipe\n"
+            + "Syntax: recipe pop";
 
     public RecipePopCommand() {
         super();

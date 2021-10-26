@@ -10,6 +10,10 @@ import decodex.ui.messages.ErrorMessages;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
+    public static final String COMMAND_HELP_MESSAGE = "List available modules and recipes\n"
+            + "Syntax: list {category}\n"
+            + "Acceptable values of category: modules, recipes";
+
     public static final String LIST_CATEGORY_MODULES = "modules";
     public static final String LIST_CATEGORY_RECIPE = "recipes";
     private static final int MODULE_NAME_INDEX = 0;

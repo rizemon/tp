@@ -18,6 +18,8 @@ import decodex.ui.messages.ErrorMessages;
 public class SelectCommand extends Command {
 
     public static final String COMMAND_WORD = "select";
+    public static final String COMMAND_HELP_MESSAGE = "Selects a module or recipe to run\n"
+            + "Syntax: select module <moduleName> {moduleArgument}, select recipe <recipeName>";
 
     private static final String SELECT_CATEGORY_MODULE = "module";
     private static final String SELECT_CATEGORY_RECIPE = "recipe";

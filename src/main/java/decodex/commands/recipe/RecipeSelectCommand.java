@@ -12,6 +12,8 @@ import decodex.ui.messages.ErrorMessages;
 public class RecipeSelectCommand extends Command {
 
     public static final String COMMAND_WORD = "select";
+    public static final String COMMAND_HELP_MESSAGE = "Select recipe for editing\n"
+            + "Syntax: recipe select <recipeName>";
 
     private final String recipeName;
 

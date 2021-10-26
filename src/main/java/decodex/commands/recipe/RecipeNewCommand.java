@@ -15,6 +15,8 @@ import decodex.ui.messages.ErrorMessages;
 public class RecipeNewCommand extends Command {
 
     public static final String COMMAND_WORD = "new";
+    public static final String COMMAND_HELP_MESSAGE = "Create new recipe\n"
+            + "Syntax: recipe new <recipeName>";
 
     private final String recipeName;
 

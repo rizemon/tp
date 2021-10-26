@@ -9,6 +9,8 @@ import decodex.ui.messages.RegularMessages;
 public class ResetCommand extends Command {
 
     public static final String COMMAND_WORD = "reset";
+    public static final String COMMAND_HELP_MESSAGE = "Resets the data\n"
+            + "Syntax: reset\n";
 
     public ResetCommand() {
         super();

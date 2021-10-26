@@ -11,6 +11,8 @@ import decodex.ui.messages.ErrorMessages;
 public class InputCommand extends Command {
 
     public static final String COMMAND_WORD = "input";
+    public static final String COMMAND_HELP_MESSAGE = "Input of data\n"
+            + "Syntax: input <data>";
 
     private final String dataString;
 

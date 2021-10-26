@@ -11,6 +11,8 @@ import decodex.ui.Ui;
 public class RecipeResetCommand extends Command {
 
     public static final String COMMAND_WORD = "reset";
+    public static final String COMMAND_HELP_MESSAGE = "Clear all modules from recipe\n"
+            + "Syntax: recipe reset";
 
     public RecipeResetCommand() {
         super();
