@@ -89,7 +89,8 @@ public class Storage {
             try {
                 Recipe recipe = readRecipeFromFile(recipeName, recipeFile, moduleManager);
                 recipeManager.addRecipe(recipe);
-            } catch (IOException | ModuleException | ModuleManagerException | RecipeManagerException | RecipeException err) {
+            } catch (IOException | ModuleException | ModuleManagerException
+                    | RecipeManagerException | RecipeException err) {
                 String failedToLoadMessage = recipeName + ErrorMessages.FAILED_TO_LOAD_RECIPE_FILE_MESSAGE;
                 errorsOfFailedRecipeLoads.add(failedToLoadMessage);
             }
