@@ -37,7 +37,7 @@ This section serves to help the user better understand the terminologies used in
 2. Next, download the latest `decodex.jar` [here](https://github.com/AY2122S1-CS2113T-T10-3/tp/releases)
    1. Simply click on the `decodex.jar` under "Assets" and the download should start.
 3. After downloading, you can open up `command prompt`.
-   > 💡To open command prompt, press `win + r` at the same time, then type and enter `cmd`.
+    > 💡To open command prompt, press `win + r` at the same time, then type and enter `cmd`.
 4. Then, you can now run the `decodex.jar` by typing in `java -jar decodex.jar`  and the Decodex's prompt should appear. Also, please ensure that you are at the directory where `decodex.jar` is.
    1. In the screenshot below, the `decodex.jar` is located in the `Downloads` folder.
    ![carbon(23).png](images/carbon(23).png)
@@ -47,7 +47,7 @@ This section serves to help the user better understand the terminologies used in
    3. `select module base64encode`: Selects and runs the base64-encoding module on the data.
    4. `reset`: Resets the changes made to data - resetting to its original data.
    5. `exit`: Exits the application.
-   > 🎮 Side-Quest! You may try to find out what `NTEgMzEgNTIgNDcgNjUgMzAgNGUgNTQgNGQgNmEgNDUgNzggNGQgMzEgNTIgMzk=` is using our application! If you are new here, you can continue reading this guide to understand how to unravel this mysterious text!
+    > 🎮 Side-Quest! You may try to find out what `NTEgMzEgNTIgNDcgNjUgMzAgNGUgNTQgNGQgNmEgNDUgNzggNGQgMzEgNTIgMzk=` is using our application! If you are new here, you can continue reading this guide to understand how to unravel this mysterious text!
 6. For more information on Decodex's features, please refer to the Features Section.
 
 ## Features
