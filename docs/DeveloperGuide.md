@@ -103,38 +103,141 @@ This guide includes the setup instructions, design, implementation, testing, pro
 
 ## Design
 
+## Design
+
 ### Architecture
 
-![Architecture diagram](images/architecture.png "Architecture diagram")
+The ***Architecture Diagram*** given below shows the high-level design of Decodex.
 
-The ***Architecture Diagram*** given above explains the high-level design of Decodex.
+![architecture.png](images/dg/architecture.png)
 
-Given below is a quick overview of the main components and how they interact with one another.
+**Main Components of The Architecture**
 
-**Main Components of the architecture**
-
-`Decodex` is responsible initialising the components at launch.
+`Decodex` is responsible for initialising the components at launch.
 
 The rest of the program consists of 6 other components:
 
 - `UI`: Handles user input and message output to the console
 - `Logic`: Parses user input and executes commands
-- `Recipe`: Manages a list of module sequences
+- `Recipe`: Manages a sequence of module to be executed
 - `Module`: Manages a set of encoding and decoding processes
 - `Data`: Holds the data that is to be encoded or decoded
 - `Storage`: Manages the reading and writing of data to disk
 
 ### UI Component
 
+![UiClass.png](images/dg/UiClass.png)
+
+The `Ui` component consists of:
+
+- `Ui`: Manages access to the `Scanner` object that reads user input and also contains all the methods for printing to the user.
+
 ### Logic Component
 
+Below is a partial class diagram that shows an overview of the `Logic` component.
+
+![LogicComponent(4).png](images/dg/LogicComponent.png)
+
+The `Logic` component consists of:
+
+- `Parser`: Handles user input and decides the `Command` object to create.
+- `Command`: An abstract class that defines the blueprint for the derived `*Command` classes.
+    - `InputCommand`: Takes in a string from the user and sets it as the current `Data` object to perform operations on.
+    - `HelpCommand`: Displays all command syntaxes to the user.
+    - `ListCommand`: Displays all `Module` objects and loaded `Recipe` objects to the user.
+    - `SelectCommand`: Executes a supported `Module` object or a loaded `Recipe` object on the current `Data` object and replaces it with the resulting `Data` object from the execution.
+    - `ResetCommand`: Reverts the current `Data` object to a state before any modules/recipes were executed on it.
+    - `ExitCommand`: Exits the application.
+    - `RecipeNewCommand`: Creates a new `Recipe` object with name provided by the user and creates a save file for it on the file system.
+    - `RecipeSelectCommand`: Set a `Recipe` object as the recipe that is currently being edited.
+    - `RecipeListCommand`: Display all `Module` objects in a `Recipe` object.
+    - `RecipePushCommand`: Appends a `Module` object to the `Recipe` object that is currently being edited.
+    - `RecipePopCommand`: Removes the latest `Module` object from the `Recipe` object that is currently being edited.
+    - `RecipeResetCommand`: Removes all `Module` objects from the `Recipe` object that is currently being edited.
+    - `RecipeDeleteCommand`: Deletes a `Recipe` object from the application as well as its corresponding save file on the file system.
+
+
+Below is the class diagram showing the association between the `Decodex` class and the `Parser` class.
+
+![ParserClass.png](images/dg/ParserClass.png)
+
+Below is the class diagram showing the association between the abstract `Command` class and its derived `*Command` classes.
+
+![CommandClass1.png](images/dg/CommandClass1.png)
+
+![CommandClass2.png](images/dg/CommandClass2.png)
 ### Data Component
+
+Below is a partial class diagram that shows an overview of the `Data` component.
+
+![DataComponent.png](images/dg/DataComponent.png)
+
+The `Data` component consists of:
+
+1. `Data`: Used to hold the bytes which the data transformations will act on.
+2. `DataManager`: Holds a reference to the current `Data` object and updates it when a `Module` or `Recipe` is executed.
+
+Below is the class diagram showing the association between the `Decodex` class, the `DataManager` class and the `Data` class.
+
+![DataClass.png](images/dg/DataClass.png)
 
 ### Module Component
 
+Below is a partial class diagram that shows an overview of the `Module` component.
+
+![ModuleComponent.png](images/dg/ModuleComponent.png)
+
+The `Module` component consists of:
+
+- `Module`: An abstract class that defines the blueprint for the derived `*Encoder` or `*Decoder` classes.
+    - `Base64Encoder`, `Base64Decoder`: Performs base64 encoding/decoding operations
+    - `HexEncoder`, `HexDecoder`: Performs hexadecimal encoding/decoding operations
+    - `BinaryEncoder`, `BinaryDecoder`: Performs binary encoding/decoding operations
+    - `RotEncoder`: Performs rotational cipher operation
+- `ModuleManager`: Decides and generates the necessary `Module` objects to be added to `Recipe` objects or to be executed on `Data` objects.
+
+Below is the class diagram showing the association between the `Decodex` class, the `ModuleManager` class.
+
+![ModuleManagerClass.png](images/dg/ModuleManagerClass.png)
+
+Below is the class diagram showing the association between the abstract `Module` class and its derived `*Decoder` classes.
+
+![ModuleClass.png](images/dg/ModuleClass.png)
+
 ### Recipe Component
 
+Below is a partial class diagram that shows an overview of the `Recipe` component.
+
+![RecipeComponent.png](images/dg/RecipeComponent.png)
+
+The `Recipe` component consists of:
+
+- `Recipe`: Holds a chain of `Module` objects that, when ran, will execute sequentially on a `Data` object.
+- `RecipeManager`: Manages all loaded `Recipe` objects and holds a reference to the `Recipe` object that is currently being edited.
+
+![RecipeClass.png](images/dg/RecipeClass.png)
+
+> :pen: The reason for having `Recipe` objects is to enable users to run multiple modules at one go sequentially.
+>
+
 ### Storage Component
+
+![StorageClass.png](images/dg/StorageClass.png)
+
+The `Storage` component consists of:
+
+- `Storage` : Performs all file related operations such as reading/saving to files and deleting of files.
+
+To add on, the `Storage` component is designed to access only the following folders:
+
+1. `recipe/` : For recipe files.
+2. `output/` : For output data files.
+3. `input/` : For input data file.
+
+> :pen: The rationale behind standardizing the specific folders to read/save to, is to ensure that all relevant files can be found in the same location, which makes it easier for users to find the files they are looking for.
+>
+
+## Implementation
 
 ## Recipe Commands
 
