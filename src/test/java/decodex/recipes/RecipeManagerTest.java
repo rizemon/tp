@@ -13,7 +13,7 @@ import decodex.modules.Module;
 class RecipeManagerTest {
 
     @Test
-    void addRecipe_repeatedRecipeName_expectException() throws RecipeManagerException {
+    void addRecipe_repeatedRecipeName_expectException() throws RecipeException, RecipeManagerException {
         RecipeManager recipeManager = new RecipeManager();
         Recipe newRecipe = new Recipe("sameRecipeName");
         recipeManager.addRecipe(newRecipe);
@@ -23,7 +23,7 @@ class RecipeManagerTest {
     }
 
     @Test
-    void removeRecipe_oneRecipe_removedRecipeIsTheOneRecipe() throws RecipeManagerException {
+    void removeRecipe_oneRecipe_removedRecipeIsTheOneRecipe() throws RecipeException, RecipeManagerException {
         RecipeManager recipeManager = new RecipeManager();
         String testRecipeName = "testRecipeName";
         Recipe testRecipe = new Recipe(testRecipeName);
@@ -40,7 +40,7 @@ class RecipeManagerTest {
     }
 
     @Test
-    void removeRecipe_recipeIsEditedRecipe_expectException() throws RecipeManagerException {
+    void removeRecipe_recipeIsEditedRecipe_expectException() throws RecipeException, RecipeManagerException {
         RecipeManager recipeManager = new RecipeManager();
         String testRecipeName = "testRecipeName";
         Recipe testRecipe = new Recipe(testRecipeName);
@@ -52,7 +52,7 @@ class RecipeManagerTest {
     }
 
     @Test
-    void getRecipe_oneRecipe_managerContainOneRecipe() throws RecipeManagerException {
+    void getRecipe_oneRecipe_managerContainOneRecipe() throws RecipeException, RecipeManagerException {
         RecipeManager recipeManager = new RecipeManager();
         String testRecipeName = "testRecipeName";
         Recipe testRecipe = new Recipe(testRecipeName);
@@ -70,7 +70,7 @@ class RecipeManagerTest {
     }
 
     @Test
-    void getEditedRecipe_oneEditedRecipe_editedRecipe() throws RecipeManagerException {
+    void getEditedRecipe_oneEditedRecipe_editedRecipe() throws RecipeException, RecipeManagerException {
         RecipeManager recipeManager = new RecipeManager();
         String testRecipeName = "testRecipeName";
         Recipe testRecipe = new Recipe(testRecipeName);
@@ -89,7 +89,7 @@ class RecipeManagerTest {
     }
 
     @Test
-    void selectRecipe_oneEditedRecipe_editedRecipe() throws RecipeManagerException {
+    void selectRecipe_oneEditedRecipe_editedRecipe() throws RecipeException, RecipeManagerException {
         RecipeManager recipeManager = new RecipeManager();
         String testRecipeName = "testRecipeName";
         Recipe testRecipe = new Recipe(testRecipeName);
@@ -108,7 +108,7 @@ class RecipeManagerTest {
     }
 
     @Test
-    void pushModuleIntoEditedRecipe_oneEditedRecipe_oneModuele() throws RecipeManagerException {
+    void pushModuleIntoEditedRecipe_oneEditedRecipe_oneModuele() throws RecipeException, RecipeManagerException {
         RecipeManager recipeManager = new RecipeManager();
         String testRecipeName = "testRecipeName";
         Recipe testRecipe = new Recipe(testRecipeName);
@@ -123,7 +123,7 @@ class RecipeManagerTest {
     }
 
     @Test
-    void pushModuleIntoEditedRecipe_noEditedRecipe_expectException() throws RecipeManagerException {
+    void pushModuleIntoEditedRecipe_noEditedRecipe_expectException() throws RecipeException, RecipeManagerException {
         RecipeManager recipeManager = new RecipeManager();
         String testRecipeName = "testRecipeName";
         Recipe testRecipe = new Recipe(testRecipeName);
@@ -149,7 +149,7 @@ class RecipeManagerTest {
     }
 
     @Test
-    void popModuleFromEditedRecipe_noEditedRecipe_expectException() throws RecipeManagerException {
+    void popModuleFromEditedRecipe_noEditedRecipe_expectException() throws RecipeException, RecipeManagerException {
         RecipeManager recipeManager = new RecipeManager();
         String testRecipeName = "testRecipeName";
         Recipe testRecipe = new Recipe(testRecipeName);
@@ -161,7 +161,7 @@ class RecipeManagerTest {
     }
 
     @Test
-    void resetEditedRecipe_oneEditedRecipe_noError() throws RecipeManagerException {
+    void resetEditedRecipe_oneEditedRecipe_noError() throws RecipeException, RecipeManagerException {
         RecipeManager recipeManager = new RecipeManager();
         String testRecipeName = "testRecipeName";
         Recipe testRecipe = new Recipe(testRecipeName);
@@ -174,7 +174,7 @@ class RecipeManagerTest {
     }
 
     @Test
-    void resetEditedRecipe_noEditedRecipe_expectException() throws RecipeManagerException {
+    void resetEditedRecipe_noEditedRecipe_expectException() throws RecipeException, RecipeManagerException {
         RecipeManager recipeManager = new RecipeManager();
         String testRecipeName = "testRecipeName";
         Recipe testRecipe = new Recipe(testRecipeName);

@@ -4,6 +4,7 @@ import decodex.commands.Command;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.ModuleException;
+import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
 import decodex.modules.ModuleManager;
 import decodex.recipes.Recipe;
@@ -24,7 +25,7 @@ public class RecipeNewCommand extends Command {
 
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager)
-            throws CommandException, ModuleException, RecipeManagerException {
+            throws CommandException, ModuleException, RecipeException, RecipeManagerException {
         if (recipeName.isBlank()) {
             throw new CommandException(ErrorMessages.MISSING_RECIPE_NAME);
         }

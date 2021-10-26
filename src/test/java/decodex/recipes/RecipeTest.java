@@ -1,11 +1,12 @@
 package decodex.recipes;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 import decodex.data.Data;
-import decodex.data.exception.DataManagerException;
 import decodex.data.exception.ModuleException;
 import decodex.data.exception.RecipeException;
 import decodex.modules.base64.Base64Decoder;
@@ -15,13 +16,30 @@ import decodex.modules.hex.HexDecoder;
 import decodex.modules.hex.HexEncoder;
 import decodex.modules.Module;
 import decodex.modules.rot.RotEncoder;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 class RecipeTest {
 
     @Test
-    void push_singleModule_recipeContainsOneModule() {
+    void recipe_allowedCharactersInName_recipeCreated() throws RecipeException {
+        String validRecipeName = "test_Recipe";
+        Recipe testRecipe = new Recipe(validRecipeName);
+        assertNotNull(testRecipe);
+    }
+
+    @Test
+    void recipe_emptyRecipeName_recipeCreated() {
+        String emptyRecipeName = "";
+        assertThrows(RecipeException.class, () -> new Recipe(emptyRecipeName));
+    }
+
+    @Test
+    void recipe_illegalCharactersInName_recipeCreated() {
+        String invalidRecipeName = "**bad-name?!";
+        assertThrows(RecipeException.class, () -> new Recipe(invalidRecipeName));
+    }
+
+    @Test
+    void push_singleModule_recipeContainsOneModule() throws RecipeException {
         Recipe recipe = new Recipe("testRecipe");
         Module module = new HexEncoder();
         recipe.push(module);
@@ -41,14 +59,14 @@ class RecipeTest {
     }
 
     @Test
-    void pop_emptyRecipe_expectException() {
+    void pop_emptyRecipe_expectException() throws RecipeException {
         Recipe recipe = new Recipe("testRecipe");
 
         assertThrows(RecipeException.class, () -> recipe.pop());
     }
 
     @Test
-    void reset_emptyModuleList() {
+    void reset_emptyModuleList() throws RecipeException {
         Recipe recipe = new Recipe("testRecipe");
         recipe.push(new HexEncoder());
         recipe.push(new HexDecoder());
@@ -61,7 +79,7 @@ class RecipeTest {
     }
 
     @Test
-    void run_chainOfModules_encodedOutput() throws ModuleException {
+    void run_chainOfModules_encodedOutput() throws RecipeException, ModuleException {
         Recipe recipe = new Recipe("rainbowTest");
 
         recipe.push(new HexEncoder());
@@ -79,7 +97,7 @@ class RecipeTest {
     }
 
     @Test()
-    void run_chainOfModulesFailHalfway_expectException() {
+    void run_chainOfModulesFailHalfway_expectException() throws RecipeException {
         Recipe recipe = new Recipe("rainbowTest");
 
         recipe.push(new HexEncoder());

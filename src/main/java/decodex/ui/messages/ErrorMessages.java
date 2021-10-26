@@ -13,6 +13,8 @@ public class ErrorMessages {
     public static final String HEX_DECODING_FAILED_MESSAGE = "Invalid hexadecimal string";
     public static final String EMPTY_RECIPE_MESSAGE = "The recipe is currently empty. There is no module to be "
             + "removed.";
+    public static final String INVALID_RECIPE_NAME = "Recipe names can contain only alphabets, numbers and "
+            + "underscores and must be non-empty.";
     public static final String DUPLICATE_RECIPE_NAME_MESSAGE = "A recipe with the given name already exists.";
     public static final String RECIPE_NOT_FOUND_MESSAGE = "The given recipe could not be found.";
     public static final String EDITING_RECIPE_NOT_FOUND_MESSAGE = "No recipe selected for editing.";
