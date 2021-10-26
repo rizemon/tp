@@ -12,7 +12,9 @@ import decodex.ui.messages.RegularMessages;
  */
 public class Ui {
 
-    private static final String PROMPT_HEADER = "Decodex > ";
+    private static final String PROMPT_HEADER = "Decodex [%s] > ";
+    private static final String PROMPT_EDITING = "Editing: ";
+    private static final String BLANK_STRING = "";
     private static final String SUCCESS_ICON = "[+]";
     private static final String ERROR_ICON = "[x]";
     private static final String INPUT_PREFIX = "Input:";
@@ -44,7 +46,6 @@ public class Ui {
      * @return String of the user input.
      */
     public String readInput() {
-        printPromptHeader();
         return in.nextLine();
     }
 
@@ -220,6 +221,11 @@ public class Ui {
         printSuccess(String.format(RegularMessages.NEW_RECIPE_CREATED, recipeName));
     }
 
+    /**
+     * Prints the list of messages of recipe files that failed to load.
+     *
+     * @param failedFilesMessageList The list of messages.
+     */
     public void printFailedToLoadFromStorageMessage(ArrayList<String> failedFilesMessageList) {
         for (String failedFileMessage : failedFilesMessageList) {
             System.out.println(failedFileMessage);
@@ -228,9 +234,15 @@ public class Ui {
 
     /**
      * Prints the prompt header.
+     *
+     * @param editingRecipeName Name of the recipe in editing.
      */
-    private void printPromptHeader() {
-        System.out.print(PROMPT_HEADER);
+    public void printPromptHeader(String editingRecipeName) {
+        if (editingRecipeName == null) {
+            System.out.printf(PROMPT_HEADER, BLANK_STRING);
+        } else {
+            System.out.printf(PROMPT_HEADER, PROMPT_EDITING + editingRecipeName);
+        }
     }
 
     /**
