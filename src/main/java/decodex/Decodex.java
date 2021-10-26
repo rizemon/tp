@@ -50,12 +50,13 @@ public class Decodex {
         parser = new Parser();
         ui = new Ui();
         storage = new Storage();
+        recipeManager = new RecipeManager();
         try {
-            Recipe[] savedRecipes = loadSavedRecipes();
+            loadSavedRecipes();
         } catch (IOException err) {
             ui.printError(err);
         }
-        recipeManager = new RecipeManager();
+
     }
 
     /**
@@ -85,7 +86,7 @@ public class Decodex {
         } while (!(command instanceof ExitCommand));
     }
 
-    private Recipe[] loadSavedRecipes() throws IOException {
-        return storage.loadRecipesFromDirectory(moduleManager, ui);
+    private void loadSavedRecipes() throws IOException {
+        storage.loadRecipesFromDirectory(moduleManager, recipeManager, ui);
     }
 }

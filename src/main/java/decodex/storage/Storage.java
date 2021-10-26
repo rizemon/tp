@@ -2,9 +2,11 @@ package decodex.storage;
 
 import decodex.data.exception.ModuleException;
 import decodex.data.exception.ModuleManagerException;
+import decodex.data.exception.RecipeManagerException;
 import decodex.modules.ModuleManager;
 import decodex.modules.Module;
 import decodex.recipes.Recipe;
+import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
 import decodex.ui.messages.ErrorMessages;
 
@@ -65,34 +67,37 @@ public class Storage {
      * Loads all the recipes previously saved in the recipe directory.
      *
      * @param moduleManager The ModuleManager object.
-     * @param ui The Ui object.
-     * @return The list of Recipe objects.
+     * @param recipeManager The RecipeManager object.
+     * @param ui            The Ui object.
      * @throws IOException            If an error occurred when reading the file.
      * @throws ModuleException        If module parameters are invalid.
      * @throws ModuleManagerException If provided module name is not an available module.
      */
-    public Recipe[] loadRecipesFromDirectory(ModuleManager moduleManager, Ui ui) throws IOException {
+    public void loadRecipesFromDirectory(ModuleManager moduleManager, RecipeManager recipeManager, Ui ui)
+            throws IOException {
         instantiateDirectoryIfNotExist(DEFAULT_RECIPE_DIRECTORY);
         File[] recipeFiles = getAllRecipeFiles();
 
         if (recipeFiles.length == EMPTY_LENGTH) {
-            return new Recipe[EMPTY_LENGTH];
+            return;
         }
-        ArrayList<Recipe> tempRecipeList = new ArrayList<>();
+        ArrayList<String> errorsOfFailedRecipeLoads = new ArrayList<>();
         for (File recipeFile : recipeFiles) {
             String recipeFilename = recipeFile.getName();
             String recipeName = recipeFilename.split(FILENAME_EXTENSION_SPLIT_REGEX)[RECIPE_NAME_INDEX];
             try {
                 Recipe recipe = readRecipeFromFile(recipeName, recipeFile, moduleManager);
-                tempRecipeList.add(recipe);
-            } catch (IOException | ModuleException | ModuleManagerException err) {
-                ui.printError(err);
+                recipeManager.addRecipe(recipe);
+            } catch (IOException | ModuleException | ModuleManagerException | RecipeManagerException err) {
+                String failedToLoadMessage = recipeName + ErrorMessages.FAILED_TO_LOAD_RECIPE_FILE_MESSAGE;
+                errorsOfFailedRecipeLoads.add(failedToLoadMessage);
             }
         }
 
-        int tempRecipeListSize = tempRecipeList.size();
-        Recipe[] recipeList = tempRecipeList.toArray(new Recipe[tempRecipeListSize]);
-        return recipeList;
+        if (errorsOfFailedRecipeLoads.isEmpty()) {
+            return;
+        }
+        ui.printFailedToLoadFromStorageMessage(errorsOfFailedRecipeLoads);
     }
 
     /**
