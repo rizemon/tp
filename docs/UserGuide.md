@@ -4,6 +4,8 @@
 
 Decodex is a **Command Line Interface (CLI) application for Capture-The-Flag (CTF) players to quickly transform data from one format to another with extreme ease**. The intuitive interaction can help speed up a player's performance during CTFs and save time without having to manually code the tedious data transformations.
 
+This guides serves to help you understand the usage of the program for quick and easy data manipulation.
+
 > :information_source: This user guide is tailored for CTF players who have basic understanding of information security concepts.
 
 ![carbon(6).png](images/carbon(6).png)
