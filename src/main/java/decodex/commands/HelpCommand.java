@@ -1,6 +1,7 @@
 package decodex.commands;
 
 import decodex.commands.recipe.RecipeDeleteCommand;
+import decodex.commands.recipe.RecipeListCommand;
 import decodex.commands.recipe.RecipeNewCommand;
 import decodex.commands.recipe.RecipePopCommand;
 import decodex.commands.recipe.RecipePushCommand;
@@ -27,11 +28,12 @@ public class HelpCommand extends Command {
 
     private static String[] RECIPE_COMMAND_HELP_MESSAGES = {
         RecipeNewCommand.COMMAND_HELP_MESSAGE,
+        RecipeListCommand.COMMAND_HELP_MESSAGE
         RecipeSelectCommand.COMMAND_HELP_MESSAGE,
         RecipePushCommand.COMMAND_HELP_MESSAGE,
         RecipePopCommand.COMMAND_HELP_MESSAGE,
         RecipeResetCommand.COMMAND_HELP_MESSAGE,
-        RecipeDeleteCommand.COMMAND_HELP_MESSAGE
+        RecipeDeleteCommand.COMMAND_HELP_MESSAGE,
     };
 
     public HelpCommand() {

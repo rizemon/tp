@@ -1,5 +1,6 @@
-package decodex.commands;
+package decodex.commands.recipe;
 
+import decodex.commands.Command;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.ModuleException;
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 public class RecipeListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
+    public static final String COMMAND_HELP_MESSAGE = "List modules in recipe\n"
+            + "Syntax: recipe list {recipeName}";
     private static final int ARRAY_INDEX_OFFSET = -1;
 
     private final String recipeName;
