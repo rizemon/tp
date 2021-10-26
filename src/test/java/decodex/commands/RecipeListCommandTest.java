@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.ModuleException;
+import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
 import decodex.modules.ModuleManager;
 import decodex.modules.base64.Base64Encoder;
@@ -34,7 +35,7 @@ class RecipeListCommandTest {
     private final Ui ui = new Ui();
 
     @BeforeEach
-    public void createTestRecipe() throws RecipeManagerException {
+    public void createTestRecipe() throws RecipeManagerException, RecipeException {
         Recipe recipe = new Recipe(TEST_RECIPE_NAME);
 
         recipe.push(new HexEncoder());
