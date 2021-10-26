@@ -12,7 +12,7 @@ Decodex > [+] Output: "I am a lab rat"
 Decodex > [+] Output: "L dp d ode udw"
 Decodex > [+] Output: "I am a lab rat"
 Decodex > [+] Reverted all changes
-Decodex > Here are the list of supported modules:
+Decodex > Here is the list of supported modules:
   base64encode - Encodes the data using Base64 format.
   base64decode - Decodes the data using Base64 format.
   hexencode    - Converts the input string to hexadecimal bytes
@@ -26,7 +26,7 @@ You do not have any recipes
 Decodex > [x] The given recipe could not be found.
 Decodex > [+] Recipe testRecipe created successfully
 
-Decodex > Here are the list of available recipes:
+Decodex > Here is the list of available recipes:
   testRecipe
 
 Decodex > [+] There are no modules in the recipe
