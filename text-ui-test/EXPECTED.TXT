@@ -25,18 +25,14 @@ You do not have any recipes
 
 Decodex > [x] The given recipe could not be found.
 Decodex > [+] Recipe testRecipe created successfully
-
 Decodex > Here is the list of available recipes:
   testRecipe
 
 Decodex > [+] There are no modules in the recipe
 [+] Output: "I am a lab rat"
 Decodex > [+] Added hexencode module to recipe testRecipe
-
 Decodex > [+] Added base64encode module to recipe testRecipe
-
 Decodex > [+] Added rotencode module to recipe testRecipe
-
 Decodex > [+] Modules executed: hexencode, base64encode, rotencode
 [+] Output: "QGnbPGBaQpTbPGBaPmD2BcBaQmLbPGfbQmH3QD=="
 Decodex > [x] Unknown command, please enter a valid command
