@@ -48,14 +48,14 @@ This guide includes the setup instructions, design, implementation, testing, pro
       - [SelectCommand (Module)](#selectcommand-module)
       - [SelectCommand (Recipe)](#selectcommand-recipe)
     - [ListCommand](#listcommand)
-- [Recipe Commands](#recipe-commands)
-  - [RecipeNewCommand](#recipenewcommand)
-  - [RecipeSelectCommand](#recipeselectcommand)
-  - [RecipeListCommand](#recipelistcommand)
-  - [RecipePushCommand](#recipepushcommand)
-  - [RecipePopCommand](#recipepopcommand)
-  - [RecipeResetCommand](#reciperesetcommand)
-  - [RecipeDeleteCommand](#recipedeletecommand)
+  - [Recipe Commands](#recipe-commands)
+    - [RecipeNewCommand](#recipenewcommand)
+    - [RecipeSelectCommand](#recipeselectcommand)
+    - [RecipeListCommand](#recipelistcommand)
+    - [RecipePushCommand](#recipepushcommand)
+    - [RecipePopCommand](#recipepopcommand)
+    - [RecipeResetCommand](#reciperesetcommand)
+    - [RecipeDeleteCommand](#recipedeletecommand)
 - [Appendix A: Product Scope](#appendix-a-product-scope)
   - [Target User Profile](#target-user-profile)
   - [Value Proposition](#value-proposition)
@@ -105,7 +105,7 @@ This guide includes the setup instructions, design, implementation, testing, pro
     1. **Fork** our repository.
     2. Then, **clone** the fork onto your computer.
 
-> 💡 For convenience, our repository can be found [here](https://github.com/AY2122S1-CS2113T-T10-3/tp).
+    > 💡 For convenience, our repository can be found [here](https://github.com/AY2122S1-CS2113T-T10-3/tp).
 
 2. Editor
     1. We highly recommend using Intellij IDEA, which can be downloaded from [here](https://www.jetbrains.com/idea/).
@@ -115,7 +115,7 @@ This guide includes the setup instructions, design, implementation, testing, pro
 4. Importing project
     1. Follow the guide at *[[se-edu/guides] IDEA: Importing a Gradle project](https://se-education.org/guides/tutorials/intellijImportGradleProject.html)* to import the forked project into Intellij.
 
-> ❗Note: Importing a Gradle project is slightly different from importing a normal Java project.
+    > ❗Note: Importing a Gradle project is slightly different from importing a normal Java project.
 
 5. Verifying setup
     1. Run the `decodex.Decodex.java` and try a few commands.
@@ -427,7 +427,7 @@ The `ListCommand` would then parse any optional arguments, setting the `isPrintM
     1. Retrieves a list of all `Recipe` objects from `RecipeManager`.
     2. Prints the retrieved list of `Recipe` objects to the console.
 
-## Recipe Commands
+### Recipe Commands
 
 The following commands are specific to managing modules within recipes.
 
@@ -437,7 +437,7 @@ Format: `recipe <subcommand> {arguments}`
 
 Example: `recipe new newRecipe`
 
-### RecipeNewCommand
+#### RecipeNewCommand
 
 ![RecipeNewCommand](images/dg/RecipeNewCommand.png)
 
@@ -448,7 +448,7 @@ When the `RecipeCommandParser` recognises the `new` subcommand keyword from the 
 3. Sets `recipeName` as the `editingRecipeName` in `RecipeManager`.
 4. Prints a successful creation message to the console.
 
-### RecipeSelectCommand
+#### RecipeSelectCommand
 
 ![RecipeSelectCommand](images/dg/RecipeSelectCommand.png)
 
@@ -458,7 +458,7 @@ When the `RecipeCommandParser` recognises the `select` subcommand keyword from t
 2. Sets `recipeName` as the `editingRecipeName` in `RecipeManager`.
 3. Prints a successful selection message containing the `recipeName` to the console.
 
-### RecipeListCommand
+#### RecipeListCommand
 
 ![RecipeListCommand](images/dg/RecipeListCommand.png)
 
@@ -470,7 +470,7 @@ When the `RecipeCommandParser` recognises the `list` subcommand keyword from the
 2. Retrieves the list of `Module` objects belonging to the `Recipe` with `recipeName`.
 3. Prints the names and parameters of each `Module` object in the retrieved list.
 
-### RecipePushCommand
+#### RecipePushCommand
 
 ![RecipePushCommand](images/dg/RecipePushCommand.png)
 
@@ -481,7 +481,7 @@ When the `RecipeCommandParser` recognises the `push` subcommand keyword from the
 3. Adds the retrieved `Module` into the current editing `Recipe`.
 4. Prints the a message of the added `Module` to the console.
 
-### RecipePopCommand
+#### RecipePopCommand
 
 ![RecipePopCommand](images/dg/RecipePopCommand.png)
 
@@ -491,7 +491,7 @@ When the `RecipeCommandParser` recognises the `pop` subcommand keyword from the 
 2. Retrieves the current editing `Recipe`.
 3. Prints the a message of the removed `Module` to the console.
 
-### RecipeResetCommand
+#### RecipeResetCommand
 
 ![RecipeResetCommand](images/dg/RecipeResetCommand.png)
 
@@ -501,7 +501,7 @@ When the `RecipeCommandParser` recognises the `Reset` subcommand keyword from th
 2. Removes all modules contained in the `Recipe`
 3. Prints a successful reset message containing the `recipeName` to the console.
 
-### RecipeDeleteCommand
+#### RecipeDeleteCommand
 
 ![RecipeDeleteCommand](images/dg/RecipeDeleteCommand.png)
 
