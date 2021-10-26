@@ -27,6 +27,7 @@ public class HexDecoder extends Module {
      *
      * @param data Data object to be decoded.
      * @return new Data object representing the decoded input.
+     * @throws ModuleException If the Data is not in hexadecimal format.
      */
     @Override
     public Data run(Data data) throws ModuleException {
