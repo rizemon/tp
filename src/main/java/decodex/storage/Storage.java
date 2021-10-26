@@ -78,7 +78,6 @@ public class Storage {
         if (recipeFiles.length == EMPTY_LENGTH) {
             return new Recipe[EMPTY_LENGTH];
         }
-        boolean hasError = false;
         ArrayList<Recipe> tempRecipeList = new ArrayList<>();
         for (File recipeFile : recipeFiles) {
             String recipeFilename = recipeFile.getName();
@@ -159,26 +158,6 @@ public class Storage {
         String recipeContent = convertByteArrayToString(recipeContentBytes);
         Recipe loadedRecipe = parseContentToRecipe(recipeFilename, recipeContent, moduleManager);
         return loadedRecipe;
-    }
-
-    /**
-     * Reads and returns the recipe from the provided file.
-     *
-     * @param fileName The name of the recipe file specified by the user.
-     * @return The string formatted recipe from the provided file.
-     * @throws IOException If an error occurred when reading the file or
-     *                     the input file does not exist.
-     */
-    public String readRecipeFromFile(String fileName) throws IOException {
-        instantiateDirectoryIfNotExist(DEFAULT_RECIPE_DIRECTORY);
-
-        File recipeDirectory = new File(DEFAULT_RECIPE_DIRECTORY);
-        File recipeFile = new File(recipeDirectory, fileName);
-        Path recipeFilePath = recipeFile.toPath();
-
-        byte[] recipeContentBytes = readContentFromFile(recipeFilePath);
-        String recipeContent = convertByteArrayToString(recipeContentBytes);
-        return recipeContent;
     }
 
     /**
