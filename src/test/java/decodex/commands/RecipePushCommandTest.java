@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import decodex.data.exception.RecipeException;
 import org.junit.jupiter.api.Test;
 
+import decodex.commands.recipe.RecipePushCommand;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.ModuleException;

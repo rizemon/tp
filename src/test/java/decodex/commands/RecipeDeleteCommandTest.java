@@ -2,6 +2,7 @@ package decodex.commands;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import decodex.commands.recipe.RecipeDeleteCommand;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;

@@ -1,5 +1,6 @@
-package decodex.commands;
+package decodex.commands.recipe;
 
+import decodex.commands.Command;
 import decodex.data.DataManager;
 import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
