@@ -39,12 +39,20 @@ This guides serves to help you understand the usage of the program for quick and
 
 This section serves to help the user better understand the terminologies used in this user guide.
 
-| Terminology         | Definition                                                              |
-| ------------------- | ----------------------------------------------------------------------- |
-| Encoding            | Convert a message into a coded form.                                    |
-| Decoding            | Convert a coded message into an intelligible form.                      |
-| Base64, Hexadecimal | Common types of data encoding standards.                                |
-| Module              | A self-contained set of instructions to process data into another form. |
+| Terminology                 | Definition                                                                                                                                                    |
+|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Application, Program        | Refers to the Decodex program. This two terms are used interchangeably in this User Guide.                                                                    |
+| Encoding                    | Convert a message into a coded form.                                                                                                                          |
+| Decoding                    | Convert a coded message into an intelligible form.                                                                                                            |
+| Base64, Binary, Hexadecimal | Common types of data encoding standards.                                                                                                                      |
+| Console                     | This refers to your command prompt window.                                                                                                                    |
+| Argument                    | The additional information you provide to the program's command.                                                                                              |
+| Module                      | A self-contained set of instructions to process your data into another form.                                                                                  |
+| Recipe                      | Acts as a container for you to select your modules. When multiple modules are selected, this forms a "module chain". By default, you do not have any recipes. |
+| 💡                           | Represents a good tip for you.                                                                                                                                |
+| ❗                           | Represents something important that you should take note of.                                                                                                  |
+| ℹ                           | Represents additional information regarding commands/features for you to better understand how to use it.                                                     |
+| 🎮                           | Represents something optional that you can try out, mostly for exploring or fun.                                                                              |
 
 ## Quick Start
 1. Ensure you have Java version 11 or above installed on your computer.
