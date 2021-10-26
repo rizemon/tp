@@ -136,6 +136,89 @@ The rest of the program consists of 6 other components:
 
 ### Storage Component
 
+## Recipe Commands
+
+The following commands are specific to managing modules within recipes.
+
+The command format begins with the command keyword `recipe`, followed by a subcommand keyword, and finally any arguments.
+
+Format: `recipe <subcommand> {arguments}`
+
+Example: `recipe new newRecipe`
+
+### RecipeNewCommand
+
+![RecipeNewCommand](images/dg/RecipeNewCommand.png)
+
+When the `RecipeCommandParser` recognises the `new` subcommand keyword from the user input, a `RecipeNewCommand` is instantiated.
+
+1. Creates a new `Recipe` object with the provided `recipeName`.
+2. Add the newly created `Recipe` into the `RecipeManager`.
+3. Sets `recipeName` as the `editingRecipeName` in `RecipeManager`.
+4. Prints a successful creation message to the console.
+
+### RecipeSelectCommand
+
+![RecipeSelectCommand](images/dg/RecipeSelectCommand.png)
+
+When the `RecipeCommandParser` recognises the `select` subcommand keyword from the user input, a `RecipeSelectCommand` is instantiated.
+
+1. Retrieves the `Recipe` corresponding with the provided `recipeName` from `RecipeManager`.
+2. Sets `recipeName` as the `editingRecipeName` in `RecipeManager`.
+3. Prints a successful selection message containing the `recipeName` to the console.
+
+### RecipeListCommand
+
+![RecipeListCommand](images/dg/RecipeListCommand.png)
+
+When the `RecipeCommandParser` recognises the `list` subcommand keyword from the user input, a `RecipeListCommand` is instantiated.
+
+1. If `recipeName` is
+   1. blank, the `Recipe` with the current `editingRecipeName` is retrieved.
+   2. not blank, the `Recipe` with `recipeName` is retrieved.
+2. Retrieves the list of `Module` objects belonging to the `Recipe` with `recipeName`.
+3. Prints the names and parameters of each `Module` object in the retrieved list.
+
+### RecipePushCommand
+
+![RecipePushCommand](images/dg/RecipePushCommand.png)
+
+When the `RecipeCommandParser` recognises the `push` subcommand keyword from the user input, a `RecipePushCommand` is instantiated.
+
+1. Retrieves the corresponding `Module` with the provided `moduleName` and `parameters` from `ModuleManager`.
+2. Retrieves the current editing `Recipe`.
+3. Adds the retrieved `Module` into the current editing `Recipe`.
+4. Prints the a message of the added `Module` to the console.
+
+### RecipePopCommand
+
+![RecipePopCommand](images/dg/RecipePopCommand.png)
+
+When the `RecipeCommandParser` recognises the `pop` subcommand keyword from the user input, a `RecipePopCommand` is instantiated.
+
+1. Retrieves the latest `Module` added to the `Recipe`, and removes it from the `Recipe` after retrieval.
+2. Retrieves the current editing `Recipe`.
+3. Prints the a message of the removed `Module` to the console.
+
+### RecipeResetCommand
+
+![RecipeResetCommand](images/dg/RecipeResetCommand.png)
+
+When the `RecipeCommandParser` recognises the `Reset` subcommand keyword from the user input, a `RecipeResetCommand` is instantiated.
+
+1. Retrieves the `Recipe` with the current `editingRecipeName` is retrieved.
+2. Removes all modules contained in the `Recipe`
+3. Prints a successful reset message containing the `recipeName` to the console.
+
+### RecipeDeleteCommand
+
+![RecipeDeleteCommand](images/dg/RecipeDeleteCommand.png)
+
+When the `RecipeCommandParser` recognises the `delete` subcommand keyword from the user input, a `RecipeDeleteCommand` is instantiated.
+
+1. Removes the `Recipe` with the `recipeName` from `RecipeManager`.
+2. Prints `recipeName` as the deleted `Recipe` to the console.
+
 ## Appendix A: Product Scope
 
 ### Target User Profile
