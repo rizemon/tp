@@ -86,6 +86,6 @@ public class Decodex {
     }
 
     private Recipe[] loadSavedRecipes() throws IOException, ModuleException, ModuleManagerException {
-        return storage.loadRecipesFromDirectory(moduleManager);
+        return storage.loadRecipesFromDirectory(moduleManager, ui);
     }
 }

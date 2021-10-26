@@ -5,6 +5,7 @@ import decodex.data.exception.ModuleManagerException;
 import decodex.modules.ModuleManager;
 import decodex.modules.Module;
 import decodex.recipes.Recipe;
+import decodex.ui.Ui;
 import decodex.ui.messages.ErrorMessages;
 
 import java.io.File;
@@ -46,6 +47,7 @@ public class Storage {
      */
     private static final int RECIPE_NAME_INDEX = 0;
     private static final int MODULE_NAME_INDEX = 0;
+    private static final int STARTING_PARAMETER_INDEX = 1;
 
     /**
      * Other miscellaneous constants for condition checking.
@@ -63,26 +65,32 @@ public class Storage {
      * Loads all the recipes previously saved in the recipe directory.
      *
      * @param moduleManager The ModuleManager object.
+     * @param ui The Ui object.
      * @return The list of Recipe objects.
      * @throws IOException            If an error occurred when reading the file.
      * @throws ModuleException        If module parameters are invalid.
      * @throws ModuleManagerException If provided module name is not an available module.
      */
-    public Recipe[] loadRecipesFromDirectory(ModuleManager moduleManager)
+    public Recipe[] loadRecipesFromDirectory(ModuleManager moduleManager, Ui ui)
             throws IOException, ModuleException, ModuleManagerException {
         instantiateDirectoryIfNotExist(DEFAULT_RECIPE_DIRECTORY);
         File[] recipeFiles = getAllRecipeFiles();
 
         if (recipeFiles.length == EMPTY_LENGTH) {
-            return null;
+            return new Recipe[EMPTY_LENGTH];
         }
-
+        boolean hasError = false;
         ArrayList<Recipe> tempRecipeList = new ArrayList<>();
         for (File recipeFile : recipeFiles) {
             String recipeFilename = recipeFile.getName();
             String recipeName = recipeFilename.split(FILENAME_EXTENSION_SPLIT_REGEX)[RECIPE_NAME_INDEX];
-            Recipe recipe = readRecipeFromFile(recipeName, recipeFile, moduleManager);
-            tempRecipeList.add(recipe);
+            try {
+                Recipe recipe = readRecipeFromFile(recipeName, recipeFile, moduleManager);
+                tempRecipeList.add(recipe);
+            } catch (IOException | ModuleException | ModuleManagerException err) {
+                ui.printError(err);
+                continue;
+            }
         }
 
         int tempRecipeListSize = tempRecipeList.size();
@@ -121,12 +129,13 @@ public class Storage {
         String[] recipeLines = recipeContent.split(LINE_BREAK_REGEX);
 
         for (String recipeLine : recipeLines) {
-            if (recipeLine.isEmpty()) {
+            String trimmedRecipeLine = recipeLine.trim();
+            if (trimmedRecipeLine.isEmpty()) {
                 continue;
             }
-            String[] tokens = recipeLine.split(" ");
+            String[] tokens = trimmedRecipeLine.split(" ");
             String moduleName = tokens[MODULE_NAME_INDEX];
-            String[] moduleParameters = Arrays.copyOfRange(tokens, 1, tokens.length);
+            String[] moduleParameters = Arrays.copyOfRange(tokens, STARTING_PARAMETER_INDEX, tokens.length);
             Module module = moduleManager.selectModule(moduleName, moduleParameters);
             recipe.push(module);
         }
@@ -293,7 +302,7 @@ public class Storage {
      * @return The formatted list of modules.
      */
     private String formatModuleListForSaving(ArrayList<Module> modules) {
-        if (modules.size() == EMPTY_LENGTH) {
+        if (modules.isEmpty()) {
             return "";
         }
 
