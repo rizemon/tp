@@ -71,4 +71,14 @@ public class RotEncoder extends Module {
         int updatedAlphabetIndex = Math.floorMod(originalAlphabetIndex + rotateOffset, ALPHABETS_COUNT);
         return (char) (UPPERCASE_A + updatedAlphabetIndex);
     }
+
+    /**
+     * Returns a String formatted RotEncoder.
+     *
+     * @return The string formatted RotEncoder.
+     */
+    @Override
+    public String toString() {
+        return super.toString() + " " + rotateOffset;
+    }
 }

@@ -31,5 +31,7 @@ public class ErrorMessages {
     public static final String FILE_WRITE_ERROR_MESSAGE = "Something went wrong while writing result to output file";
     public static final String FILE_READ_ERROR_MESSAGE = "Something went wrong when reading from the file";
     public static final String DIRECTORY_INSTANTIATION_FAILED_MESSAGE = "Failed to create the directory for ";
+    public static final String RECIPE_FILE_DELETE_FAILED_MESSAGE = "Failed to delete the corresponding recipe file";
+    public static final String FAILED_TO_LOAD_RECIPE_FILE_MESSAGE = " failed to be loaded into Decodex";
     public static final String INVALID_RECIPE_COMMAND = "Invalid recipe command";
 }

@@ -220,6 +220,12 @@ public class Ui {
         printSuccess(String.format(RegularMessages.NEW_RECIPE_CREATED, recipeName));
     }
 
+    public void printFailedToLoadFromStorageMessage(ArrayList<String> failedFilesMessageList) {
+        for (String failedFileMessage : failedFilesMessageList) {
+            System.out.println(failedFileMessage);
+        }
+    }
+
     /**
      * Prints the prompt header.
      */
