@@ -8,6 +8,7 @@ import decodex.commands.InputCommand;
 import decodex.commands.ListCommand;
 import decodex.commands.ResetCommand;
 import decodex.commands.SelectCommand;
+import decodex.commands.HelpCommand;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.ParserException;
 import decodex.ui.messages.ErrorMessages;
@@ -128,6 +129,9 @@ public class Parser {
         case SelectCommand.COMMAND_WORD:
             command = prepareSelectCommand(userInput);
             break;
+        case HelpCommand.COMMAND_WORD:
+            command = prepareHelpCommand();
+            break;
         case RECIPE_COMMAND_WORD:
             command = prepareRecipeSubcommands(userInput);
             break;
@@ -240,5 +244,14 @@ public class Parser {
      */
     private Command prepareRecipeSubcommands(String userInput) throws CommandException {
         return recipeCommandParser.parseCommand(userInput);
+    }
+
+    /**
+     * Prepares and returns the HelpCommand.
+     *
+     * @return The HelpCommand object.
+     */
+    private HelpCommand prepareHelpCommand() {
+        return new HelpCommand();
     }
 }

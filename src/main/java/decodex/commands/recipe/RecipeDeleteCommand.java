@@ -13,6 +13,8 @@ import decodex.ui.messages.ErrorMessages;
 public class RecipeDeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_HELP_MESSAGE = "Delete recipe\n"
+            + "Syntax: recipe delete <recipeName>";
 
     private final String recipeName;
 

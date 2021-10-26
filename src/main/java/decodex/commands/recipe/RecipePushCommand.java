@@ -16,6 +16,8 @@ import decodex.ui.messages.ErrorMessages;
 public class RecipePushCommand extends Command {
 
     public static final String COMMAND_WORD = "push";
+    public static final String COMMAND_HELP_MESSAGE = "Add module to recipe\n"
+            + "Syntax: recipe push <moduleName> {moduleArgument}";
 
     private final String moduleName;
     private final String[] parameters;

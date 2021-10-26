@@ -18,4 +18,7 @@ public class RegularMessages {
     public static final String RECIPE_SELECT = "Recipe %s selected for editing";
     public static final String RECIPE_EMPTY = "There are no modules in the recipe";
     public static final String RECIPE_MODULES_EXECUTED = "Modules executed:";
+    public static final String BASIC_COMMANDS = "Here are the basic commands:";
+    public static final String RECIPE_COMMANDS = "Here are the recipe commands:";
+    public static final String SYNTAX_MANDATORY_OPTIONAL = "Syntax: < > - mandatory, { } - optional";
 }
