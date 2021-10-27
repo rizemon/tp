@@ -11,6 +11,7 @@ import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
 import java.io.IOException;
 
+// @@author rizemon
 public class RecipePopCommand extends Command {
 
     public static final String COMMAND_WORD = "pop";

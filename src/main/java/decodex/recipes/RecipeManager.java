@@ -102,6 +102,7 @@ public class RecipeManager {
         return recipeList.get(name);
     }
 
+    // @@author rizemon
     /**
      * Gets the Recipe object that is currently being edited.
      *
@@ -164,4 +165,5 @@ public class RecipeManager {
         editingRecipe.reset();
         storage.saveRecipeToFile(editingRecipe);
     }
+    // @@author
 }

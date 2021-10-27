@@ -16,6 +16,7 @@ import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
 
+// @@author rizemon
 public class InputCommandTest {
 
     @Test
