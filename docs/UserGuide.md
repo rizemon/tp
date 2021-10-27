@@ -2,45 +2,46 @@
 
 ## Introduction
 
-Decodex is a **Command Line Interface (CLI) application for Capture-The-Flag (CTF) players to quickly transform data from one format to another with extreme ease**. The intuitive interaction can help speed up a player's performance during CTFs and save time without having to manually code the tedious data transformations.
+Decodex is a **Command Line Interface (CLI) application for Capture-The-Flag (CTF) players to quickly process data from one encoding format to another with extreme ease**. It also allows you to build recipes, sequences of data processing instructions, to speed up repetitive tasks. The intuitive interaction can help speed up a player's performance during CTFs and save time without having to manually code the tedious data transformations.
 
-This guides serves to help you understand the usage of the program for quick and easy data manipulation.
+This guide serves to help you understand the usage of the program to encode and decode data, as well as create recipes to automate multiple encoding or decoding processes in sequence.
 
 > :information_source: This user guide is tailored for CTF players who have basic understanding of information security concepts.
 
 ![carbon(6).png](images/carbon(6).png)
 
 ## Table of Contents <!-- omit in toc -->
-- [Quick Start](#quick-start)
+- [Introduction](#introduction)
 - [Terminologies](#terminologies)
+- [Symbols](#symbols)
+- [Quick Start](#quick-start)
 - [List of Available Modules](#list-of-available-modules)
 - [Features](#features)
-  - [Understanding the Application's Prompt](#understanding-the-application-prompt)
+  - [Understanding the Application's Prompt](#understanding-the-applications-prompt)
   - [Basic Commands](#basic-commands)
-    - [Input of data: `input`](#input-of-data-input)
-    - [List available modules: `list`](#list-available-modules-list)
-    - [Selection of module: `select`](#selection-of-module-select)
-    - [Resetting of data: `reset`](#resetting-of-data-reset)
-    - [Exiting the program: `exit`](#exiting-the-program-exit)
-  - [Recipe Commands](#recipe-commands)
-    - [Create new recipe: `recipe`](#create-new-recipe)
-    - [Select recipe for editing: `recipe select`](#selecting-recipe-for-editing)
-    - [List modules in recipe: `recipe list`](#list-modules-in-recipe)
-    - [Add module to recipe: `recipe push`](#add-module-to-recipe)
-    - [Remove module from recipe: `recipe pop`](#remove-module-from-recipe)
-    - [Clear all modules in recipe: `recipe reset`](#clear-all-modules-in-recipe)
-    - [Delete recipe: `recipe delete`](#delete-recipe)
-  - [Saving Recipes to file `[coming in v2.0]`]()
-  - [Reading/writing data from/to file `[coming in v2.0]`]()
+    - [Input of Data: `input`](#input-of-data-input)
+    - [List Available Modules or Recipes: `list`](#list-available-modules-or-recipes-list)
+    - [Selecting a Module or Recipe: `select`](#selecting-a-module-or-recipe-select)
+    - [Resetting Data: `reset`](#resetting-data-reset)
+    - [Exiting the Program: `exit`](#exiting-the-program-exit)
+  - [Recipe Commands: `recipe`](#recipe-commands-recipe)
+    - [Create a New Recipe: `recipe new`](#create-a-new-recipe-recipe-new)
+    - [Select a Recipe for Editing: `recipe select`](#select-a-recipe-for-editing-recipe-select)
+    - [List Modules in a Recipe: `recipe list`](#list-modules-in-a-recipe-recipe-list)
+    - [Add a Module to a Recipe: `recipe push`](#add-a-module-to-a-recipe-recipe-push)
+    - [Remove a Module from a Recipe: `recipe pop`](#remove-a-module-from-a-recipe-recipe-pop)
+    - [Clear All Modules in a Recipe: `recipe reset`](#clear-all-modules-in-a-recipe-recipe-reset)
+    - [Delete a Recipe: `recipe delete`](#delete-a-recipe-recipe-delete)
+  - [Saving Recipe to File](#saving-recipe-to-file)
 - [Command Summary](#command-summary)
-- [FAQ]()
+- [FAQ](#faq)
 
 ## Terminologies
 
-This section serves to help the user better understand the terminologies used in this user guide.
+This section serves to help you better understand the terminologies used in this user guide.
 
-| Terminology                 | Definition                                                                                                                                                    |
-|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Data transformation         | The conversion of one data format to another.                                                                                                                 |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Application, Program        | Refers to the Decodex program. This two terms are used interchangeably in this User Guide.                                                                    |
 | Encoding                    | Convert a message into a coded form.                                                                                                                          |
 | Decoding                    | Convert a coded message into an intelligible form.                                                                                                            |
@@ -49,29 +50,35 @@ This section serves to help the user better understand the terminologies used in
 | Argument                    | The additional information you provide to the program's command.                                                                                              |
 | Module                      | A self-contained set of instructions to process your data into another form.                                                                                  |
 | Recipe                      | Acts as a container for you to select your modules. When multiple modules are selected, this forms a "module chain". By default, you do not have any recipes. |
-| 💡                           | Represents a good tip for you.                                                                                                                                |
-| ❗                           | Represents something important that you should take note of.                                                                                                  |
-| ℹ                           | Represents additional information regarding commands/features for you to better understand how to use it.                                                     |
-| 🎮                           | Represents something optional that you can try out, mostly for exploring or fun.                                                                              |
+
+## Symbols
+
+| Symbol               | Definition                                                                                                |
+| -------------------- | --------------------------------------------------------------------------------------------------------- |
+| :bulb:               | Represents a good tip for you.                                                                            |
+| :exclamation:        | Represents something important that you should take note of.                                              |
+| :information_source: | Represents additional information regarding commands/features for you to better understand how to use it. |
+| :video_game:         | Represents something optional that you can try out, mostly for exploring or fun.                          |
+
 
 ## Quick Start
-1. Ensure you have Java version 11 or above installed on your computer.
-   1. If you haven't, you may download it [here](https://www.oracle.com/java/technologies/downloads/#java11-linux)
-   > ❗ You should download the installation relative to your Operating System.
-2. Next, download the latest `decodex.jar` [here](https://github.com/AY2122S1-CS2113T-T10-3/tp/releases)
+1. Ensure you have Java version `11` or above installed on your computer.
+   1. If you haven't, you may download it [here](https://www.oracle.com/java/technologies/downloads/#java11-linux).
+    > :exclamation: You should download the installation relative to your Operating System.
+2. Next, download the latest `decodex.jar` [here](https://github.com/AY2122S1-CS2113T-T10-3/tp/releases).
    1. Simply click on the `decodex.jar` under "Assets" and the download should start.
 3. After downloading, you can open up `command prompt`.
-    > 💡To open command prompt, press `win + r` at the same time, then type and enter `cmd`.
-4. Then, you can now run the `decodex.jar` by typing in `java -jar decodex.jar`  and the Decodex's prompt should appear. Also, please ensure that you are at the directory where `decodex.jar` is.
-   1. In the screenshot below, the `decodex.jar` is located in the `Downloads` folder.
+    > :bulb: To open command prompt, press `win + r` at the same time, then type and enter `cmd`.
+4. Afterwards, you can run `decodex.jar` by typing in `java -jar decodex.jar` and Decodex's prompt should appear. Please also ensure that you are in the same directory as where you have downloaded `decodex.jar`.
+   1. In the screenshot below, `decodex.jar` is located in the `Downloads` folder.
    ![carbon(23).png](images/carbon(23).png)
-5. Here on, you can try out some of the basic commands below:
-   1. `input I am groot`: Inputs into the program the data ("I am groot").
+5. You can try out some of the basic commands below:
+   1. `input I am groot`:  Inputs the text data `I am groot` into the program.
    2. `list`: Lists all available modules and recipes that you can use.
    3. `select module base64encode`: Selects and runs the base64-encoding module on the data.
    4. `reset`: Resets the changes made to data - resetting to its original data.
    5. `exit`: Exits the application.
-    > 🎮 Side-Quest! You may try to find out what `NTEgMzEgNTIgNDcgNjUgMzAgNGUgNTQgNGQgNmEgNDUgNzggNGQgMzEgNTIgMzk=` is using our application! If you are new here, you can continue reading this guide to understand how to unravel this mysterious text!
+    > :video_game: Side-Quest! You may try to find out what `NTEgMzEgNTIgNDcgNjUgMzAgNGUgNTQgNGQgNmEgNDUgNzggNGQgMzEgNTIgMzk=` is using our application! If you are new here, you can continue reading this guide to understand how to unravel this mysterious text!
 6. For more information on Decodex's features, please refer to the Features Section.
 
 ## List of Available Modules
@@ -105,7 +112,7 @@ After running the program, it would display a prompt showing the name of the pro
 
 ### Basic Commands
 
-#### Input of data: `input`
+#### Input of Data: `input`
 
 Stores the data to be processed by modules.
 
@@ -116,7 +123,7 @@ Format: `input <data>`
 Examples:
 
 - `input SGVsbG9Xb3JsZA==` Enter base64-encoded data.
-- <code>input  hello world </code> Enter plain text as data.
+- <code>input  hello world</code> Enter plain text as data.
 
 ![carbon(1).png](images/carbon(1).png)
 
@@ -124,7 +131,7 @@ Examples:
 
 > :exclamation: Non-printable characters (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
 
-####List available modules or recipes: `list`
+#### List Available Modules or Recipes: `list`
 
 Shows a list of all available modules.
 
@@ -132,7 +139,7 @@ Format: `list`
 
 ![carbon(8).png](images/carbon(8).png)
 
-#### Selection of module or recipe: `select`
+#### Selecting a Module or Recipe: `select`
 
 Selects a module and processes the data accordingly. Subsequent selection of modules will process the transformed data output from the previous module.
 
@@ -149,13 +156,13 @@ Examples:
 
 > :exclamation: Non-printable characters (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
 
-#### Resetting data: `reset`
+#### Resetting Data: `reset`
 
 Resets the transformed data back to the original input.
 
 Format: `reset`
 
-#### Exiting the program: `exit`
+#### Exiting the Program: `exit`
 
 Exit the program.
 
@@ -163,19 +170,21 @@ Format: `exit`
 
 ### Recipe Commands: `recipe`
 
-#### Create new recipe: `recipe new`
+#### Create a New Recipe: `recipe new`
 
-#### Select recipe for editing: `recipe select`
+#### Select a Recipe for Editing: `recipe select`
 
-#### List modules in recipe: `recipe list`
+#### List Modules in a Recipe: `recipe list`
 
-#### Add module to recipe: `recipe push`
+#### Add a Module to a Recipe: `recipe push`
 
-#### Remove module from recipe: `recipe pop`
+#### Remove a Module from a Recipe: `recipe pop`
 
-#### Clear all modules in recipe: `recipe reset`
+#### Clear All Modules in a Recipe: `recipe reset`
 
-#### Delete recipe: `recipe delete`
+#### Delete a Recipe: `recipe delete`
+
+### Saving Recipe to File
 
 ## Command Summary
 
@@ -186,3 +195,8 @@ Format: `exit`
 | Select processing module | `select <moduleName>` | `select base64decode`<br>`select hexencode`                  |
 | Reset to original data   | `reset`               | `reset`                                                      |
 | Exit program             | `exit`                | `exit`                                                       |
+
+## FAQ
+
+**Q:** How do I transfer my recipes to another computer?  
+**A:** Install the app in the other computer and copy the recipe files into the recipe folder.
