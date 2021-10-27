@@ -123,7 +123,7 @@ Examples:
 
 ![carbon(1).png](images/ug/inputCommandExample.png)
 
-####List available modules or recipes: `list`
+#### List available modules or recipes: `list`
 
 Shows a list of all available modules or recipes.
 
@@ -158,8 +158,6 @@ Examples:
 - `select recipe testRecipe1` Runs the `testRecipe1` recipe on the current data.
 
 ![carbon(9).png](images/ug/SelectCommandExample.png)
-
-> :exclamation: Non-printable characters (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
 
 #### Resetting data: `reset`
 
