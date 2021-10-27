@@ -74,9 +74,38 @@ This section serves to help the user better understand the terminologies used in
     > 🎮 Side-Quest! You may try to find out what `NTEgMzEgNTIgNDcgNjUgMzAgNGUgNTQgNGQgNmEgNDUgNzggNGQgMzEgNTIgMzk=` is using our application! If you are new here, you can continue reading this guide to understand how to unravel this mysterious text!
 6. For more information on Decodex's features, please refer to the Features Section.
 
+## List of Available Modules
+1. Base64
+   1. `base64encode` - Encodes the data using base64 format
+   2. `base64decode` - Decodes the data using base64 format
+2. Hexadecimal
+   1. `hexencode` - Converts the input string to hexadecimal bytes
+   2. `hexdecode` - Converts a hexadecimal string back into its raw value
+3. Binary
+   1. `binencode` - Encodes the data using binary format
+   2. `bindecode` - Decodes the data using binary format
+4. Rotational Cipher
+   1. `rotencode` - Rotates alphabetical characters by a specified integer offset
+
+> :information_source: These are some of the more common encoding/decoding/cipher methods that can be found in CTF competitions.
+
 ## Features
 
-### Input of data: `input`
+> :information_source: Arguments enclosed in `<>` are **mandatory** arguments while arguments enclosed in `{}` are **optional** arguments. For example, `select <moduleName> {moduleArgument}` would mean that `moduleName` is mandatory while `moduleArgument` is optional.
+
+> :information_source: Arguments must be entered in the **exact order and position** as specified in the commands' respective formats.
+
+> :information_source: All commands and arguments are **case-sensitive**.
+
+### Understanding the Application's Prompt
+
+![carbon(17).png](images/carbon(17).png)
+
+After running the program, it would display a prompt showing the name of the program `Decodex` , followed by the name of the recipe that is "currently being edited" (if any) in `[]`. This currently edited recipe will be the target for some `recipe` commands such as `recipe push`, `recipe pop` and `recipe reset`.
+
+### Basic Commands
+
+#### Input of data: `input`
 
 Stores the data to be processed by modules.
 
@@ -95,7 +124,7 @@ Examples:
 
 > :exclamation: Non-printable characters (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
 
-### List available modules: `list`
+####List available modules or recipes: `list`
 
 Shows a list of all available modules.
 
@@ -103,7 +132,7 @@ Format: `list`
 
 ![carbon(8).png](images/carbon(8).png)
 
-### Selection of module: `select`
+#### Selection of module or recipe: `select`
 
 Selects a module and processes the data accordingly. Subsequent selection of modules will process the transformed data output from the previous module.
 
@@ -120,17 +149,33 @@ Examples:
 
 > :exclamation: Non-printable characters (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
 
-### Resetting of data: `reset`
+#### Resetting data: `reset`
 
 Resets the transformed data back to the original input.
 
 Format: `reset`
 
-### Exiting the program: `exit`
+#### Exiting the program: `exit`
 
 Exit the program.
 
 Format: `exit`
+
+### Recipe Commands: `recipe`
+
+#### Create new recipe: `recipe new`
+
+#### Select recipe for editing: `recipe select`
+
+#### List modules in recipe: `recipe list`
+
+#### Add module to recipe: `recipe push`
+
+#### Remove module from recipe: `recipe pop`
+
+#### Clear all modules in recipe: `recipe reset`
+
+#### Delete recipe: `recipe delete`
 
 ## Command Summary
 
