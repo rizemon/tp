@@ -9,6 +9,7 @@ import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
 import java.io.IOException;
 
+// @@author rizemon
 public class RecipeResetCommand extends Command {
 
     public static final String COMMAND_WORD = "reset";

@@ -6,6 +6,7 @@ import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
 import decodex.ui.messages.RegularMessages;
 
+// @@author rizemon
 public class ResetCommand extends Command {
 
     public static final String COMMAND_WORD = "reset";

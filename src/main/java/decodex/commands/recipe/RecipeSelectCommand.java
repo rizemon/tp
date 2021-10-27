@@ -9,6 +9,7 @@ import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
 import decodex.ui.messages.ErrorMessages;
 
+// @@author rizemon
 public class RecipeSelectCommand extends Command {
 
     public static final String COMMAND_WORD = "select";

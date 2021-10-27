@@ -12,6 +12,7 @@ import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
 
+// @@author rizemon
 public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";

@@ -15,6 +15,7 @@ import decodex.recipes.RecipeManager;
 
 import decodex.ui.Ui;
 
+// @@author rizemon
 class ResetCommandTest {
 
     @Test

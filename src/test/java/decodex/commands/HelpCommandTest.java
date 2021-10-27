@@ -15,6 +15,7 @@ import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
 
+// @@author rizemon
 class HelpCommandTest {
 
     private ByteArrayOutputStream outputStream;
