@@ -13,20 +13,23 @@ import decodex.data.exception.RecipeManagerException;
 import decodex.modules.ModuleManager;
 import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
+import decodex.storage.Storage;
 import decodex.ui.Ui;
+import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
 class RecipeDeleteCommandTest {
 
     @Test
     void run_deleteValidRecipe_recipeDeleted() throws CommandException, RecipeException, ModuleException,
-            RecipeManagerException, DataManagerException, ModuleManagerException {
+            RecipeManagerException, DataManagerException, ModuleManagerException, IOException {
         String testRecipeName = "BaconPancakes";
 
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
 
         recipeManager.addRecipe(new Recipe(testRecipeName));
 
@@ -37,11 +40,12 @@ class RecipeDeleteCommandTest {
     }
 
     @Test
-    void run_deleteInvalidRecipe_expectException() throws RecipeException, RecipeManagerException {
+    void run_deleteInvalidRecipe_expectException() throws RecipeException, RecipeManagerException, IOException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
 
         recipeManager.addRecipe(new Recipe("BaconPancakes"));
 

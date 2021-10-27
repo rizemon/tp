@@ -9,6 +9,7 @@ import decodex.modules.ModuleManager;
 import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
+import java.io.IOException;
 
 public class RecipePopCommand extends Command {
 
@@ -22,7 +23,7 @@ public class RecipePopCommand extends Command {
 
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager)
-            throws RecipeException, RecipeManagerException {
+            throws RecipeException, RecipeManagerException, IOException {
         Module module = recipeManager.popModuleFromEditedRecipe();
         Recipe editingRecipe = recipeManager.getEditingRecipe();
         ui.printModuleRemovedFromRecipe(module.getName(), editingRecipe.getName());

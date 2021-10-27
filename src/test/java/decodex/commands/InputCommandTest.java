@@ -3,6 +3,7 @@ package decodex.commands;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import decodex.storage.Storage;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -21,7 +22,8 @@ public class InputCommandTest {
     public void run_missingArguments_expectException() {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
         Ui ui = new Ui();
         String dataString = "";
         InputCommand testCommand = new InputCommand(dataString);
@@ -33,7 +35,8 @@ public class InputCommandTest {
             throws CommandException, DataManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
         Ui ui = new Ui();
         String dataString = "something";
         InputCommand testCommand = new InputCommand(dataString);
