@@ -340,7 +340,7 @@ Modules that take in at least one parameter
 
 This group of modules require at least one additional parameter as their encoding and decoding processes are dependent on the provided parameters. The constructors of these modules should receive parameters as required and stored in private variables. These variables will then be used in their respective `run(Data data)` method.
 
-The current implementation of the abstract `Module` class provides a strong foundation top be inherited by much more complex modules, and developed into full-functioning modules for Decodex.
+The current implementation of the abstract `Module` class provides a strong foundation to be inherited by much more complex modules, and developed into full-functioning modules for Decodex.
 
 #### Implemented Modules:
 
