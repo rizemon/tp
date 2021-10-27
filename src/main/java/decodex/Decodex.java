@@ -72,6 +72,13 @@ public class Decodex {
         Command command = null;
 
         do {
+            String editingRecipeName;
+            try {
+                editingRecipeName = recipeManager.getEditingRecipe().getName();
+            } catch (RecipeManagerException e) {
+                editingRecipeName = null;
+            }
+            ui.printPromptHeader(editingRecipeName);
             String userInput = ui.readInput();
             logger.fine("User input: " + userInput);
             try {
