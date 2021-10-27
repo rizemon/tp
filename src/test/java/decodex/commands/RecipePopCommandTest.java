@@ -4,26 +4,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import decodex.commands.recipe.RecipePopCommand;
-import decodex.data.exception.RecipeException;
-import org.junit.jupiter.api.Test;
-
 import decodex.data.DataManager;
 import decodex.data.exception.ModuleException;
-import decodex.data.exception.RecipeManagerException;
 import decodex.data.exception.ModuleManagerException;
-import decodex.modules.ModuleManager;
+import decodex.data.exception.RecipeException;
+import decodex.data.exception.RecipeManagerException;
 import decodex.modules.Module;
+import decodex.modules.ModuleManager;
 import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
+import decodex.storage.Storage;
 import decodex.ui.Ui;
+import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
 class RecipePopCommandTest {
 
     @Test
     public void run_oneModuleToEditingRecipe_recipeSizeIsZero()
-            throws RecipeManagerException, ModuleManagerException, ModuleException, RecipeException {
-
-        RecipeManager recipeManager = new RecipeManager();
+            throws RecipeManagerException, ModuleManagerException, ModuleException, RecipeException, IOException {
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
         String testRecipeName = "test";
         Recipe testRecipe = new Recipe(testRecipeName);
         recipeManager.addRecipe(testRecipe);
@@ -44,10 +45,11 @@ class RecipePopCommandTest {
     }
 
     @Test
-    public void run_emptyEditingRecipe_expectException() throws RecipeException, RecipeManagerException {
+    public void run_emptyEditingRecipe_expectException() throws RecipeException, RecipeManagerException, IOException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
-        RecipeManager recipeManager = new RecipeManager();
+        Storage storage = new Storage();
+        RecipeManager recipeManager = new RecipeManager(storage);
         Ui ui = new Ui();
 
         String testRecipeName = "test";

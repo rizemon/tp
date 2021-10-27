@@ -7,6 +7,7 @@ import decodex.modules.ModuleManager;
 import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
+import java.io.IOException;
 
 public class RecipeResetCommand extends Command {
 
@@ -20,7 +21,7 @@ public class RecipeResetCommand extends Command {
 
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager)
-            throws RecipeManagerException {
+            throws RecipeManagerException, IOException {
         Recipe editingRecipe = recipeManager.getEditingRecipe();
         recipeManager.resetEditedRecipe();
         ui.printRecipeReset(editingRecipe.getName());

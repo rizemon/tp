@@ -10,6 +10,7 @@ import decodex.data.exception.ModuleManagerException;
 import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
+import java.io.IOException;
 
 /**
  * Command serves as a foundation for other commands to be built upon.
@@ -21,5 +22,5 @@ public abstract class Command {
 
     public abstract void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager)
             throws CommandException, ModuleManagerException, DataManagerException, ModuleException, RecipeException,
-            RecipeManagerException;
+            RecipeManagerException, IOException;
 }

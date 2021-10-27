@@ -11,6 +11,7 @@ import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
 import decodex.ui.messages.ErrorMessages;
+import java.io.IOException;
 
 public class RecipeNewCommand extends Command {
 
@@ -27,7 +28,7 @@ public class RecipeNewCommand extends Command {
 
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager)
-            throws CommandException, ModuleException, RecipeException, RecipeManagerException {
+            throws CommandException, ModuleException, RecipeException, RecipeManagerException, IOException {
         if (recipeName.isBlank()) {
             throw new CommandException(ErrorMessages.MISSING_RECIPE_NAME);
         }
