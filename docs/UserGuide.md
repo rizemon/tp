@@ -182,21 +182,98 @@ Format: `exit`
 
 ### Recipe Commands: `recipe`
 
-#### Create a New Recipe: `recipe new`
+### Create a New Recipe: `recipe new`
 
-#### Select a Recipe for Editing: `recipe select`
+Creates a new recipe and sets it as currently being edited.
 
-#### List Modules in a Recipe: `recipe list`
+Format: `recipe new <recipeName>`
 
-#### Add a Module to a Recipe: `recipe push`
+Example:
 
-#### Remove a Module from a Recipe: `recipe pop`
+- `recipe new testRecipe` Creates a new recipe with the name `testRecipe`.
 
-#### Clear All Modules in a Recipe: `recipe reset`
+![recipeNew.png](images/recipeNew.png)
 
-#### Delete a Recipe: `recipe delete`
+### Select a Recipe for Editing: `recipe select`
 
-### Saving Recipe to File
+Sets a recipe as currently being edited.
+
+Format: `recipe select <recipeName>`
+
+Example:
+
+- `recipe select testRecipe` Selects `testRecipe` as the recipe to be edited.
+
+![recipeSelect.png](images/recipeSelect.png)
+
+### List Modules in a Recipe: `recipe list`
+
+Show all the modules in a recipe, in the order they were added.
+
+Format: `recipe list <recipeName>`
+
+Example:
+
+- `recipe list testRecipe` Lists the modules in the recipe named `testRecipe`.
+
+![recipeList.png](images/recipeList.png)
+
+### Add a Module into a Recipe: `recipe push`
+
+Adds a module into the recipe that is currently being edited.
+
+Format: `recipe push <moduleName> {moduleArgument}`
+
+Example:
+
+- `recipe push base64encode` Adds the `base64encode` module into the current editing recipe.
+- `recipe push rotencode 13` Adds the `rotencode` module with a single argument `13` into the current editing recipe.
+
+![recipePush.png](images/recipePush.png)
+
+### Remove a Module from a Recipe: `recipe pop`
+
+Removes the most recently added module from the recipe that is currently being edited.
+
+Format: `recipe pop`
+
+![recipePop.png](images/recipePop.png)
+
+### Clear All Modules in a Recipe: `recipe reset`
+
+Removes all modules from the recipe that is currently being edited.
+
+Format: `recipe reset`
+
+![recipeReset.png](images/recipeReset.png)
+
+### Delete a Recipe: `recipe delete`
+
+Deletes a recipe from the program.
+
+Format: `recipe delete <recipeName>`
+
+Example:
+
+- `recipe delete testRecipe` Deletes the recipe with the name `testRecipe`.
+- 
+![recipeDelete.png](images/recipeDelete.png)
+
+## Saving Recipe to File
+
+Saves the recipe into a file. However, this is done automatically for you, so that it is less punishing for you (especially if you often forget to save your documents before exiting).
+
+How it works:
+
+Every time you add a recipe into Decodex, it will save this new recipe into a text file, with the recipe name as the file name, in the `recipe/` folder. Furthermore, any adding or removing of modules from this recipe would also update the corresponding recipe save file.
+
+Example:
+
+If you create a new recipe called "onlyForMe" in Decodex, this will create "onlyForMe.txt" which you can find in the `recipe/` folder. And whenever you run the `recipe push` or `recipe pop` command, it will update "onlyForMe.txt" accordingly.
+
+## Reading/writing data from/to file `[coming soon in the future]`
+
+Coming soon to a cinema near you in the future*…*
 
 ## Command Summary
 
