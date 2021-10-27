@@ -55,13 +55,14 @@ This section serves to help the user better understand the terminologies used in
 | 🎮                           | Represents something optional that you can try out, mostly for exploring or fun.                                                                              |
 
 ## Quick Start
+
 1. Ensure you have Java version 11 or above installed on your computer.
    1. If you haven't, you may download it [here](https://www.oracle.com/java/technologies/downloads/#java11-linux)
-   > ❗ You should download the installation relative to your Operating System.
+   > :exclamation: You should download the installation relative to your Operating System.
 2. Next, download the latest `decodex.jar` [here](https://github.com/AY2122S1-CS2113T-T10-3/tp/releases)
    1. Simply click on the `decodex.jar` under "Assets" and the download should start.
 3. After downloading, you can open up `command prompt`.
-    > 💡To open command prompt, press `win + r` at the same time, then type and enter `cmd`.
+    > :bulb: To open command prompt, press `win + r` at the same time, then type and enter `cmd`.
 4. Then, you can now run the `decodex.jar` by typing in `java -jar decodex.jar`  and the Decodex's prompt should appear. Also, please ensure that you are at the directory where `decodex.jar` is.
    1. In the screenshot below, the `decodex.jar` is located in the `Downloads` folder.
    ![carbon(23).png](images/carbon(23).png)
@@ -71,10 +72,12 @@ This section serves to help the user better understand the terminologies used in
    3. `select module base64encode`: Selects and runs the base64-encoding module on the data.
    4. `reset`: Resets the changes made to data - resetting to its original data.
    5. `exit`: Exits the application.
-    > 🎮 Side-Quest! You may try to find out what `NTEgMzEgNTIgNDcgNjUgMzAgNGUgNTQgNGQgNmEgNDUgNzggNGQgMzEgNTIgMzk=` is using our application! If you are new here, you can continue reading this guide to understand how to unravel this mysterious text!
+   > :video_game: Side-Quest! You may try to find out what `NTEgMzEgNTIgNDcgNjUgMzAgNGUgNTQgNGQgNmEgNDUgNzggNGQgMzEgNTIgMzk=`
+   > using our application! If you are new here, you can continue reading this guide to understand how to unravel this mysterious text!
 6. For more information on Decodex's features, please refer to the Features Section.
 
 ## List of Available Modules
+
 1. Base64
    1. `base64encode` - Encodes the data using base64 format
    2. `base64decode` - Decodes the data using base64 format
@@ -115,39 +118,46 @@ Format: `input <data>`
 
 Examples:
 
-- `input SGVsbG9Xb3JsZA==` Enter base64-encoded data.
-- <code>input  hello world </code> Enter plain text as data.
+- `input HelloWorld!` Enters plain text as data.
+- `input SGVsbG9Xb3JsZA==` Enters base64-encoded data.
 
-![carbon(1).png](images/carbon(1).png)
+![carbon(1).png](images/ug/inputCommandExample.png)
 
-> :exclamation: Note that the program will consider all characters as `data` following the first space character in the input command. Observe the leading and trailing whitespaces in the result of the second command in the above screenshot.
+#### List available modules or recipes: `list`
 
-> :exclamation: Non-printable characters (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
+Shows a list of all available modules or recipes.
 
-####List available modules or recipes: `list`
+Format: `list {category}`
 
-Shows a list of all available modules.
+> :information_source: The acceptable values of `category` are `modules` and `recipes` .
 
-Format: `list`
-
-![carbon(8).png](images/carbon(8).png)
-
-#### Selection of module or recipe: `select`
-
-Selects a module and processes the data accordingly. Subsequent selection of modules will process the transformed data output from the previous module.
-
-Format: `select <moduleName>`
-
-`moduleName` is the name of an available module supported by the program.
+> :information_source: When `category` is not specified, both lists of modules and recipes are printed.
 
 Examples:
 
-- `select base64decode` Decode the base64 encoded data.
-- `select hexencode` Encode the data into hexadecimal format.
+- `list` Lists modules and recipes.
+- `list modules` Lists available modules.
+- `list recipes` Lists available recipes.
 
-![carbon(9).png](images/carbon(9).png)
+![carbon(8).png](images/ug/ListCommandExample.png)
 
-> :exclamation: Non-printable characters (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
+#### Selection of module or recipe: `select`
+
+Selects a module or recipe and processes the data accordingly. Subsequent selection of modules or recipes will process the transformed data output from the previous module or recipe.
+
+Format: `select module <moduleName> {moduleArgument}`, `select recipe <recipeName>`
+
+> :information_source: `moduleName` is the name of an available module supported by Decodex. `moduleArgument` is an argument that certain modules accept as input.
+
+> :information_source: `recipeName` is the name of an available recipe that is loaded by the program.
+
+Examples:
+
+- `select module base64decode` Runs the `base64decode` module on the current data.
+- `select module rotencode 13` Runs the `rotencode` module with argument `13` on the current data.
+- `select recipe testRecipe1` Runs the `testRecipe1` recipe on the current data.
+
+![carbon(9).png](images/ug/SelectCommandExample.png)
 
 #### Resetting data: `reset`
 
@@ -161,7 +171,9 @@ Exit the program.
 
 Format: `exit`
 
-## Recipe Commands: `recipe`
+> :video_game: If you are trying out the side-quest from earlier and can't seem to find the solution to it, you may refer to the solution in the picture at the start of the user guide!
+
+### Recipe Commands: `recipe`
 
 ### Create a New Recipe: `recipe new`
 
@@ -258,10 +270,19 @@ Coming soon to a cinema near you in the future*…*
 
 ## Command Summary
 
-| Action                   | Command Format        | Example Usage                                                |
-| ------------------------ | --------------------- | ------------------------------------------------------------ |
-| Enter input data         | `input <data>`        | `input SGVsbG9Xb3JsZA==`<br><code>input  hello world </code> |
-| List available modules   | `list`                | `list`                                                       |
-| Select processing module | `select <moduleName>` | `select base64decode`<br>`select hexencode`                  |
-| Reset to original data   | `reset`               | `reset`                                                      |
-| Exit program             | `exit`                | `exit`                                                       |
+| Action                          | Command Format                                               | Example Usage                                                                         |
+|---------------------------------|--------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| Enter input data                | `input <data>`                                               | `input HelloWorld!`                                                                   |
+| List available modules/recipe   | `list {category}`                                            | `list` `list module` `list recipe`                                                    |
+| Select processing module/recipe | `select module <moduleName>` <br>&ensp;OR<br> `select recipe <recipeName>` | `select module base64decode` `select module rotencode 13` `select recipe testRecipe1` |
+| Reset to original data          | `reset`                                                      | `reset`                                                                               |
+| Create new recipe               | `recipe new <recipeName>`                                    | `recipe new testRecipe`                                                               |
+| Select recipe for editing       | `recipe select <recipeName>`                                 | `recipe select testRecipe`                                                            |
+| List modules in recipe          | `recipe list <recipeName>`                                   | `recipe list testRecipe`                                                              |
+| Add module to recipe            | `recipe push <moduleName> {moduleArgument}`                  | `recipe push base64encode` `recipe push rotencode 13`                                 |
+| Remove module from recipe       | `recipe pop`                                                 | `recipe pop`                                                                          |
+| Clear all modules in recipe     | `recipe reset`                                               | `recipe reset`                                                                        |
+| Delete recipe                   | `recipe delete <recipeName>`                                 | `recipe delete testRecipe`                                                            |
+| Exit program                    | `exit`                                                       | `exit`                                                                                |
+
+## FAQ
