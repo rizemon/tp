@@ -222,9 +222,9 @@ public class Ui {
     }
 
     /**
-     * Prints the list of messages of recipe files that failed to load.
+     * Prints the list of message for the recipe files that failed to load.
      *
-     * @param failedFilesMessageList The list of messages.
+     * @param failedFilesMessageList The list of messages for the failed recipe files.
      */
     public void printFailedToLoadFromStorageMessage(ArrayList<String> failedFilesMessageList) {
         for (String failedFileMessage : failedFilesMessageList) {
