@@ -285,13 +285,13 @@ Coming soon to a cinema near you in the future*…*
 | Action                          | Command Format                                               | Example Usage                                                                         |
 |---------------------------------|--------------------------------------------------------------|---------------------------------------------------------------------------------------|
 | Enter input data                | `input <data>`                                               | `input HelloWorld!`                                                                   |
-| List available modules/recipe   | `list {category}`                                            | `list` `list module` `list recipe`                                                    |
-| Select processing module/recipe | `select module <moduleName>` <br>&ensp;OR<br> `select recipe <recipeName>` | `select module base64decode` `select module rotencode 13` `select recipe testRecipe1` |
+| List available modules/recipe   | `list {category}`                                            | `list` `list module` <br>`list recipe`                                                    |
+| Select processing module/recipe | `select module <moduleName>` <br>&ensp;OR<br> `select recipe <recipeName>` | `select module base64decode`<br> `select module rotencode 13` `select recipe testRecipe1` |
 | Reset to original data          | `reset`                                                      | `reset`                                                                               |
 | Create new recipe               | `recipe new <recipeName>`                                    | `recipe new testRecipe`                                                               |
 | Select recipe for editing       | `recipe select <recipeName>`                                 | `recipe select testRecipe`                                                            |
 | List modules in recipe          | `recipe list <recipeName>`                                   | `recipe list testRecipe`                                                              |
-| Add module to recipe            | `recipe push <moduleName> {moduleArgument}`                  | `recipe push base64encode` `recipe push rotencode 13`                                 |
+| Add module to recipe            | `recipe push <moduleName> {moduleArgument}`                  | `recipe push base64encode`<br> `recipe push rotencode 13`                                 |
 | Remove module from recipe       | `recipe pop`                                                 | `recipe pop`                                                                          |
 | Clear all modules in recipe     | `recipe reset`                                               | `recipe reset`                                                                        |
 | Delete recipe                   | `recipe delete <recipeName>`                                 | `recipe delete testRecipe`                                                            |
