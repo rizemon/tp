@@ -261,7 +261,7 @@ Format: `recipe delete <recipeName>`
 Example:
 
 - `recipe delete testRecipe` Deletes the recipe with the name `testRecipe`.
-- 
+
 ![recipeDelete.png](images/recipeDelete.png)
 
 ## Saving Recipe to File
