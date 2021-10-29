@@ -187,7 +187,7 @@ Format: `exit`
 
 ### Recipe Commands: `recipe`
 
-### Create a New Recipe: `recipe new`
+#### Create a New Recipe: `recipe new`
 
 Creates a new recipe and sets it as currently being edited.
 
@@ -199,7 +199,7 @@ Example:
 
 ![recipeNew.png](images/recipeNew.png)
 
-### Select a Recipe for Editing: `recipe select`
+#### Select a Recipe for Editing: `recipe select`
 
 Sets a recipe as currently being edited.
 
@@ -211,7 +211,7 @@ Example:
 
 ![recipeSelect.png](images/recipeSelect.png)
 
-### List Modules in a Recipe: `recipe list`
+#### List Modules in a Recipe: `recipe list`
 
 Show all the modules in a recipe, in the order they were added.
 
@@ -223,7 +223,7 @@ Example:
 
 ![recipeList.png](images/recipeList.png)
 
-### Add a Module into a Recipe: `recipe push`
+#### Add a Module into a Recipe: `recipe push`
 
 Adds a module into the recipe that is currently being edited.
 
@@ -236,7 +236,7 @@ Example:
 
 ![recipePush.png](images/recipePush.png)
 
-### Remove a Module from a Recipe: `recipe pop`
+#### Remove a Module from a Recipe: `recipe pop`
 
 Removes the most recently added module from the recipe that is currently being edited.
 
@@ -244,7 +244,7 @@ Format: `recipe pop`
 
 ![recipePop.png](images/recipePop.png)
 
-### Clear All Modules in a Recipe: `recipe reset`
+#### Clear All Modules in a Recipe: `recipe reset`
 
 Removes all modules from the recipe that is currently being edited.
 
@@ -252,7 +252,7 @@ Format: `recipe reset`
 
 ![recipeReset.png](images/recipeReset.png)
 
-### Delete a Recipe: `recipe delete`
+#### Delete a Recipe: `recipe delete`
 
 Deletes a recipe from the program.
 
