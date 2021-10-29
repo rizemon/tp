@@ -130,7 +130,7 @@ Examples:
 
 ![carbon(1).png](images/ug/inputCommandExample.png)
 
-> :exclamation: Note that the program will consider all characters as data following the first space character in the input command. Observe the leading and trailing whitespaces in the result of the second command in the above screenshot.
+> :exclamation: Note that the program will consider all characters as data following the first space character in the input command. You may observe the leading and trailing whitespaces in the output.
 
 > :exclamation: Non-printable characters (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
 
