@@ -34,4 +34,7 @@ public class ErrorMessages {
     public static final String RECIPE_FILE_DELETE_FAILED_MESSAGE = "Failed to delete the corresponding recipe file";
     public static final String FAILED_TO_LOAD_RECIPE_FILE_MESSAGE = " failed to be loaded into Decodex";
     public static final String INVALID_RECIPE_COMMAND = "Invalid recipe command";
+    public static final String INVALID_RECIPE_DIRECTORY_FILETYPE = "The recipe folder does not seem to be a valid folder, "
+            + "but rather a file, please change it "
+            + "to ensure that you can save your recipes created properly";
 }

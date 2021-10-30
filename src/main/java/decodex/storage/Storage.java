@@ -4,6 +4,7 @@ import decodex.data.exception.ModuleException;
 import decodex.data.exception.ModuleManagerException;
 import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
+import decodex.data.exception.StorageException;
 import decodex.modules.ModuleManager;
 import decodex.modules.Module;
 import decodex.recipes.Recipe;
@@ -75,7 +76,7 @@ public class Storage {
      * @throws ModuleManagerException If provided module name is not an available module.
      */
     public void loadRecipesFromDirectory(ModuleManager moduleManager, RecipeManager recipeManager, Ui ui)
-            throws IOException {
+            throws IOException, StorageException {
         instantiateDirectoryIfNotExist(DEFAULT_RECIPE_DIRECTORY);
         File[] recipeFiles = getAllRecipeFiles();
 
@@ -107,8 +108,14 @@ public class Storage {
      *
      * @return The list of recipe File objects.
      */
-    private File[] getAllRecipeFiles() {
+    private File[] getAllRecipeFiles() throws StorageException {
         File recipeDirectory = new File(DEFAULT_RECIPE_DIRECTORY);
+
+        if (!recipeDirectory.isDirectory()) {
+            // throw error if not a valid directory.
+            throw new StorageException(ErrorMessages.INVALID_RECIPE_DIRECTORY_FILETYPE);
+        }
+
         File[] files = recipeDirectory.listFiles();
         File[] recipeFiles = Arrays.stream(files)
                 .filter(file -> file.isFile())
