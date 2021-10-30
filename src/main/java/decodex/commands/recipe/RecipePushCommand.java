@@ -10,6 +10,7 @@ import decodex.modules.Module;
 import decodex.modules.ModuleManager;
 import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
+import decodex.storage.Storage;
 import decodex.ui.Ui;
 import decodex.ui.messages.ErrorMessages;
 import java.io.IOException;
@@ -31,7 +32,8 @@ public class RecipePushCommand extends Command {
     }
 
     @Override
-    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager)
+    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager,
+            Storage storage)
             throws CommandException, ModuleManagerException, ModuleException, RecipeManagerException, IOException {
         if (moduleName.isBlank()) {
             throw new CommandException(ErrorMessages.MISSING_MODULE_NAME);
@@ -40,6 +42,11 @@ public class RecipePushCommand extends Command {
         Module module = moduleManager.selectModule(moduleName, parameters);
         Recipe editingRecipe =  recipeManager.getEditingRecipe();
         recipeManager.pushModuleIntoEditedRecipe(module);
+        try {
+            storage.saveRecipeToFile(editingRecipe);
+        } catch (IOException err) {
+            ui.printError(err);
+        }
         ui.printModuleAddedToRecipe(module.getName(),  editingRecipe.getName());
     }
 }

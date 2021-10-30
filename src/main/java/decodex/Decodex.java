@@ -48,7 +48,7 @@ public class Decodex {
         parser = new Parser();
         ui = new Ui();
         storage = new Storage();
-        recipeManager = new RecipeManager(storage);
+        recipeManager = new RecipeManager();
         try {
             loadSavedRecipes();
         } catch (IOException err) {
@@ -82,7 +82,7 @@ public class Decodex {
             try {
                 command = parser.parseCommand(userInput);
                 assert command != null : "Command should not be null";
-                command.run(dataManager, moduleManager, ui, recipeManager);
+                command.run(dataManager, moduleManager, ui, recipeManager, storage);
             } catch (ParserException | CommandException | ModuleManagerException | DataManagerException
                     | ModuleException | RecipeException | RecipeManagerException | IOException err) {
                 ui.printError(err);

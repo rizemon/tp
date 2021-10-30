@@ -24,8 +24,7 @@ class RecipePopCommandTest {
     @Test
     public void run_oneModuleToEditingRecipe_recipeSizeIsZero()
             throws RecipeManagerException, ModuleManagerException, ModuleException, RecipeException, IOException {
-        Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         String testRecipeName = "test";
         Recipe testRecipe = new Recipe(testRecipeName);
         recipeManager.addRecipe(testRecipe);
@@ -40,7 +39,8 @@ class RecipePopCommandTest {
         RecipePopCommand testCommand = new RecipePopCommand();
         DataManager dataManager = new DataManager();
         Ui ui = new Ui();
-        testCommand.run(dataManager, moduleManager, ui, recipeManager);
+        Storage storage = new Storage();
+        testCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
 
         assertEquals(recipeManager.getEditingRecipe().getModuleList().size(), 0);
     }
@@ -49,17 +49,15 @@ class RecipePopCommandTest {
     public void run_emptyEditingRecipe_expectException() throws RecipeException, RecipeManagerException, IOException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
-        Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         Ui ui = new Ui();
-
+        Storage storage = new Storage();
         String testRecipeName = "test";
         Recipe testRecipe = new Recipe(testRecipeName);
         recipeManager.addRecipe(testRecipe);
         recipeManager.selectRecipeForEditing(testRecipeName);
-
         RecipePopCommand testCommand = new RecipePopCommand();
-
-        assertThrows(RecipeException.class, () -> testCommand.run(dataManager, moduleManager, ui, recipeManager));
+        assertThrows(RecipeException.class, () -> testCommand.run(dataManager, moduleManager, ui, recipeManager,
+                storage));
     }
 }
