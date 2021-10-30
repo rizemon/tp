@@ -4,6 +4,7 @@ import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
+import decodex.storage.Storage;
 import decodex.ui.Ui;
 import decodex.ui.messages.ErrorMessages;
 
@@ -27,7 +28,8 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager)
+    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager,
+            Storage storage)
             throws CommandException {
         boolean isPrintModuleList = listCategory == null || listCategory.equals(LIST_CATEGORY_MODULES);
         boolean isPrintRecipeList = listCategory == null || listCategory.equals(LIST_CATEGORY_RECIPE);

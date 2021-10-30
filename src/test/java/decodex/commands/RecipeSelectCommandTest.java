@@ -26,7 +26,7 @@ class RecipeSelectCommandTest {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         Ui ui = new Ui();
 
         String testRecipeName = "test";
@@ -34,7 +34,7 @@ class RecipeSelectCommandTest {
         recipeManager.addRecipe(testRecipe);
 
         RecipeSelectCommand testCommand = new RecipeSelectCommand(testRecipeName);
-        testCommand.run(dataManager, moduleManager, ui, recipeManager);
+        testCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
         assertEquals(recipeManager.getEditingRecipe().getName(), testRecipeName);
     }
 
@@ -43,14 +43,14 @@ class RecipeSelectCommandTest {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         Ui ui = new Ui();
 
         String testRecipeName = "test";
 
         RecipeSelectCommand testCommand = new RecipeSelectCommand(testRecipeName);
         assertThrows(RecipeManagerException.class,
-            () -> testCommand.run(dataManager, moduleManager, ui, recipeManager));
+            () -> testCommand.run(dataManager, moduleManager, ui, recipeManager, storage));
     }
 
     @Test
@@ -58,13 +58,13 @@ class RecipeSelectCommandTest {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         Ui ui = new Ui();
 
         String testRecipeName = "";
 
         RecipeSelectCommand testCommand = new RecipeSelectCommand(testRecipeName);
         assertThrows(CommandException.class,
-            () -> testCommand.run(dataManager, moduleManager, ui, recipeManager));
+            () -> testCommand.run(dataManager, moduleManager, ui, recipeManager, storage));
     }
 }

@@ -1,6 +1,5 @@
 package decodex.recipes;
 
-import decodex.storage.Storage;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -32,15 +31,12 @@ public class RecipeManager {
      */
     private String editingRecipeName;
 
-    private Storage storage;
-
     /**
      * Creates a new RecipeManager with no recipes.
      */
-    public RecipeManager(Storage storage) {
+    public RecipeManager() {
         recipeList = new HashMap<>();
         editingRecipeName = null;
-        this.storage = storage;
     }
 
     /**
@@ -61,13 +57,12 @@ public class RecipeManager {
      * @param recipe The recipe to be added to the recipe manager.
      * @throws RecipeManagerException If the given recipe name already exists in recipe manager.
      */
-    public void addRecipe(Recipe recipe) throws RecipeManagerException, IOException {
+    public void addRecipe(Recipe recipe) throws RecipeManagerException {
         if (recipeList.containsKey(recipe.getName())) {
             throw new RecipeManagerException(ErrorMessages.DUPLICATE_RECIPE_NAME_MESSAGE);
         }
         recipeList.put(recipe.getName(), recipe);
         logger.fine(String.format("[RecipeManager] Added recipe %s", recipe.getName()));
-        storage.saveRecipeToFile(recipe);
     }
 
     /**
@@ -77,14 +72,13 @@ public class RecipeManager {
      * @return The recipe that was removed.
      * @throws RecipeManagerException If the recipe could not be found in the recipe manager.
      */
-    public Recipe removeRecipe(String name) throws RecipeManagerException, IOException {
+    public Recipe removeRecipe(String name) throws RecipeManagerException {
         Recipe recipeToRemove = getRecipe(name);
         recipeList.remove(name);
         if (editingRecipeName != null && editingRecipeName.equals(name)) {
             editingRecipeName = null;
         }
         logger.fine(String.format("[RecipeManager] Removed recipe %s", recipeToRemove.getName()));
-        storage.deleteRecipeFile(name);
         return recipeToRemove;
     }
 
@@ -136,10 +130,9 @@ public class RecipeManager {
      * @param module The module to be added to the recipe.
      * @throws RecipeManagerException If no recipe is selected as currently being edited.
      */
-    public void pushModuleIntoEditedRecipe(Module module) throws RecipeManagerException, IOException {
+    public void pushModuleIntoEditedRecipe(Module module) throws RecipeManagerException {
         Recipe editingRecipe = getEditingRecipe();
         editingRecipe.push(module);
-        storage.saveRecipeToFile(editingRecipe);
     }
 
     /**
@@ -148,10 +141,9 @@ public class RecipeManager {
      * @return The module that was popped from the recipe.
      * @throws RecipeManagerException If no recipe is selected as currently being edited.
      */
-    public Module popModuleFromEditedRecipe() throws RecipeManagerException, RecipeException, IOException {
+    public Module popModuleFromEditedRecipe() throws RecipeManagerException, RecipeException {
         Recipe editingRecipe = getEditingRecipe();
         Module module = editingRecipe.pop();
-        storage.saveRecipeToFile(editingRecipe);
         return module;
     }
 
@@ -160,10 +152,9 @@ public class RecipeManager {
      *
      * @throws RecipeManagerException If no recipe is selected as currently being edited.
      */
-    public void resetEditedRecipe() throws RecipeManagerException, IOException {
+    public void resetEditedRecipe() throws RecipeManagerException {
         Recipe editingRecipe = getEditingRecipe();
         editingRecipe.reset();
-        storage.saveRecipeToFile(editingRecipe);
     }
     // @@author
 }
