@@ -230,7 +230,7 @@ public class Ui {
      */
     public void printFailedToLoadFromStorageMessage(ArrayList<String> failedFilesMessageList) {
         for (String failedFileMessage : failedFilesMessageList) {
-            System.out.println(failedFileMessage);
+            System.out.println(ERROR_ICON + failedFileMessage);
         }
     }
 
