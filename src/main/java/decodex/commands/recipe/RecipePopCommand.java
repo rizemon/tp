@@ -4,6 +4,7 @@ import decodex.commands.Command;
 import decodex.data.DataManager;
 import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
+import decodex.data.exception.StorageException;
 import decodex.modules.Module;
 import decodex.modules.ModuleManager;
 import decodex.recipes.Recipe;
@@ -31,7 +32,7 @@ public class RecipePopCommand extends Command {
         Recipe editingRecipe = recipeManager.getEditingRecipe();
         try {
             storage.saveRecipeToFile(editingRecipe);
-        } catch (IOException err) {
+        } catch (IOException | StorageException err) {
             ui.printError(err);
         }
         ui.printModuleRemovedFromRecipe(module.getName(), editingRecipe.getName());

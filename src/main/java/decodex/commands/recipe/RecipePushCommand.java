@@ -6,6 +6,7 @@ import decodex.data.exception.CommandException;
 import decodex.data.exception.ModuleException;
 import decodex.data.exception.RecipeManagerException;
 import decodex.data.exception.ModuleManagerException;
+import decodex.data.exception.StorageException;
 import decodex.modules.Module;
 import decodex.modules.ModuleManager;
 import decodex.recipes.Recipe;
@@ -44,7 +45,7 @@ public class RecipePushCommand extends Command {
         recipeManager.pushModuleIntoEditedRecipe(module);
         try {
             storage.saveRecipeToFile(editingRecipe);
-        } catch (IOException err) {
+        } catch (IOException | StorageException err) {
             ui.printError(err);
         }
         ui.printModuleAddedToRecipe(module.getName(),  editingRecipe.getName());

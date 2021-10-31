@@ -111,11 +111,6 @@ public class Storage {
     private File[] getAllRecipeFiles() throws StorageException {
         File recipeDirectory = new File(DEFAULT_RECIPE_DIRECTORY);
 
-        if (!recipeDirectory.isDirectory()) {
-            // throw error if not a valid directory.
-            throw new StorageException(ErrorMessages.INVALID_RECIPE_DIRECTORY_FILETYPE);
-        }
-
         File[] files = recipeDirectory.listFiles();
         File[] recipeFiles = Arrays.stream(files)
                 .filter(file -> file.isFile())
@@ -182,7 +177,7 @@ public class Storage {
      * @throws IOException If an error occurred when reading the file or
      *                     the input file does not exist.
      */
-    public byte[] readInputFromFile(String fileName) throws IOException {
+    public byte[] readInputFromFile(String fileName) throws IOException, StorageException {
         instantiateDirectoryIfNotExist(DEFAULT_INPUT_DIRECTORY);
 
         File inputDirectory = new File(DEFAULT_INPUT_DIRECTORY);
@@ -218,7 +213,7 @@ public class Storage {
      * @throws IOException If an error occurred when creating the file
      *                     or when writing to the file.
      */
-    public void saveOutputToFile(byte[] outputBytes) throws IOException {
+    public void saveOutputToFile(byte[] outputBytes) throws IOException, StorageException {
         instantiateDirectoryIfNotExist(DEFAULT_OUTPUT_DIRECTORY);
 
         LocalDateTime currentDateTime = LocalDateTime.now();
@@ -255,7 +250,7 @@ public class Storage {
      * @throws IOException If an error occurred when creating the file
      *                     or when writing to the file.
      */
-    public void saveRecipeToFile(Recipe recipe) throws IOException {
+    public void saveRecipeToFile(Recipe recipe) throws IOException, StorageException {
         instantiateDirectoryIfNotExist(DEFAULT_RECIPE_DIRECTORY);
 
         String newRecipeFileName = recipe.getName() + RECIPE_FILE_PREFIX;
@@ -327,9 +322,14 @@ public class Storage {
     /**
      * Instantiates the given directory if it does not exist yet.
      */
-    private void instantiateDirectoryIfNotExist(String directoryName) throws IOException {
+    private void instantiateDirectoryIfNotExist(String directoryName) throws IOException, StorageException {
         File outputDirectory = new File(directoryName);
         if (outputDirectory.exists()) {
+            if (!outputDirectory.isDirectory()) {
+                // throw error if not a valid directory.
+                String formattedErrorMessage = String.format(ErrorMessages.INVALID_DIRECTORY_ACCESS, outputDirectory);
+                throw new StorageException(formattedErrorMessage);
+            }
             return;
         }
 
