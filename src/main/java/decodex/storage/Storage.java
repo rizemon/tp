@@ -45,7 +45,6 @@ public class Storage {
     private static final String FILENAME_EXTENSION_SPLIT_REGEX = "[.]";
 
 
-
     /**
      * Specifies the index for the corresponding fields.
      */
@@ -60,7 +59,6 @@ public class Storage {
 
     /**
      * Initializes a new Storage.
-     *
      */
     public Storage() {
     }
@@ -114,6 +112,10 @@ public class Storage {
         File[] files = recipeDirectory.listFiles();
         File[] recipeFiles = Arrays.stream(files)
                 .filter(file -> file.isFile())
+                .filter(file -> {
+                    String fileName = file.getName();
+                    return fileName.contains(RECIPE_FILE_PREFIX);
+                })
                 .toArray(size -> new File[size]);
 
         return recipeFiles;
