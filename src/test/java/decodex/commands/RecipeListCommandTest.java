@@ -35,7 +35,7 @@ class RecipeListCommandTest {
     private final DataManager dataManager = new DataManager();
     private final ModuleManager moduleManager = new ModuleManager();
     private final Storage storage = new Storage();
-    private final RecipeManager recipeManager = new RecipeManager(storage);
+    private final RecipeManager recipeManager = new RecipeManager();
     private final Ui ui = new Ui();
 
     @BeforeEach
@@ -64,7 +64,7 @@ class RecipeListCommandTest {
     @Test
     void run_listRecipeName_success() throws RecipeManagerException, CommandException, ModuleException {
         RecipeListCommand testCommand = new RecipeListCommand(TEST_RECIPE_NAME);
-        testCommand.run(dataManager, moduleManager, ui, recipeManager);
+        testCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
         assertFalse(outputStream.toString().isBlank());
     }
 
@@ -72,14 +72,14 @@ class RecipeListCommandTest {
     void run_listBlankNoEditingRecipe_expectException() {
         RecipeListCommand testCommand = new RecipeListCommand("");
         assertThrows(RecipeManagerException.class,
-            () -> testCommand.run(dataManager, moduleManager, ui, recipeManager));
+            () -> testCommand.run(dataManager, moduleManager, ui, recipeManager, storage));
     }
 
     @Test
     void run_listBlankHasEditingRecipe_success() throws RecipeManagerException, CommandException, ModuleException {
         recipeManager.selectRecipeForEditing(TEST_RECIPE_NAME);
         RecipeListCommand testCommand = new RecipeListCommand("");
-        testCommand.run(dataManager, moduleManager, ui, recipeManager);
+        testCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
         assertFalse(outputStream.toString().isBlank());
     }
 
@@ -87,14 +87,14 @@ class RecipeListCommandTest {
     void run_listUnknownRecipe_expectException() {
         RecipeListCommand testCommand = new RecipeListCommand("unknownRecipe");
         assertThrows(RecipeManagerException.class,
-            () -> testCommand.run(dataManager, moduleManager, ui, recipeManager));
+            () -> testCommand.run(dataManager, moduleManager, ui, recipeManager, storage));
     }
 
     @Test
     void run_listEmptyRecipe_expectException() throws RecipeManagerException, CommandException, ModuleException {
         recipeManager.getRecipe(TEST_RECIPE_NAME).reset();
         RecipeListCommand testCommand = new RecipeListCommand(TEST_RECIPE_NAME);
-        testCommand.run(dataManager, moduleManager, ui, recipeManager);
+        testCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
         assertFalse(outputStream.toString().isBlank());
     }
 }

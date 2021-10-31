@@ -24,8 +24,7 @@ class RecipeResetCommandTest {
     @Test
     public void run_oneModuleInEditingRecipe_recipeSizeIsZero() throws RecipeException, RecipeManagerException,
             ModuleManagerException, ModuleException, IOException {
-        Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         String testRecipeName = "test";
         Recipe testRecipe = new Recipe(testRecipeName);
         recipeManager.addRecipe(testRecipe);
@@ -40,7 +39,8 @@ class RecipeResetCommandTest {
         RecipeResetCommand testCommand = new RecipeResetCommand();
         DataManager dataManager = new DataManager();
         Ui ui = new Ui();
-        testCommand.run(dataManager, moduleManager, ui, recipeManager);
+        Storage storage = new Storage();
+        testCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
 
         assertEquals(recipeManager.getEditingRecipe().getModuleList().size(), 0);
     }

@@ -24,7 +24,7 @@ class HelpCommandTest {
     private final DataManager dataManager = new DataManager();
     private final ModuleManager moduleManager = new ModuleManager();
     private final Storage storage = new Storage();
-    private final RecipeManager recipeManager = new RecipeManager(storage);
+    private final RecipeManager recipeManager = new RecipeManager();
     private final Ui ui = new Ui();
 
     @BeforeEach
@@ -41,7 +41,7 @@ class HelpCommandTest {
     @Test
     public void run_allCommands_success() {
         HelpCommand command = new HelpCommand();
-        command.run(dataManager, moduleManager, ui, recipeManager);
+        command.run(dataManager, moduleManager, ui, recipeManager, storage);
         assertFalse(outputStream.toString().isBlank());
     }
 }

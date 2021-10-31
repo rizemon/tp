@@ -24,11 +24,12 @@ public class InputCommandTest {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         Ui ui = new Ui();
         String dataString = "";
         InputCommand testCommand = new InputCommand(dataString);
-        assertThrows(CommandException.class, () -> testCommand.run(dataManager, moduleManager, ui, recipeManager));
+        assertThrows(CommandException.class, () -> testCommand.run(dataManager, moduleManager, ui, recipeManager,
+                storage));
     }
 
     @Test
@@ -37,11 +38,11 @@ public class InputCommandTest {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         Ui ui = new Ui();
         String dataString = "something";
         InputCommand testCommand = new InputCommand(dataString);
-        testCommand.run(dataManager, moduleManager, ui, recipeManager);
+        testCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
         Data testData = new Data(dataString);
         assertTrue(Arrays.equals(dataManager.getOriginalData().getRawBytes(), testData.getRawBytes()));
     }

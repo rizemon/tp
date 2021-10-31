@@ -9,6 +9,7 @@ import decodex.modules.Module;
 import decodex.modules.ModuleManager;
 import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
+import decodex.storage.Storage;
 import decodex.ui.Ui;
 import decodex.ui.messages.RegularMessages;
 import java.util.ArrayList;
@@ -28,7 +29,8 @@ public class RecipeListCommand extends Command {
     }
 
     @Override
-    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager)
+    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager,
+            Storage storage)
             throws CommandException, ModuleException, RecipeManagerException {
         Recipe recipe;
 

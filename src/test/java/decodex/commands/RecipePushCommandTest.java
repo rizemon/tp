@@ -28,7 +28,7 @@ class RecipePushCommandTest {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         Ui ui = new Ui();
 
         String testRecipeName = "test";
@@ -40,7 +40,7 @@ class RecipePushCommandTest {
         String[] parameters = {};
 
         RecipePushCommand testCommand = new RecipePushCommand(moduleName, parameters);
-        testCommand.run(dataManager, moduleManager, ui, recipeManager);
+        testCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
 
         assertEquals(recipeManager.getEditingRecipe().getModuleList().size(), 1);
     }
@@ -50,7 +50,7 @@ class RecipePushCommandTest {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         Ui ui = new Ui();
 
         String testRecipeName = "test";
@@ -63,6 +63,7 @@ class RecipePushCommandTest {
 
         RecipePushCommand testCommand = new RecipePushCommand(moduleName, parameters);
 
-        assertThrows(CommandException.class, () -> testCommand.run(dataManager, moduleManager, ui, recipeManager));
+        assertThrows(CommandException.class, () -> testCommand.run(dataManager, moduleManager, ui, recipeManager,
+                storage));
     }
 }

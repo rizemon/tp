@@ -29,7 +29,7 @@ public class SelectCommandTest {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         Ui ui = new Ui();
 
         Data data = new Data("hello world");
@@ -39,7 +39,7 @@ public class SelectCommandTest {
         String moduleName = "base64encode";
         String[] parameters = {};
         SelectCommand selectCommand = new SelectCommand(selectCategory, moduleName, parameters);
-        selectCommand.run(dataManager, moduleManager, ui, recipeManager);
+        selectCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
 
         assertEquals("aGVsbG8gd29ybGQ=", dataManager.getCurrentData().toString());
     }
@@ -51,7 +51,7 @@ public class SelectCommandTest {
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
 
         Data data = new Data("hello world");
         dataManager.setOriginalData(data);
@@ -60,7 +60,7 @@ public class SelectCommandTest {
         String moduleName = "rotencode";
         String[] parameters = {"13"};
         SelectCommand selectCommand = new SelectCommand(selectCategory, moduleName, parameters);
-        selectCommand.run(dataManager, moduleManager, ui, recipeManager);
+        selectCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
 
         assertEquals("uryyb jbeyq", dataManager.getCurrentData().toString());
     }
@@ -70,7 +70,7 @@ public class SelectCommandTest {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         Ui ui = new Ui();
 
         Data data = new Data("hello world");
@@ -81,7 +81,8 @@ public class SelectCommandTest {
         String[] parameters = {};
         SelectCommand selectCommand = new SelectCommand(selectCategory, moduleName, parameters);
 
-        assertThrows(CommandException.class, () -> selectCommand.run(dataManager, moduleManager, ui, recipeManager));
+        assertThrows(CommandException.class, () -> selectCommand.run(dataManager, moduleManager, ui, recipeManager,
+                storage));
     }
 
     @Test
@@ -89,7 +90,7 @@ public class SelectCommandTest {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         Ui ui = new Ui();
 
         Data data = new Data("hello world");
@@ -101,7 +102,7 @@ public class SelectCommandTest {
         SelectCommand selectCommand = new SelectCommand(selectCategory, moduleName, parameters);
 
         assertThrows(ModuleManagerException.class, () -> selectCommand.run(dataManager, moduleManager, ui,
-                recipeManager));
+                recipeManager, storage));
     }
 
     @Test
@@ -111,8 +112,7 @@ public class SelectCommandTest {
         Data data = new Data("hello world");
         dataManager.setOriginalData(data);
 
-        Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         String recipeName = "testRecipe";
         Recipe recipe = new Recipe(recipeName);
         recipe.push(new HexEncoder());
@@ -121,11 +121,12 @@ public class SelectCommandTest {
 
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
+        Storage storage = new Storage();
 
         String selectCategory = "recipe";
         String[] parameters = {};
         SelectCommand selectCommand = new SelectCommand(selectCategory, recipeName, parameters);
-        selectCommand.run(dataManager, moduleManager, ui, recipeManager);
+        selectCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
 
         assertEquals("Njg2NTZjNmM2ZjIwNzc2ZjcyNmM2NA==", dataManager.getCurrentData().toString());
     }
@@ -139,7 +140,7 @@ public class SelectCommandTest {
         dataManager.setOriginalData(data);
 
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         String recipeName = "testRecipe";
         Recipe recipe = new Recipe(recipeName);
         recipeManager.addRecipe(recipe);
@@ -150,7 +151,7 @@ public class SelectCommandTest {
         String selectCategory = "recipe";
         String[] parameters = {};
         SelectCommand selectCommand = new SelectCommand(selectCategory, recipeName, parameters);
-        selectCommand.run(dataManager, moduleManager, ui, recipeManager);
+        selectCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
 
         assertEquals(dataString, dataManager.getCurrentData().toString());
     }
@@ -160,7 +161,7 @@ public class SelectCommandTest {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         Ui ui = new Ui();
 
         String selectCategory = "recipe";
@@ -169,7 +170,7 @@ public class SelectCommandTest {
         SelectCommand selectCommand = new SelectCommand(selectCategory, recipeName, parameters);
 
         assertThrows(RecipeManagerException.class, () -> selectCommand.run(dataManager, moduleManager, ui,
-                recipeManager));
+                recipeManager, storage));
     }
 
     @Test
@@ -177,7 +178,7 @@ public class SelectCommandTest {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         Ui ui = new Ui();
 
         String selectCategory = "recipe";
@@ -186,7 +187,7 @@ public class SelectCommandTest {
         SelectCommand selectCommand = new SelectCommand(selectCategory, recipeName, parameters);
 
         assertThrows(RecipeManagerException.class, () -> selectCommand.run(dataManager, moduleManager, ui,
-                recipeManager));
+                recipeManager, storage));
     }
 
     @Test
@@ -194,7 +195,7 @@ public class SelectCommandTest {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         Ui ui = new Ui();
 
         String selectCategory = "unknownCategory";
@@ -202,6 +203,7 @@ public class SelectCommandTest {
         String[] parameters = {};
         SelectCommand selectCommand = new SelectCommand(selectCategory, recipeName, parameters);
 
-        assertThrows(CommandException.class, () -> selectCommand.run(dataManager, moduleManager, ui, recipeManager));
+        assertThrows(CommandException.class, () -> selectCommand.run(dataManager, moduleManager, ui, recipeManager,
+                storage));
     }
 }

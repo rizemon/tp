@@ -8,6 +8,7 @@ import decodex.modules.Module;
 import decodex.modules.ModuleManager;
 import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
+import decodex.storage.Storage;
 import decodex.ui.Ui;
 import java.io.IOException;
 
@@ -23,10 +24,16 @@ public class RecipePopCommand extends Command {
     }
 
     @Override
-    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager)
+    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager,
+            Storage storage)
             throws RecipeException, RecipeManagerException, IOException {
         Module module = recipeManager.popModuleFromEditedRecipe();
         Recipe editingRecipe = recipeManager.getEditingRecipe();
+        try {
+            storage.saveRecipeToFile(editingRecipe);
+        } catch (IOException err) {
+            ui.printError(err);
+        }
         ui.printModuleRemovedFromRecipe(module.getName(), editingRecipe.getName());
     }
 }
