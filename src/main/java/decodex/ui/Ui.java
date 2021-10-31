@@ -223,6 +223,7 @@ public class Ui {
         printSuccess(String.format(RegularMessages.NEW_RECIPE_CREATED, recipeName));
     }
 
+    // @@author Kair0s3
     /**
      * Prints the list of message for the recipe files that failed to load.
      *
@@ -230,9 +231,10 @@ public class Ui {
      */
     public void printFailedToLoadFromStorageMessage(ArrayList<String> failedFilesMessageList) {
         for (String failedFileMessage : failedFilesMessageList) {
-            System.out.println(ERROR_ICON + failedFileMessage);
+            System.out.println(ERROR_ICON + " " + failedFileMessage);
         }
     }
+    // @@author
 
     /**
      * Prints the prompt header.
