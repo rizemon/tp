@@ -111,7 +111,7 @@ public class Storage {
                 .filter(file -> file.isFile())
                 .filter(file -> {
                     String fileName = file.getName();
-                    return fileName.contains(RECIPE_FILE_PREFIX);
+                    return fileName.endsWith(RECIPE_FILE_PREFIX);
                 })
                 .toArray(size -> new File[size]);
 
