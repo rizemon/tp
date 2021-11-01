@@ -3,6 +3,7 @@ package decodex.commands.recipe;
 import decodex.commands.Command;
 import decodex.data.DataManager;
 import decodex.data.exception.RecipeManagerException;
+import decodex.data.exception.StorageException;
 import decodex.modules.ModuleManager;
 import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
@@ -29,7 +30,7 @@ public class RecipeResetCommand extends Command {
         recipeManager.resetEditedRecipe();
         try {
             storage.saveRecipeToFile(editingRecipe);
-        } catch (IOException err) {
+        } catch (IOException | StorageException err) {
             ui.printError(err);
         }
         ui.printRecipeReset(editingRecipe.getName());

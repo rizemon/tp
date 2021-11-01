@@ -10,6 +10,7 @@ import decodex.data.exception.ModuleManagerException;
 import decodex.data.exception.ParserException;
 import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
+import decodex.data.exception.StorageException;
 import decodex.modules.ModuleManager;
 import decodex.parser.Parser;
 import decodex.recipes.RecipeManager;
@@ -51,7 +52,7 @@ public class Decodex {
         recipeManager = new RecipeManager();
         try {
             loadSavedRecipes();
-        } catch (IOException err) {
+        } catch (IOException | StorageException err) {
             ui.printError(err);
         }
 
@@ -91,7 +92,7 @@ public class Decodex {
         } while (!(command instanceof ExitCommand));
     }
 
-    private void loadSavedRecipes() throws IOException {
+    private void loadSavedRecipes() throws IOException, StorageException {
         storage.loadRecipesFromDirectory(moduleManager, recipeManager, ui);
     }
 }

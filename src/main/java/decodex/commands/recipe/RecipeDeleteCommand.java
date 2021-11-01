@@ -5,6 +5,7 @@ import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.ModuleException;
 import decodex.data.exception.RecipeManagerException;
+import decodex.data.exception.StorageException;
 import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
@@ -36,7 +37,7 @@ public class RecipeDeleteCommand extends Command {
         recipeManager.removeRecipe(recipeName);
         try {
             storage.deleteRecipeFile(recipeName);
-        } catch (IOException err) {
+        } catch (IOException | StorageException err) {
             ui.printError(err);
         }
         ui.printRecipeDeleted(recipeName);
