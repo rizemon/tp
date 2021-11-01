@@ -86,6 +86,8 @@ This section serves to help you better understand the terminologies used in this
 
 ## List of Available Modules
 
+> :information_source: These are some of the more common encoding/decoding/cipher methods that can be found in CTF competitions.
+
 1. Base64
    1. `base64encode` - Encodes the data using base64 format
    2. `base64decode` - Decodes the data using base64 format
@@ -98,7 +100,10 @@ This section serves to help you better understand the terminologies used in this
 4. Rotational Cipher
    1. `rotencode` - Rotates alphabetical characters by a specified integer offset
 
-> :information_source: These are some of the more common encoding/decoding/cipher methods that can be found in CTF competitions.
+| Module         | Description                                                                                              | `moduleArgument`                                                                                       |
+| -------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `base64encode` | Encodes the data using base64 format.                                                                    | N.A                                                                                                    |
+| `rotencode`    | Rotates alphabetical characters by a specified integer offset.<br><br>E.g., `select module rotencode 13` | The rotation offset.<br><br>Must be an integer between -2147483648 (MIN_INT) and 2147483647 (MAX_INT). |
 
 ## Features
 
@@ -164,6 +169,8 @@ Format: `select module <moduleName> {moduleArgument}`, `select recipe <recipeNam
 
 > :information_source: `recipeName` is the name of an available recipe that is loaded by the program.
 
+> :exclamation: Currently, the `moduleArgument` is needed **only** when using the `rotencode` module, the rest of the currently available modules do not need the `moduleArgument`.
+
 Examples:
 
 - `select module base64decode` Runs the `base64decode` module on the current data.
@@ -228,7 +235,9 @@ Example:
 
 Show all the modules in a recipe, in the order they were added.
 
-Format: `recipe list <recipeName>`
+Format: `recipe list {recipeName>}`
+
+> :information_source: When `recipeName` is not specified, modules from the recipe that is currently being edited will be listed instead.
 
 Example:
 
