@@ -96,6 +96,10 @@ public class SelectCommand extends Command {
             throw new CommandException(ErrorMessages.MISSING_RECIPE_NAME);
         }
 
+        if (parameters.length > 0) {
+            throw new CommandException(ErrorMessages.ADDITIONAL_PARAMETER_AFTER_RECIPE_NAME_MESSAGE);
+        }
+
         Recipe recipe = recipeManager.getRecipe(itemName);
         Data newData = recipe.run(dataManager.getCurrentData());
         dataManager.setCurrentData(newData);

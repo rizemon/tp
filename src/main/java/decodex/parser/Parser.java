@@ -217,7 +217,7 @@ public class Parser {
      *
      * @param userInput The user input specified by the user.
      * @return The SelectCommand object.
-     * @throws CommandException If the number of command arguments is invalid.
+     * @throws CommandException If the number of command arguments is invalid.in
      */
     private SelectCommand prepareSelectCommand(String userInput) throws CommandException {
         String[] tokens = getTokens(userInput);
