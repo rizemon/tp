@@ -292,7 +292,7 @@ Coming soon to a cinema near you in the future*…*
 | Reset to original data          | `reset`                                                      | `reset`                                                                               |
 | Create new recipe               | `recipe new <recipeName>`                                    | `recipe new testRecipe`                                                               |
 | Select recipe for editing       | `recipe select <recipeName>`                                 | `recipe select testRecipe`                                                            |
-| List modules in recipe          | `recipe list <recipeName>`                                   | `recipe list testRecipe`                                                              |
+| List modules in recipe          | `recipe list {recipeName}`                                   | `recipe list testRecipe`                                                              |
 | Add module to recipe            | `recipe push <moduleName> {moduleArgument}`                  | `recipe push base64encode`<br> `recipe push rotencode 13`                                 |
 | Remove module from recipe       | `recipe pop`                                                 | `recipe pop`                                                                          |
 | Clear all modules in recipe     | `recipe reset`                                               | `recipe reset`                                                                        |
