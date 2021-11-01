@@ -28,7 +28,7 @@ This guide serves to help you understand the usage of the program to encode and 
     - [Create a New Recipe: `recipe new`](#create-a-new-recipe-recipe-new)
     - [Select a Recipe for Editing: `recipe select`](#select-a-recipe-for-editing-recipe-select)
     - [List Modules in a Recipe: `recipe list`](#list-modules-in-a-recipe-recipe-list)
-    - [Add a Module to a Recipe: `recipe push`](#add-a-module-to-a-recipe-recipe-push)
+    - [Add a Module to a Recipe: `recipe push`](#add-a-module-into-a-recipe-recipe-push)
     - [Remove a Module from a Recipe: `recipe pop`](#remove-a-module-from-a-recipe-recipe-pop)
     - [Clear All Modules in a Recipe: `recipe reset`](#clear-all-modules-in-a-recipe-recipe-reset)
     - [Delete a Recipe: `recipe delete`](#delete-a-recipe-recipe-delete)
@@ -168,7 +168,7 @@ Format: `select module <moduleName> {moduleArgument}`, `select recipe <recipeNam
 
 > :information_source: `recipeName` is the name of an available recipe that is loaded by the program.
 
-> :exclamation: Currently, the `moduleArgument` is needed **only** when using the `rotencode` module, the rest of the currently available modules do not need the `moduleArgument`.
+> :information_source: You may refer [here](#selectModuleExamples) for more information how which modules require `moduleArgument`.
 
 Examples:
 
@@ -222,7 +222,7 @@ Example:
 
 Show all the modules in a recipe, in the order they were added.
 
-Format: `recipe list {recipeName>}`
+Format: `recipe list {recipeName}`
 
 > :information_source: When `recipeName` is not specified, modules from the recipe that is currently being edited will be listed instead.
 
@@ -295,12 +295,12 @@ Coming soon to a cinema near you in the future*…*
 |---------------------------------|--------------------------------------------------------------|---------------------------------------------------------------------------------------|
 | Enter input data                | `input <data>`                                               | `input HelloWorld!`                                                                   |
 | List available modules/recipe   | `list {category}`                                            | `list` `list module` <br>`list recipe`                                                    |
-| Select processing module/recipe | `select module <moduleName>` <br>&ensp;OR<br> `select recipe <recipeName>` | `select module base64decode`<br> `select module rotencode 13` `select recipe testRecipe1` |
+| Select processing module/recipe<a name="selectModuleExamples"></a>  | `select module <moduleName>` <br>&ensp;OR<br> `select recipe <recipeName>` | `select module base64decode`<br> `select module rotencode 13` `select recipe testRecipe1` |
 | Reset to original data          | `reset`                                                      | `reset`                                                                               |
 | Create new recipe               | `recipe new <recipeName>`                                    | `recipe new testRecipe`                                                               |
 | Select recipe for editing       | `recipe select <recipeName>`                                 | `recipe select testRecipe`                                                            |
 | List modules in recipe          | `recipe list {recipeName}`                                   | `recipe list testRecipe`                                                              |
-| Add module to recipe            | `recipe push <moduleName> {moduleArgument}`                  | `recipe push base64encode`<br> `recipe push rotencode 13`                                 |
+| Add module to recipe            | `recipe push <moduleName> {moduleArgument}`                  | `recipe push base64encode`<br> `recipe push rotencode 13`                                |
 | Remove module from recipe       | `recipe pop`                                                 | `recipe pop`                                                                          |
 | Clear all modules in recipe     | `recipe reset`                                               | `recipe reset`                                                                        |
 | Delete recipe                   | `recipe delete <recipeName>`                                 | `recipe delete testRecipe`                                                            |
