@@ -2,13 +2,11 @@ package decodex.commands;
 
 import decodex.data.Data;
 import decodex.data.DataManager;
-import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;
 import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
 import decodex.ui.Ui;
-import decodex.ui.messages.ErrorMessages;
 
 public class ShowCommand extends Command {
     public static final String COMMAND_WORD = "show";
@@ -19,13 +17,20 @@ public class ShowCommand extends Command {
         super();
     }
 
+    /**
+     * Shows the current data.
+     *
+     * @param dataManager The DataManager object.
+     * @param moduleManager The ModuleManager object.
+     * @param ui The Ui object.
+     * @param recipeManager The RecipeManager object.
+     * @param storage The Storage object.
+     * @throws DataManagerException If the current data is empty.
+     */
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager,
-                             Storage storage) throws DataManagerException, CommandException {
+                             Storage storage) throws DataManagerException {
         Data currentData = dataManager.getCurrentData();
-        if (currentData == null) {
-            throw new CommandException(ErrorMessages.INPUT_EMPTY);
-        }
         String currentDataInput = currentData.toString();
         ui.printOutput(currentDataInput);
     }
