@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import decodex.modules.Module;
 import decodex.recipes.Recipe;
+import decodex.ui.messages.ErrorMessages;
 import decodex.ui.messages.RegularMessages;
 
 /**
@@ -15,6 +16,7 @@ public class Ui {
     private static final String PROMPT_HEADER = "Decodex [%s] > ";
     private static final String PROMPT_EDITING = "Editing: ";
     private static final String BLANK_STRING = "";
+    private static final String COMMA_SEPARATOR = ", ";
     private static final String SUCCESS_ICON = "[+]";
     private static final String ERROR_ICON = "[x]";
     private static final String INPUT_PREFIX = "Input:";
@@ -226,14 +228,14 @@ public class Ui {
 
     // @@author Kair0s3
     /**
-     * Prints the list of message for the recipe files that failed to load.
+     * Prints all the recipe files that failed to load.
      *
-     * @param failedFilesMessageList The list of messages for the failed recipe files.
+     * @param failedRecipeFiles The list of messages for the failed recipe files.
      */
-    public void printFailedToLoadFromStorageMessage(ArrayList<String> failedFilesMessageList) {
-        for (String failedFileMessage : failedFilesMessageList) {
-            System.out.println(ERROR_ICON + " " + failedFileMessage);
-        }
+    public void printFailedToLoadFromStorageMessage(ArrayList<String> failedRecipeFiles) {
+        String failedRecipeFilesString = String.join(COMMA_SEPARATOR, failedRecipeFiles);
+        String errorMessage = ErrorMessages.FAILED_TO_LOAD_RECIPES_FILE_MESSAGE + " " + failedRecipeFilesString;
+        System.out.println(ERROR_ICON + " " + errorMessage);
     }
     // @@author
 

@@ -73,7 +73,7 @@ public class Storage {
         if (recipeFiles.length == EMPTY_LENGTH) {
             return;
         }
-        ArrayList<String> errorsOfFailedRecipeLoads = new ArrayList<>();
+        ArrayList<String> failedRecipes = new ArrayList<>();
         for (File recipeFile : recipeFiles) {
             String recipeFilename = recipeFile.getName();
             String recipeName = recipeFilename.split(FILENAME_EXTENSION_SPLIT_REGEX)[RECIPE_NAME_INDEX];
@@ -82,15 +82,14 @@ public class Storage {
                 recipeManager.addRecipe(recipe);
             } catch (IOException | ModuleException | ModuleManagerException
                     | RecipeManagerException | RecipeException err) {
-                String failedToLoadMessage = recipeName + ErrorMessages.FAILED_TO_LOAD_RECIPE_FILE_MESSAGE;
-                errorsOfFailedRecipeLoads.add(failedToLoadMessage);
+                failedRecipes.add(recipeName);
             }
         }
 
-        if (errorsOfFailedRecipeLoads.isEmpty()) {
+        if (failedRecipes.isEmpty()) {
             return;
         }
-        ui.printFailedToLoadFromStorageMessage(errorsOfFailedRecipeLoads);
+        ui.printFailedToLoadFromStorageMessage(failedRecipes);
     }
 
     /**
