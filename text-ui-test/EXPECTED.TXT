@@ -4,7 +4,52 @@ Welcome to Decodex, transforming data with ease
 Decodex [] > [x] Unknown command, please enter a valid command
 Decodex [] > [x] Unknown command, please enter a valid command
 Decodex [] > [x] Your command cannot be blank
+Decodex [] > Syntax: < > - mandatory, { } - optional
+
+Here are the basic commands:
+-> Shows list of available commands
+   Syntax: help
+
+-> Exit the program
+   Syntax: exit
+
+-> Input of data
+   Syntax: input <data>
+
+-> List available modules and recipes
+   Syntax: list {category}
+   Acceptable values of category: modules, recipes
+
+-> Selects a module or recipe to run
+   Syntax: select module <moduleName> {moduleArgument}, select recipe <recipeName>
+
+-> Shows the current data
+   Syntax: show
+
+Here are the recipe commands:
+-> Create new recipe
+   Syntax: recipe new <recipeName>
+
+-> List modules in recipe
+   Syntax: recipe list {recipeName}
+
+-> Select recipe for editing
+   Syntax: recipe select <recipeName>
+
+-> Add module to recipe
+   Syntax: recipe push <moduleName> {moduleArgument}
+
+-> Remove module from recipe
+   Syntax: recipe pop
+
+-> Clear all modules from recipe
+   Syntax: recipe reset
+
+-> Delete recipe
+   Syntax: recipe delete <recipeName>
+
 Decodex [] > [+] Input: "I am a lab rat"
+Decodex [] > [+] Current: "I am a lab rat"
 Decodex [] > [+] Output: "SSBhbSBhIGxhYiByYXQ="
 Decodex [] > [+] Output: "I am a lab rat"
 Decodex [] > [+] Output: "4920616d2061206c616220726174"

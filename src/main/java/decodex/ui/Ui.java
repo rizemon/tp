@@ -19,6 +19,7 @@ public class Ui {
     private static final String ERROR_ICON = "[x]";
     private static final String INPUT_PREFIX = "Input:";
     private static final String OUTPUT_PREFIX = "Output:";
+    private static final String CURRENT_PREFIX = "Current:";
 
     private final Scanner in;
 
@@ -269,5 +270,10 @@ public class Ui {
         for (String commandFormat: recipeCommandHelpList) {
             System.out.printf("-> %s\n\n", commandFormat.replace("\n", "\n   "));
         }
+    }
+
+    public void printCurrentData(String currentData) {
+        assert currentData != null : "Current data should not be null";
+        printSuccess(String.format("%s \"%s\"", CURRENT_PREFIX, currentData));
     }
 }
