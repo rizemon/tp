@@ -23,7 +23,7 @@ Here are the basic commands:
 -> Selects a module or recipe to run
    Syntax: select module <moduleName> {moduleArgument}, select recipe <recipeName>
 
--> Shows your original input
+-> Shows the current data
    Syntax: show
 
 Here are the recipe commands:
@@ -49,7 +49,7 @@ Here are the recipe commands:
    Syntax: recipe delete <recipeName>
 
 Decodex [] > [+] Input: "I am a lab rat"
-Decodex [] > [+] Input: "I am a lab rat"
+Decodex [] > [+] Current: "I am a lab rat"
 Decodex [] > [+] Output: "SSBhbSBhIGxhYiByYXQ="
 Decodex [] > [+] Output: "I am a lab rat"
 Decodex [] > [+] Output: "4920616d2061206c616220726174"

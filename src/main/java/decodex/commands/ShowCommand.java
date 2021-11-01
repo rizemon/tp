@@ -32,6 +32,6 @@ public class ShowCommand extends Command {
                              Storage storage) throws DataManagerException {
         Data currentData = dataManager.getCurrentData();
         String currentDataInput = currentData.toString();
-        ui.printOutput(currentDataInput);
+        ui.printCurrentData(currentDataInput);
     }
 }
