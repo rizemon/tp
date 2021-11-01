@@ -1,7 +1,9 @@
 whoami
 bring me thanos
 
+help
 input I am a lab rat
+show
 select module base64encode
 select module base64decode
 select module hexencode
