@@ -18,7 +18,7 @@ import decodex.ui.Ui;
 public class RecipeDeselectCommand extends Command {
 
     public static final String COMMAND_WORD = "deselect";
-    public static final String COMMAND_HELP_MESSAGE = "Deselect editing recipe\n"
+    public static final String COMMAND_HELP_MESSAGE = "Deselects the recipe currently being edited\n"
             + "Syntax: recipe deselect";
 
     public RecipeDeselectCommand() {

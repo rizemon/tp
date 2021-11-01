@@ -124,7 +124,7 @@ public class RecipeManager {
     }
 
     /**
-     * Deselects the current editing recipe.
+     * Deselects the recipe currently being edited.
      */
     public void deselectEditingRecipe() {
         logger.fine(String.format("[RecipeManager] Deselected recipe %s", editingRecipeName));
