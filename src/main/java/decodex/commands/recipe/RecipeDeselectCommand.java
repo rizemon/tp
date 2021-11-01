@@ -11,6 +11,7 @@ import decodex.data.exception.ModuleManagerException;
 import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
 import decodex.modules.ModuleManager;
+import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
 import decodex.ui.Ui;
@@ -29,7 +30,8 @@ public class RecipeDeselectCommand extends Command {
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager,
             Storage storage) throws CommandException, ModuleManagerException, DataManagerException, ModuleException,
             RecipeException, RecipeManagerException, IOException {
-        String recipeName = recipeManager.getEditingRecipe().getName();
+        Recipe editingRecipe = recipeManager.getEditingRecipe();
+        String recipeName = editingRecipe.getName();
         recipeManager.deselectEditingRecipe();
         ui.printRecipeDeselected(recipeName);
     }
