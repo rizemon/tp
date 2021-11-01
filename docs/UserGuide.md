@@ -163,6 +163,8 @@ Format: `select module <moduleName> {moduleArgument}`, `select recipe <recipeNam
 
 > :information_source: `recipeName` is the name of an available recipe that is loaded by the program.
 
+> :exclamation: Currently, `moduleArgument` is needed when using `rotencode` module, the rest of the currently available modules do not need the `moduleArgument`.
+
 Examples:
 
 - `select module base64decode` Runs the `base64decode` module on the current data.
