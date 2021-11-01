@@ -22,8 +22,8 @@ public class ErrorMessages {
     public static final String TOO_MANY_COMMAND_ARGUMENTS = "Too many command arguments";
     public static final String INVALID_LIST_CATEGORY = "Invalid list category";
     public static final String UNKNOWN_MODULE_NAME = "Unknown module name";
-    public static final String INVALID_ROTENCODE_PARAMETER = "The rotation offset must be between -2147483648 (MIN_INT)"
-            + " and 2147483647 (MAX_INT)";
+    public static final String INVALID_ROTENCODE_PARAMETER = "The rotation offset must be an integer between "
+            + "-2147483648 (MIN_INT) and 2147483647 (MAX_INT)";
     public static final String MISSING_MODULE_PARAMETERS = "Missing module parameters";
     public static final String TOO_MANY_MODULE_PARAMETERS = "Too many module parameters";
     public static final String UNKNOWN_SELECTION_CATEGORY = "Unknown selection category";
