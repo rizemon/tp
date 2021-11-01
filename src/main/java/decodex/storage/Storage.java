@@ -18,8 +18,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -29,17 +27,12 @@ public class Storage {
     /**
      * Specifies the default directories for input, output and recipes respectively.
      */
-    private static final String DEFAULT_INPUT_DIRECTORY = "input";
-    private static final String DEFAULT_OUTPUT_DIRECTORY = "output";
     private static final String DEFAULT_RECIPE_DIRECTORY = "recipe";
 
     /**
      * Specifies the corresponding file prefixes.
      */
-    private static final String DATA_FILE_PREFIX = ".data";
     private static final String RECIPE_FILE_PREFIX = ".txt";
-
-    private static final String OUTPUT_FILENAME_FORMAT = "yyyy-dd-MM__HH.mm.ss";
 
     private static final String LINE_BREAK_REGEX = "\\r?\\n";
     private static final String FILENAME_EXTENSION_SPLIT_REGEX = "[.]";
@@ -109,7 +102,7 @@ public class Storage {
         File recipeDirectory = new File(DEFAULT_RECIPE_DIRECTORY);
 
         File[] files = recipeDirectory.listFiles();
-        
+
         File[] recipeFiles = Arrays.stream(files)
                 .filter(file -> file.isFile())
                 .filter(file -> {
@@ -174,26 +167,6 @@ public class Storage {
     }
 
     /**
-     * Reads and returns the input from the provided file.
-     *
-     * @param fileName The name of the input file specified by the user.
-     * @return The byte contents from the input file.
-     * @throws IOException If an error occurred when reading the file or
-     *                     the input file does not exist.
-     * @throws StorageException If the input directory is a file.
-     */
-    public byte[] readInputFromFile(String fileName) throws IOException, StorageException {
-        instantiateDirectoryIfNotExist(DEFAULT_INPUT_DIRECTORY);
-
-        File inputDirectory = new File(DEFAULT_INPUT_DIRECTORY);
-        File inputFile = new File(inputDirectory, fileName);
-        Path inputFilePath = inputFile.toPath();
-
-        byte[] inputContent = readContentFromFile(inputFilePath);
-        return inputContent;
-    }
-
-    /**
      * Reads and returns the contents from the file.
      *
      * @param readFilePath The Path object of the file to be read.
@@ -212,43 +185,6 @@ public class Storage {
     }
 
     /**
-     * Saves the provided output into a file.
-     *
-     * @param outputBytes The encoded or decoded output.
-     * @throws IOException If an error occurred when creating the file
-     *                     or when writing to the file.
-     */
-    public void saveOutputToFile(byte[] outputBytes) throws IOException, StorageException {
-        instantiateDirectoryIfNotExist(DEFAULT_OUTPUT_DIRECTORY);
-
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(OUTPUT_FILENAME_FORMAT);
-        String formattedDateTime = currentDateTime.format(dateTimeFormatter);
-        String newOutputFileName = formattedDateTime + DATA_FILE_PREFIX;
-
-        File outputDirectory = new File(DEFAULT_OUTPUT_DIRECTORY);
-        File outputFile = new File(outputDirectory, newOutputFileName);
-        saveBytesToFile(outputFile, outputBytes);
-    }
-
-    /**
-     * Saves the content bytes into the provided file.
-     *
-     * @param writeFile    The file to be saved to.
-     * @param contentBytes The bytes of the content to be saved.
-     * @throws IOException If an error occurred when creating the file
-     *                     or when writing to the file.
-     */
-    private void saveBytesToFile(File writeFile, byte[] contentBytes) throws IOException {
-        try {
-            Path writeFilePath = writeFile.toPath();
-            Files.write(writeFilePath, contentBytes);
-        } catch (IOException err) {
-            throw new IOException(ErrorMessages.FILE_WRITE_ERROR_MESSAGE);
-        }
-    }
-
-    /**
      * Saves the provided recipe into a file.
      *
      * @param recipe The recipe to be saved.
@@ -262,6 +198,9 @@ public class Storage {
 
         File recipeDirectory = new File(DEFAULT_RECIPE_DIRECTORY);
         File outputRecipeFile = new File(recipeDirectory, newRecipeFileName);
+        if (!outputRecipeFile.isFile()) {
+            throw new StorageException(ErrorMessages.INVALID_RECIPE_FILE);
+        }
         saveRecipeModulesToFile(outputRecipeFile, recipe);
     }
 
@@ -309,14 +248,14 @@ public class Storage {
      *
      * @param recipeName The name of the deleted recipe.
      */
-    public void deleteRecipeFile(String recipeName) throws IOException {
+    public void deleteRecipeFile(String recipeName) throws IOException, StorageException {
         String newRecipeFileName = recipeName + RECIPE_FILE_PREFIX;
 
         File recipeDirectory = new File(DEFAULT_RECIPE_DIRECTORY);
         File outputRecipeFile = new File(recipeDirectory, newRecipeFileName);
 
         if (!outputRecipeFile.isFile()) {
-            return;
+            throw new StorageException(ErrorMessages.INVALID_RECIPE_FILE);
         }
 
         if (!outputRecipeFile.delete()) {

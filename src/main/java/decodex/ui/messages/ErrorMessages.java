@@ -35,4 +35,5 @@ public class ErrorMessages {
     public static final String FAILED_TO_LOAD_RECIPE_FILE_MESSAGE = "failed to be loaded into Decodex";
     public static final String INVALID_RECIPE_COMMAND = "Invalid recipe command";
     public static final String INVALID_DIRECTORY_ACCESS = "Failed to access %s directory";
+    public static final String INVALID_RECIPE_FILE = "The recipe file is not a valid file";
 }
