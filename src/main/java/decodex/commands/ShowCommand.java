@@ -19,7 +19,8 @@ public class ShowCommand extends Command {
     }
 
     @Override
-    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager) throws DataManagerException, CommandException {
+    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager)
+            throws DataManagerException, CommandException {
         Data originalData = dataManager.getOriginalData();
         if (originalData == null) {
             throw new CommandException(ErrorMessages.INPUT_EMPTY);

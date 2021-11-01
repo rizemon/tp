@@ -2,7 +2,14 @@ package decodex.parser;
 
 import java.util.Arrays;
 
-import decodex.commands.*;
+import decodex.commands.Command;
+import decodex.commands.ExitCommand;
+import decodex.commands.InputCommand;
+import decodex.commands.HelpCommand;
+import decodex.commands.ListCommand;
+import decodex.commands.ResetCommand;
+import decodex.commands.SelectCommand;
+import decodex.commands.ShowCommand;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.ParserException;
 import decodex.ui.messages.ErrorMessages;
@@ -217,7 +224,7 @@ public class Parser {
      *
      * @param userInput The user input specified by the user.
      * @return The SelectCommand object.
-     * @throws CommandException If the number of command arguments is invalid.in
+     * @throws CommandException If the number of command arguments is invalid.
      */
     private SelectCommand prepareSelectCommand(String userInput) throws CommandException {
         String[] tokens = getTokens(userInput);
@@ -239,7 +246,7 @@ public class Parser {
      * @throws CommandException If the original data input is empty.
      */
     private ShowCommand prepareShowCommand() {
-       return new ShowCommand();
+        return new ShowCommand();
     }
 
     /**
