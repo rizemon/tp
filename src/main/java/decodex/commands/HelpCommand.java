@@ -25,7 +25,8 @@ public class HelpCommand extends Command {
         ExitCommand.COMMAND_HELP_MESSAGE,
         InputCommand.COMMAND_HELP_MESSAGE,
         ListCommand.COMMAND_HELP_MESSAGE,
-        SelectCommand.COMMAND_HELP_MESSAGE
+        SelectCommand.COMMAND_HELP_MESSAGE,
+        ShowCommand.COMMAND_HELP_MESSAGE
     };
 
     private static final String[] RECIPE_COMMAND_HELP_MESSAGES = {

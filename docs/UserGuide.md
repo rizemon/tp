@@ -28,7 +28,7 @@ This guide serves to help you understand the usage of the program to encode and 
     - [Create a New Recipe: `recipe new`](#create-a-new-recipe-recipe-new)
     - [Select a Recipe for Editing: `recipe select`](#select-a-recipe-for-editing-recipe-select)
     - [List Modules in a Recipe: `recipe list`](#list-modules-in-a-recipe-recipe-list)
-    - [Add a Module to a Recipe: `recipe push`](#add-a-module-to-a-recipe-recipe-push)
+    - [Add a Module to a Recipe: `recipe push`](#add-a-module-into-a-recipe-recipe-push)
     - [Remove a Module from a Recipe: `recipe pop`](#remove-a-module-from-a-recipe-recipe-pop)
     - [Clear All Modules in a Recipe: `recipe reset`](#clear-all-modules-in-a-recipe-recipe-reset)
     - [Delete a Recipe: `recipe delete`](#delete-a-recipe-recipe-delete)
@@ -84,18 +84,17 @@ This section serves to help you better understand the terminologies used in this
 6. For more information on Decodex's features, please refer to the Features Section.
 
 ## List of Available Modules
+Below, you can see the list of available modules, what they do and their respective usage formats.<a name="selectModuleExamples"></a>
 
-1. Base64
-   1. `base64encode` - Encodes the data using base64 format
-   2. `base64decode` - Decodes the data using base64 format
-2. Hexadecimal
-   1. `hexencode` - Converts the input string to hexadecimal bytes
-   2. `hexdecode` - Converts a hexadecimal string back into its raw value
-3. Binary
-   1. `binencode` - Encodes the data using binary format
-   2. `bindecode` - Decodes the data using binary format
-4. Rotational Cipher
-   1. `rotencode` - Rotates alphabetical characters by a specified integer offset
+| Module         | Description                                                                                              | `moduleArgument`                                                                                       |
+| -------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `base64encode` | Encodes the data using base64 format.                                                                    | N.A                                                                                                    |
+| `base64decode`  | Decodes the data using base64 format.                                                                   | N.A                                                                                                    |
+| `hexencode`    | Converts the input string to hexadecimal bytes.                                                          | N.A                                                                                                    |
+| `hexdecode`    | Converts a hexadecimal string back into its raw value.                                                   | N.A                                                                                                    |
+| `binencode`    | Encodes the data using binary format.                                                                    | N.A                                                                                                    |
+| `bindecode`    | Decodes the data using binary format.                                                                    | N.A                                                                                                    |
+| `rotencode`    | Rotates alphabetical characters by a specified integer offset.<br><br>E.g., `select module rotencode 13` | The rotation offset.<br><br>Must be an integer between -2147483648 (MIN_INT) and 2147483647 (MAX_INT). |
 
 > :information_source: These are some of the more common encoding/decoding/cipher methods that can be found in CTF competitions.
 
@@ -163,6 +162,8 @@ Format: `select module <moduleName> {moduleArgument}`, `select recipe <recipeNam
 
 > :information_source: `recipeName` is the name of an available recipe that is loaded by the program.
 
+> :information_source: You may also refer [here](#selectModuleExamples) for more details on our modules and its usage.
+
 Examples:
 
 - `select module base64decode` Runs the `base64decode` module on the current data.
@@ -215,7 +216,9 @@ Example:
 
 Show all the modules in a recipe, in the order they were added.
 
-Format: `recipe list <recipeName>`
+Format: `recipe list {recipeName}`
+
+> :information_source: When `recipeName` is not specified, modules from the recipe that is currently being edited will be listed instead.
 
 Example:
 
@@ -286,12 +289,12 @@ Coming soon to a cinema near you in the future*…*
 |---------------------------------|--------------------------------------------------------------|---------------------------------------------------------------------------------------|
 | Enter input data                | `input <data>`                                               | `input HelloWorld!`                                                                   |
 | List available modules/recipe   | `list {category}`                                            | `list` `list module` <br>`list recipe`                                                    |
-| Select processing module/recipe | `select module <moduleName>` <br>&ensp;OR<br> `select recipe <recipeName>` | `select module base64decode`<br> `select module rotencode 13` `select recipe testRecipe1` |
+| Select processing module/recipe  | `select module <moduleName>` <br>&ensp;OR<br> `select recipe <recipeName>` | `select module base64decode`<br> `select module rotencode 13` `select recipe testRecipe1` |
 | Reset to original data          | `reset`                                                      | `reset`                                                                               |
 | Create new recipe               | `recipe new <recipeName>`                                    | `recipe new testRecipe`                                                               |
 | Select recipe for editing       | `recipe select <recipeName>`                                 | `recipe select testRecipe`                                                            |
-| List modules in recipe          | `recipe list <recipeName>`                                   | `recipe list testRecipe`                                                              |
-| Add module to recipe            | `recipe push <moduleName> {moduleArgument}`                  | `recipe push base64encode`<br> `recipe push rotencode 13`                                 |
+| List modules in recipe          | `recipe list {recipeName}`                                   | `recipe list testRecipe`                                                              |
+| Add module to recipe            | `recipe push <moduleName> {moduleArgument}`                  | `recipe push base64encode`<br> `recipe push rotencode 13`                                |
 | Remove module from recipe       | `recipe pop`                                                 | `recipe pop`                                                                          |
 | Clear all modules in recipe     | `recipe reset`                                               | `recipe reset`                                                                        |
 | Delete recipe                   | `recipe delete <recipeName>`                                 | `recipe delete testRecipe`                                                            |

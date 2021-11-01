@@ -22,7 +22,8 @@ public class ErrorMessages {
     public static final String TOO_MANY_COMMAND_ARGUMENTS = "Too many command arguments";
     public static final String INVALID_LIST_CATEGORY = "Invalid list category";
     public static final String UNKNOWN_MODULE_NAME = "Unknown module name";
-    public static final String INVALID_MODULE_PARAMETERS = "Invalid module parameters";
+    public static final String INVALID_ROTENCODE_PARAMETER = "The rotation offset must be an integer between "
+            + "-2147483648 (MIN_INT) and 2147483647 (MAX_INT)";
     public static final String MISSING_MODULE_PARAMETERS = "Missing module parameters";
     public static final String TOO_MANY_MODULE_PARAMETERS = "Too many module parameters";
     public static final String UNKNOWN_SELECTION_CATEGORY = "Unknown selection category";
@@ -37,4 +38,5 @@ public class ErrorMessages {
     public static final String INVALID_DIRECTORY_ACCESS = "Failed to access %s directory";
     public static final String INVALID_RECIPE_FILE = "The recipe file is not a valid file";
     public static final String FAILED_TO_LIST_FILES_MESSAGE = "Something went wrong when listing files in recipe";
+    public static final String TOO_MANY_ARGUMENTS_MESSAGE = "Too many arguments";
 }

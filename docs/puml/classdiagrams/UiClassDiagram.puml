@@ -1,0 +1,28 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+
+!include colors.puml
+
+Decodex -> "1" Ui
+
+class Decodex DECODEX_COLOR {
+  - initDecodex(): void
+  + run(): void
+  + {static} main(): void
+}
+
+
+class Ui UI_COLOR {
+  - in: Scanner
+  + readInput(): String
+  + printSuccess(): void
+  + printError(): void
+}
+
+note right
+  Only the commonly used
+  methods are listed.
+end note
+
+@enduml
