@@ -36,4 +36,5 @@ public class ErrorMessages {
     public static final String INVALID_RECIPE_COMMAND = "Invalid recipe command";
     public static final String INVALID_DIRECTORY_ACCESS = "Failed to access %s directory";
     public static final String INVALID_RECIPE_FILE = "The recipe file is not a valid file";
+    public static final String FAILED_TO_LIST_FILES_MESSAGE = "Something went wrong when listing files in recipe";
 }

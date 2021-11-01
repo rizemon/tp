@@ -98,10 +98,14 @@ public class Storage {
      *
      * @return The list of recipe File objects.
      */
-    private File[] getAllRecipeFiles() {
+    private File[] getAllRecipeFiles() throws StorageException {
         File recipeDirectory = new File(DEFAULT_RECIPE_DIRECTORY);
 
         File[] files = recipeDirectory.listFiles();
+
+        if (files == null) {
+            throw new StorageException(ErrorMessages.FAILED_TO_LIST_FILES_MESSAGE);
+        }
 
         File[] recipeFiles = Arrays.stream(files)
                 .filter(file -> file.isFile())
@@ -280,8 +284,7 @@ public class Storage {
             throw new StorageException(formattedErrorMessage);
         }
 
-        boolean isSuccessful;
-        isSuccessful = directory.mkdir();
+        boolean isSuccessful = directory.mkdir();
         if (!isSuccessful) {
             throw new IOException(ErrorMessages.DIRECTORY_INSTANTIATION_FAILED_MESSAGE + directoryName);
         }
