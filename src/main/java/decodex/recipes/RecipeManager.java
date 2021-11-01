@@ -1,6 +1,5 @@
 package decodex.recipes;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
@@ -122,6 +121,14 @@ public class RecipeManager {
         }
         editingRecipeName = name;
         logger.fine(String.format("[RecipeManager] Selected recipe %s", name));
+    }
+
+    /**
+     * Deselects the current editing recipe.
+     */
+    public void deselectEditingRecipe() {
+        logger.fine(String.format("[RecipeManager] Deselected recipe %s", editingRecipeName));
+        editingRecipeName = null;
     }
 
     /**

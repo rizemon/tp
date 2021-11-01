@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import decodex.commands.Command;
 import decodex.commands.recipe.RecipeDeleteCommand;
+import decodex.commands.recipe.RecipeDeselectCommand;
 import decodex.commands.recipe.RecipeNewCommand;
 import decodex.commands.recipe.RecipePopCommand;
 import decodex.commands.recipe.RecipePushCommand;
@@ -54,6 +55,9 @@ public class RecipeCommandParser extends Parser {
             break;
         case RecipeSelectCommand.COMMAND_WORD:
             recipeCommand = prepareRecipeSelectCommand(subCommandTokens);
+            break;
+        case RecipeDeselectCommand.COMMAND_WORD:
+            recipeCommand = prepareRecipeDeselectCommand(subCommandTokens);
             break;
         case RecipePushCommand.COMMAND_WORD:
             recipeCommand = prepareRecipePushCommand(subCommandTokens);
@@ -115,6 +119,18 @@ public class RecipeCommandParser extends Parser {
         checkValidNumberOfArguments(subCommandTokens, SUBCOMMAND_WITH_ARGUMENT_LENGTH);
         String recipeName = subCommandTokens[SUBARGUMENT_STARTING_INDEX];
         return new RecipeSelectCommand(recipeName);
+    }
+
+    /**
+     * Prepares and returns the RecipeDeselectCommand.
+     *
+     * @param subCommandTokens The list of recipe subcommand tokens.
+     * @return The RecipeDeselectCommand object.
+     * @throws CommandException If the number of arguments is invalid.
+     */
+    private RecipeDeselectCommand prepareRecipeDeselectCommand(String[] subCommandTokens) throws CommandException {
+        checkValidNumberOfArguments(subCommandTokens, SUBCOMMAND_NO_ARGUMENT_LENGTH);
+        return new RecipeDeselectCommand();
     }
 
     /**
