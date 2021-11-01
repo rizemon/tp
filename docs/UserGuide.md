@@ -215,7 +215,9 @@ Example:
 
 Show all the modules in a recipe, in the order they were added.
 
-Format: `recipe list <recipeName>`
+Format: `recipe list {recipeName>}`
+
+> :information_source: When `recipeName` is not specified, modules from the recipe that is currently being edited will be listed instead.
 
 Example:
 

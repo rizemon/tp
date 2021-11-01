@@ -15,12 +15,11 @@ import org.junit.jupiter.api.Test;
 // @@author rizemon
 class RecipeManagerTest {
 
-    private final Storage storage = new Storage();
     private RecipeManager recipeManager;
 
     @BeforeEach
     public void createNewRecipeManager() {
-        recipeManager = new RecipeManager(storage);
+        recipeManager = new RecipeManager();
     }
 
     @Test

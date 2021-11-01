@@ -23,14 +23,14 @@ class ResetCommandTest {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         Ui ui = new Ui();
 
         Data originalData = new Data("hi");
         dataManager.setOriginalData(originalData);
 
         ResetCommand testCommand = new ResetCommand();
-        testCommand.run(dataManager, moduleManager, ui, recipeManager);
+        testCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
         assertTrue(Arrays.equals(dataManager.getCurrentData().getRawBytes(), originalData.getRawBytes()));
     }
 
@@ -39,7 +39,7 @@ class ResetCommandTest {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
         Ui ui = new Ui();
 
         Data originalData = new Data("hi");
@@ -48,7 +48,7 @@ class ResetCommandTest {
         dataManager.setCurrentData(newData);
 
         ResetCommand testCommand = new ResetCommand();
-        testCommand.run(dataManager, moduleManager, ui, recipeManager);
+        testCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
         assertTrue(Arrays.equals(dataManager.getCurrentData().getRawBytes(), originalData.getRawBytes()));
     }
 }

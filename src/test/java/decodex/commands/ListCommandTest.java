@@ -25,7 +25,7 @@ public class ListCommandTest {
     private final DataManager dataManager = new DataManager();
     private final ModuleManager moduleManager = new ModuleManager();
     private final Storage storage = new Storage();
-    private final RecipeManager recipeManager = new RecipeManager(storage);
+    private final RecipeManager recipeManager = new RecipeManager();
     private final Ui ui = new Ui();
 
     @BeforeEach
@@ -43,7 +43,7 @@ public class ListCommandTest {
     public void run_listNull_success() throws CommandException {
         String listCategory = null;
         ListCommand listCommand = new ListCommand(listCategory);
-        listCommand.run(dataManager, moduleManager, ui, recipeManager);
+        listCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
         assertFalse(outputStream.toString().isBlank());
     }
 
@@ -51,7 +51,7 @@ public class ListCommandTest {
     public void run_listModules_success() throws CommandException {
         String listCategory = "modules";
         ListCommand listCommand = new ListCommand(listCategory);
-        listCommand.run(dataManager, moduleManager, ui, recipeManager);
+        listCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
         assertFalse(outputStream.toString().isBlank());
     }
 
@@ -59,7 +59,7 @@ public class ListCommandTest {
     public void run_listRecipes_success() throws CommandException {
         String listCategory = "recipes";
         ListCommand listCommand = new ListCommand(listCategory);
-        listCommand.run(dataManager, moduleManager, ui, recipeManager);
+        listCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
         assertFalse(outputStream.toString().isBlank());
     }
 
@@ -67,6 +67,7 @@ public class ListCommandTest {
     public void run_listUnknown_throwsCommandException() {
         String listCategory = "unknown";
         ListCommand listCommand = new ListCommand(listCategory);
-        assertThrows(CommandException.class, () -> listCommand.run(dataManager, moduleManager, ui, recipeManager));
+        assertThrows(CommandException.class, () -> listCommand.run(dataManager, moduleManager, ui, recipeManager,
+                storage));
     }
 }

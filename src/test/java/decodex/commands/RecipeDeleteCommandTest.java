@@ -29,12 +29,12 @@ class RecipeDeleteCommandTest {
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
 
         recipeManager.addRecipe(new Recipe(testRecipeName));
 
         Command recipeDeleteCommand = new RecipeDeleteCommand(testRecipeName);
-        recipeDeleteCommand.run(dataManager, moduleManager, ui, recipeManager);
+        recipeDeleteCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
 
         assertThrows(RecipeManagerException.class, () -> recipeManager.getRecipe(testRecipeName));
     }
@@ -45,7 +45,7 @@ class RecipeDeleteCommandTest {
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
 
         recipeManager.addRecipe(new Recipe("BaconPancakes"));
 
@@ -53,6 +53,6 @@ class RecipeDeleteCommandTest {
         Command recipeDeleteCommand = new RecipeDeleteCommand(testRecipeName);
 
         assertThrows(RecipeManagerException.class,
-            () -> recipeDeleteCommand.run(dataManager, moduleManager, ui, recipeManager));
+            () -> recipeDeleteCommand.run(dataManager, moduleManager, ui, recipeManager, storage));
     }
 }

@@ -30,9 +30,9 @@ class RecipeNewCommandTest {
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
 
-        newRecipeCommand.run(dataManager, moduleManager, ui, recipeManager);
+        newRecipeCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
 
         assertNotNull(recipeManager.getRecipe("BaconPancakes"));
     }
@@ -46,9 +46,9 @@ class RecipeNewCommandTest {
         ModuleManager moduleManager = new ModuleManager();
         Ui ui = new Ui();
         Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager(storage);
+        RecipeManager recipeManager = new RecipeManager();
 
         assertThrows(CommandException.class,
-            () -> newRecipeCommand.run(dataManager, moduleManager, ui, recipeManager));
+            () -> newRecipeCommand.run(dataManager, moduleManager, ui, recipeManager, storage));
     }
 }

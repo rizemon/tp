@@ -10,6 +10,7 @@ import decodex.commands.recipe.RecipeSelectCommand;
 import decodex.data.DataManager;
 import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
+import decodex.storage.Storage;
 import decodex.ui.Ui;
 
 // @@author rizemon
@@ -43,7 +44,8 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager) {
+    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager,
+            Storage storage) {
         ui.printCommandHelp(BASIC_COMMAND_HELP_MESSAGES, RECIPE_COMMAND_HELP_MESSAGES);
     }
 }
