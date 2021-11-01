@@ -5,10 +5,11 @@ import java.util.Arrays;
 import decodex.commands.Command;
 import decodex.commands.ExitCommand;
 import decodex.commands.InputCommand;
+import decodex.commands.HelpCommand;
 import decodex.commands.ListCommand;
 import decodex.commands.ResetCommand;
 import decodex.commands.SelectCommand;
-import decodex.commands.HelpCommand;
+import decodex.commands.ShowCommand;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.ParserException;
 import decodex.ui.messages.ErrorMessages;
@@ -132,6 +133,9 @@ public class Parser {
         case HelpCommand.COMMAND_WORD:
             command = prepareHelpCommand();
             break;
+        case ShowCommand.COMMAND_WORD:
+            command = prepareShowCommand();
+            break;
         case RECIPE_COMMAND_WORD:
             command = prepareRecipeSubcommands(userInput);
             break;
@@ -233,6 +237,16 @@ public class Parser {
         String[] parameters = Arrays.copyOfRange(tokens, SELECT_PARAMETERS_START_INDEX, tokens.length);
 
         return new SelectCommand(selectCategory, itemName, parameters);
+    }
+
+    /**
+     * Shows the original input data.
+     *
+     * @return The ShowCommand object.
+     * @throws CommandException If the original data input is empty.
+     */
+    private ShowCommand prepareShowCommand() {
+        return new ShowCommand();
     }
 
     /**
