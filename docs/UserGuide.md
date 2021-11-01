@@ -85,6 +85,8 @@ This section serves to help you better understand the terminologies used in this
 
 ## List of Available Modules
 
+> :information_source: These are some of the more common encoding/decoding/cipher methods that can be found in CTF competitions.
+
 1. Base64
    1. `base64encode` - Encodes the data using base64 format
    2. `base64decode` - Decodes the data using base64 format
@@ -97,13 +99,10 @@ This section serves to help you better understand the terminologies used in this
 4. Rotational Cipher
    1. `rotencode` - Rotates alphabetical characters by a specified integer offset
 
-| Module         | Description                                                   | Parameters                                                                                              |
-| -------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `base64encode` | Encodes the data using base64 format                          | N.A                                                                                                     |
-| `rotencode`    | Rotates alphabetical characters by a specified integer offset | 1. `offset`: The rotation offset.<br><br>Must be between -2147483648 (MIN_INT) and 2147483647 (MAX_INT) |
-
-
-> :information_source: These are some of the more common encoding/decoding/cipher methods that can be found in CTF competitions.
+| Module         | Description                                                                                              | `moduleArgument`                                                                                       |
+| -------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `base64encode` | Encodes the data using base64 format.                                                                    | N.A                                                                                                    |
+| `rotencode`    | Rotates alphabetical characters by a specified integer offset.<br><br>E.g., `select module rotencode 13` | The rotation offset.<br><br>Must be an integer between -2147483648 (MIN_INT) and 2147483647 (MAX_INT). |
 
 ## Features
 
