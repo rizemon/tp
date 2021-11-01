@@ -6,6 +6,7 @@ import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;
 import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
+import decodex.storage.Storage;
 import decodex.ui.Ui;
 import decodex.ui.messages.ErrorMessages;
 
@@ -19,14 +20,13 @@ public class ShowCommand extends Command {
     }
 
     @Override
-    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager)
-            throws DataManagerException, CommandException {
-        Data originalData = dataManager.getOriginalData();
-        if (originalData == null) {
+    public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager,
+                             Storage storage) throws DataManagerException, CommandException {
+        Data currentData = dataManager.getCurrentData();
+        if (currentData == null) {
             throw new CommandException(ErrorMessages.INPUT_EMPTY);
         }
-        String originalDataInput = originalData.toString();
-
-        ui.printInput(originalDataInput);
+        String currentDataInput = currentData.toString();
+        ui.printInput(currentDataInput);
     }
 }
