@@ -99,7 +99,7 @@ public class SelectCommand extends Command {
         }
 
         if (parameters.length > 0) {
-            throw new CommandException(ErrorMessages.ADDITIONAL_PARAMETER_AFTER_RECIPE_NAME_MESSAGE);
+            throw new CommandException(ErrorMessages.TOO_MANY_ARGUMENTS_MESSAGE);
         }
 
         Recipe recipe = recipeManager.getRecipe(itemName);

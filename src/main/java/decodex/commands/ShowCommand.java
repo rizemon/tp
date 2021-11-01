@@ -12,7 +12,7 @@ import decodex.ui.messages.ErrorMessages;
 
 public class ShowCommand extends Command {
     public static final String COMMAND_WORD = "show";
-    public static final String COMMAND_HELP_MESSAGE = "Shows your original input\n"
+    public static final String COMMAND_HELP_MESSAGE = "Shows the current data\n"
             + "Syntax: show";
 
     public ShowCommand() {
@@ -27,6 +27,6 @@ public class ShowCommand extends Command {
             throw new CommandException(ErrorMessages.INPUT_EMPTY);
         }
         String currentDataInput = currentData.toString();
-        ui.printInput(currentDataInput);
+        ui.printOutput(currentDataInput);
     }
 }

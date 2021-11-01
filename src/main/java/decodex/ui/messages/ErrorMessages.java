@@ -34,6 +34,5 @@ public class ErrorMessages {
     public static final String RECIPE_FILE_DELETE_FAILED_MESSAGE = "Failed to delete the corresponding recipe file";
     public static final String FAILED_TO_LOAD_RECIPE_FILE_MESSAGE = " failed to be loaded into Decodex";
     public static final String INVALID_RECIPE_COMMAND = "Invalid recipe command";
-    public static final String ADDITIONAL_PARAMETER_AFTER_RECIPE_NAME_MESSAGE =
-            "Additional argument found after recipe name";
+    public static final String TOO_MANY_ARGUMENTS_MESSAGE = "Too many arguments";
 }
