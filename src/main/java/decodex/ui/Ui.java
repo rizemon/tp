@@ -182,6 +182,12 @@ public class Ui {
         printSuccess(String.format(RegularMessages.RECIPE_SELECT, recipeName));
     }
 
+    public void printRecipeDeselected(String recipeName) {
+        assert recipeName != null : "Recipe name should not be null";
+        assert !recipeName.isBlank() : "Recipe name should not be empty";
+        printSuccess(String.format(RegularMessages.RECIPE_DESELECT, recipeName));
+    }
+
     /**
      * Prints a message with a success status icon.
      *

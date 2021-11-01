@@ -36,6 +36,9 @@ Here are the recipe commands:
 -> Select recipe for editing
    Syntax: recipe select <recipeName>
 
+-> Deselects the recipe currently being edited
+   Syntax: recipe deselect
+
 -> Add module to recipe
    Syntax: recipe push <moduleName> {moduleArgument}
 

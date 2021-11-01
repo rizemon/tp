@@ -1,6 +1,7 @@
 package decodex.commands;
 
 import decodex.commands.recipe.RecipeDeleteCommand;
+import decodex.commands.recipe.RecipeDeselectCommand;
 import decodex.commands.recipe.RecipeListCommand;
 import decodex.commands.recipe.RecipeNewCommand;
 import decodex.commands.recipe.RecipePopCommand;
@@ -33,6 +34,7 @@ public class HelpCommand extends Command {
         RecipeNewCommand.COMMAND_HELP_MESSAGE,
         RecipeListCommand.COMMAND_HELP_MESSAGE,
         RecipeSelectCommand.COMMAND_HELP_MESSAGE,
+        RecipeDeselectCommand.COMMAND_HELP_MESSAGE,
         RecipePushCommand.COMMAND_HELP_MESSAGE,
         RecipePopCommand.COMMAND_HELP_MESSAGE,
         RecipeResetCommand.COMMAND_HELP_MESSAGE,
