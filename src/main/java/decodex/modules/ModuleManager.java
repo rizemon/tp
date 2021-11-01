@@ -189,7 +189,7 @@ public class ModuleManager {
             int rotOffset = Integer.parseInt(parameters[MODULE_PARAMETER_INDEX]);
             return new RotEncoder(rotOffset);
         } catch (NumberFormatException err) {
-            throw new ModuleException(ErrorMessages.INVALID_MODULE_PARAMETERS);
+            throw new ModuleException(ErrorMessages.INVALID_ROTENCODE_PARAMETER);
         }
     }
 }
