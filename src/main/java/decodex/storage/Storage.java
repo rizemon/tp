@@ -198,9 +198,6 @@ public class Storage {
 
         File recipeDirectory = new File(DEFAULT_RECIPE_DIRECTORY);
         File outputRecipeFile = new File(recipeDirectory, newRecipeFileName);
-        if (!outputRecipeFile.isFile()) {
-            throw new StorageException(ErrorMessages.INVALID_RECIPE_FILE);
-        }
         saveRecipeModulesToFile(outputRecipeFile, recipe);
     }
 
@@ -212,7 +209,11 @@ public class Storage {
      * @throws IOException If an error occurred when creating the file
      *                     or when writing to the file.
      */
-    private void saveRecipeModulesToFile(File writeFile, Recipe recipeToBeSaved) throws IOException {
+    private void saveRecipeModulesToFile(File writeFile, Recipe recipeToBeSaved) throws IOException, StorageException {
+        // To ensure only writes to file happen.
+        if (writeFile.isDirectory()) {
+            throw new StorageException(ErrorMessages.INVALID_RECIPE_FILE);
+        }
         ArrayList<Module> modules = recipeToBeSaved.getModuleList();
 
         try {
