@@ -26,6 +26,7 @@ public class Base64Decoder extends Module {
      *
      * @param data The Data object of the encoded data.
      * @return The Data object of the Base64-decoded data.
+     * @throws ModuleException If the Data is not in base64 format.
      */
     @Override
     public Data run(Data data) throws ModuleException {

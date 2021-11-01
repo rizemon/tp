@@ -8,6 +8,8 @@ import decodex.commands.InputCommand;
 import decodex.commands.ListCommand;
 import decodex.commands.ResetCommand;
 import decodex.commands.SelectCommand;
+import decodex.commands.HelpCommand;
+import decodex.data.exception.CommandException;
 import decodex.data.exception.ParserException;
 import decodex.ui.messages.ErrorMessages;
 
@@ -20,17 +22,11 @@ public class Parser {
      * Specifies the index of the tokens where specific parameters can be found.
      */
     private static final int COMMAND_INDEX = 0;
-    private static final int MODULE_NAME_INDEX_IN_TOKENS = 0;
 
     /**
      * Specifies the starting index where the arguments can be found.
      */
-    private static final int STARTING_ARGUMENTS_INDEX = 1;
-
-    /**
-     * Specifies the starting index where the module parameters can be found.
-     */
-    private static final int MODULE_PARAMETERS_INDEX = 2;
+    protected static final int STARTING_ARGUMENTS_INDEX = 1;
 
     /**
      * Specifies the token used to split the user input by.
@@ -41,6 +37,24 @@ public class Parser {
      * Specifies the valid length of the tokens and used to check validity of tokens.
      */
     private static final int VALID_TOKENS_LENGTH_FOR_COMMAND = 1;
+
+    /**
+     * Specifies the number of tokens for list command with no category and with a category.
+     */
+    private static final int LIST_COMMAND_LENGTH_NO_CATEGORY = 1;
+    private static final int LIST_COMMAND_LENGTH_HAS_CATEGORY = 2;
+    private static final int LIST_COMMAND_CATEGORY_STARTING_INDEX = 1;
+
+    /**
+     * Specifies the valid number of tokens and indexes for category and parameters for select command.
+     */
+    private static final int VALID_TOKENS_LENGTH_FOR_SELECT_COMMAND = 3;
+    private static final int SELECT_CATEGORY_INDEX = 1;
+    private static final int SELECT_ITEM_NAME_INDEX = 2;
+    private static final int SELECT_PARAMETERS_START_INDEX = 3;
+
+    private static final String RECIPE_COMMAND_WORD = "recipe";
+    private static final RecipeCommandParser recipeCommandParser = new RecipeCommandParser();
 
     /**
      * Returns the type of command that the user has specified.
@@ -69,39 +83,6 @@ public class Parser {
     }
 
     /**
-     * Returns the name of the module that the user has specified.
-     *
-     * @param userInput The input specified by the user.
-     * @return The name of the module.
-     * @throws ParserException If the user input is missing the module name.
-     */
-    public String getModuleName(String userInput) throws ParserException {
-        String strippedUserInput = userInput.stripLeading();
-        String[] tokens = strippedUserInput.split(" ", -1);
-
-        String[] argumentTokens = Arrays.stream(Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length))
-                .filter(value -> !value.isBlank())
-                .toArray(size -> new String[size]);
-        if (argumentTokens.length == 0) {
-            throw new ParserException(ErrorMessages.MISSING_MODULE_NAME);
-        }
-        return argumentTokens[MODULE_NAME_INDEX_IN_TOKENS];
-    }
-
-    /**
-     * Returns the module parameters that the user has specified.
-     *
-     * @param userInput The input specified by the user.
-     * @return A String array of module parameters.
-     */
-    public String[] getModuleParameters(String userInput) {
-        String strippedUserInput = userInput.stripLeading();
-        String[] tokens = strippedUserInput.split(SPLIT_REGEX);
-        String[] parameters = Arrays.copyOfRange(tokens, MODULE_PARAMETERS_INDEX, tokens.length);
-        return parameters;
-    }
-
-    /**
      * Returns the InputCommand's argument string that the user has specified.
      *
      * @param userInput The input specified by the user.
@@ -125,27 +106,34 @@ public class Parser {
      *
      * @param userInput The user input specified by the user.
      * @return The corresponding Command object.
-     * @throws ParserException If the command type is unknown or invalid.
+     * @throws ParserException  If the command type is unknown or invalid.
+     * @throws CommandException If the command has invalid number of arguments.
      */
-    public Command parseCommand(String userInput) throws ParserException {
+    public Command parseCommand(String userInput) throws ParserException, CommandException {
         Command command;
         String commandType = getCommandType(userInput);
 
         switch (commandType) {
         case ExitCommand.COMMAND_WORD:
-            command = craftExitCommand();
+            command = prepareExitCommand();
             break;
         case InputCommand.COMMAND_WORD:
-            command = craftInputCommand(userInput);
+            command = prepareInputCommand(userInput);
             break;
         case ListCommand.COMMAND_WORD:
-            command = craftListCommand();
+            command = prepareListCommand(userInput);
             break;
         case ResetCommand.COMMAND_WORD:
-            command = craftResetCommand();
+            command = prepareResetCommand();
             break;
         case SelectCommand.COMMAND_WORD:
-            command = craftSelectCommand(userInput);
+            command = prepareSelectCommand(userInput);
+            break;
+        case HelpCommand.COMMAND_WORD:
+            command = prepareHelpCommand();
+            break;
+        case RECIPE_COMMAND_WORD:
+            command = prepareRecipeSubcommands(userInput);
             break;
         default:
             throw new ParserException(ErrorMessages.UNKNOWN_COMMAND);
@@ -154,11 +142,22 @@ public class Parser {
     }
 
     /**
+     * Splits the user input by an arbitrary number of spaces into a list of tokens.
+     *
+     * @param userInput The user input specified by the user.
+     * @return A list of tokens.
+     */
+    protected String[] getTokens(String userInput) {
+        String strippedUserInput = userInput.stripLeading();
+        return strippedUserInput.split(SPLIT_REGEX);
+    }
+
+    /**
      * Prepares and returns the ExitCommand.
      *
      * @return The ExitCommand object.
      */
-    private ExitCommand craftExitCommand() {
+    private ExitCommand prepareExitCommand() {
         return new ExitCommand();
     }
 
@@ -169,18 +168,42 @@ public class Parser {
      * @return The InputCommand object.
      * @throws ParserException If the argument string is empty.
      */
-    private InputCommand craftInputCommand(String userInput) throws ParserException {
+    private InputCommand prepareInputCommand(String userInput) throws ParserException {
         String inputData = getInputString(userInput);
         return new InputCommand(inputData);
+    }
+
+    /**
+     * Returns the list category for the list command.
+     *
+     * @param userInput The user input specified by the user.
+     * @return The list category String.
+     * @throws CommandException If the command has more than 1 argument.
+     */
+    private String getListCategory(String userInput) throws CommandException {
+        String[] tokens = getTokens(userInput);
+
+        if (tokens.length == LIST_COMMAND_LENGTH_NO_CATEGORY) {
+            return null;
+        } else if (tokens.length == LIST_COMMAND_LENGTH_HAS_CATEGORY) {
+            return tokens[LIST_COMMAND_CATEGORY_STARTING_INDEX];
+        } else {
+            throw new CommandException(ErrorMessages.TOO_MANY_COMMAND_ARGUMENTS);
+        }
     }
 
     /**
      * Prepares and returns the ListCommand.
      *
      * @return The ListCommand object.
+     * @throws CommandException If the number of command argument is invalid.
      */
-    private ListCommand craftListCommand() {
-        return new ListCommand();
+    private ListCommand prepareListCommand(String userInput) throws CommandException {
+        String listCategory = getListCategory(userInput);
+        if (listCategory != null) {
+            listCategory = listCategory.strip();
+        }
+        return new ListCommand(listCategory);
     }
 
     /**
@@ -188,7 +211,7 @@ public class Parser {
      *
      * @return The ResetCommand object.
      */
-    private ResetCommand craftResetCommand() {
+    private ResetCommand prepareResetCommand() {
         return new ResetCommand();
     }
 
@@ -197,12 +220,38 @@ public class Parser {
      *
      * @param userInput The user input specified by the user.
      * @return The SelectCommand object.
-     * @throws ParserException If the user input is missing the module name.
+     * @throws CommandException If the number of command arguments is invalid.
      */
-    private SelectCommand craftSelectCommand(String userInput) throws ParserException {
-        String moduleName = getModuleName(userInput);
-        String[] parameters = getModuleParameters(userInput);
-        return new SelectCommand(moduleName, parameters);
+    private SelectCommand prepareSelectCommand(String userInput) throws CommandException {
+        String[] tokens = getTokens(userInput);
+        if (tokens.length < VALID_TOKENS_LENGTH_FOR_SELECT_COMMAND) {
+            throw new CommandException(ErrorMessages.MISSING_ARGUMENT);
+        }
+
+        String selectCategory = tokens[SELECT_CATEGORY_INDEX];
+        String itemName = tokens[SELECT_ITEM_NAME_INDEX];
+        String[] parameters = Arrays.copyOfRange(tokens, SELECT_PARAMETERS_START_INDEX, tokens.length);
+
+        return new SelectCommand(selectCategory, itemName, parameters);
     }
 
+    /**
+     * Prepares and returns recipe subcommands using the specified user input.
+     *
+     * @param userInput The user input specified by the user.
+     * @return The respective recipe command.
+     * @throws CommandException If the recipe command is invalid.
+     */
+    private Command prepareRecipeSubcommands(String userInput) throws CommandException {
+        return recipeCommandParser.parseCommand(userInput);
+    }
+
+    /**
+     * Prepares and returns the HelpCommand.
+     *
+     * @return The HelpCommand object.
+     */
+    private HelpCommand prepareHelpCommand() {
+        return new HelpCommand();
+    }
 }

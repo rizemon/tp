@@ -1,6 +1,9 @@
 package decodex.recipes;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import decodex.Decodex;
@@ -15,6 +18,8 @@ import decodex.ui.messages.ErrorMessages;
 public class RecipeManager {
 
     private Logger logger = Decodex.logger;
+
+    private static int RECIPE_NAME_STRING_INDEX = 0;
 
     /**
      * Stores mapping between recipe name and recipe.
@@ -32,6 +37,18 @@ public class RecipeManager {
     public RecipeManager() {
         recipeList = new HashMap<>();
         editingRecipeName = null;
+    }
+
+    /**
+     * Returns a sorted list of recipe names.
+     *
+     * @return A sorted String array of recipe names.
+     */
+    public String[] getRecipeNames() {
+        Set<String> recipeNameSet = recipeList.keySet();
+        String[] recipeNameArray = recipeNameSet.toArray(new String[RECIPE_NAME_STRING_INDEX]);
+        Arrays.sort(recipeNameArray);
+        return recipeNameArray;
     }
 
     /**
@@ -79,6 +96,7 @@ public class RecipeManager {
         return recipeList.get(name);
     }
 
+    // @@author rizemon
     /**
      * Gets the Recipe object that is currently being edited.
      *
@@ -94,6 +112,7 @@ public class RecipeManager {
 
     /**
      * Sets the recipe of the given name to be the recipe currently being edited.
+     *
      * @param name The name of the recipe to select.
      * @throws RecipeManagerException If the recipe could not be found in the recipe manager.
      */
@@ -102,6 +121,7 @@ public class RecipeManager {
             throw new RecipeManagerException(ErrorMessages.RECIPE_NOT_FOUND_MESSAGE);
         }
         editingRecipeName = name;
+        logger.fine(String.format("[RecipeManager] Selected recipe %s", name));
     }
 
     /**
@@ -123,7 +143,8 @@ public class RecipeManager {
      */
     public Module popModuleFromEditedRecipe() throws RecipeManagerException, RecipeException {
         Recipe editingRecipe = getEditingRecipe();
-        return editingRecipe.pop();
+        Module module = editingRecipe.pop();
+        return module;
     }
 
     /**
@@ -135,4 +156,5 @@ public class RecipeManager {
         Recipe editingRecipe = getEditingRecipe();
         editingRecipe.reset();
     }
+    // @@author
 }

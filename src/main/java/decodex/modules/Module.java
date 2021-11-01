@@ -25,6 +25,16 @@ public abstract class Module {
     }
 
     /**
+     * Returns a String formatted Module.
+     *
+     * @return The string formatted Module.
+     */
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    /**
      * Performs data processing on the provided Data object. Abstract method to be implemented by other modules.
      *
      * @return Data object containing new processed data.

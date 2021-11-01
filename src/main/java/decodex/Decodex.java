@@ -6,14 +6,16 @@ import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;
 import decodex.data.exception.ModuleException;
+import decodex.data.exception.ModuleManagerException;
 import decodex.data.exception.ParserException;
 import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
-import decodex.data.exception.ModuleManagerException;
 import decodex.modules.ModuleManager;
 import decodex.parser.Parser;
 import decodex.recipes.RecipeManager;
+import decodex.storage.Storage;
 import decodex.ui.Ui;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,6 +32,7 @@ public class Decodex {
     private static RecipeManager recipeManager;
     private static Parser parser;
     private static Ui ui;
+    private static Storage storage;
 
     public Decodex() {
         initDecodex();
@@ -38,13 +41,20 @@ public class Decodex {
     /**
      * Initializes the necessary Objects for Decodex.
      */
-    public static void initDecodex() {
+    private void initDecodex() {
         logger.setLevel(Level.INFO);
         dataManager = new DataManager();
         moduleManager = new ModuleManager();
-        recipeManager = new RecipeManager();
         parser = new Parser();
         ui = new Ui();
+        storage = new Storage();
+        recipeManager = new RecipeManager();
+        try {
+            loadSavedRecipes();
+        } catch (IOException err) {
+            ui.printError(err);
+        }
+
     }
 
     /**
@@ -60,17 +70,28 @@ public class Decodex {
         Command command = null;
 
         do {
+            String editingRecipeName;
+            try {
+                editingRecipeName = recipeManager.getEditingRecipe().getName();
+            } catch (RecipeManagerException e) {
+                editingRecipeName = null;
+            }
+            ui.printPromptHeader(editingRecipeName);
             String userInput = ui.readInput();
             logger.fine("User input: " + userInput);
             try {
                 command = parser.parseCommand(userInput);
                 assert command != null : "Command should not be null";
-                command.run(dataManager, moduleManager, ui, recipeManager);
-            } catch (ParserException | CommandException | ModuleManagerException
-                    | DataManagerException | ModuleException | RecipeException | RecipeManagerException err) {
+                command.run(dataManager, moduleManager, ui, recipeManager, storage);
+            } catch (ParserException | CommandException | ModuleManagerException | DataManagerException
+                    | ModuleException | RecipeException | RecipeManagerException | IOException err) {
                 ui.printError(err);
                 logger.fine(err.getMessage());
             }
         } while (!(command instanceof ExitCommand));
+    }
+
+    private void loadSavedRecipes() throws IOException {
+        storage.loadRecipesFromDirectory(moduleManager, recipeManager, ui);
     }
 }

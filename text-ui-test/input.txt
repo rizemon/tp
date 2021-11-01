@@ -1,9 +1,24 @@
 whoami
 bring me thanos
+
 input I am a lab rat
-select base64encode
-select base64decode
-select hexencode
+select module base64encode
+select module base64decode
+select module hexencode
+select module hexdecode
+select module rotencode 3
+select module rotencode -3
 reset
+list
+select recipe testRecipe
+recipe new testRecipe
+list recipes
+recipe list
+select recipe testRecipe
+recipe push hexencode
+recipe push base64encode
+recipe push rotencode 3
+recipe list testRecipe
+select recipe testRecipe
 bye
 exit

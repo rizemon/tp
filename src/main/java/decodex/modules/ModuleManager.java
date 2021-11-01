@@ -98,7 +98,7 @@ public class ModuleManager {
      * @param parameters Parameters for specific commands.
      * @throws ModuleException If the String array of module parameters is not empty.
      */
-    private void hasNoParameters(String[] parameters) throws ModuleException {
+    private void ensureNoParameters(String[] parameters) throws ModuleException {
         if (parameters.length > 0) {
             throw new ModuleException(ErrorMessages.TOO_MANY_MODULE_PARAMETERS);
         }
@@ -111,7 +111,7 @@ public class ModuleManager {
      * @throws ModuleException If module parameters are provided.
      */
     private Module prepareBase64Encoder(String[] parameters) throws ModuleException {
-        hasNoParameters(parameters);
+        ensureNoParameters(parameters);
         return new Base64Encoder();
     }
 
@@ -122,7 +122,7 @@ public class ModuleManager {
      * @throws ModuleException If module parameters are provided.
      */
     private Module prepareBase64Decoder(String[] parameters) throws ModuleException {
-        hasNoParameters(parameters);
+        ensureNoParameters(parameters);
         return new Base64Decoder();
     }
 
@@ -133,7 +133,7 @@ public class ModuleManager {
      * @throws ModuleException If module parameters are provided.
      */
     private Module prepareHexEncoder(String[] parameters) throws ModuleException {
-        hasNoParameters(parameters);
+        ensureNoParameters(parameters);
         return new HexEncoder();
     }
 
@@ -144,7 +144,7 @@ public class ModuleManager {
      * @throws ModuleException If module parameters are provided.
      */
     private Module prepareHexDecoder(String[] parameters) throws ModuleException {
-        hasNoParameters(parameters);
+        ensureNoParameters(parameters);
         return new HexDecoder();
     }
 
@@ -155,7 +155,7 @@ public class ModuleManager {
      * @throws ModuleException If module parameters are provided.
      */
     private Module prepareBinaryEncoder(String[] parameters) throws ModuleException {
-        hasNoParameters(parameters);
+        ensureNoParameters(parameters);
         return new BinaryEncoder();
     }
 
@@ -166,7 +166,7 @@ public class ModuleManager {
      * @throws ModuleException If module parameters are provided.
      */
     private Module prepareBinaryDecoder(String[] parameters) throws ModuleException {
-        hasNoParameters(parameters);
+        ensureNoParameters(parameters);
         return new BinaryDecoder();
     }
 
@@ -186,7 +186,8 @@ public class ModuleManager {
 
         // First parameter is the rotation offset
         try {
-            return new RotEncoder(Integer.parseInt(parameters[MODULE_PARAMETER_INDEX]));
+            int rotOffset = Integer.parseInt(parameters[MODULE_PARAMETER_INDEX]);
+            return new RotEncoder(rotOffset);
         } catch (NumberFormatException err) {
             throw new ModuleException(ErrorMessages.INVALID_MODULE_PARAMETERS);
         }

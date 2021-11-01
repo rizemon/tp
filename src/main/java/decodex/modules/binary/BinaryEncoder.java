@@ -12,6 +12,7 @@ public class BinaryEncoder extends Module {
     public static final String MODULE_DESCRIPTION = "Encodes the data into binary.";
 
     private static final int BYTE_LENGTH = 8;
+    private static final String BINARY_ZERO_PREFIX = "0";
 
     public BinaryEncoder() {
         super(MODULE_NAME, MODULE_DESCRIPTION);
@@ -44,7 +45,7 @@ public class BinaryEncoder extends Module {
      */
     private String leftPad(String binString) {
         if (binString.length() < BYTE_LENGTH) {
-            return "0".repeat(BYTE_LENGTH - binString.length()) + binString;
+            return BINARY_ZERO_PREFIX.repeat(BYTE_LENGTH - binString.length()) + binString;
         }
 
         return binString;

@@ -2,6 +2,7 @@ package decodex.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import decodex.storage.Storage;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -14,12 +15,14 @@ import decodex.recipes.RecipeManager;
 
 import decodex.ui.Ui;
 
+// @@author rizemon
 class ResetCommandTest {
 
     @Test
     public void run_noChanges_sameOriginalData() throws DataManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
+        Storage storage = new Storage();
         RecipeManager recipeManager = new RecipeManager();
         Ui ui = new Ui();
 
@@ -27,7 +30,7 @@ class ResetCommandTest {
         dataManager.setOriginalData(originalData);
 
         ResetCommand testCommand = new ResetCommand();
-        testCommand.run(dataManager, moduleManager, ui, recipeManager);
+        testCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
         assertTrue(Arrays.equals(dataManager.getCurrentData().getRawBytes(), originalData.getRawBytes()));
     }
 
@@ -35,6 +38,7 @@ class ResetCommandTest {
     public void run_newData_sameOriginalData() throws DataManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
+        Storage storage = new Storage();
         RecipeManager recipeManager = new RecipeManager();
         Ui ui = new Ui();
 
@@ -44,7 +48,7 @@ class ResetCommandTest {
         dataManager.setCurrentData(newData);
 
         ResetCommand testCommand = new ResetCommand();
-        testCommand.run(dataManager, moduleManager, ui, recipeManager);
+        testCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
         assertTrue(Arrays.equals(dataManager.getCurrentData().getRawBytes(), originalData.getRawBytes()));
     }
 }
