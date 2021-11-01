@@ -69,9 +69,8 @@ public class Storage {
      * @param moduleManager The ModuleManager object.
      * @param recipeManager The RecipeManager object.
      * @param ui            The Ui object.
-     * @throws IOException            If an error occurred when reading the file.
-     * @throws ModuleException        If module parameters are invalid.
-     * @throws ModuleManagerException If provided module name is not an available module.
+     * @throws IOException      If an error occurred when reading the file.
+     * @throws StorageException If the recipe directory is not a file.
      */
     public void loadRecipesFromDirectory(ModuleManager moduleManager, RecipeManager recipeManager, Ui ui)
             throws IOException, StorageException {
@@ -106,10 +105,11 @@ public class Storage {
      *
      * @return The list of recipe File objects.
      */
-    private File[] getAllRecipeFiles() throws StorageException {
+    private File[] getAllRecipeFiles() {
         File recipeDirectory = new File(DEFAULT_RECIPE_DIRECTORY);
 
         File[] files = recipeDirectory.listFiles();
+        
         File[] recipeFiles = Arrays.stream(files)
                 .filter(file -> file.isFile())
                 .filter(file -> {
@@ -130,6 +130,7 @@ public class Storage {
      * @return The Recipe object.
      * @throws ModuleException        If module parameters are invalid.
      * @throws ModuleManagerException If provided module name is not an available module.
+     * @throws RecipeException        If recipe name is not valid.
      */
     private Recipe parseContentToRecipe(String recipeFileName, String recipeContent, ModuleManager moduleManager)
             throws ModuleException, ModuleManagerException, RecipeException {
@@ -160,6 +161,7 @@ public class Storage {
      * @throws IOException            If an error occurred when reading the file.
      * @throws ModuleException        If module parameters are invalid.
      * @throws ModuleManagerException If provided module name is not an available module.
+     * @throws RecipeException        If recipe name is not valid.
      */
     public Recipe readRecipeFromFile(String recipeFilename, File recipeFile, ModuleManager moduleManager)
             throws IOException, ModuleException, ModuleManagerException, RecipeException {
@@ -178,6 +180,7 @@ public class Storage {
      * @return The byte contents from the input file.
      * @throws IOException If an error occurred when reading the file or
      *                     the input file does not exist.
+     * @throws StorageException If the input directory is a file.
      */
     public byte[] readInputFromFile(String fileName) throws IOException, StorageException {
         instantiateDirectoryIfNotExist(DEFAULT_INPUT_DIRECTORY);
@@ -312,7 +315,7 @@ public class Storage {
         File recipeDirectory = new File(DEFAULT_RECIPE_DIRECTORY);
         File outputRecipeFile = new File(recipeDirectory, newRecipeFileName);
 
-        if (!outputRecipeFile.exists()) {
+        if (!outputRecipeFile.isFile()) {
             return;
         }
 
@@ -323,20 +326,22 @@ public class Storage {
 
     /**
      * Instantiates the given directory if it does not exist yet.
+     *
+     * @throws IOException If the directory is a file.
      */
     private void instantiateDirectoryIfNotExist(String directoryName) throws IOException, StorageException {
-        File outputDirectory = new File(directoryName);
-        if (outputDirectory.exists()) {
-            if (!outputDirectory.isDirectory()) {
-                // throw error if not a valid directory.
-                String formattedErrorMessage = String.format(ErrorMessages.INVALID_DIRECTORY_ACCESS, outputDirectory);
-                throw new StorageException(formattedErrorMessage);
-            }
+        File directory = new File(directoryName);
+        if (directory.isDirectory()) {
             return;
+        }
+        if (directory.isFile()) {
+            // throw error if not a valid directory.
+            String formattedErrorMessage = String.format(ErrorMessages.INVALID_DIRECTORY_ACCESS, directory);
+            throw new StorageException(formattedErrorMessage);
         }
 
         boolean isSuccessful;
-        isSuccessful = outputDirectory.mkdir();
+        isSuccessful = directory.mkdir();
         if (!isSuccessful) {
             throw new IOException(ErrorMessages.DIRECTORY_INSTANTIATION_FAILED_MESSAGE + directoryName);
         }
