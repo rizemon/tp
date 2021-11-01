@@ -27,6 +27,7 @@ This guide serves to help you understand the usage of the program to encode and 
   - [Recipe Commands: `recipe`](#recipe-commands-recipe)
     - [Create a New Recipe: `recipe new`](#create-a-new-recipe-recipe-new)
     - [Select a Recipe for Editing: `recipe select`](#select-a-recipe-for-editing-recipe-select)
+    - [Deselect a Recipe from Editing: `recipe deselect`](#deselect-a-recipe-from-editing-recipe-deselect)
     - [List Modules in a Recipe: `recipe list`](#list-modules-in-a-recipe-recipe-list)
     - [Add a Module to a Recipe: `recipe push`](#add-a-module-to-a-recipe-recipe-push)
     - [Remove a Module from a Recipe: `recipe pop`](#remove-a-module-from-a-recipe-recipe-pop)
@@ -210,6 +211,18 @@ Example:
 - `recipe select testRecipe` Selects `testRecipe` as the recipe to be edited.
 
 ![recipeSelect.png](images/recipeSelect.png)
+
+#### Deselect a Recipe from Editing: `recipe deselect`
+
+Deselects the current recipe from being edited.
+
+Format: `recipe deselect`
+
+Example:
+
+- `recipe deselect` Deselects the current recipe from being edited.
+
+![recipeDeselect.png](images/recipeDeselect.png)
 
 #### List Modules in a Recipe: `recipe list`
 
