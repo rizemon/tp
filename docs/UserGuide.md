@@ -27,7 +27,7 @@ This guide serves to help you understand the usage of the program to encode and 
   - [Recipe Commands: `recipe`](#recipe-commands-recipe)
     - [Create a New Recipe: `recipe new`](#create-a-new-recipe-recipe-new)
     - [Select a Recipe for Editing: `recipe select`](#select-a-recipe-for-editing-recipe-select)
-    - [Deselect a Recipe from Editing: `recipe deselect`](#deselect-a-recipe-from-editing-recipe-deselect)
+    - [Deselect the Current Editing Recipe: `recipe deselect`](#deselect-the-current-editing-recipe-recipe-deselect)
     - [List Modules in a Recipe: `recipe list`](#list-modules-in-a-recipe-recipe-list)
     - [Add a Module to a Recipe: `recipe push`](#add-a-module-to-a-recipe-recipe-push)
     - [Remove a Module from a Recipe: `recipe pop`](#remove-a-module-from-a-recipe-recipe-pop)
@@ -212,15 +212,15 @@ Example:
 
 ![recipeSelect.png](images/recipeSelect.png)
 
-#### Deselect a Recipe from Editing: `recipe deselect`
+#### Deselect the Current Editing Recipe: `recipe deselect`
 
-Deselects the current recipe from being edited.
+Deselects the current editing recipe.
 
 Format: `recipe deselect`
 
 Example:
 
-- `recipe deselect` Deselects the current recipe from being edited.
+- `recipe deselect` Deselects the current editing recipe.
 
 ![recipeDeselect.png](images/recipeDeselect.png)
 
@@ -295,20 +295,21 @@ Coming soon to a cinema near you in the future*…*
 
 ## Command Summary
 
-| Action                          | Command Format                                               | Example Usage                                                                         |
-|---------------------------------|--------------------------------------------------------------|---------------------------------------------------------------------------------------|
-| Enter input data                | `input <data>`                                               | `input HelloWorld!`                                                                   |
-| List available modules/recipe   | `list {category}`                                            | `list` `list module` <br>`list recipe`                                                    |
-| Select processing module/recipe | `select module <moduleName>` <br>&ensp;OR<br> `select recipe <recipeName>` | `select module base64decode`<br> `select module rotencode 13` `select recipe testRecipe1` |
-| Reset to original data          | `reset`                                                      | `reset`                                                                               |
-| Create new recipe               | `recipe new <recipeName>`                                    | `recipe new testRecipe`                                                               |
-| Select recipe for editing       | `recipe select <recipeName>`                                 | `recipe select testRecipe`                                                            |
-| List modules in recipe          | `recipe list <recipeName>`                                   | `recipe list testRecipe`                                                              |
-| Add module to recipe            | `recipe push <moduleName> {moduleArgument}`                  | `recipe push base64encode`<br> `recipe push rotencode 13`                                 |
-| Remove module from recipe       | `recipe pop`                                                 | `recipe pop`                                                                          |
-| Clear all modules in recipe     | `recipe reset`                                               | `recipe reset`                                                                        |
-| Delete recipe                   | `recipe delete <recipeName>`                                 | `recipe delete testRecipe`                                                            |
-| Exit program                    | `exit`                                                       | `exit`                                                                                |
+| Action                               | Command Format                                                             | Example Usage                                                                             |
+| ------------------------------------ | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Enter input data                     | `input <data>`                                                             | `input HelloWorld!`                                                                       |
+| List available modules/recipe        | `list {category}`                                                          | `list` `list module` <br>`list recipe`                                                    |
+| Select processing module/recipe      | `select module <moduleName>` <br>&ensp;OR<br> `select recipe <recipeName>` | `select module base64decode`<br> `select module rotencode 13` `select recipe testRecipe1` |
+| Reset to original data               | `reset`                                                                    | `reset`                                                                                   |
+| Create new recipe                    | `recipe new <recipeName>`                                                  | `recipe new testRecipe`                                                                   |
+| Select recipe for editing            | `recipe select <recipeName>`                                               | `recipe select testRecipe`                                                                |
+| Deselects the current editing recipe | `recipe deselect`                                                          | `recipe deselect`                                                                         |
+| List modules in recipe               | `recipe list <recipeName>`                                                 | `recipe list testRecipe`                                                                  |
+| Add module to recipe                 | `recipe push <moduleName> {moduleArgument}`                                | `recipe push base64encode`<br> `recipe push rotencode 13`                                 |
+| Remove module from recipe            | `recipe pop`                                                               | `recipe pop`                                                                              |
+| Clear all modules in recipe          | `recipe reset`                                                             | `recipe reset`                                                                            |
+| Delete recipe                        | `recipe delete <recipeName>`                                               | `recipe delete testRecipe`                                                                |
+| Exit program                         | `exit`                                                                     | `exit`                                                                                    |
 
 ## FAQ
 
