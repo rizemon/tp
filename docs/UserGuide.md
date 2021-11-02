@@ -85,19 +85,20 @@ This section serves to help you better understand the terminologies used in this
 6. For more information on Decodex's features, please refer to the Features Section.
 
 ## List of Available Modules
-Below, you can see the list of available modules, what they do and their respective usage formats.<a name="selectModuleExamples"></a>
+Below, you can see the list of available modules and what they do. <a name="selectModuleExamples"></a>
+
+> :information_source: These are some of the more common encoding/decoding/cipher methods that can be found in CTF competitions.
+
 
 | Module         | Description                                                                                              | `moduleArgument`                                                                                       |
 | -------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | `base64encode` | Encodes the data using base64 format.                                                                    | N.A                                                                                                    |
-| `base64decode`  | Decodes the data using base64 format.                                                                   | N.A                                                                                                    |
+| `base64decode` | Decodes the data using base64 format.                                                                  | N.A                                                                                                    |
 | `hexencode`    | Converts the input string to hexadecimal bytes.                                                          | N.A                                                                                                    |
-| `hexdecode`    | Converts a hexadecimal string back into its raw value.                                                   | N.A                                                                                                    |
+| `hexdecode`    | Converts a hexadecimal string back into its raw value.<br><br> Note that this module does not accept any form of separators (space, commas, etc.) in the data.                                                   | N.A                                                                                                    |
 | `binencode`    | Encodes the data using binary format.                                                                    | N.A                                                                                                    |
-| `bindecode`    | Decodes the data using binary format.                                                                    | N.A                                                                                                    |
-| `rotencode`    | Rotates alphabetical characters by a specified integer offset.<br><br>E.g., `select module rotencode 13` | The rotation offset.<br><br>Must be an integer between -2147483648 (MIN_INT) and 2147483647 (MAX_INT). |
-
-> :information_source: These are some of the more common encoding/decoding/cipher methods that can be found in CTF competitions.
+| `bindecode`    | Decodes the data using binary format.<br><br> Note that this module does not accept any form of separators (space, commas, etc.) in the data.                                                                    | N.A                                                                                                    |
+| `rotencode`    | Rotates alphabetical characters by a specified integer offset.<br><br>E.g., `select module rotencode 13`, `recipe push rotencode 13` | The rotation offset.<br><br>Must be an integer between `-2,147,483,648` (`MIN_INT`) and `2,147,483,647` (`MAX_INT`). |
 
 ## Features
 
