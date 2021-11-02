@@ -195,6 +195,8 @@ Creates a new recipe and sets it as currently being edited.
 
 Format: `recipe new <recipeName>`
 
+> :information_source: `recipeName` can only contain alphabets, numbers and underscores.
+
 Example:
 
 - `recipe new testRecipe` Creates a new recipe with the name `testRecipe`.
