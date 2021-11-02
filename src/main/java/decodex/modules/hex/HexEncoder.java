@@ -9,7 +9,7 @@ import decodex.modules.Module;
 public class HexEncoder extends Module {
 
     public static final String MODULE_NAME = "hexencode";
-    public static final String MODULE_DESCRIPTION = "Converts the input string to hexadecimal bytes";
+    public static final String MODULE_DESCRIPTION = "Converts the input string to hexadecimal bytes.";
 
     public HexEncoder() {
         super(MODULE_NAME, MODULE_DESCRIPTION);

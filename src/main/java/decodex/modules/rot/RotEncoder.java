@@ -9,7 +9,7 @@ import decodex.modules.Module;
 public class RotEncoder extends Module {
 
     public static final String MODULE_NAME = "rotencode";
-    public static final String MODULE_DESCRIPTION = "Rotates the alphabets in the input string by a specified amount";
+    public static final String MODULE_DESCRIPTION = "Rotates alphabetical characters by a specified integer offset.";
 
     private static final char LOWERCASE_A = 'a';
     private static final char UPPERCASE_A = 'A';

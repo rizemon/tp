@@ -13,7 +13,7 @@ import decodex.ui.messages.ErrorMessages;
 public class BinaryDecoder extends Module {
 
     public static final String MODULE_NAME = "bindecode";
-    public static final String MODULE_DESCRIPTION = "Decodes the data from binary.";
+    public static final String MODULE_DESCRIPTION = "Decodes the data using binary format.";
 
     private static final int BINARY_RADIX = 2;
     private static final String VALID_BINARY_REGEX = "^([01]{8})*$";
