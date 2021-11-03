@@ -29,7 +29,7 @@ public class ShowCommand extends Command {
      */
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager,
-                    Storage storage) throws DataManagerException {
+            Storage storage) throws DataManagerException {
         Data currentData = dataManager.getCurrentData();
         String currentDataInput = currentData.toString();
         ui.printCurrentData(currentDataInput);
