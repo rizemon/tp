@@ -29,7 +29,7 @@ public class Parser {
     private static final String SPLIT_REGEX = "\\s+";
     private static final int SPLIT_LIMIT_VALUE = -1;
 
-    // Specifies the separator for joining a split array.
+    // Specifies the separator used to reconstruct a string from a list of tokens.
     private static final String SPACE_SEPARATOR = " ";
 
     // Specifies the valid length of the tokens and used to check validity of tokens.

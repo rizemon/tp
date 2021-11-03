@@ -24,7 +24,7 @@ import java.util.Arrays;
 // @@author Kair0s3
 public class Storage {
 
-    // Specifies the default directories for input, output and recipes respectively.
+    // Specifies the default directories for recipes.
     private static final String DEFAULT_RECIPE_DIRECTORY = "recipe";
 
     // Specifies the corresponding file prefixes.
@@ -43,7 +43,7 @@ public class Storage {
     // Specifies other miscellaneous constants for condition checking.
     private static final int EMPTY_LENGTH = 0;
 
-    // Specifies constant values.
+    // Specifies the constant values.
     private static final String EMPTY_STRING = "";
 
     /**
