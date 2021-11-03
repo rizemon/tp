@@ -20,6 +20,7 @@ public class ErrorMessages {
     public static final String RECIPE_NOT_FOUND_MESSAGE = "The given recipe could not be found.";
     public static final String EDITING_RECIPE_NOT_FOUND_MESSAGE = "No recipe selected for editing.";
     public static final String TOO_MANY_COMMAND_ARGUMENTS = "Too many command arguments";
+    public static final String TOO_FEW_COMMAND_ARGUMENTS = "Too few command arguments";
     public static final String INVALID_LIST_CATEGORY = "Invalid list category";
     public static final String UNKNOWN_MODULE_NAME = "Unknown module name";
     public static final String INVALID_ROTENCODE_PARAMETER = "The rotation offset must be an integer between "

@@ -1,18 +1,17 @@
 package decodex.parser;
 
-import java.util.Arrays;
-
 import decodex.commands.Command;
 import decodex.commands.recipe.RecipeDeleteCommand;
 import decodex.commands.recipe.RecipeDeselectCommand;
+import decodex.commands.recipe.RecipeListCommand;
 import decodex.commands.recipe.RecipeNewCommand;
 import decodex.commands.recipe.RecipePopCommand;
 import decodex.commands.recipe.RecipePushCommand;
 import decodex.commands.recipe.RecipeResetCommand;
 import decodex.commands.recipe.RecipeSelectCommand;
-import decodex.commands.recipe.RecipeListCommand;
 import decodex.data.exception.CommandException;
 import decodex.ui.messages.ErrorMessages;
+import java.util.Arrays;
 
 /**
  * The RecipeCommandParser class handles the parsing and validation of recipe commands.
@@ -84,14 +83,16 @@ public class RecipeCommandParser extends Parser {
     /**
      * Checks the number of arguments is valid.
      *
-     * @param subCommandTokens The list of recipe subcommand tokens.
-     * @param numberOfArguments      The valid number of arguments.
+     * @param subCommandTokens  The list of recipe subcommand tokens.
+     * @param numberOfArguments The valid number of arguments.
      * @throws CommandException If the number of arguments is invalid.
      */
     private void checkValidNumberOfArguments(String[] subCommandTokens, int numberOfArguments)
             throws CommandException {
-        if (subCommandTokens.length != numberOfArguments) {
+        if (subCommandTokens.length > numberOfArguments) {
             throw new CommandException(ErrorMessages.TOO_MANY_COMMAND_ARGUMENTS);
+        } else if (subCommandTokens.length < numberOfArguments) {
+            throw new CommandException(ErrorMessages.TOO_FEW_COMMAND_ARGUMENTS);
         }
     }
 

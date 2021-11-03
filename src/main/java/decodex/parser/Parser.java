@@ -54,6 +54,11 @@ public class Parser {
     private static final int SELECT_ITEM_NAME_INDEX = 2;
     private static final int SELECT_PARAMETERS_START_INDEX = 3;
 
+    /**
+     * Specifies the number of tokens for exit command.
+     */
+    private static final int EXIT_COMMAND_LENGTH = 1;
+
     private static final String RECIPE_COMMAND_WORD = "recipe";
     private static final RecipeCommandParser recipeCommandParser = new RecipeCommandParser();
 
@@ -116,7 +121,7 @@ public class Parser {
 
         switch (commandType) {
         case ExitCommand.COMMAND_WORD:
-            command = prepareExitCommand();
+            command = prepareExitCommand(userInput);
             break;
         case InputCommand.COMMAND_WORD:
             command = prepareInputCommand(userInput);
@@ -159,9 +164,16 @@ public class Parser {
     /**
      * Prepares and returns the ExitCommand.
      *
+     * @param userInput The user input specified by the user.
      * @return The ExitCommand object.
+     * @throws CommandException If the command has any arguments.
      */
-    private ExitCommand prepareExitCommand() {
+    private ExitCommand prepareExitCommand(String userInput) throws CommandException {
+        String[] tokens = getTokens(userInput);
+
+        if (tokens.length != EXIT_COMMAND_LENGTH) {
+            throw new CommandException(ErrorMessages.TOO_MANY_COMMAND_ARGUMENTS);
+        }
         return new ExitCommand();
     }
 
