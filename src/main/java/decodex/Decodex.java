@@ -25,10 +25,7 @@ public class Decodex {
 
     public static Logger logger = Logger.getLogger(Decodex.class.getName());
 
-
-    /**
-     * Necessary objects to be initialized for Decodex to work properly.
-     */
+    // Necessary objects to be initialized for Decodex to work properly.
     private static DataManager dataManager;
     private static ModuleManager moduleManager;
     private static RecipeManager recipeManager;
@@ -66,6 +63,9 @@ public class Decodex {
         new Decodex().run();
     }
 
+    /**
+     * Runs the main logic of Decodex.
+     */
     public void run() {
         ui.printGreeting();
 
