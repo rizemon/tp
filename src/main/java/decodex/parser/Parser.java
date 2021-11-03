@@ -53,7 +53,7 @@ public class Parser {
     private static final int EXIT_COMMAND_LENGTH = 1;
 
     // Initializes the RecipeCommandParser for parsing recipe commands.
-    private final RecipeCommandParser recipeCommandParser = new RecipeCommandParser();
+    private static final RecipeCommandParser recipeCommandParser = new RecipeCommandParser();
 
     /**
      * Returns the type of command that the user has specified.
