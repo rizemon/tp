@@ -16,6 +16,7 @@ import decodex.parser.Parser;
 import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
 import decodex.ui.Ui;
+
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -77,9 +78,7 @@ public class Decodex {
             } catch (RecipeManagerException e) {
                 editingRecipeName = null;
             }
-            ui.printPromptHeader(editingRecipeName);
-            String userInput = ui.readInput();
-            logger.fine("User input: " + userInput);
+            String userInput = promptAndGetUserInput(editingRecipeName);
             try {
                 command = parser.parseCommand(userInput);
                 assert command != null : "Command should not be null";
@@ -89,9 +88,35 @@ public class Decodex {
                 ui.printError(err);
                 logger.fine(err.getMessage());
             }
-        } while (!(command instanceof ExitCommand));
+            if (command instanceof ExitCommand) {
+                break;
+            }
+        } while (true);
     }
 
+
+    /**
+     * Prompts and returns the user input.
+     *
+     * @param editingRecipeName The name of the currently editing recipe.
+     * @return The user input.
+     */
+    private String promptAndGetUserInput(String editingRecipeName) {
+        ui.printPromptHeader(editingRecipeName);
+        String userInput = ui.readInput();
+        logger.fine("User input: " + userInput);
+        return userInput;
+    }
+
+    /**
+     * Loads the saved recipes stored in the recipe directory.
+     *
+     * @throws IOException      If an error occurred when creating the recipe directory,
+     *                          or reading the recipe files.
+     * @throws StorageException If the recipe directory is not an actual directory,
+     *                          or if it failed to list the recipe files,
+     *                          or if the respective recipe file is not an actual file.
+     */
     private void loadSavedRecipes() throws IOException, StorageException {
         storage.loadRecipesFromDirectory(moduleManager, recipeManager, ui);
     }
