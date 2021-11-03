@@ -24,31 +24,26 @@ import java.util.Arrays;
 // @@author Kair0s3
 public class Storage {
 
-    /**
-     * Specifies the default directories for input, output and recipes respectively.
-     */
+    // Specifies the default directories for input, output and recipes respectively.
     private static final String DEFAULT_RECIPE_DIRECTORY = "recipe";
 
-    /**
-     * Specifies the corresponding file prefixes.
-     */
+    // Specifies the corresponding file prefixes.
     private static final String RECIPE_FILE_PREFIX = ".txt";
 
     private static final String LINE_BREAK_REGEX = "\\r?\\n";
     private static final String FILENAME_EXTENSION_SPLIT_REGEX = "[.]";
 
 
-    /**
-     * Specifies the index for the corresponding fields.
-     */
+    // Specifies the index for the corresponding fields.
     private static final int RECIPE_NAME_INDEX = 0;
     private static final int MODULE_NAME_INDEX = 0;
     private static final int STARTING_PARAMETER_INDEX = 1;
 
-    /**
-     * Other miscellaneous constants for condition checking.
-     */
+    // Specifies other miscellaneous constants for condition checking.
     private static final int EMPTY_LENGTH = 0;
+
+    // Specifies constant values.
+    private static final String EMPTY_STRING = "";
 
     /**
      * Initializes a new Storage.
@@ -62,8 +57,11 @@ public class Storage {
      * @param moduleManager The ModuleManager object.
      * @param recipeManager The RecipeManager object.
      * @param ui            The Ui object.
-     * @throws IOException      If an error occurred when reading the file.
-     * @throws StorageException If the recipe directory is not a file.
+     * @throws IOException      If an error occurred when creating the recipe directory,
+     *                          or reading the recipe files.
+     * @throws StorageException If the recipe directory is not an actual directory,
+     *                          or if it failed to list the recipe files,
+     *                          or if the respective recipe file is not an actual file.
      */
     public void loadRecipesFromDirectory(ModuleManager moduleManager, RecipeManager recipeManager, Ui ui)
             throws IOException, StorageException {
@@ -96,6 +94,7 @@ public class Storage {
      * Gets all the recipe files in the recipe directory.
      *
      * @return The list of recipe File objects.
+     * @throws StorageException If it failed to list the recipe files.
      */
     private File[] getAllRecipeFiles() throws StorageException {
         File recipeDirectory = new File(DEFAULT_RECIPE_DIRECTORY);
@@ -237,10 +236,10 @@ public class Storage {
      */
     private String formatModuleListForSaving(ArrayList<Module> modules) {
         if (modules.isEmpty()) {
-            return "";
+            return EMPTY_STRING;
         }
 
-        String formattedModuleList = "";
+        String formattedModuleList = EMPTY_STRING;
         for (Module module : modules) {
             formattedModuleList = formattedModuleList.concat(module.toString() + "\n");
         }
@@ -270,7 +269,8 @@ public class Storage {
     /**
      * Instantiates the given directory if it does not exist yet.
      *
-     * @throws IOException If the directory is a file.
+     * @throws IOException      If the directory failed to be created.
+     * @throws StorageException If the given directory is not an actual directory.
      */
     private void instantiateDirectoryIfNotExist(String directoryName) throws IOException, StorageException {
         File directory = new File(directoryName);
