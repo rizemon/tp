@@ -26,8 +26,7 @@ public class RecipeSelectCommand extends Command {
 
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager,
-            Storage storage)
-            throws CommandException, RecipeManagerException {
+            Storage storage) throws CommandException, RecipeManagerException {
         if (recipeName.isBlank()) {
             throw new CommandException(ErrorMessages.MISSING_RECIPE_NAME);
         }

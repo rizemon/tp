@@ -26,8 +26,7 @@ public class RecipePopCommand extends Command {
 
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager,
-            Storage storage)
-            throws RecipeException, RecipeManagerException, IOException {
+            Storage storage) throws RecipeException, RecipeManagerException, IOException {
         Module module = recipeManager.popModuleFromEditedRecipe();
         Recipe editingRecipe = recipeManager.getEditingRecipe();
         try {

@@ -24,8 +24,7 @@ public class RecipeResetCommand extends Command {
 
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager,
-            Storage storage)
-            throws RecipeManagerException, IOException {
+            Storage storage) throws RecipeManagerException, IOException {
         Recipe editingRecipe = recipeManager.getEditingRecipe();
         recipeManager.resetEditedRecipe();
         try {
