@@ -70,7 +70,7 @@ public class Decodex {
         ui.printGreeting();
 
         Command command = null;
-
+        boolean isExit;
         do {
             String editingRecipeName;
             try {
@@ -88,10 +88,8 @@ public class Decodex {
                 ui.printError(err);
                 logger.fine(err.getMessage());
             }
-            if (command instanceof ExitCommand) {
-                break;
-            }
-        } while (true);
+            isExit = command instanceof ExitCommand;
+        } while (!isExit);
     }
 
 
