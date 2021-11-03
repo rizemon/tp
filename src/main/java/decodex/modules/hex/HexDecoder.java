@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class HexDecoder extends Module {
 
     public static final String MODULE_NAME = "hexdecode";
-    public static final String MODULE_DESCRIPTION = "Converts a hexadecimal string back into its raw value";
+    public static final String MODULE_DESCRIPTION = "Converts a hexadecimal string back into its raw value.";
 
     public static final int HEXADECIMAL_RADIX = 16;
     public static final String REGEX_SPLIT_EVERY_2_CHARS = "(?<=\\G..)";

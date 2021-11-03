@@ -9,7 +9,7 @@ import decodex.modules.Module;
 public class BinaryEncoder extends Module {
 
     public static final String MODULE_NAME = "binencode";
-    public static final String MODULE_DESCRIPTION = "Encodes the data into binary.";
+    public static final String MODULE_DESCRIPTION = "Encodes the data using binary format.";
 
     private static final int BYTE_LENGTH = 8;
     private static final String BINARY_ZERO_PREFIX = "0";
