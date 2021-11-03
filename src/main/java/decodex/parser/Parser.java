@@ -19,42 +19,33 @@ import decodex.ui.messages.ErrorMessages;
  */
 public class Parser {
 
-    /**
-     * Specifies the index of the tokens where specific parameters can be found.
-     */
+    // Specifies the index of the tokens where specific parameters can be found.
     private static final int COMMAND_INDEX = 0;
 
-    /**
-     * Specifies the starting index where the arguments can be found.
-     */
+    // Specifies the starting index where the arguments can be found.
     protected static final int STARTING_ARGUMENTS_INDEX = 1;
 
-    /**
-     * Specifies the token used to split the user input by.
-     */
+    // Specifies the token used to split the user input by.
     private static final String SPLIT_REGEX = "\\s+";
 
-    /**
-     * Specifies the valid length of the tokens and used to check validity of tokens.
-     */
+    // Specifies the valid length of the tokens and used to check validity of tokens.
     private static final int VALID_TOKENS_LENGTH_FOR_COMMAND = 1;
 
-    /**
-     * Specifies the number of tokens for list command with no category and with a category.
-     */
+    // Specifies the number of tokens for list command with no category and with a category.
     private static final int LIST_COMMAND_LENGTH_NO_CATEGORY = 1;
     private static final int LIST_COMMAND_LENGTH_HAS_CATEGORY = 2;
     private static final int LIST_COMMAND_CATEGORY_STARTING_INDEX = 1;
 
-    /**
-     * Specifies the valid number of tokens and indexes for category and parameters for select command.
-     */
+    // Specifies the valid number of tokens and indexes for category and parameters for select command.
     private static final int VALID_TOKENS_LENGTH_FOR_SELECT_COMMAND = 3;
     private static final int SELECT_CATEGORY_INDEX = 1;
     private static final int SELECT_ITEM_NAME_INDEX = 2;
     private static final int SELECT_PARAMETERS_START_INDEX = 3;
 
+    // Specifies the keyword for recipe related commands.
     private static final String RECIPE_COMMAND_WORD = "recipe";
+
+    // Initializes the RecipeCommandParser for parsing recipe commands.
     private static final RecipeCommandParser recipeCommandParser = new RecipeCommandParser();
 
     /**
