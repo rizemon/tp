@@ -7,7 +7,6 @@ import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
 import decodex.modules.Module;
 import decodex.modules.hex.HexEncoder;
-import decodex.storage.Storage;
 import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

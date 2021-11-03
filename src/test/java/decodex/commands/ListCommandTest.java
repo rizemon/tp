@@ -3,16 +3,14 @@ package decodex.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import decodex.storage.Storage;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
+import decodex.storage.Storage;
 import decodex.ui.Ui;
-
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

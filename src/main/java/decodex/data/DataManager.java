@@ -9,10 +9,10 @@ import java.util.Arrays;
  */
 public class DataManager {
 
-    /* Data provided by the user */
+    // Data provided by the user.
     private Data originalData;
 
-    /* Data to perform the encoding/decoding operations on */
+    // Data to perform the encoding/decoding operations on.
     private Data currentData;
 
     /**

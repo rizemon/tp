@@ -5,13 +5,12 @@ import decodex.data.exception.ModuleManagerException;
 import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
 import decodex.data.exception.StorageException;
-import decodex.modules.ModuleManager;
 import decodex.modules.Module;
+import decodex.modules.ModuleManager;
 import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
 import decodex.ui.messages.ErrorMessages;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;

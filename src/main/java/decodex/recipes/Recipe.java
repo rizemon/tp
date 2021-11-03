@@ -1,15 +1,14 @@
 package decodex.recipes;
 
+import decodex.Decodex;
+import decodex.data.Data;
+import decodex.data.exception.ModuleException;
+import decodex.data.exception.RecipeException;
+import decodex.modules.Module;
+import decodex.ui.messages.ErrorMessages;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
-
-import decodex.Decodex;
-import decodex.data.exception.RecipeException;
-import decodex.data.Data;
-import decodex.data.exception.ModuleException;
-import decodex.modules.Module;
-import decodex.ui.messages.ErrorMessages;
 
 /**
  * The Recipe class manages a list of Modules to be run sequentially.

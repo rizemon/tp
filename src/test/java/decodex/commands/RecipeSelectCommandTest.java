@@ -3,19 +3,18 @@ package decodex.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import decodex.data.exception.RecipeException;
-import decodex.storage.Storage;
-import java.io.IOException;
-import org.junit.jupiter.api.Test;
-
 import decodex.commands.recipe.RecipeSelectCommand;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
+import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
 import decodex.modules.ModuleManager;
 import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
+import decodex.storage.Storage;
 import decodex.ui.Ui;
+import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
 // @@author rizemon
 class RecipeSelectCommandTest {

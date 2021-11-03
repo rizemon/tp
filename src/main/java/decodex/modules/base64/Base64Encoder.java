@@ -2,7 +2,6 @@ package decodex.modules.base64;
 
 import decodex.data.Data;
 import decodex.modules.Module;
-
 import java.util.Base64;
 
 /**

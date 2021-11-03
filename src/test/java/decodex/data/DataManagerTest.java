@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import decodex.data.exception.DataManagerException;
-
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 

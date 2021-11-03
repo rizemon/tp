@@ -1,11 +1,9 @@
 package decodex.parser;
 
-import java.util.Arrays;
-
 import decodex.commands.Command;
 import decodex.commands.ExitCommand;
-import decodex.commands.InputCommand;
 import decodex.commands.HelpCommand;
+import decodex.commands.InputCommand;
 import decodex.commands.ListCommand;
 import decodex.commands.ResetCommand;
 import decodex.commands.SelectCommand;
@@ -13,6 +11,7 @@ import decodex.commands.ShowCommand;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.ParserException;
 import decodex.ui.messages.ErrorMessages;
+import java.util.Arrays;
 
 /**
  * The Parser class handles the parsing and validation of the user input.

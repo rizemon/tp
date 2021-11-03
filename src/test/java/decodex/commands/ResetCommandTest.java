@@ -2,18 +2,15 @@ package decodex.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import decodex.storage.Storage;
-import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-
 import decodex.data.Data;
 import decodex.data.DataManager;
 import decodex.data.exception.DataManagerException;
 import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
-
+import decodex.storage.Storage;
 import decodex.ui.Ui;
+import java.util.Arrays;
+import org.junit.jupiter.api.Test;
 
 // @@author rizemon
 class ResetCommandTest {

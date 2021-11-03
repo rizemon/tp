@@ -7,7 +7,6 @@ import decodex.data.exception.ModuleException;
 import decodex.data.exception.ModuleManagerException;
 import decodex.modules.base64.Base64Encoder;
 import decodex.modules.rot.RotEncoder;
-
 import org.junit.jupiter.api.Test;
 
 public class ModuleManagerTest {
