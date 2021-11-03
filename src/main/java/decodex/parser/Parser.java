@@ -25,8 +25,12 @@ public class Parser {
     // Specifies the starting index where the arguments can be found.
     protected static final int STARTING_ARGUMENTS_INDEX = 1;
 
-    // Specifies the token used to split the user input by.
+    // Specifies the tokens used to split the user input by.
     private static final String SPLIT_REGEX = "\\s+";
+    private static final int SPLIT_LIMIT_VALUE = -1;
+
+    // Specifies the separator for joining a split array.
+    private static final String SPACE_SEPARATOR = " ";
 
     // Specifies the valid length of the tokens and used to check validity of tokens.
     private static final int VALID_TOKENS_LENGTH_FOR_COMMAND = 1;
@@ -64,7 +68,7 @@ public class Parser {
             throw new ParserException(ErrorMessages.MISSING_COMMAND_TYPE);
         }
 
-        String[] tokens = strippedUserInput.split(" ");
+        String[] tokens = strippedUserInput.split(SPLIT_REGEX);
 
         boolean isInvalidTokensLength = tokens.length < VALID_TOKENS_LENGTH_FOR_COMMAND;
 
@@ -86,10 +90,10 @@ public class Parser {
      */
     public String getInputString(String userInput) throws ParserException {
         String strippedUserInput = userInput.stripLeading();
-        String[] tokens = strippedUserInput.split(" ", -1);
+        String[] tokens = strippedUserInput.split(SPLIT_REGEX, SPLIT_LIMIT_VALUE);
 
-        String argumentString = String.join(" ",
-                Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length));
+        String[] argumentArray = Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length);
+        String argumentString = String.join(SPACE_SEPARATOR, argumentArray);
         if (argumentString.isEmpty()) {
             throw new ParserException(ErrorMessages.INPUT_EMPTY);
         }
