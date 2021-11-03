@@ -78,7 +78,9 @@ public class Decodex {
             } catch (RecipeManagerException e) {
                 editingRecipeName = null;
             }
-            String userInput = promptAndGetUserInput(editingRecipeName);
+            ui.printPromptHeader(editingRecipeName);
+            String userInput = ui.readInput();
+            logger.fine("User input: " + userInput);
             try {
                 command = parser.parseCommand(userInput);
                 assert command != null : "Command should not be null";
@@ -90,20 +92,6 @@ public class Decodex {
             }
             isExit = command instanceof ExitCommand;
         } while (!isExit);
-    }
-
-
-    /**
-     * Prompts and returns the user input.
-     *
-     * @param editingRecipeName The name of the currently editing recipe.
-     * @return The user input.
-     */
-    private String promptAndGetUserInput(String editingRecipeName) {
-        ui.printPromptHeader(editingRecipeName);
-        String userInput = ui.readInput();
-        logger.fine("User input: " + userInput);
-        return userInput;
     }
 
     /**
