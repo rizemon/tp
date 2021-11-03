@@ -20,14 +20,10 @@ public class RecipeManager {
 
     private static int RECIPE_NAME_STRING_INDEX = 0;
 
-    /**
-     * Stores mapping between recipe name and recipe.
-     */
+    // Stores mapping between recipe name and recipe.
     private HashMap<String, Recipe> recipeList;
 
-    /**
-     * Name of the recipe that is selected for editing/modification.
-     */
+    // Name of the recipe that is selected for editing/modification.
     private String editingRecipeName;
 
     /**
