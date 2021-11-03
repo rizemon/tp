@@ -30,6 +30,7 @@ public class Storage {
     // Specifies the corresponding file prefixes.
     private static final String RECIPE_FILE_PREFIX = ".txt";
 
+    // Specifies the different regexes.
     private static final String LINE_BREAK_REGEX = "\\r?\\n";
     private static final String FILENAME_EXTENSION_SPLIT_REGEX = "[.]";
 
@@ -190,8 +191,10 @@ public class Storage {
      * Saves the provided recipe into a file.
      *
      * @param recipe The recipe to be saved.
-     * @throws IOException If an error occurred when creating the file
-     *                     or when writing to the file.
+     * @throws IOException      If an error occurred when creating the file
+     *                          or when writing to the file.
+     * @throws StorageException If the recipe directory is not an actual directory
+     *                          or if the recipe file is not an actual file.
      */
     public void saveRecipeToFile(Recipe recipe) throws IOException, StorageException {
         instantiateDirectoryIfNotExist(DEFAULT_RECIPE_DIRECTORY);
@@ -208,8 +211,9 @@ public class Storage {
      *
      * @param writeFile       The file to be saved to.
      * @param recipeToBeSaved The recipe to be saved.
-     * @throws IOException If an error occurred when creating the file
-     *                     or when writing to the file.
+     * @throws IOException      If an error occurred when creating the file
+     *                          or when writing to the file.
+     * @throws StorageException If the recipe file is not an actual file.
      */
     private void saveRecipeModulesToFile(File writeFile, Recipe recipeToBeSaved) throws IOException, StorageException {
         // To ensure only writes to file happen.
@@ -250,6 +254,9 @@ public class Storage {
      * Deletes the saved recipe file.
      *
      * @param recipeName The name of the deleted recipe.
+     * @throws IOException If an error occurred when deleting the file
+     *                     or when the file failed to be deleted.
+     * @throws StorageException If the recipe file is not an actual file.
      */
     public void deleteRecipeFile(String recipeName) throws IOException, StorageException {
         String newRecipeFileName = recipeName + RECIPE_FILE_PREFIX;
