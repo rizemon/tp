@@ -18,6 +18,7 @@ import decodex.ui.Ui;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
+// @@author SeenFang
 class RecipeNewCommandTest {
 
     @Test
