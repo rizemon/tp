@@ -97,6 +97,16 @@ public class RecipeManager {
     }
     // @@author
 
+    // @@author arraysius
+    /**
+     * Deselects the recipe currently being edited.
+     */
+    public void deselectEditingRecipe() {
+        logger.fine(String.format("[RecipeManager] Deselected recipe %s", editingRecipeName));
+        editingRecipeName = null;
+    }
+    // @@author
+
     // @@author rizemon
     /**
      * Gets the Recipe object that is currently being edited.
@@ -124,20 +134,7 @@ public class RecipeManager {
         editingRecipeName = name;
         logger.fine(String.format("[RecipeManager] Selected recipe %s", name));
     }
-    // @@author
 
-
-    // @@author arraysius
-    /**
-     * Deselects the recipe currently being edited.
-     */
-    public void deselectEditingRecipe() {
-        logger.fine(String.format("[RecipeManager] Deselected recipe %s", editingRecipeName));
-        editingRecipeName = null;
-    }
-    // @@author
-
-    // @@author rizemon
     /**
      * Appends a new module to the end of the recipe currently being edited.
      *
