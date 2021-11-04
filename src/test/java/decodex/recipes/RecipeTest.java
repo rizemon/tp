@@ -19,6 +19,7 @@ import decodex.modules.rot.RotEncoder;
 
 class RecipeTest {
 
+    // @@author rizemon
     @Test
     void recipe_allowedCharactersInName_recipeCreated() throws RecipeException {
         String validRecipeName = "test_Recipe";
@@ -37,7 +38,9 @@ class RecipeTest {
         String invalidRecipeName = "**bad-name?!";
         assertThrows(RecipeException.class, () -> new Recipe(invalidRecipeName));
     }
+    // @@author
 
+    // @@author SeenFang
     @Test
     void push_singleModule_recipeContainsOneModule() throws RecipeException {
         Recipe recipe = new Recipe("testRecipe");
@@ -110,5 +113,5 @@ class RecipeTest {
 
         assertThrows(ModuleException.class, () -> recipe.run(inputData));
     }
-
+    // @@author
 }
