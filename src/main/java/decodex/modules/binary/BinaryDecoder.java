@@ -7,6 +7,7 @@ import decodex.data.Data;
 import decodex.data.exception.ModuleException;
 import decodex.ui.messages.ErrorMessages;
 
+// @@author arraysius
 /**
  * The BinaryDecoder class handles the binary decoding operations.
  */
