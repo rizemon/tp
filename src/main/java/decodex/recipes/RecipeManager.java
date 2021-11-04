@@ -11,6 +11,7 @@ import decodex.data.exception.RecipeManagerException;
 import decodex.modules.Module;
 import decodex.ui.messages.ErrorMessages;
 
+// @@author SeenFang
 /**
  * RecipeManager manages a list of all recipes that were created/loaded.
  */
@@ -94,6 +95,7 @@ public class RecipeManager {
         }
         return recipeList.get(name);
     }
+    // @@author
 
     // @@author rizemon
     /**
@@ -122,7 +124,10 @@ public class RecipeManager {
         editingRecipeName = name;
         logger.fine(String.format("[RecipeManager] Selected recipe %s", name));
     }
+    // @@author
 
+
+    // @@author arraysius
     /**
      * Deselects the recipe currently being edited.
      */
@@ -130,7 +135,9 @@ public class RecipeManager {
         logger.fine(String.format("[RecipeManager] Deselected recipe %s", editingRecipeName));
         editingRecipeName = null;
     }
+    // @@author
 
+    // @@author rizemon
     /**
      * Appends a new module to the end of the recipe currently being edited.
      *
