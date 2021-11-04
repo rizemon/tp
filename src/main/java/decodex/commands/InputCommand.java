@@ -25,8 +25,7 @@ public class InputCommand extends Command {
 
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager,
-            Storage storage)
-            throws CommandException {
+            Storage storage) throws CommandException {
         if (dataString.isEmpty()) {
             throw new CommandException(ErrorMessages.MISSING_ARGUMENT);
         }
