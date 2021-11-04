@@ -34,8 +34,8 @@ public class RecipePushCommand extends Command {
 
     @Override
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager,
-            Storage storage)
-            throws CommandException, ModuleManagerException, ModuleException, RecipeManagerException, IOException {
+            Storage storage) throws CommandException, ModuleManagerException, ModuleException, RecipeManagerException,
+            IOException {
         if (moduleName.isBlank()) {
             throw new CommandException(ErrorMessages.MISSING_MODULE_NAME);
         }

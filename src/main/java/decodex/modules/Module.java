@@ -20,10 +20,6 @@ public abstract class Module {
         return name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     /**
      * Returns a String formatted Module.
      *
