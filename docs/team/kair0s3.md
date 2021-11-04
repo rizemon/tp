@@ -1,10 +1,7 @@
 # Project Portfolio Page - Decodex
 
 ## Overview
-
-This is a student project for Software Engineering & Object-Oriented Programming (CS2113/T).
-
-I am **Sim Tian Boon**, one of the contributors of `Decodex`.
+This is a student project for Software Engineering & Object-Oriented Programming (CS2113/T). And, hi! I am **Sim Tian Boon**, one of the contributors of `Decodex`.
 
 ## Project Name: `Decodex`
 `Decodex` is a Command Line Interface (CLI) application for Capture-The-Flag (CTF) players to quickly process data from one encoding format to another with extreme ease in the form of intuitive shorthand usage.
@@ -41,8 +38,7 @@ Features/Functionalities
    - Functionality - Saves the recipe into a file in the format of `recipeName.txt` and stored in the `recipe/` directory. Do note that, this is more of an auto-save whenever changes are made to `recipe`. For the deletion, the recipe file is deleted when the user deletes the `recipe` from `Decodex`.
    - Justification - Allows users to auto-save their crafted recipes into a file which provides convenience for users. And the deletion of the recipe file also provides convenience over having to delete manually.
    - PR - [#208](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/208/)
-
-
+   
 ## Enhancements to Existing Features
 - Refactored and improved Coding Standards
    - `Storage` - Remove the magic literals [#280](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/280) and removed dead code [#251](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/251/files)
