@@ -1,5 +1,7 @@
 package decodex.modules;
 
+import java.util.logging.Logger;
+
 import decodex.Decodex;
 import decodex.data.exception.ModuleException;
 import decodex.data.exception.ModuleManagerException;
@@ -11,7 +13,6 @@ import decodex.modules.hex.HexDecoder;
 import decodex.modules.hex.HexEncoder;
 import decodex.modules.rot.RotEncoder;
 import decodex.ui.messages.ErrorMessages;
-import java.util.logging.Logger;
 
 /**
  * ModuleManager maintains the list of available modules and returns selected modules.

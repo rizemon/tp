@@ -1,7 +1,6 @@
 package decodex.commands;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.Arrays;
 
 import decodex.data.Data;
 import decodex.data.DataManager;
@@ -11,8 +10,10 @@ import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
 import decodex.ui.Ui;
-import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 // @@author rizemon
 public class InputCommandTest {

@@ -1,9 +1,5 @@
 package decodex.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import decodex.commands.Command;
 import decodex.commands.ExitCommand;
 import decodex.commands.InputCommand;
@@ -12,7 +8,11 @@ import decodex.commands.ResetCommand;
 import decodex.commands.SelectCommand;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.ParserException;
+
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ParserTest {
 

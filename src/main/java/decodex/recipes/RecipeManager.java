@@ -1,14 +1,15 @@
 package decodex.recipes;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Set;
+import java.util.logging.Logger;
+
 import decodex.Decodex;
 import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
 import decodex.modules.Module;
 import decodex.ui.messages.ErrorMessages;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.logging.Logger;
 
 /**
  * RecipeManager manages a list of all recipes that were created/loaded.

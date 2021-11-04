@@ -1,5 +1,7 @@
 package decodex.commands.recipe;
 
+import java.io.IOException;
+
 import decodex.commands.Command;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
@@ -14,7 +16,6 @@ import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
 import decodex.ui.Ui;
 import decodex.ui.messages.ErrorMessages;
-import java.io.IOException;
 
 // @@author rizemon
 public class RecipePushCommand extends Command {

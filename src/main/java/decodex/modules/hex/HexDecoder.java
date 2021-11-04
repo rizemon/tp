@@ -1,11 +1,12 @@
 package decodex.modules.hex;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import decodex.data.Data;
 import decodex.data.exception.ModuleException;
 import decodex.modules.Module;
 import decodex.ui.messages.ErrorMessages;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 /**
  * The HexDecoder class converts a hexadecimal string back into its raw value.

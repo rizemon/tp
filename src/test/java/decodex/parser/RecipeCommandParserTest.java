@@ -1,8 +1,5 @@
 package decodex.parser;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import decodex.commands.Command;
 import decodex.commands.recipe.RecipeDeleteCommand;
 import decodex.commands.recipe.RecipeNewCommand;
@@ -11,8 +8,11 @@ import decodex.commands.recipe.RecipePushCommand;
 import decodex.commands.recipe.RecipeResetCommand;
 import decodex.commands.recipe.RecipeSelectCommand;
 import decodex.data.exception.CommandException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RecipeCommandParserTest {
 

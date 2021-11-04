@@ -1,9 +1,9 @@
 package decodex.modules.hex;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import decodex.data.Data;
+
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HexEncoderTest {
 

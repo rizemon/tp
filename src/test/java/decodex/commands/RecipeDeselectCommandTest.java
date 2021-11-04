@@ -1,6 +1,6 @@
 package decodex.commands;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.io.IOException;
 
 import decodex.commands.recipe.RecipeDeselectCommand;
 import decodex.commands.recipe.RecipeSelectCommand;
@@ -16,8 +16,9 @@ import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
 import decodex.ui.Ui;
-import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RecipeDeselectCommandTest {
 

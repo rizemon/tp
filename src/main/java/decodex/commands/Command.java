@@ -1,5 +1,7 @@
 package decodex.commands;
 
+import java.io.IOException;
+
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;
@@ -11,7 +13,6 @@ import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
 import decodex.ui.Ui;
-import java.io.IOException;
 
 /**
  * Command serves as a foundation for other commands to be built upon.
