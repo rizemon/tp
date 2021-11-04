@@ -7,10 +7,11 @@ import decodex.modules.Module;
  * The RotEncoder class handles the rotation of the alphabets in the input string.
  */
 public class RotEncoder extends Module {
-
+    
     public static final String MODULE_NAME = "rotencode";
     public static final String MODULE_DESCRIPTION = "Rotates alphabetical characters by a specified integer offset.";
 
+    // Constants for performing rotational cipher
     private static final char LOWERCASE_A = 'a';
     private static final char UPPERCASE_A = 'A';
     private static final int ALPHABETS_COUNT = 26;
@@ -23,7 +24,7 @@ public class RotEncoder extends Module {
     }
 
     /**
-     * Applies the rotation to the given Data object.
+     * Applies the rotational cipher to the given Data object.
      *
      * @param data The given Data object.
      * @return A Data object with its alphabetical characters rotated.
@@ -33,17 +34,30 @@ public class RotEncoder extends Module {
         StringBuilder encodedStringBuilder = new StringBuilder();
 
         for (byte b : data.getRawBytes()) {
-            char updatedChar = (char) b;
-            if (Character.isLowerCase((char) b)) {
-                updatedChar = rotateLowercaseAlphabet((char) b, rotateOffset);
-            } else if (Character.isUpperCase((char) b)) {
-                updatedChar = rotateUppercaseAlphabet((char) b, rotateOffset);
-            }
-            encodedStringBuilder.append(updatedChar);
+            char letter = (char) b;
+            char updatedLetter = rotateAlphabet(letter, rotateOffset);
+            encodedStringBuilder.append(updatedLetter);
         }
 
         String encodedString = encodedStringBuilder.toString();
         return new Data(encodedString);
+    }
+
+    /**
+     * Rotates the given alphabet.
+     *
+     * @param c            The given  alphabet.
+     * @param rotateOffset Number of positions to rotate the alphabet by.
+     * @return The updated alphabet.
+     */
+    private char rotateAlphabet(char c, int rotateOffset) {
+        char updatedChar = c;
+        if (Character.isLowerCase(c)) {
+            updatedChar = rotateLowercaseAlphabet(c, rotateOffset);
+        } else if (Character.isUpperCase(c)) {
+            updatedChar = rotateUppercaseAlphabet(c, rotateOffset);
+        }
+        return updatedChar;
     }
 
     /**
@@ -55,7 +69,8 @@ public class RotEncoder extends Module {
      */
     private char rotateLowercaseAlphabet(char c, int rotateOffset) {
         int originalAlphabetIndex = c - LOWERCASE_A;
-        int updatedAlphabetIndex = Math.floorMod(originalAlphabetIndex + rotateOffset, ALPHABETS_COUNT);
+        int roundedRotateOffset = rotateOffset % ALPHABETS_COUNT;
+        int updatedAlphabetIndex = Math.floorMod(originalAlphabetIndex + roundedRotateOffset, ALPHABETS_COUNT);
         return (char) (LOWERCASE_A + updatedAlphabetIndex);
     }
 
@@ -68,7 +83,8 @@ public class RotEncoder extends Module {
      */
     private char rotateUppercaseAlphabet(char c, int rotateOffset) {
         int originalAlphabetIndex = c - UPPERCASE_A;
-        int updatedAlphabetIndex = Math.floorMod(originalAlphabetIndex + rotateOffset, ALPHABETS_COUNT);
+        int roundedRotateOffset = rotateOffset % ALPHABETS_COUNT;
+        int updatedAlphabetIndex = Math.floorMod(originalAlphabetIndex + roundedRotateOffset, ALPHABETS_COUNT);
         return (char) (UPPERCASE_A + updatedAlphabetIndex);
     }
 
