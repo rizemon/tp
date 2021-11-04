@@ -13,7 +13,7 @@ Given below are my notable contributions to the project.
 
 ### New Features / Functionalities
 - Implemented the `ModuleManager` class along with tests.
-   - What it does: Manages all module related activities (e.g. retriving all modules, preparing module for the `select` command).
+   - What it does: Manages all module related activities (e.g. retrieving all modules, preparing module for the `select` command).
    - Justficiation: Serves as the centralised location to conduct all module management activities.
    - Pull request: ([#43](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/43))
 - Added the `select`, `list` and `recipe deselect` commands along with tests.
@@ -48,4 +48,4 @@ Given below are my notable contributions to the project.
 
 ## Community
 - Non-trivial reviewed of team members' PRs ([#39](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/39), [#52](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/52), [#208](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/208)).
-- Reported bugs for other teams ([1](https://github.com/arraysius/ped/issues/4) [2](https://github.com/arraysius/ped/issues/9) [3](https://github.com/arraysius/ped/issues/12) [4](https://github.com/arraysius/ped/issues/13) [5](https://github.com/arraysius/ped/issues/14)).
+- Reported bugs for other teams ([1](https://github.com/arraysius/ped/issues/4), [2](https://github.com/arraysius/ped/issues/9), [3](https://github.com/arraysius/ped/issues/12), [4](https://github.com/arraysius/ped/issues/13), [5](https://github.com/arraysius/ped/issues/14)).
