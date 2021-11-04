@@ -19,47 +19,40 @@ import decodex.ui.messages.ErrorMessages;
  */
 public class Parser {
 
-    /**
-     * Specifies the index of the tokens where specific parameters can be found.
-     */
+    // Specifies the index of the tokens where specific parameters can be found.
     private static final int COMMAND_INDEX = 0;
 
-    /**
-     * Specifies the starting index where the arguments can be found.
-     */
+    // Specifies the starting index where the arguments can be found.
     protected static final int STARTING_ARGUMENTS_INDEX = 1;
 
-    /**
-     * Specifies the token used to split the user input by.
-     */
+    // Specifies the tokens used to split the user input by.
     private static final String SPLIT_REGEX = "\\s+";
+    private static final int SPLIT_LIMIT_VALUE = -1;
 
-    /**
-     * Specifies the valid length of the tokens and used to check validity of tokens.
-     */
+    // Specifies the separator used to reconstruct a string from a list of tokens.
+    private static final String SPACE_SEPARATOR = " ";
+
+    // Specifies the valid length of the tokens and used to check validity of tokens.
     private static final int VALID_TOKENS_LENGTH_FOR_COMMAND = 1;
 
-    /**
-     * Specifies the number of tokens for list command with no category and with a category.
-     */
+    // Specifies the number of tokens for list command with no category and with a category.
     private static final int LIST_COMMAND_LENGTH_NO_CATEGORY = 1;
     private static final int LIST_COMMAND_LENGTH_HAS_CATEGORY = 2;
     private static final int LIST_COMMAND_CATEGORY_STARTING_INDEX = 1;
 
-    /**
-     * Specifies the valid number of tokens and indexes for category and parameters for select command.
-     */
+    // Specifies the valid number of tokens and indexes for category and parameters for select command.
     private static final int VALID_TOKENS_LENGTH_FOR_SELECT_COMMAND = 3;
     private static final int SELECT_CATEGORY_INDEX = 1;
     private static final int SELECT_ITEM_NAME_INDEX = 2;
     private static final int SELECT_PARAMETERS_START_INDEX = 3;
 
-    /**
-     * Specifies the number of tokens for exit command.
-     */
+    // Specifies the keyword for recipe related commands.
+    private static final String RECIPE_COMMAND_WORD = "recipe";
+
+    // Specifies the number of tokens for exit command.
     private static final int EXIT_COMMAND_LENGTH = 1;
 
-    private static final String RECIPE_COMMAND_WORD = "recipe";
+    // Initializes the RecipeCommandParser for parsing recipe commands.
     private static final RecipeCommandParser recipeCommandParser = new RecipeCommandParser();
 
     /**
@@ -75,7 +68,7 @@ public class Parser {
             throw new ParserException(ErrorMessages.MISSING_COMMAND_TYPE);
         }
 
-        String[] tokens = strippedUserInput.split(" ");
+        String[] tokens = strippedUserInput.split(SPLIT_REGEX);
 
         boolean isInvalidTokensLength = tokens.length < VALID_TOKENS_LENGTH_FOR_COMMAND;
 
@@ -97,10 +90,10 @@ public class Parser {
      */
     public String getInputString(String userInput) throws ParserException {
         String strippedUserInput = userInput.stripLeading();
-        String[] tokens = strippedUserInput.split(" ", -1);
+        String[] tokens = strippedUserInput.split(SPLIT_REGEX, SPLIT_LIMIT_VALUE);
 
-        String argumentString = String.join(" ",
-                Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length));
+        String[] argumentArray = Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length);
+        String argumentString = String.join(SPACE_SEPARATOR, argumentArray);
         if (argumentString.isEmpty()) {
             throw new ParserException(ErrorMessages.INPUT_EMPTY);
         }

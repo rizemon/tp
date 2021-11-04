@@ -5,6 +5,7 @@ import decodex.modules.Module;
 
 import java.util.Base64;
 
+// @@author Kair0s3
 /**
  * Base64Encoder serves to carry out the Base64 encoding operations.
  */

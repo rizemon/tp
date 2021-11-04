@@ -16,6 +16,7 @@ import decodex.parser.Parser;
 import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
 import decodex.ui.Ui;
+
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,10 +25,7 @@ public class Decodex {
 
     public static Logger logger = Logger.getLogger(Decodex.class.getName());
 
-
-    /**
-     * Necessary objects to be initialized for Decodex to work properly.
-     */
+    // Necessary objects to be initialized for Decodex to work properly.
     private static DataManager dataManager;
     private static ModuleManager moduleManager;
     private static RecipeManager recipeManager;
@@ -65,11 +63,14 @@ public class Decodex {
         new Decodex().run();
     }
 
+    /**
+     * Runs the main logic of Decodex.
+     */
     public void run() {
         ui.printGreeting();
 
         Command command = null;
-
+        boolean isExit;
         do {
             String editingRecipeName;
             try {
@@ -89,9 +90,19 @@ public class Decodex {
                 ui.printError(err);
                 logger.fine(err.getMessage());
             }
-        } while (!(command instanceof ExitCommand));
+            isExit = command instanceof ExitCommand;
+        } while (!isExit);
     }
 
+    /**
+     * Loads the saved recipes stored in the recipe directory.
+     *
+     * @throws IOException      If an error occurred when creating the recipe directory,
+     *                          or reading the recipe files.
+     * @throws StorageException If the recipe directory is not an actual directory,
+     *                          or if it failed to list the recipe files,
+     *                          or if the respective recipe file is not an actual file.
+     */
     private void loadSavedRecipes() throws IOException, StorageException {
         storage.loadRecipesFromDirectory(moduleManager, recipeManager, ui);
     }
