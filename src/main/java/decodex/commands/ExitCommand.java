@@ -6,6 +6,7 @@ import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
 import decodex.ui.Ui;
 
+// @@author SeenFang
 public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";

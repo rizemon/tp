@@ -16,6 +16,7 @@ import decodex.storage.Storage;
 import decodex.ui.Ui;
 import decodex.ui.messages.ErrorMessages;
 
+// @@author arraysius
 public class SelectCommand extends Command {
 
     public static final String COMMAND_WORD = "select";

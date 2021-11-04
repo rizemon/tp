@@ -1,5 +1,6 @@
 package decodex.data;
 
+// @@author rizemon
 /**
  * The Data class manages the data that is to be encoded or decoded.
  */

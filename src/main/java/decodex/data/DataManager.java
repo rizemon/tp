@@ -4,6 +4,7 @@ import decodex.data.exception.DataManagerException;
 import decodex.ui.messages.ErrorMessages;
 import java.util.Arrays;
 
+// @@author rizemon
 /**
  * The DataManager class handles the management of the current state of the data.
  */

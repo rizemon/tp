@@ -15,6 +15,7 @@ import decodex.ui.Ui;
 import decodex.ui.messages.ErrorMessages;
 import java.io.IOException;
 
+// @@author SeenFang
 public class RecipeNewCommand extends Command {
 
     public static final String COMMAND_WORD = "new";
