@@ -22,9 +22,8 @@ import org.junit.jupiter.api.Test;
 class RecipePushCommandTest {
 
     @Test
-    public void run_oneModuleToEditingRecipe_recipeSizeIsOne()
-            throws RecipeException, RecipeManagerException, CommandException,
-            ModuleException, ModuleManagerException, IOException {
+    public void run_oneModuleToEditingRecipe_recipeSizeIsOne() throws RecipeException, RecipeManagerException,
+            CommandException, ModuleException, ModuleManagerException, IOException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Storage storage = new Storage();
@@ -46,7 +45,7 @@ class RecipePushCommandTest {
     }
 
     @Test
-    public void run_emptyModuleName_expectException() throws RecipeException, RecipeManagerException, IOException {
+    public void run_emptyModuleName_expectException() throws RecipeException, RecipeManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Storage storage = new Storage();

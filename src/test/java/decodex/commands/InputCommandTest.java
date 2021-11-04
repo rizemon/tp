@@ -33,8 +33,7 @@ public class InputCommandTest {
     }
 
     @Test
-    public void run_insertData_insertedData()
-            throws CommandException, DataManagerException {
+    public void run_insertData_insertedData() throws CommandException, DataManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         Storage storage = new Storage();

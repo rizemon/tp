@@ -22,8 +22,8 @@ import org.junit.jupiter.api.Test;
 class RecipePopCommandTest {
 
     @Test
-    public void run_oneModuleToEditingRecipe_recipeSizeIsZero()
-            throws RecipeManagerException, ModuleManagerException, ModuleException, RecipeException, IOException {
+    public void run_oneModuleToEditingRecipe_recipeSizeIsZero() throws RecipeManagerException, ModuleManagerException,
+            ModuleException, RecipeException, IOException {
         RecipeManager recipeManager = new RecipeManager();
         String testRecipeName = "test";
         Recipe testRecipe = new Recipe(testRecipeName);
@@ -46,7 +46,7 @@ class RecipePopCommandTest {
     }
 
     @Test
-    public void run_emptyEditingRecipe_expectException() throws RecipeException, RecipeManagerException, IOException {
+    public void run_emptyEditingRecipe_expectException() throws RecipeException, RecipeManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         RecipeManager recipeManager = new RecipeManager();
