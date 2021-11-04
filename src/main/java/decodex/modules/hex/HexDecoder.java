@@ -38,8 +38,8 @@ public class HexDecoder extends Module {
         StringBuilder decodedStringBuilder = new StringBuilder();
         String[] hexSplit = inputString.split(REGEX_SPLIT_EVERY_2_CHARS);
 
-        for (String hexChar : hexSplit){
-            char parsedChar = (char)Integer.parseInt(hexChar, HEXADECIMAL_RADIX);
+        for (String hexChar : hexSplit) {
+            char parsedChar = (char) Integer.parseInt(hexChar, HEXADECIMAL_RADIX);
             decodedStringBuilder.append(parsedChar);
         }
 
