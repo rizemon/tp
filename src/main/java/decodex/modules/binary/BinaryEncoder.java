@@ -3,6 +3,7 @@ package decodex.modules.binary;
 import decodex.data.Data;
 import decodex.modules.Module;
 
+// @@author arraysius
 /**
  * The BinaryEncoder class handles the binary encoding operations.
  */

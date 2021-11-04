@@ -3,6 +3,7 @@ package decodex.modules;
 import decodex.data.Data;
 import decodex.data.exception.ModuleException;
 
+// @@author arraysius
 /**
  * Module serves as a foundation for other modules to be built upon.
  */
@@ -19,7 +20,9 @@ public abstract class Module {
     public String getName() {
         return name;
     }
+    // @@author
 
+    // @@author Kair0s3
     /**
      * Returns a String formatted Module.
      *
@@ -29,7 +32,9 @@ public abstract class Module {
     public String toString() {
         return name;
     }
+    // @@author
 
+    // @@author arraysius
     /**
      * Performs data processing on the provided Data object. Abstract method to be implemented by other modules.
      *
@@ -37,3 +42,4 @@ public abstract class Module {
      */
     public abstract Data run(Data data) throws ModuleException;
 }
+// @@author

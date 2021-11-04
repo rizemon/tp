@@ -38,6 +38,7 @@ public class RecipeManager {
         editingRecipeName = null;
     }
 
+    // @@author arraysius
     /**
      * Returns a sorted list of recipe names.
      *
@@ -49,6 +50,7 @@ public class RecipeManager {
         Arrays.sort(recipeNameArray);
         return recipeNameArray;
     }
+    // @@author
 
     /**
      * Adds a recipe to recipe manager to be managed.
@@ -124,14 +126,6 @@ public class RecipeManager {
     }
 
     /**
-     * Deselects the recipe currently being edited.
-     */
-    public void deselectEditingRecipe() {
-        logger.fine(String.format("[RecipeManager] Deselected recipe %s", editingRecipeName));
-        editingRecipeName = null;
-    }
-
-    /**
      * Appends a new module to the end of the recipe currently being edited.
      *
      * @param module The module to be added to the recipe.
@@ -162,6 +156,16 @@ public class RecipeManager {
     public void resetEditedRecipe() throws RecipeManagerException {
         Recipe editingRecipe = getEditingRecipe();
         editingRecipe.reset();
+    }
+    // @@author
+
+    // @@author arraysius
+    /**
+     * Deselects the recipe currently being edited.
+     */
+    public void deselectEditingRecipe() {
+        logger.fine(String.format("[RecipeManager] Deselected recipe %s", editingRecipeName));
+        editingRecipeName = null;
     }
     // @@author
 }
