@@ -49,8 +49,10 @@ public class Parser {
     // Specifies the keyword for recipe related commands.
     private static final String RECIPE_COMMAND_WORD = "recipe";
 
-    // Specifies the number of tokens for exit command.
+    // Specifies the number of tokens for commands.
     private static final int EXIT_COMMAND_LENGTH = 1;
+    private static final int SHOW_COMMAND_LENGTH = 1;
+    private static final int HELP_COMMAND_LENGTH = 1;
 
     // Initializes the RecipeCommandParser for parsing recipe commands.
     private static final RecipeCommandParser recipeCommandParser = new RecipeCommandParser();
@@ -129,10 +131,10 @@ public class Parser {
             command = prepareSelectCommand(userInput);
             break;
         case HelpCommand.COMMAND_WORD:
-            command = prepareHelpCommand();
+            command = prepareHelpCommand(userInput);
             break;
         case ShowCommand.COMMAND_WORD:
-            command = prepareShowCommand();
+            command = prepareShowCommand(userInput);
             break;
         case RECIPE_COMMAND_WORD:
             command = prepareRecipeSubcommands(userInput);
@@ -250,7 +252,12 @@ public class Parser {
      * @return The ShowCommand object.
      * @throws CommandException If the original data input is empty.
      */
-    private ShowCommand prepareShowCommand() {
+    private ShowCommand prepareShowCommand(String userInput) throws CommandException {
+        String[] tokens = getTokens(userInput);
+
+        if (tokens.length > SHOW_COMMAND_LENGTH) {
+            throw new CommandException(ErrorMessages.TOO_MANY_COMMAND_ARGUMENTS);
+        }
         return new ShowCommand();
     }
 
@@ -270,7 +277,12 @@ public class Parser {
      *
      * @return The HelpCommand object.
      */
-    private HelpCommand prepareHelpCommand() {
+    private HelpCommand prepareHelpCommand(String userInput) throws CommandException {
+        String[] tokens = getTokens(userInput);
+
+        if (tokens.length > HELP_COMMAND_LENGTH) {
+            throw new CommandException(ErrorMessages.TOO_MANY_COMMAND_ARGUMENTS);
+        }
         return new HelpCommand();
     }
 }
