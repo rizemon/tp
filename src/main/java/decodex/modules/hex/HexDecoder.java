@@ -4,8 +4,6 @@ import decodex.data.Data;
 import decodex.data.exception.ModuleException;
 import decodex.modules.Module;
 import decodex.ui.messages.ErrorMessages;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 /**
  * The HexDecoder class converts a hexadecimal string back into its raw value.
@@ -37,10 +35,15 @@ public class HexDecoder extends Module {
             throw new ModuleException(ErrorMessages.HEX_DECODING_FAILED_MESSAGE);
         }
 
-        String decodedString = Arrays
-                .stream(inputString.split(REGEX_SPLIT_EVERY_2_CHARS))
-                .map(s -> Character.toString((char) Integer.parseInt(s, HEXADECIMAL_RADIX)))
-                .collect(Collectors.joining());
+        StringBuilder decodedStringBuilder = new StringBuilder();
+        String[] hexSplit = inputString.split(REGEX_SPLIT_EVERY_2_CHARS);
+
+        for (String hexChar : hexSplit) {
+            char parsedChar = (char) Integer.parseInt(hexChar, HEXADECIMAL_RADIX);
+            decodedStringBuilder.append(parsedChar);
+        }
+
+        String decodedString = decodedStringBuilder.toString();
 
         return new Data(decodedString);
     }
