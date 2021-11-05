@@ -1,9 +1,11 @@
 package decodex.commands;
 
-import decodex.commands.recipe.RecipeDeleteCommand;
+import decodex.logic.Command;
+import decodex.logic.commands.ExitCommand;
+import decodex.logic.commands.recipe.RecipeDeleteCommand;
 import decodex.commands.recipe.RecipeDeselectCommand;
-import decodex.commands.recipe.RecipeListCommand;
-import decodex.commands.recipe.RecipeNewCommand;
+import decodex.logic.commands.recipe.RecipeListCommand;
+import decodex.logic.commands.recipe.RecipeNewCommand;
 import decodex.commands.recipe.RecipePopCommand;
 import decodex.commands.recipe.RecipePushCommand;
 import decodex.commands.recipe.RecipeResetCommand;

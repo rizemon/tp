@@ -1,7 +1,7 @@
 package decodex;
 
-import decodex.commands.Command;
-import decodex.commands.ExitCommand;
+import decodex.logic.Command;
+import decodex.logic.commands.ExitCommand;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;

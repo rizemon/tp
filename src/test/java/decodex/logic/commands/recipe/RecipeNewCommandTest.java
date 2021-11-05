@@ -1,9 +1,10 @@
-package decodex.commands;
+package decodex.logic.commands.recipe;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import decodex.commands.recipe.RecipeNewCommand;
+import decodex.logic.Command;
+import decodex.logic.commands.recipe.RecipeNewCommand;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;
