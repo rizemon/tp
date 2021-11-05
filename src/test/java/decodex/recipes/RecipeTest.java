@@ -1,12 +1,5 @@
 package decodex.recipes;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.Test;
-
 import decodex.data.Data;
 import decodex.data.exception.ModuleException;
 import decodex.data.exception.RecipeException;
@@ -17,6 +10,12 @@ import decodex.modules.binary.BinaryEncoder;
 import decodex.modules.hex.HexDecoder;
 import decodex.modules.hex.HexEncoder;
 import decodex.modules.rot.RotEncoder;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 // @@author SeenFang
 class RecipeTest {
