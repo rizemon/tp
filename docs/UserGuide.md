@@ -45,7 +45,7 @@ This guide serves to help you understand the usage of the program to encode and 
 
 ## Terminologies
 
-This section serves to help you better understand the terminologies used in this user guide.
+This section serves to help you better understand the terminologies used in this user guide.<a name="moduleDefinition"></a>
 
 | Data transformation         | The conversion of one data format to another.                                                                                                                 |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -55,7 +55,7 @@ This section serves to help you better understand the terminologies used in this
 | Base64, Binary, Hexadecimal | Common types of data encoding standards.                                                                                                                      |
 | Console                     | This refers to your command prompt window.                                                                                                                    |
 | Argument                    | The additional information you provide to the program's command.                                                                                              |
-| Module<a name="moduleDefinition></a>                      | A self-contained set of instructions to process your data into another form.                                                                                  |
+| Module                      | A self-contained set of instructions to process your data into another form.                                                                                  |
 | Recipe                      | Acts as a container for you to select your modules. When multiple modules are selected, this forms a "module chain". By default, you do not have any recipes. |
 
 ## Symbols
