@@ -2,8 +2,6 @@ package decodex.logic.commands.recipe;
 
 import java.io.IOException;
 
-import decodex.logic.commands.recipe.RecipeDeselectCommand;
-import decodex.logic.commands.recipe.RecipeSelectCommand;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;

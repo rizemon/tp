@@ -39,6 +39,7 @@ public abstract class Module {
      * Performs data processing on the provided Data object. Abstract method to be implemented by other modules.
      *
      * @return Data object containing new processed data.
+     * @throws ModuleException If module execution failed.
      */
     public abstract Data run(Data data) throws ModuleException;
 }
