@@ -1,4 +1,4 @@
-package decodex.commands;
+package decodex.logic.commands;
 
 import decodex.data.Data;
 import decodex.data.DataManager;
