@@ -73,7 +73,7 @@ class RecipeListCommandTest {
     void run_listBlankNoEditingRecipe_expectException() {
         RecipeListCommand testCommand = new RecipeListCommand("");
         assertThrows(RecipeManagerException.class,
-                () -> testCommand.run(dataManager, moduleManager, ui, recipeManager, storage));
+            () -> testCommand.run(dataManager, moduleManager, ui, recipeManager, storage));
     }
 
     @Test
@@ -88,7 +88,7 @@ class RecipeListCommandTest {
     void run_listUnknownRecipe_expectException() {
         RecipeListCommand testCommand = new RecipeListCommand("unknownRecipe");
         assertThrows(RecipeManagerException.class,
-                () -> testCommand.run(dataManager, moduleManager, ui, recipeManager, storage));
+            () -> testCommand.run(dataManager, moduleManager, ui, recipeManager, storage));
     }
 
     @Test
