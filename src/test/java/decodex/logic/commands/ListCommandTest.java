@@ -1,8 +1,9 @@
-package decodex.commands;
+package decodex.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import decodex.logic.commands.ListCommand;
 import decodex.storage.Storage;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
