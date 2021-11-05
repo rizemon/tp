@@ -1,4 +1,4 @@
-package decodex.parser;
+package decodex.logic.parser;
 
 import decodex.logic.Command;
 import decodex.logic.commands.recipe.RecipeDeleteCommand;
