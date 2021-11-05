@@ -50,7 +50,7 @@ Features/Functionalities
 - [User Guide](https://ay2122s1-cs2113t-t10-3.github.io/tp/UserGuide.html)
     - Added introduction - [#103](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/103)
     - Added table of contents - [#220](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/220/files)
-    - Added basic commands documentation - [#246](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/246)
+    - Added basic commands, storage documentation - [#246](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/246)
     - Added command summary documentation [#246](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/246)
 - [Developer Guide](https://ay2122s1-cs2113t-t10-3.github.io/tp/DeveloperGuide.html)
     - Added Introduction, Purpose, Terminologies, Symbols - [#231](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/231)
