@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 import decodex.logic.Command;
 import decodex.logic.commands.ExitCommand;
-import decodex.commands.InputCommand;
-import decodex.commands.HelpCommand;
+import decodex.logic.commands.InputCommand;
+import decodex.logic.commands.HelpCommand;
 import decodex.commands.ListCommand;
-import decodex.commands.ResetCommand;
+import decodex.logic.commands.ResetCommand;
 import decodex.commands.SelectCommand;
 import decodex.commands.ShowCommand;
 import decodex.data.exception.CommandException;

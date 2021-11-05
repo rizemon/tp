@@ -3,7 +3,7 @@ package decodex.commands;
 import java.io.IOException;
 
 import decodex.commands.recipe.RecipeDeselectCommand;
-import decodex.commands.recipe.RecipeSelectCommand;
+import decodex.logic.commands.recipe.RecipeSelectCommand;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;
