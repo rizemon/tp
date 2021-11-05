@@ -1,9 +1,7 @@
 package decodex.logic.commands.recipe;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.io.IOException;
 
-import decodex.logic.commands.recipe.RecipePushCommand;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.ModuleException;
@@ -15,8 +13,10 @@ import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
 import decodex.ui.Ui;
-import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 // @@author rizemon
 class RecipePushCommandTest {
