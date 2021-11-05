@@ -1,9 +1,7 @@
 package decodex.logic.commands.recipe;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.io.IOException;
 
-import decodex.logic.commands.recipe.RecipePopCommand;
 import decodex.data.DataManager;
 import decodex.data.exception.ModuleException;
 import decodex.data.exception.ModuleManagerException;
@@ -15,8 +13,10 @@ import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
 import decodex.ui.Ui;
-import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 // @@author rizemon
 class RecipePopCommandTest {
@@ -46,7 +46,7 @@ class RecipePopCommandTest {
     }
 
     @Test
-    public void run_emptyEditingRecipe_expectException() throws RecipeException, RecipeManagerException, IOException {
+    public void run_emptyEditingRecipe_expectException() throws RecipeException, RecipeManagerException {
         DataManager dataManager = new DataManager();
         ModuleManager moduleManager = new ModuleManager();
         RecipeManager recipeManager = new RecipeManager();

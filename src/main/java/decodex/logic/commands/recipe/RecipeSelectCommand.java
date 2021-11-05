@@ -1,9 +1,9 @@
 package decodex.logic.commands.recipe;
 
-import decodex.logic.Command;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.RecipeManagerException;
+import decodex.logic.Command;
 import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;

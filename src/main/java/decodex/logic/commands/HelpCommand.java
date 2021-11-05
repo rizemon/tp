@@ -1,5 +1,6 @@
 package decodex.logic.commands;
 
+import decodex.data.DataManager;
 import decodex.logic.Command;
 import decodex.logic.commands.recipe.RecipeDeleteCommand;
 import decodex.logic.commands.recipe.RecipeDeselectCommand;
@@ -9,7 +10,6 @@ import decodex.logic.commands.recipe.RecipePopCommand;
 import decodex.logic.commands.recipe.RecipePushCommand;
 import decodex.logic.commands.recipe.RecipeResetCommand;
 import decodex.logic.commands.recipe.RecipeSelectCommand;
-import decodex.data.DataManager;
 import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
