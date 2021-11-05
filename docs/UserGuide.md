@@ -128,7 +128,7 @@ List all syntaxes and descriptions of available commands.
 Format: `help`
 
 Example:
-<insert image here>
+IMAGEHERE
 
 #### Input of Data: `input`
 
