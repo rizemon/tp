@@ -2,16 +2,16 @@ package decodex.logic.parser;
 
 import java.util.Arrays;
 
+import decodex.data.exception.CommandException;
+import decodex.data.exception.ParserException;
 import decodex.logic.Command;
 import decodex.logic.commands.ExitCommand;
-import decodex.logic.commands.InputCommand;
 import decodex.logic.commands.HelpCommand;
+import decodex.logic.commands.InputCommand;
 import decodex.logic.commands.ListCommand;
 import decodex.logic.commands.ResetCommand;
 import decodex.logic.commands.SelectCommand;
 import decodex.logic.commands.ShowCommand;
-import decodex.data.exception.CommandException;
-import decodex.data.exception.ParserException;
 import decodex.ui.messages.ErrorMessages;
 
 /**

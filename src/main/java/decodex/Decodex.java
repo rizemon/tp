@@ -1,7 +1,9 @@
 package decodex;
 
-import decodex.logic.Command;
-import decodex.logic.commands.ExitCommand;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;
@@ -11,15 +13,13 @@ import decodex.data.exception.ParserException;
 import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
 import decodex.data.exception.StorageException;
-import decodex.modules.ModuleManager;
+import decodex.logic.Command;
+import decodex.logic.commands.ExitCommand;
 import decodex.logic.parser.Parser;
+import decodex.modules.ModuleManager;
 import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
 import decodex.ui.Ui;
-
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Decodex {
 
