@@ -1,4 +1,4 @@
-package decodex.parser;
+package decodex.logic.parser;
 
 import decodex.logic.Command;
 import decodex.logic.commands.ExitCommand;
@@ -9,6 +9,7 @@ import decodex.logic.commands.SelectCommand;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.ParserException;
 
+import decodex.logic.parser.Parser;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

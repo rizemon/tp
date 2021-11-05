@@ -10,6 +10,7 @@ import decodex.logic.commands.recipe.RecipePushCommand;
 import decodex.logic.commands.recipe.RecipeResetCommand;
 import decodex.logic.commands.recipe.RecipeSelectCommand;
 import decodex.data.exception.CommandException;
+import decodex.logic.parser.Parser;
 import decodex.ui.messages.ErrorMessages;
 import java.util.Arrays;
 

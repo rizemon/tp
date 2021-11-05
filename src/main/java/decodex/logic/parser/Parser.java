@@ -1,4 +1,4 @@
-package decodex.parser;
+package decodex.logic.parser;
 
 import java.util.Arrays;
 
@@ -12,6 +12,7 @@ import decodex.logic.commands.SelectCommand;
 import decodex.logic.commands.ShowCommand;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.ParserException;
+import decodex.parser.RecipeCommandParser;
 import decodex.ui.messages.ErrorMessages;
 
 /**
@@ -145,6 +146,7 @@ public class Parser {
         return command;
     }
 
+    // @@author arraysius
     /**
      * Splits the user input by an arbitrary number of spaces into a list of tokens.
      *
@@ -155,7 +157,9 @@ public class Parser {
         String strippedUserInput = userInput.stripLeading();
         return strippedUserInput.split(SPLIT_REGEX);
     }
+    // @@author
 
+    // @@author SeenFang
     /**
      * Prepares and returns the ExitCommand.
      *
@@ -171,6 +175,7 @@ public class Parser {
         }
         return new ExitCommand();
     }
+    // @@author
 
     /**
      * Prepares and returns the InputCommand using the specified user input.
@@ -184,6 +189,7 @@ public class Parser {
         return new InputCommand(inputData);
     }
 
+    // @@author arraysius
     /**
      * Returns the list category for the list command.
      *
@@ -202,7 +208,9 @@ public class Parser {
             throw new CommandException(ErrorMessages.TOO_MANY_COMMAND_ARGUMENTS);
         }
     }
+    // @@author
 
+    // @@author arraysius
     /**
      * Prepares and returns the ListCommand.
      *
@@ -216,6 +224,7 @@ public class Parser {
         }
         return new ListCommand(listCategory);
     }
+    // @@author
 
     /**
      * Prepares and returns the ResetCommand.
@@ -226,6 +235,7 @@ public class Parser {
         return new ResetCommand();
     }
 
+    // @@author arraysius
     /**
      * Prepares and returns the SelectCommand using the specified user input.
      *
@@ -245,6 +255,7 @@ public class Parser {
 
         return new SelectCommand(selectCategory, itemName, parameters);
     }
+    // @@author
 
     /**
      * Shows the original input data.
@@ -261,6 +272,7 @@ public class Parser {
         return new ShowCommand();
     }
 
+    // @@author arraysius
     /**
      * Prepares and returns recipe subcommands using the specified user input.
      *
@@ -271,6 +283,7 @@ public class Parser {
     private Command prepareRecipeSubcommands(String userInput) throws CommandException {
         return recipeCommandParser.parseCommand(userInput);
     }
+    // @@author
 
     /**
      * Prepares and returns the HelpCommand.
