@@ -5,6 +5,8 @@ import decodex.data.exception.ModuleException;
 import decodex.modules.Module;
 import decodex.ui.messages.ErrorMessages;
 
+// @@author SeenFang
+
 /**
  * The HexDecoder class converts a hexadecimal string back into its raw value.
  */

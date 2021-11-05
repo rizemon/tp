@@ -3,7 +3,13 @@ package decodex.logic.commands.recipe;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import decodex.logic.commands.recipe.RecipeListCommand;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.ModuleException;
@@ -18,13 +24,8 @@ import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
 import decodex.ui.Ui;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
+// @@author SeenFang
 class RecipeListCommandTest {
 
     private static final String TEST_RECIPE_NAME = "testRecipe";
@@ -72,7 +73,7 @@ class RecipeListCommandTest {
     void run_listBlankNoEditingRecipe_expectException() {
         RecipeListCommand testCommand = new RecipeListCommand("");
         assertThrows(RecipeManagerException.class,
-            () -> testCommand.run(dataManager, moduleManager, ui, recipeManager, storage));
+                () -> testCommand.run(dataManager, moduleManager, ui, recipeManager, storage));
     }
 
     @Test
@@ -87,7 +88,7 @@ class RecipeListCommandTest {
     void run_listUnknownRecipe_expectException() {
         RecipeListCommand testCommand = new RecipeListCommand("unknownRecipe");
         assertThrows(RecipeManagerException.class,
-            () -> testCommand.run(dataManager, moduleManager, ui, recipeManager, storage));
+                () -> testCommand.run(dataManager, moduleManager, ui, recipeManager, storage));
     }
 
     @Test
