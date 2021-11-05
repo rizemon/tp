@@ -1,8 +1,9 @@
-package decodex.commands;
+package decodex.logic.commands.recipe;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import decodex.commands.recipe.RecipeDeleteCommand;
+import decodex.logic.Command;
+import decodex.logic.commands.recipe.RecipeDeleteCommand;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.DataManagerException;
