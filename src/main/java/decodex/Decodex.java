@@ -12,7 +12,7 @@ import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
 import decodex.data.exception.StorageException;
 import decodex.modules.ModuleManager;
-import decodex.parser.Parser;
+import decodex.logic.parser.Parser;
 import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
 import decodex.ui.Ui;
