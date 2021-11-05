@@ -2,11 +2,11 @@
 
 ## Introduction
 
-Decodex is a **Command Line Interface (CLI) application for Capture-The-Flag (CTF) players to quickly process data from one encoding format to another with extreme ease**. It also allows you to build recipes, sequences of data processing instructions, to speed up repetitive tasks. The intuitive interaction can help speed up a player's performance during CTFs and save time without having to manually code the tedious data transformations.
+Decodex is a **Command Line Interface (CLI) application for Capture-The-Flag (CTF) players to perform [encoding](#terminologies), [decoding](#terminologies), [encryption](#terminologies) and [decryption](#terminologies) of data**, which come in the form of [modules](#terminologies) that can be **executed with ease** and **without any programming** needed. Decodex also provides [recipes](#terminologies) that can also be used to link several of these [modules](#terminologies) together so that they could be executed in one go to speed up repetitive tasks. The intuitive interaction can thus help to speed up a player’s performance during CTFs and save time without having to manually code the tedious [data transformations](#terminologies).
 
-This guide serves to help you understand the usage of the program to encode and decode data, as well as create recipes to automate multiple encoding or decoding processes in sequence.
+This guide serves to help you understand the usage of the program, which includes performing data transformations with the basic commands as well as developing and managing your recipes with the use of recipe commands.
 
-> :information_source: This user guide is tailored for CTF players who have basic understanding of information security concepts.
+> :information_source: This user guide is tailor-made for CTF players who have some technical understanding of encoding schemes and cryptography.
 
 ![carbon(6).png](images/carbon(6).png)
 
@@ -17,7 +17,6 @@ This guide serves to help you understand the usage of the program to encode and 
 - [Quick Start](#quick-start)
 - [List of Available Modules](#list-of-available-modules)
 - [Features](#features)
-  - [Understanding the Application's Prompt](#understanding-the-applications-prompt)
   - [Basic Commands](#basic-commands)
     - [Help: `help`](#help-help)
     - [Input of Data: `input`](#input-of-data-input)
@@ -51,12 +50,15 @@ This section serves to help you better understand the terminologies used in this
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Application, Program        | Refers to the Decodex program. This two terms are used interchangeably in this User Guide.                                                                    |
 | Encoding                    | Convert a message into a coded form.                                                                                                                          |
-| Decoding                    | Convert a coded message into an intelligible form.                                                                                                            |
+| Decoding                    | Convert a coded message into an intelligible form.
+| Encryption                  | Convert a message into a form where only authorized parties are able to decipher it.
+| Decryption                  | Converts an encrypted message to its original form by deciphering it.
 | Base64, Binary, Hexadecimal | Common types of data encoding standards.                                                                                                                      |
 | Console                     | This refers to your command prompt window.                                                                                                                    |
 | Argument                    | The additional information you provide to the program's command.                                                                                              |
 | Module                      | A self-contained set of instructions to process your data into another form.                                                                                  |
-| Recipe                      | Acts as a container for you to select your modules. When multiple modules are selected, this forms a "module chain". By default, you do not have any recipes. |
+| Recipe                      | Acts as a container for you to link several modules together that will be executed back-to-back on your data. By default, the application does not have any default recipes installed. |
+| Data transformtions         | Refers to any process that converts data from one format to another which includes encoding, decoding, encryption and decryption.                            | 
 
 ## Symbols
 
@@ -107,17 +109,13 @@ Below, you can see the list of available modules and what they do. <a name="sele
 
 ## Features
 
-> :information_source: Arguments enclosed in `<>` are **mandatory** arguments while arguments enclosed in `{}` are **optional** arguments. For example, `select <moduleName> {moduleArgument}` would mean that `moduleName` is mandatory while `moduleArgument` is optional.
+> :exclamation: Arguments enclosed in `<>` are **mandatory** arguments while arguments enclosed in `{}` are **optional** arguments. For example, `select <moduleName> {moduleArgument}` would mean that `moduleName` is mandatory while `moduleArgument` is optional.
+>
+> Arguments must be entered in the **exact order and position** as specified in the commands' respective formats.
+>
+> All commands and arguments are **case-sensitive**.
 
-> :information_source: Arguments must be entered in the **exact order and position** as specified in the commands' respective formats.
-
-> :information_source: All commands and arguments are **case-sensitive**.
-
-### Understanding the Application's Prompt
-
-![carbon(17).png](images/carbon(17).png)
-
-After running the program, it would display a prompt showing the name of the program `Decodex` , followed by the name of the recipe that is "currently being edited" (if any) in `[]`. This currently edited recipe will be the target for some `recipe` commands such as `recipe push`, `recipe pop` and `recipe reset`.
+> :information_source: After the execution of a command, you may see a `[+]` , which means that it ran successfully or a `[x]`, which denotes that an error has occurred.
 
 ### Basic Commands
 
@@ -128,7 +126,8 @@ List all syntaxes and descriptions of available commands.
 Format: `help`
 
 Example:
-IMAGEHERE
+
+![help.png](images/ug/help.png)
 
 #### Input of Data: `input`
 
@@ -209,6 +208,10 @@ Format: `exit`
 > :video_game: If you are trying out the side-quest from earlier and can't seem to find the solution to it, you may refer to the solution in the picture at the start of the user guide!
 
 ### Recipe Commands: `recipe`
+
+> :information_source: During the execution of the application, it would display the name of the recipe that is "currently being edited" (if any) in `[]` of the application's prompt. This currently edited recipe will be the target for some `recipe` commands such as [`recipe push`](#add-a-module-into-a-recipe-recipe-push), [`recipe pop`](#remove-a-module-from-a-recipe-recipe-pop) and [`recipe reset`](#clear-all-modules-in-a-recipe-recipe-reset).
+> 
+> ![carbon(17).png](images/carbon(17).png)
 
 #### Create a New Recipe: `recipe new`
 
