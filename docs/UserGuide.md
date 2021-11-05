@@ -4,7 +4,7 @@
 
 Decodex is a **Command Line Interface (CLI) application for Capture-The-Flag (CTF) players to perform [encoding](#terminologies), [decoding](#terminologies), [encryption](#terminologies) and [decryption](#terminologies) of data**, which come in the form of [modules](#terminologies) that can be **executed with ease** and **without any programming** needed. Decodex also provides [recipes](#terminologies) that can also be used to link several of these [modules](#terminologies) together so that they could be executed in one go to speed up repetitive tasks. The intuitive interaction can thus help to speed up a player’s performance during CTFs and save time without having to manually code the tedious [data transformations](#terminologies).
 
-This guide serves to help you understand the usage of the program, which includes performing data transformations with the basic commands as well as developing and managing your recipes with the use of recipe commands.
+This guide serves to help you understand the usage of the program, which includes performing data transformations with the [basic commands](#basic-commands) as well as developing and managing your recipes with the use of [recipe commands](#recipe-commands-recipe).
 
 > :information_source: This user guide is tailor-made for CTF players who have some technical understanding of encoding schemes and cryptography.
 
@@ -139,31 +139,31 @@ Format: `input <data>`
 
 Examples:
 
-- `input HelloWorld!` Enters plain text as data.
-- `input SGVsbG9Xb3JsZA==` Enters base64-encoded data.
+- `input HelloWorld!` Enters the plain-text `HelloWorld!` as data.
+- `input SGVsbG9Xb3JsZA==` Enters the base64-encoded text `SGVsbG9Xb3JsZA==` as data.
 
 ![carbon(1).png](images/ug/inputCommandExample.png)
 
-> :exclamation: Note that the program will consider all characters as data following the first space character in the input command. You may observe the leading and trailing whitespaces in the output.
+> :exclamation: Note that the program will consider all characters as data following the first space character in the input command. You may observe leading and trailing whitespaces in the output.
+>
+> Non-printable characters (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
 
-> :exclamation: Non-printable characters (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
 
-
-#### List available modules or recipes: `list`
+#### List Available Modules or Recipes: `list`
 
 Shows a list of all available modules or recipes.
 
 Format: `list {category}`
 
 > :information_source: The acceptable values of `category` are `modules` and `recipes` .
-
-> :information_source: When `category` is not specified, both lists of modules and recipes are printed.
+>
+> When `category` is not specified, both lists of modules and recipes are printed.
 
 Examples:
 
-- `list` Lists modules and recipes.
-- `list modules` Lists available modules.
-- `list recipes` Lists available recipes.
+- `list` Lists all available modules and recipes.
+- `list modules` Lists available modules only.
+- `list recipes` Lists available recipes only.
 
 ![carbon(8).png](images/ug/ListCommandExample.png)
 
@@ -174,10 +174,10 @@ Selects a module or recipe and processes the data accordingly. Subsequent select
 Format: `select module <moduleName> {moduleArgument}`, `select recipe <recipeName>`
 
 > :information_source: `moduleName` is the name of an available module supported by Decodex. `moduleArgument` is an argument that certain modules accept as input.
-
-> :information_source: `recipeName` is the name of an available recipe that is loaded by the program.
-
-> :information_source: You may also refer [here](#selectModuleExamples) for more details on our modules and its usage.
+>
+> `recipeName` is the name of an available recipe that is loaded by the program.
+>
+> You may also refer [here](#selectModuleExamples) for more details on our modules and its usage.
 
 Examples:
 
@@ -193,13 +193,13 @@ Shows you the current data.
 
 Format: `show`
 
-#### Resetting Data: `reset`
+#### Reset Data: `reset`
 
 Resets the transformed data back to the original input.
 
 Format: `reset`
 
-#### Exiting the Program: `exit`
+#### Exit the Program: `exit`
 
 Exit the program.
 
@@ -246,8 +246,6 @@ Deselects the recipe currently being edited.
 Format: `recipe deselect`
 
 Example:
-
-- `recipe deselect` Deselects the recipe currently being edited.
 
 ![recipeDeselect.png](images/recipeDeselect.png)
 
@@ -308,7 +306,7 @@ Example:
 
 ### Storage of Recipe Files
 
-> ❗ :important:
+> :exclamation:
 >
 > A recipe will correspond to a recipe file which is a plaintext file with the name `<recipeName>.txt` where `recipeName` is the name of the recipe.
 >
@@ -340,9 +338,11 @@ Coming soon to a cinema near you in the future…
 
 | Action                                      | Command Format                                                             | Example Usage                                                                             |
 | ------------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| View syntaxes and description of commands   | `help`                                                                     | `help`                                                                                    |
 | Enter input data                            | `input <data>`                                                             | `input HelloWorld!`                                                                       |
 | List available modules/recipe               | `list {category}`                                                          | `list` `list module` <br>`list recipe`                                                    |
 | Select processing module/recipe             | `select module <moduleName>` <br>&ensp;OR<br> `select recipe <recipeName>` | `select module base64decode`<br> `select module rotencode 13` `select recipe testRecipe1` |
+| View current data                           | `show`                                                                     | `show`                                                                                    |
 | Reset to original data                      | `reset`                                                                    | `reset`                                                                                   |
 | Create new recipe                           | `recipe new <recipeName>`                                                  | `recipe new testRecipe`                                                                   |
 | Select recipe for editing                   | `recipe select <recipeName>`                                               | `recipe select testRecipe`                                                                |
