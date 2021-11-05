@@ -33,7 +33,11 @@ This guide serves to help you understand the usage of the program to encode and 
     - [Remove a Module from a Recipe: `recipe pop`](#remove-a-module-from-a-recipe-recipe-pop)
     - [Clear All Modules in a Recipe: `recipe reset`](#clear-all-modules-in-a-recipe-recipe-reset)
     - [Delete a Recipe: `recipe delete`](#delete-a-recipe-recipe-delete)
-  - [Saving Recipe to File](#saving-recipe-to-file)
+  - [Storage of Recipe Files](#storage-of-recipe-files)
+    - [Load Recipe Files on Startup](#load-recipe-files-on-startup)
+    - [Save Recipe to File](#save-recipe-to-file)
+    - [Delete Recipe File](#delete-recipe-file)
+  - [Reading/Writing Data from/to File `coming soon in the future`](#readingwriting-data-fromto-file-coming-soon-in-the-future)
 - [Command Summary](#command-summary)
 - [FAQ](#faq)
 
@@ -49,7 +53,7 @@ This section serves to help you better understand the terminologies used in this
 | Base64, Binary, Hexadecimal | Common types of data encoding standards.                                                                                                                      |
 | Console                     | This refers to your command prompt window.                                                                                                                    |
 | Argument                    | The additional information you provide to the program's command.                                                                                              |
-| Module                      | A self-contained set of instructions to process your data into another form.                                                                                  |
+| Module<a name="moduleDefinition></a>                      | A self-contained set of instructions to process your data into another form.                                                                                  |
 | Recipe                      | Acts as a container for you to select your modules. When multiple modules are selected, this forms a "module chain". By default, you do not have any recipes. |
 
 ## Symbols
@@ -72,19 +76,18 @@ This section serves to help you better understand the terminologies used in this
 3. After downloading, you can open up `command prompt`.
     > :bulb: To open command prompt, press `win + r` at the same time, then type and enter `cmd`.
 4. Afterwards, you can run `decodex.jar` by typing in `java -jar decodex.jar` and Decodex's prompt should appear. Please also ensure that you are in the same directory as where you have downloaded `decodex.jar`.
-   1. In the screenshot below, `decodex.jar` is located in the `Downloads` folder.
-   ![carbon(23).png](images/carbon(23).png)
-5. You can try out some of the basic commands below:
+   1. In the screenshot below, you can see that `decodex.jar` is run in the `Downloads` folder. To add on, it also shows you how to better understand the startup prompt of Decodex.
+   ![quickStartPrompt](images/quickStartPromptEdited.png)
+5. Now, you are ready to try out some of the basic commands below:
    1. `input I am groot`:  Inputs the text data `I am groot` into the program.
    2. `list`: Lists all available modules and recipes that you can use.
    3. `select module base64encode`: Selects and runs the base64-encoding module on the data.
    4. `reset`: Resets the changes made to data - resetting to its original data.
    5. `exit`: Exits the application.
-   > :video_game: Side-Quest! You may try to find out what `NTEgMzEgNTIgNDcgNjUgMzAgNGUgNTQgNGQgNmEgNDUgNzggNGQgMzEgNTIgMzk=`
-   > using our application! If you are new here, you can continue reading this guide to understand how to unravel this mysterious text!
+   > :video_game: To make things more interesting while learning how to use Decodex, you may try to find out what `NTEgMzEgNTIgNDcgNjUgMzAgNGUgNTQgNGQgNmEgNDUgNzggNGQgMzEgNTIgMzk=` using our application! If you are new here, you can continue reading this guide to understand how to unravel this mysterious text!
 6. For more information on Decodex's features, please refer to the Features Section.
 
-## List of Available Modules
+## List of Available [Modules](#moduleDefinition)
 Below, you can see the list of available modules and what they do. <a name="selectModuleExamples"></a>
 
 > :information_source: These are some of the more common encoding/decoding/cipher methods that can be found in CTF competitions.
@@ -283,21 +286,35 @@ Example:
 
 ![recipeDelete.png](images/recipeDelete.png)
 
-## Saving Recipe to File
+## Storage of Recipe Files
 
-Saves the recipe into a file. However, this is done automatically for you, so that it is less punishing for you (especially if you often forget to save your documents before exiting).
+> ❗ :important:
+>
+> A recipe will correspond to a recipe file which is a plaintext file with the name `<recipeName>.txt` where `recipeName` is the name of the recipe.
+>
+> It is highly recommended that you only modify recipe files through the `recipe` commands in `Decodex` and not manually edit the recipe files.
+>
+> If you choose to manually edit the recipe files, they should not be edited while `Decodex` is running as `Decodex` could accidentally overwrite your changes.
+>
+> Take note that incorrectly edited files will be considered as invalid and will not be loaded on program start up.
+> 
+> Additional note would be that the recipe files would not be loaded successfully if Decodex does not have access rights to the files, or it is not in the valid filetype.
 
-How it works:
+### Load Recipe Files on Startup
 
-Every time you add a recipe into Decodex, it will save this new recipe into a text file, with the recipe name as the file name, in the `recipe/` folder. Furthermore, any adding or removing of modules from this recipe would also update the corresponding recipe save file.
+Loads the recipes from the recipe files found in the `recipe/` directory. This is done automatically for you on startup so that you do not have to manually add multiple recipe files into Decodex each time.
 
-Example:
+### Save Recipe to File
 
-If you create a new recipe called "onlyForMe" in Decodex, this will create "onlyForMe.txt" which you can find in the `recipe/` folder. And whenever you run the `recipe push` or `recipe pop` command, it will update "onlyForMe.txt" accordingly.
+Saves the recipe to a recipe file in the `recipe/` directory. This is done automatically for you whenever a recipe is created or modified so that it is more convenient and less punishing for you (especially if you often forget to save your documents before exiting).
 
-## Reading/writing data from/to file `[coming soon in the future]`
+### Delete Recipe File
 
-Coming soon to a cinema near you in the future*…*
+Deletes the recipe file in the `recipe/` directory. This is also done automatically for you (via the `recipe delete` command), so that you do not have to manually find the corresponding recipe file to delete it.
+
+## Reading/Writing Data from/to File `[coming soon in the future]`
+
+Coming soon to a cinema near you in the future…
 
 ## Command Summary
 
