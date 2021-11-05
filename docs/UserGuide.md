@@ -38,7 +38,7 @@ This guide serves to help you understand the usage of the program, which include
     - [Load Recipe Files on Startup](#load-recipe-files-on-startup)
     - [Save Recipe to File](#save-recipe-to-file)
     - [Delete Recipe File](#delete-recipe-file)
-    - [Reading/Writing Data from/to File `coming soon in the future`](#readingwriting-data-fromto-file-coming-soon-in-the-future)
+  - [Reading/Writing Data from/to File `coming soon in the future`](#readingwriting-data-fromto-file-coming-soon-in-the-future)
 - [Command Summary](#command-summary)
 - [FAQ](#faq)
 
@@ -109,13 +109,11 @@ Below, you can see the list of available modules and what they do. <a name="sele
 
 ## Features
 
-> :exclamation: Arguments enclosed in `<>` are **mandatory** arguments while arguments enclosed in `{}` are **optional** arguments. For example, `select <moduleName> {moduleArgument}` would mean that `moduleName` is mandatory while `moduleArgument` is optional.
->
-> Arguments must be entered in the **exact order and position** as specified in the commands' respective formats.
->
-> All commands and arguments are **case-sensitive**.
-
-> :information_source: After the execution of a command, you may see a `[+]` , which means that it ran successfully or a `[x]`, which denotes that an error has occurred.
+> :exclamation: Notes about the commands and arguments:
+> * Arguments enclosed in `<>` are **mandatory** arguments while arguments enclosed in `{}` are **optional** arguments. For example, `select <moduleName> {moduleArgument}` would mean that `moduleName` is mandatory while `moduleArgument` is optional.
+> * Arguments must be entered in the **exact order and position** as specified in the commands' respective formats.
+> * All commands and arguments are **case-sensitive**.
+> * After the execution of a command, you may see a `[+]` , which means that it ran successfully or a `[x]`, which denotes that an error has occurred.
 
 ### Basic Commands
 
@@ -144,9 +142,9 @@ Examples:
 
 ![carbon(1).png](images/ug/inputCommandExample.png)
 
-> :exclamation: Note that the program will consider all characters as data following the first space character in the input command. You may observe leading and trailing whitespaces in the output.
->
-> Non-printable characters (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
+> :exclamation: Behaviour of the `input` command:
+> * Note that the program will consider **all characters as data following the first space character** in the input command. You may observe leading and trailing whitespaces in the output.
+> * **Non-printable characters** (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
 
 
 #### List Available Modules or Recipes: `list`
@@ -155,9 +153,9 @@ Shows a list of all available modules or recipes.
 
 Format: `list {category}`
 
-> :information_source: The acceptable values of `category` are `modules` and `recipes` .
->
-> When `category` is not specified, both lists of modules and recipes are printed.
+> :information_source: Notes about the `list` command:
+> * The acceptable values of `category` are `modules` and `recipes` .
+> * When `category` is not specified, both lists of modules and recipes are printed.
 
 Examples:
 
@@ -173,11 +171,10 @@ Selects a module or recipe and processes the data accordingly. Subsequent select
 
 Format: `select module <moduleName> {moduleArgument}`, `select recipe <recipeName>`
 
-> :information_source: `moduleName` is the name of an available module supported by Decodex. `moduleArgument` is an argument that certain modules accept as input.
->
-> `recipeName` is the name of an available recipe that is loaded by the program.
->
-> You may also refer [here](#selectModuleExamples) for more details on our modules and its usage.
+> :information_source: Notes about the `select` command:
+> * `moduleName` is the name of an available module supported by Decodex. `moduleArgument` is an argument that certain modules accept as input.
+> * `recipeName` is the name of an available recipe that is loaded by the program.
+> * You may also refer [here](#selectModuleExamples) for more details on our modules and its usage.
 
 Examples:
 
@@ -306,17 +303,12 @@ Example:
 
 ### Storage of Recipe Files
 
-> :exclamation:
->
-> A recipe will correspond to a recipe file which is a plaintext file with the name `<recipeName>.txt` where `recipeName` is the name of the recipe.
->
-> It is highly recommended that you only modify recipe files through the `recipe` commands in `Decodex` and not manually edit the recipe files.
->
-> If you choose to manually edit the recipe files, they should not be edited while `Decodex` is running as `Decodex` could accidentally overwrite your changes.
->
-> Take note that incorrectly edited files will be considered as invalid and will not be loaded on program start up.
-> 
-> Additional note would be that the recipe files would not be loaded successfully if Decodex does not have access rights to the files, or it is not in the valid filetype.
+> :exclamation: Notes about the recipe files
+> * A recipe will correspond to a recipe file which is a plaintext file with the name `<recipeName>.txt` where `recipeName` is the name of the recipe.
+> * It is highly recommended that you only modify recipe files through the `recipe` commands in `Decodex` and not manually edit the recipe files.
+> * If you choose to manually edit the recipe files, they should not be edited while `Decodex` is running as `Decodex` could accidentally overwrite your changes.
+> * Take note that incorrectly edited files will be considered as invalid and will not be loaded on program start up.
+> * Additional note would be that the recipe files would not be loaded successfully if Decodex does not have access rights to the files, or it is not in the valid filetype.
 
 #### Load Recipe Files on Startup
 
@@ -330,7 +322,7 @@ Saves the recipe to a recipe file in the `recipe/` directory. This is done autom
 
 Deletes the recipe file in the `recipe/` directory. This is also done automatically for you (via the `recipe delete` command), so that you do not have to manually find the corresponding recipe file to delete it.
 
-#### Reading/Writing Data from/to File `[coming soon in the future]`
+### Reading/Writing Data from/to File `[coming soon in the future]`
 
 Coming soon to a cinema near you in the future…
 
