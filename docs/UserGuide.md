@@ -19,9 +19,11 @@ This guide serves to help you understand the usage of the program to encode and 
 - [Features](#features)
   - [Understanding the Application's Prompt](#understanding-the-applications-prompt)
   - [Basic Commands](#basic-commands)
+    - [Help](#help-help)
     - [Input of Data: `input`](#input-of-data-input)
     - [List Available Modules or Recipes: `list`](#list-available-modules-or-recipes-list)
     - [Selecting a Module or Recipe: `select`](#selecting-a-module-or-recipe-select)
+    - [Show Current Data: `show`](#show-current-data-show)
     - [Resetting Data: `reset`](#resetting-data-reset)
     - [Exiting the Program: `exit`](#exiting-the-program-exit)
   - [Recipe Commands: `recipe`](#recipe-commands-recipe)
@@ -37,7 +39,7 @@ This guide serves to help you understand the usage of the program to encode and 
     - [Load Recipe Files on Startup](#load-recipe-files-on-startup)
     - [Save Recipe to File](#save-recipe-to-file)
     - [Delete Recipe File](#delete-recipe-file)
-  - [Reading/Writing Data from/to File `coming soon in the future`](#readingwriting-data-fromto-file-coming-soon-in-the-future)
+    - [Reading/Writing Data from/to File `coming soon in the future`](#readingwriting-data-fromto-file-coming-soon-in-the-future)
 - [Command Summary](#command-summary)
 - [FAQ](#faq)
 
@@ -119,6 +121,15 @@ After running the program, it would display a prompt showing the name of the pro
 
 ### Basic Commands
 
+#### Help: `help`
+
+List all syntaxes and descriptions of available commands.
+
+Format: `help`
+
+Example:
+<insert image here>
+
 #### Input of Data: `input`
 
 Stores the data to be processed by modules.
@@ -176,6 +187,12 @@ Examples:
 - `select recipe testRecipe1` Runs the `testRecipe1` recipe on the current data.
 
 ![carbon(9).png](images/ug/SelectCommandExample.png)
+
+#### Show Current Data: `show`
+
+Shows you the current data.
+
+Format: `show`
 
 #### Resetting Data: `reset`
 
@@ -286,7 +303,7 @@ Example:
 
 ![recipeDelete.png](images/recipeDelete.png)
 
-## Storage of Recipe Files
+### Storage of Recipe Files
 
 > ❗ :important:
 >
@@ -300,19 +317,19 @@ Example:
 > 
 > Additional note would be that the recipe files would not be loaded successfully if Decodex does not have access rights to the files, or it is not in the valid filetype.
 
-### Load Recipe Files on Startup
+#### Load Recipe Files on Startup
 
 Loads the recipes from the recipe files found in the `recipe/` directory. This is done automatically for you on startup so that you do not have to manually add multiple recipe files into Decodex each time.
 
-### Save Recipe to File
+#### Save Recipe to File
 
 Saves the recipe to a recipe file in the `recipe/` directory. This is done automatically for you whenever a recipe is created or modified so that it is more convenient and less punishing for you (especially if you often forget to save your documents before exiting).
 
-### Delete Recipe File
+#### Delete Recipe File
 
 Deletes the recipe file in the `recipe/` directory. This is also done automatically for you (via the `recipe delete` command), so that you do not have to manually find the corresponding recipe file to delete it.
 
-## Reading/Writing Data from/to File `[coming soon in the future]`
+#### Reading/Writing Data from/to File `[coming soon in the future]`
 
 Coming soon to a cinema near you in the future…
 
