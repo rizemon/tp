@@ -2,7 +2,6 @@ package decodex.logic.commands;
 
 import decodex.commands.ListCommand;
 import decodex.commands.SelectCommand;
-import decodex.commands.ShowCommand;
 import decodex.logic.Command;
 import decodex.logic.commands.recipe.RecipeDeleteCommand;
 import decodex.commands.recipe.RecipeDeselectCommand;
