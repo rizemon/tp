@@ -1,4 +1,4 @@
-package decodex.parser;
+package decodex.logic.parser;
 
 import decodex.logic.Command;
 import decodex.logic.commands.recipe.RecipeDeleteCommand;
@@ -8,6 +8,7 @@ import decodex.logic.commands.recipe.RecipePushCommand;
 import decodex.logic.commands.recipe.RecipeResetCommand;
 import decodex.logic.commands.recipe.RecipeSelectCommand;
 import decodex.data.exception.CommandException;
+import decodex.logic.parser.RecipeCommandParser;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
