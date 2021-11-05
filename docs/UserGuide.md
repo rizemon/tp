@@ -19,7 +19,7 @@ This guide serves to help you understand the usage of the program to encode and 
 - [Features](#features)
   - [Understanding the Application's Prompt](#understanding-the-applications-prompt)
   - [Basic Commands](#basic-commands)
-    - [Help](#help-help)
+    - [Help: `help`](#help-help)
     - [Input of Data: `input`](#input-of-data-input)
     - [List Available Modules or Recipes: `list`](#list-available-modules-or-recipes-list)
     - [Selecting a Module or Recipe: `select`](#selecting-a-module-or-recipe-select)
