@@ -1,4 +1,4 @@
-package decodex.commands.recipe;
+package decodex.logic.commands.recipe;
 
 import java.io.IOException;
 

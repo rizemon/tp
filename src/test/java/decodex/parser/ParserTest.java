@@ -3,9 +3,9 @@ package decodex.parser;
 import decodex.logic.Command;
 import decodex.logic.commands.ExitCommand;
 import decodex.logic.commands.InputCommand;
-import decodex.commands.ListCommand;
+import decodex.logic.commands.ListCommand;
 import decodex.logic.commands.ResetCommand;
-import decodex.commands.SelectCommand;
+import decodex.logic.commands.SelectCommand;
 import decodex.data.exception.CommandException;
 import decodex.data.exception.ParserException;
 

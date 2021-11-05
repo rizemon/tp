@@ -1,4 +1,4 @@
-package decodex.commands;
+package decodex.logic.commands;
 
 import decodex.data.Data;
 import decodex.data.DataManager;
@@ -8,6 +8,7 @@ import decodex.data.exception.ModuleException;
 import decodex.data.exception.ModuleManagerException;
 import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
+import decodex.logic.commands.SelectCommand;
 import decodex.modules.ModuleManager;
 import decodex.modules.base64.Base64Encoder;
 import decodex.modules.hex.HexEncoder;
