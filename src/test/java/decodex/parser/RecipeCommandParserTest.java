@@ -3,10 +3,10 @@ package decodex.parser;
 import decodex.logic.Command;
 import decodex.logic.commands.recipe.RecipeDeleteCommand;
 import decodex.logic.commands.recipe.RecipeNewCommand;
-import decodex.commands.recipe.RecipePopCommand;
-import decodex.commands.recipe.RecipePushCommand;
-import decodex.commands.recipe.RecipeResetCommand;
-import decodex.commands.recipe.RecipeSelectCommand;
+import decodex.logic.commands.recipe.RecipePopCommand;
+import decodex.logic.commands.recipe.RecipePushCommand;
+import decodex.logic.commands.recipe.RecipeResetCommand;
+import decodex.logic.commands.recipe.RecipeSelectCommand;
 import decodex.data.exception.CommandException;
 
 import org.junit.jupiter.api.BeforeEach;
