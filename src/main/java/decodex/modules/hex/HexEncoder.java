@@ -3,6 +3,8 @@ package decodex.modules.hex;
 import decodex.data.Data;
 import decodex.modules.Module;
 
+// @@author SeenFang
+
 /**
  * The HexEncoder class converts the input string to hexadecimal bytes.
  */
