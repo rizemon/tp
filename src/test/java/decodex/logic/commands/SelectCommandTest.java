@@ -1,5 +1,7 @@
 package decodex.logic.commands;
 
+import java.io.IOException;
+
 import decodex.data.Data;
 import decodex.data.DataManager;
 import decodex.data.exception.CommandException;
@@ -8,7 +10,6 @@ import decodex.data.exception.ModuleException;
 import decodex.data.exception.ModuleManagerException;
 import decodex.data.exception.RecipeException;
 import decodex.data.exception.RecipeManagerException;
-import decodex.logic.commands.SelectCommand;
 import decodex.modules.ModuleManager;
 import decodex.modules.base64.Base64Encoder;
 import decodex.modules.hex.HexEncoder;
@@ -17,7 +18,6 @@ import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
 import decodex.ui.Ui;
 
-import java.io.IOException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
