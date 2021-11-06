@@ -76,8 +76,7 @@ Decodex [] > [+] Recipe testRecipe created successfully
 Decodex [Editing: testRecipe] > Here is the list of available recipes:
   testRecipe
 
-Decodex [Editing: testRecipe] > Here is the list of modules in recipe testRecipe:
-There are no modules in the recipe
+Decodex [Editing: testRecipe] > [+] There are no modules in the recipe
 Decodex [Editing: testRecipe] > [+] There are no modules in the recipe
 [+] Output: "I am a lab rat"
 Decodex [Editing: testRecipe] > [+] Added hexencode module to recipe testRecipe
