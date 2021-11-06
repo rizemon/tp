@@ -147,7 +147,7 @@ Examples:
 > * **Non-printable characters** (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
 
 
-#### List Available Modules or Recipes: `list`
+#### List Available [Modules](#terminologies) or [Recipes](#terminologies): `list`
 
 Shows a list of all available modules or recipes.
 
@@ -165,7 +165,7 @@ Examples:
 
 ![carbon(8).png](images/ug/ListCommandExample.png)
 
-#### Select a Module or Recipe: `select`
+#### Select a [Module](#list-of-available-modules) or [Recipe](#terminologies): `select`
 
 Selects a module or recipe and processes the data accordingly. Subsequent selection of modules or recipes will process the transformed data output from the previous module or recipe.
 
