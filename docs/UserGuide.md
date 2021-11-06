@@ -119,7 +119,7 @@ Below, you can see the list of available modules and what they do. <a name="sele
 
 #### Help: `help`
 
-List all syntaxes and descriptions of available commands.
+Lists all syntaxes and descriptions of available commands.
 
 Format: `help`
 
@@ -198,7 +198,7 @@ Format: `reset`
 
 #### Exit the Program: `exit`
 
-Exit the program.
+Exits the program.
 
 Format: `exit`
 
