@@ -239,7 +239,6 @@ public class Ui {
     }
 
     // @@author Kair0s3
-
     /**
      * Prints all the recipe files that failed to load.
      *
@@ -268,7 +267,7 @@ public class Ui {
     /**
      * Prints all supported commands and their respective help message.
      *
-     * @param basicCommandHelpList  List of basic command help messages.
+     * @param basicCommandHelpList List of basic command help messages.
      * @param recipeCommandHelpList List of recipe command help messages.
      */
     public void printCommandHelp(String[] basicCommandHelpList, String[] recipeCommandHelpList) {
