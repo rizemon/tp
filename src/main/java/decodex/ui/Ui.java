@@ -129,6 +129,12 @@ public class Ui {
         assert !moduleList.isBlank() : "Module list should not be empty";
         assert recipeName != null : "Recipe name should not be null";
         assert !recipeName.isBlank() : "Recipe name should not be empty";
+
+        if (moduleList.equals(RegularMessages.RECIPE_EMPTY)) {
+            printSuccess(moduleList);
+            return;
+        }
+
         System.out.println(String.format(RegularMessages.LIST_RECIPE_MODULES + "\n%s", recipeName, moduleList));
     }
 
@@ -233,6 +239,7 @@ public class Ui {
     }
 
     // @@author Kair0s3
+
     /**
      * Prints all the recipe files that failed to load.
      *
@@ -261,17 +268,17 @@ public class Ui {
     /**
      * Prints all supported commands and their respective help message.
      *
-     * @param basicCommandHelpList List of basic command help messages.
+     * @param basicCommandHelpList  List of basic command help messages.
      * @param recipeCommandHelpList List of recipe command help messages.
      */
     public void printCommandHelp(String[] basicCommandHelpList, String[] recipeCommandHelpList) {
         System.out.println(RegularMessages.SYNTAX_MANDATORY_OPTIONAL + "\n");
         System.out.println(RegularMessages.BASIC_COMMANDS);
-        for (String commandFormat: basicCommandHelpList) {
+        for (String commandFormat : basicCommandHelpList) {
             System.out.printf("-> %s\n\n", commandFormat.replace("\n", "\n   "));
         }
         System.out.println(RegularMessages.RECIPE_COMMANDS);
-        for (String commandFormat: recipeCommandHelpList) {
+        for (String commandFormat : recipeCommandHelpList) {
             System.out.printf("-> %s\n\n", commandFormat.replace("\n", "\n   "));
         }
     }
