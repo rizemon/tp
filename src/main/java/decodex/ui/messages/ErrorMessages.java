@@ -36,7 +36,7 @@ public class ErrorMessages {
     public static final String RECIPE_FILE_DELETE_FAILED_MESSAGE = "Failed to delete the corresponding recipe file";
     public static final String FAILED_TO_LOAD_RECIPES_FILE_MESSAGE = "Failed to load following recipes into Decodex:";
     public static final String INVALID_RECIPE_COMMAND = "Invalid recipe command";
-    public static final String INVALID_DIRECTORY_ACCESS = "Failed to access %s directory";
+    public static final String INVALID_DIRECTORY_ACCESS = "The %s directory is not a valid directory";
     public static final String INVALID_RECIPE_FILE = "The recipe file is not a valid file or is missing";
     public static final String FAILED_TO_LIST_FILES_MESSAGE = "Something went wrong when listing files in recipe";
     public static final String TOO_MANY_ARGUMENTS_MESSAGE = "Too many arguments";
