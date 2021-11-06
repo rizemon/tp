@@ -42,6 +42,7 @@ Given below are my notable contributions to the project.
 ## Documentation
   - [User Guide](https://ay2122s1-cs2113t-t10-3.github.io/tp/UserGuide.html)
     - Added introduction and FAQ ([#244](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/244)).
+    - Added `recipe deselect` usage ([#275](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/275/files))
   - [Developer Guide](https://ay2122s1-cs2113t-t10-3.github.io/tp/DeveloperGuide.html)
     - Added arhitecture diagram and details ([#181](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/181)).
     - Added implementation details of logic, module and basic commands ([#234](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/234)). 
