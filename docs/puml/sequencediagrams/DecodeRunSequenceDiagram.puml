@@ -44,13 +44,12 @@ loop command is not instance of ExitCommand
     XYZCommand --> Decodex
     deactivate XYZCommand
     XYZCommand -[hidden]-> Decodex
-    destroy XYZCommand
 
 end
+destroy XYZCommand
 
 <-- Decodex :
 deactivate Decodex
-<-[hidden]- Decodex :
 
 destroy Ui
 destroy Parser

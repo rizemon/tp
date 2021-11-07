@@ -192,7 +192,7 @@ Below is a partial class diagram that shows an overview of the `Logic` component
 The `Logic` component consists of:
 
 - `Parser`: Handles user input and decides the `XYZCommand` object to create.
-- `RecipeCommandParser`: When `Parser` detects that a `RecipeXYZCommand` object needs to be created, the user input is handed over from `Parser` and will decide the `RecipeXYZCommand` object to create.
+- `RecipeCommandParser`: When `Parser` detects that a `RecipeXYZCommand` object needs to be created, the user input is handed over from `Parser` and `RecipeCommandParser` will decide the `RecipeXYZCommand` object to create.
 - `Command`: An abstract class that defines the blueprint for the derived `XYZCommand` and `RecipeXYZCommand` classes. <a name="designListOfCommands"></a>
     - `InputCommand`: Takes in a string from the user and sets it as the current `Data` object to perform operations on.
     - `ShowCommand`: Shows the current Data object.
@@ -288,9 +288,9 @@ To add on, the `Storage` component is designed to access only the following fold
 
 ## Implementation
 
-This section focuses on explaining the specific applications flows and the interactions between the classes and their methods.
+This section focuses on explaining the specific application flows and the interactions between the classes and their methods.
 
-💡 The lifeline of the objects should terminate at the destroy marker (`X`), however due to a limitation of the PlantUML software, the lifeline extends beyond the destroy marker.
+:exclamation: The lifeline of the objects should terminate at the destroy marker (`X`), however due to a limitation of the PlantUML software, the lifeline extends beyond the destroy marker.
 
 ### Decodex Initialisation
 
@@ -318,8 +318,8 @@ The flow of the `Parser` logic:
 
 1. Receives the user input and parses it to get the command type.
 2. Prepares the corresponding `XYZCommand`.
-    1. However, if the command is a `RecipeXYZCommand` , it will be passed to `RecipeCommandParser` for subcommand parsing.
-3. Returns the command back to `Decodex`.
+    1. However, if the command is a `RecipeXYZCommand`, it will be passed to `RecipeCommandParser` for subcommand parsing.
+3. Returns the `Command` object back to `Decodex`.
 
 ### Parser - Recipe Command Logic
 
@@ -331,7 +331,7 @@ The general process of the `RecipeCommandParser` logic consists of:
 
 1. Receives the user input from `Parser` then parses it to get the subcommand type.
 2. Prepares the corresponding `RecipeXYZCommand`
-3. Returns the command back to `Decodex`
+3. Returns the `RecipeXYZCommand` object back to `Decodex`.
 
 ### Modules
 
