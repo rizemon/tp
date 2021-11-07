@@ -30,5 +30,6 @@ RecipePopCommand <-- Ui
 deactivate Ui
 
 <-- RecipePopCommand
+deactivate RecipePopCommand
 
 @enduml
