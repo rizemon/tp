@@ -91,7 +91,8 @@ This guide includes the setup instructions, design, implementation, testing, pro
 | Argument                    | The additional information you provide to the program's command.                                                                                              |
 | Module                      | A self-contained set of instructions to process your data into another form.                                                                                  |
 | Recipe                      | Acts as a container for you to select your modules. When multiple modules are selected, this forms a "module chain". By default, you do not have any recipes. |
-| Suffix                      | Something that comes at the end. <br>e.g. For for text files like `recipe.txt` then `.txt` is the suffix.
+| Suffix                      | Something that comes at the end. <br>e.g. For for text files like `recipe.txt` then `.txt` is the suffix. |
+
 ### Symbols
 
 | Name                 | Definition                                                                                            |
