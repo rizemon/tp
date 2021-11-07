@@ -1,27 +1,12 @@
 # Developer Guide <!-- omit in toc -->
 
-## Introduction
-
-Decodex is a **Command Line Interface (CLI) application for Capture-The-Flag (CTF) players to quickly transform data from one format to another with extreme ease**. The intuitive interaction can help speed up a player's performance during CTFs and save time without having to manually code the tedious data transformations.
-
-### Purpose of This Guide
-
-The purpose of this guide is to provide more information on our application, Decodex, such as the overall architecture, implementation and design rationales to developers who wish to contribute and enhance Decodex to it's fullest potential. As of the release of this developer guide, it is written for Decodex V2.0.
-
-> :information_source: This guide may also serve as a start for software testers to find bugs and possibly edge cases within our applications.
-
-### Developer Guide Usage
-
-This developer guide is made for developers who wish to further understand and/or develop **Decodex**.
-This guide includes the setup instructions, design, implementation, testing, product scope, and other sections to give developers a better understanding of the application.
-
 ## Table of Contents <!-- omit in toc -->
 - [Introduction](#introduction)
   - [Purpose of This Guide](#purpose-of-this-guide)
   - [Developer Guide Usage](#developer-guide-usage)
 - [Acknowledgements](#acknowledgements)
-  - [Terminologies](#terminologies)
-  - [Symbols](#symbols)
+- [Terminologies](#terminologies)
+- [Symbols](#symbols)
 - [Getting Started](#getting-started)
   - [Setting Up the Project](#setting-up-the-project)
   - [Additional Considerations](#additional-considerations)
@@ -66,7 +51,32 @@ This guide includes the setup instructions, design, implementation, testing, pro
 - [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
 - [Appendix D: Glossary](#appendix-d-glossary)
 - [Appendix E: Instructions for Manual Testing](#appendix-e-instructions-for-manual-testing)
-- [Appendix F: Examples of Saved Recipe Files](#appendix-f---examples-of-saved-recipe-files)
+  - [Start-up and Shutdown](#start-up-and-shutdown)
+  - [Inputting Data](#inputting-data)
+  - [Listing Modules and Recipes](#listing-modules-and-recipes)
+  - [Running Modules and Resetting](#running-modules-and-resetting)
+  - [Listing Modules in Recipes](#listing-modules-in-recipes)
+  - [Creating Recipes](#creating-recipes)
+  - [Switching Recipes for Modification](#switching-recipes-for-modification)
+  - [Modifying Recipes](#modifying-recipes)
+  - [Running Recipes](#running-recipes)
+  - [Deleting Recipes](#deleting-recipes)
+  - [Storage of Recipe Files](#storage-of-recipe-files)
+- [Appendix F - Examples of Saved Recipe Files](#appendix-f---examples-of-saved-recipe-files)
+
+## Introduction
+
+Decodex is a **Command Line Interface (CLI) application for Capture-The-Flag (CTF) players to perform [encoding](#terminologies), [decoding](#terminologies), [encryption](#terminologies) and [decryption](#terminologies) of data**, which come in the form of [modules](#terminologies) that can be **executed with ease** and **without any programming** needed. Decodex also provides [recipes](#terminologies) that can also be used to link several of these [modules](#terminologies) together so that they could be executed in one go to speed up repetitive tasks. The intuitive interaction can thus help to speed up a player’s performance during CTFs and save time without having to manually code the tedious [data transformations](#terminologies).
+
+### Purpose of This Guide
+
+The purpose of this guide is to provide more information on our application, Decodex, such as the overall architecture, implementation and design rationales to developers who wish to contribute and enhance Decodex to it's fullest potential. As of the release of this developer guide, it is written for Decodex V2.1.
+
+> :information_source: This guide may also serve as a start for software testers to find bugs and possibly edge cases within our applications.
+
+### Developer Guide Usage
+
+To better understand this developer guide, it is recommended to start off from the [Architecture](#architecture) section to have a high-level view of the application, before diving into each of the specific components to understand Decodex's design and implementation.
 
 ## Acknowledgements
 
@@ -78,7 +88,7 @@ This guide includes the setup instructions, design, implementation, testing, pro
     5. [AB2 Code Structure](https://github.com/se-edu/addressbook-level2)
 2. [AY2021S2-CS2113-T10-1's Developer Guide](https://ay2021s2-cs2113-t10-1.github.io/tp/DeveloperGuide.html)
 
-### Terminologies
+## Terminologies
 
 | Terminology                 | Definition                                                                                                                                                    |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -91,9 +101,10 @@ This guide includes the setup instructions, design, implementation, testing, pro
 | Argument                    | The additional information you provide to the program's command.                                                                                              |
 | Module                      | A self-contained set of instructions to process your data into another form.                                                                                  |
 | Recipe                      | Acts as a container for you to select your modules. When multiple modules are selected, this forms a "module chain". By default, you do not have any recipes. |
-| Suffix                      | Something that comes at the end. <br>e.g. For for text files like `recipe.txt` then `.txt` is the suffix. |
+| XYZ                         | Represents a wildcard of the specific mentioned. eg. `XYZCommand` can be `SelectCommand`, `ListCommand` etc.                                                  |
+| Suffix                      | Something that comes at the end. <br>e.g. For for text files like `recipe.txt` then `.txt` is the suffix.                                                     |
 
-### Symbols
+## Symbols
 
 | Name                 | Definition                                                                                            |
 | -------------------- | ----------------------------------------------------------------------------------------------------- |
@@ -120,7 +131,7 @@ This guide includes the setup instructions, design, implementation, testing, pro
 4. Importing project
     1. Follow the guide at *[[se-edu/guides] IDEA: Importing a Gradle project](https://se-education.org/guides/tutorials/intellijImportGradleProject.html)* to import the forked project into Intellij.
 
-    > ❗Note: Importing a Gradle project is slightly different from importing a normal Java project.
+    > :exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
 
 5. Verifying setup
     1. Run the `decodex.Decodex.java` and try a few commands.
@@ -140,6 +151,8 @@ This guide includes the setup instructions, design, implementation, testing, pro
         1. Any changes/additions to the current commands would simply require the changes within `Parser.java`.
         2. For any changes/additions to the modules, would simply require changes within the `src/main/java/decodex/modules` folder.
     3. This structure makes it easier for us as well as developers like you to maintain and further extend the capabilities of our application.
+
+> :exclamation: Before continuing to the Design and Implementation sections, please note that "XYZ" represents a wildcard that is used to mention commands and modules. eg. `XYZCommand` refers to `SelectCommand`, `ListCommand` etc, and `XYZModule` refers to `Base64Encoder`, `HexDecoder`, etc.
 
 ## Design
 
@@ -597,6 +610,26 @@ To sum it up, this application helps users to reduce the time needed to transfor
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 ## Appendix E: Instructions for Manual Testing
+
+### Start-up and Shutdown
+
+### Inputting Data
+
+### Listing Modules and Recipes
+
+### Running Modules and Resetting
+
+### Listing Modules in Recipes
+
+### Creating Recipes
+
+### Switching Recipes for Modification
+
+### Modifying Recipes
+
+### Running Recipes
+
+### Deleting Recipes
 
 ### Storage of Recipe Files
 
