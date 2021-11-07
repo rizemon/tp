@@ -1,0 +1,26 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+
+!include colors.puml
+
+abstract class "Module\n{abstract}" as Module MODULE_COLOR {
+  # name: String
+  # description: String
+  {abstract} +run(data: Data): Data
+}
+
+note "The run() method is omitted from inheriting classes.\nThe attributes and methods are also omitted to improve readability \nsince each respective XYZEncoder and XYZDecoder\nhas their own attributes and even additional methods." as omitMessage
+
+Module <|-down- XYZDecoder
+Module <|-up- XYZEncoder
+
+class XYZDecoder MODULE_COLOR{
+
+}
+
+class XYZEncoder MODULE_COLOR {
+
+}
+
+@enduml
