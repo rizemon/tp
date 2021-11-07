@@ -51,6 +51,7 @@ This guide includes the setup instructions, design, implementation, testing, pro
   - [Recipe Commands](#recipe-commands)
     - [RecipeNewCommand](#recipenewcommand)
     - [RecipeSelectCommand](#recipeselectcommand)
+    - [RecipeDeselectCommand](#recipedeselectcommand)
     - [RecipeListCommand](#recipelistcommand)
     - [RecipePushCommand](#recipepushcommand)
     - [RecipePopCommand](#recipepopcommand)
@@ -184,6 +185,7 @@ The `Logic` component consists of:
     - `ExitCommand`: Exits the application.
     - `RecipeNewCommand`: Creates a new `Recipe` object with name provided by the user and creates a save file for it on the file system.
     - `RecipeSelectCommand`: Set a `Recipe` object as the recipe that is currently being edited.
+    - `RecipeDeselectCommand`: Set the currently edited `Recipe` object as no longer being edited.
     - `RecipeListCommand`: Display all `Module` objects in a `Recipe` object.
     - `RecipePushCommand`: Appends a `Module` object to the `Recipe` object that is currently being edited.
     - `RecipePopCommand`: Removes the latest `Module` object from the `Recipe` object that is currently being edited.
@@ -458,6 +460,16 @@ When the `RecipeCommandParser` recognises the `select` subcommand keyword from t
 1. Retrieves the `Recipe` corresponding with the provided `recipeName` from `RecipeManager`.
 2. Sets `recipeName` as the `editingRecipeName` in `RecipeManager`.
 3. Prints a successful selection message containing the `recipeName` to the console.
+
+#### RecipeDeselectCommand
+
+![RecipeDeselectCommand](images/dg/RecipeDeselectCommand.png)
+
+When the `RecipeCommandParser` recognises the `deselect` subcommand keyword from the user input, a `RecipeDeselectCommand` is instantiated.
+
+1. Retrieves the `recipeName` of the `Recipe` corresponding to `editingRecipeName` in `RecipeManager`.
+2. Sets the `editingRecipeName` in `RecipeManager` as `null`.
+3. Prints a successful deselection message containing the `recipeName` to the console.
 
 #### RecipeListCommand
 

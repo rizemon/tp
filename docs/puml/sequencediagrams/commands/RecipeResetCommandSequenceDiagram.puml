@@ -7,6 +7,9 @@ end box
 box RECIPE_COLOR
 Participant ":RecipeManager" as RecipeManager
 end box
+box STORAGE_COLOR
+Participant ":Storage" as Storage
+end box
 box UI_COLOR
 Participant ":Ui" as Ui
 end box
@@ -23,6 +26,11 @@ RecipeResetCommand -> RecipeManager: resetEditedRecipe()
 activate RecipeManager
 RecipeResetCommand <-- RecipeManager
 deactivate RecipeManager
+
+RecipeResetCommand -> Storage: saveRecipeToFile(:Recipe)
+activate Storage
+RecipeResetCommand <-- Storage
+deactivate Storage
 
 RecipeResetCommand -> Ui: printRecipeReset(:String)
 activate Ui
