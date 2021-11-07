@@ -4,35 +4,34 @@
 This is a student project for Software Engineering & Object-Oriented Programming (CS2113/T). And, I am **Sim Tian Boon**, one of the contributors of `Decodex`.
 
 ## Project Name: `Decodex`
-`Decodex` is a Command Line Interface (CLI) application for Capture-The-Flag (CTF) players to quickly process data from one encoding format to another with extreme ease in the form of intuitive shorthand usage.
+`Decodex` is a Command Line Interface (CLI) application for Capture-The-Flag (CTF) players to quickly transform data from one format to another easily and intuitively.
 
 ## Summary of Contributions
 Below are my contributions to the `Decodex`
 
-*Do note that the PR links shows just the more notable ones, since the other PRs may also consist of changes/adjustments to this functionality/features*
+*Note that the PR links below are the more notable ones - easier to find.*
 
 Features/Functionalities
 
 1. Added `Parser` functionality to parse user inputs (For non-recipe commands) ([#53](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/53), [#72](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/72/files))
-    - Functionality - Performs the parsing of user input to generate the corresponding command to be executed.
-    - Justification - Helps to parse the user input so that `Decodex` can run the correct command that users expect Only limited to basic `Decodex` commands.
+    - Functionality - Performs the parsing of user input to corresponding command.
+    - Justification - Helps to parse user input so that `Decodex` can run the correct command that users expect.
 
 2. Added the ability to show current data ([#274](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/274))
-    - Feature - Shows the user the current data that they have.
-        - eg. before base64encode, if the input is "hi", then `show` will show the user the current data that is "hi". But after base64encode is done, then the current data is "aGk="
-    - Justification - Allows user to keep track of the current data they are working on, mainly for convenience and also credits to @alwinangys for the [suggestion](https://github.com/alwinangys/ped/issues/4).
+    - Feature - Shows the user the current data that they have. By default, this current data will be your original data if no modules has been run on it.
+    - Justification - Allows user to keep track of the current data they are working on, and also credits to @alwinangys for the [suggestion](https://github.com/alwinangys/ped/issues/4).
 
 3. Added Base64 Modules (Base64 Encoder and Decoder) ([#35](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/35))
-    - Feature - Allows users to use these module to encode/decode using base64 formats.
+    - Feature - Allows users to use these modules to encode/decode using base64 formats.
     - Justification - This is one of the more common encoding formats that appear in CTFs.
 
 4. Added ability to load recipes from files on start up ([#208](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/208/))
-    - Functionality - Performs the loading of recipe files from the recipe directory upon run of `Decodex`.
-    - Justification - Allows users to load previously saved recipes, instead of having to create from scratch each time.
+    - Functionality - Performs the loading of saved recipe files upon run of `Decodex`.
+    - Justification - Allows users to load previously saved recipes and provides convenience.
 
 5. Added ability to save recipe into file, and delete the recipe file ([#208](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/208/))
-    - Functionality - Saves the recipe into a file in the format of `recipeName.txt` and stored in the `recipe/` directory. Do note that, this is more of an auto-save whenever changes are made to `recipe`. For the deletion, the recipe file is deleted when the user deletes the `recipe` from `Decodex`.
-    - Justification - Allows users to auto-save their crafted recipes into a file which provides convenience for users. And the deletion of the recipe file also provides convenience over having to delete manually.
+    - Functionality - Saves (Auto) the recipe into a file named `recipeName.txt` and stores it in the `recipe/` directory. The auto-deletion of the recipe file happens when user deletes the recipe on `Decodex`.
+    - Justification - Allows users to save recipes into file and delete without having to manually do it.
 
 ## Enhancements to Existing Features
 - Refactored and improved Coding Standards

@@ -2,9 +2,9 @@
 
 ## Introduction
 
-Decodex is a **Command Line Interface (CLI) application for Capture-The-Flag (CTF) players to perform [encoding](#terminologies), [decoding](#terminologies), [encryption](#terminologies) and [decryption](#terminologies) of data**, which come in the form of [modules](#terminologies) that can be **executed with ease** and **without any programming** needed. Decodex also provides [recipes](#terminologies) that can also be used to link several of these [modules](#terminologies) together so that they could be executed in one go to speed up repetitive tasks. The intuitive interaction can thus help to speed up a player’s performance during CTFs and save time without having to manually code the tedious [data transformations](#terminologies).
+Decodex is a **Command Line Interface (CLI) application for Capture-The-Flag (CTF) players to perform [encoding](#terminologies), [decoding](#terminologies), [encryption](#terminologies) and [decryption](#terminologies) of data**, which come in the form of [modules](#terminologies) that can be **executed with ease** and **without any programming** needed. Decodex also provides [recipes](#terminologies) which can also be used to link several of these [modules](#terminologies) together so that they could be executed in one go to speed up repetitive tasks. The intuitive interaction can thus help to speed up a player’s performance during CTFs and save time without having to manually code the tedious [data transformations](#terminologies).
 
-This guide serves to help you understand the usage of the program, which includes performing data transformations with the [basic commands](#basic-commands) as well as developing and managing your recipes with the use of [recipe commands](#recipe-commands-recipe).
+This guide serves to help you understand the usage of the program, which includes performing data transformations using [basic commands](#basic-commands) as well as developing and managing recipes using [recipe commands](#recipe-commands-recipe).
 
 > :information_source: This user guide is tailor-made for CTF players who have some technical understanding of encoding schemes and cryptography.
 
@@ -46,19 +46,19 @@ This guide serves to help you understand the usage of the program, which include
 
 This section serves to help you better understand the terminologies used in this user guide.<a name="moduleDefinition"></a>
 
-| Data transformation         | The conversion of one data format to another.                                                                                                                 |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Application, Program        | Refers to the Decodex program. This two terms are used interchangeably in this User Guide.                                                                    |
-| Encoding                    | Convert a message into a coded form.                                                                                                                          |
-| Decoding                    | Convert a coded message into an intelligible form.
-| Encryption                  | Convert a message into a form where only authorized parties are able to decipher it.
-| Decryption                  | Converts an encrypted message to its original form by deciphering it.
-| Base64, Binary, Hexadecimal | Common types of data encoding standards.                                                                                                                      |
-| Console                     | This refers to your command prompt window.                                                                                                                    |
-| Argument                    | The additional information you provide to the program's command.                                                                                              |
-| Module                      | A self-contained set of instructions to process your data into another form.                                                                                  |
-| Recipe                      | Acts as a container for you to link several modules together that will be executed back-to-back on your data. By default, the application does not have any default recipes installed. |
-| Data transformtions         | Refers to any process that converts data from one format to another which includes encoding, decoding, encryption and decryption.                            | 
+| Terminology                 | Definition                                                                                                                                                                                |
+|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Data transformation         | The conversion of one data format to another.                                                                                                                                             |
+| Application, Program        | Refers to the Decodex program. These two terms are used interchangeably in this User Guide.                                                                                               |
+| Encoding                    | Converting a message into a coded form.                                                                                                                                                   |
+| Decoding                    | Converting a coded message into an intelligible form.                                                                                                                                     |
+| Encryption                  | Converting a message into a form where only authorized parties are able to decipher it.                                                                                                   |
+| Decryption                  | Converting an encrypted message back to its original form by deciphering it.                                                                                                              |
+| Base64, Binary, Hexadecimal | Common types of data encoding standards.                                                                                                                                                  |
+| Console                     | This refers to your command prompt window.                                                                                                                                                |
+| Argument                    | Additional information that you provide to the program's command.                                                                                                                         |
+| Module                      | A self-contained set of instructions to process your data into another form.                                                                                                              |
+| Recipe                      | Acts as a container for you to link several modules together that will be executed back-to-back on your data.<br>By default, the application does not have any default recipes installed. |
 
 ## Symbols
 
@@ -76,7 +76,7 @@ This section serves to help you better understand the terminologies used in this
    1. If you haven't, you may download it [here](https://www.oracle.com/java/technologies/downloads/#java11-linux).
     > :exclamation: You should download the installation relative to your Operating System.
 2. Next, download the latest `decodex.jar` [here](https://github.com/AY2122S1-CS2113T-T10-3/tp/releases).
-   1. Simply click on the `decodex.jar` under "Assets" and the download should start.
+   1. Simply click on `decodex.jar` under "Assets" and the download should start.
 3. After downloading, you can open up `command prompt`.
     > :bulb: To open command prompt, press `win + r` at the same time, then type and enter `cmd`.
 4. Afterwards, you can run `decodex.jar` by typing in `java -jar decodex.jar` and Decodex's prompt should appear. Please also ensure that you are in the same directory as where you have downloaded `decodex.jar`.
@@ -120,7 +120,7 @@ Below, you can see the list of available modules and what they do. <a name="sele
 
 #### Help: `help`
 
-Lists all syntaxes and descriptions of available commands.
+Lists the syntax and descriptions of all available commands.
 
 Format: `help`
 
@@ -331,7 +331,7 @@ Coming soon to a cinema near you in the future…
 
 | Action                                      | Command Format                                                             | Example Usage                                                                             |
 | ------------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| View syntaxes and description of commands   | `help`                                                                     | `help`                                                                                    |
+| View the syntax and description of commands | `help`                                                                     | `help`                                                                                    |
 | Enter input data                            | `input <data>`                                                             | `input HelloWorld!`                                                                       |
 | List available modules/recipe               | `list {category}`                                                          | `list` `list module` <br>`list recipe`                                                    |
 | Select processing module/recipe             | `select module <moduleName>` <br>&ensp;OR<br> `select recipe <recipeName>` | `select module base64decode`<br> `select module rotencode 13` `select recipe testRecipe1` |
@@ -350,4 +350,4 @@ Coming soon to a cinema near you in the future…
 ## FAQ
 
 **Q:** How do I transfer my recipes to another computer?  
-**A:** Install the app in the other computer and copy the recipe files into the recipe folder.
+**A:** Install the app on the other computer and copy the recipe files from the computer that you are transferring from, into the recipe folder of the computer that you are transferring to.

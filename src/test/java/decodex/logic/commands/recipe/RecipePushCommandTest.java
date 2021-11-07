@@ -14,6 +14,7 @@ import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
 import decodex.ui.Ui;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -21,18 +22,30 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 // @@author rizemon
 class RecipePushCommandTest {
 
-    @Test
-    public void run_oneModuleToEditingRecipe_recipeSizeIsOne()
-            throws RecipeException, RecipeManagerException, CommandException,
-            ModuleException, ModuleManagerException, IOException {
-        DataManager dataManager = new DataManager();
-        ModuleManager moduleManager = new ModuleManager();
-        Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager();
-        Ui ui = new Ui();
+    private ModuleManager moduleManager;
+    private RecipeManager recipeManager;
+    private DataManager dataManager;
+    private Ui ui;
+    private Storage storage;
 
-        String testRecipeName = "test";
-        Recipe testRecipe = new Recipe(testRecipeName);
+    private String testRecipeName;
+    private Recipe testRecipe;
+
+    @BeforeEach
+    public void createInstances() throws RecipeException {
+        dataManager = new DataManager();
+        recipeManager = new RecipeManager();
+        moduleManager = new ModuleManager();
+        ui = new Ui();
+        storage = new Storage();
+
+        testRecipeName = "test";
+        testRecipe = new Recipe(testRecipeName);
+    }
+
+    @Test
+    public void run_oneModuleToEditingRecipe_recipeSizeIsOne() throws RecipeManagerException, CommandException,
+            ModuleException, ModuleManagerException, IOException {
         recipeManager.addRecipe(testRecipe);
         recipeManager.selectRecipeForEditing(testRecipeName);
 
@@ -46,15 +59,7 @@ class RecipePushCommandTest {
     }
 
     @Test
-    public void run_emptyModuleName_expectException() throws RecipeException, RecipeManagerException, IOException {
-        DataManager dataManager = new DataManager();
-        ModuleManager moduleManager = new ModuleManager();
-        Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager();
-        Ui ui = new Ui();
-
-        String testRecipeName = "test";
-        Recipe testRecipe = new Recipe(testRecipeName);
+    public void run_emptyModuleName_expectException() throws RecipeManagerException {
         recipeManager.addRecipe(testRecipe);
         recipeManager.selectRecipeForEditing(testRecipeName);
 

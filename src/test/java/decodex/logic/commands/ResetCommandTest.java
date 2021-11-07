@@ -10,43 +10,51 @@ import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
 import decodex.ui.Ui;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 // @@author rizemon
 class ResetCommandTest {
 
+    private ModuleManager moduleManager;
+    private RecipeManager recipeManager;
+    private DataManager dataManager;
+    private Ui ui;
+    private Storage storage;
+
+    private Data originalData;
+    private Data newData;
+
+    @BeforeEach
+    public void createInstances() {
+        dataManager = new DataManager();
+        recipeManager = new RecipeManager();
+        moduleManager = new ModuleManager();
+        ui = new Ui();
+        storage = new Storage();
+
+        originalData = new Data("hi");
+        newData = new Data("bye");
+    }
+
     @Test
     public void run_noChanges_sameOriginalData() throws DataManagerException {
-        DataManager dataManager = new DataManager();
-        ModuleManager moduleManager = new ModuleManager();
-        Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager();
-        Ui ui = new Ui();
-
-        Data originalData = new Data("hi");
         dataManager.setOriginalData(originalData);
 
         ResetCommand testCommand = new ResetCommand();
         testCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
-        assertTrue(Arrays.equals(dataManager.getCurrentData().getRawBytes(), originalData.getRawBytes()));
+        assertArrayEquals(dataManager.getCurrentData().getRawBytes(), originalData.getRawBytes());
     }
 
     @Test
     public void run_newData_sameOriginalData() throws DataManagerException {
-        DataManager dataManager = new DataManager();
-        ModuleManager moduleManager = new ModuleManager();
-        Storage storage = new Storage();
-        RecipeManager recipeManager = new RecipeManager();
-        Ui ui = new Ui();
-
-        Data originalData = new Data("hi");
         dataManager.setOriginalData(originalData);
-        Data newData = new Data("bye");
         dataManager.setCurrentData(newData);
 
         ResetCommand testCommand = new ResetCommand();
         testCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
-        assertTrue(Arrays.equals(dataManager.getCurrentData().getRawBytes(), originalData.getRawBytes()));
+        assertArrayEquals(dataManager.getCurrentData().getRawBytes(), originalData.getRawBytes());
     }
 }
