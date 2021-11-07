@@ -306,10 +306,10 @@ Example:
 
 > :exclamation: Notes about the recipe files
 > * A recipe will correspond to a recipe file which is a plaintext file with the name `<recipeName>.txt` where `recipeName` is the name of the recipe.
-> * It is highly recommended that you only modify recipe files through the `recipe` commands in `Decodex` and not manually edit the recipe files.
-> * If you choose to manually edit the recipe files, they should not be edited while `Decodex` is running as `Decodex` could accidentally overwrite your changes.
-> * Take note that incorrectly edited files will be considered as invalid and will not be loaded on program start up.
-> * Additional note would be that the recipe files would not be loaded successfully if Decodex does not have access rights to the files, or it is not in the valid filetype.
+> * It is highly recommended that you only modify recipe files through the [`recipe`](#recipe-commands-recipe) commands in Decodex and not manually edit the recipe files.
+> * If you choose to manually edit the recipe files, the correct format would be that each line in the respective recipe file should contain only one module, and they should be formatted in the following syntax of `<moduleName> {moduleArgument}`. You should also not be editing while Decodex is running as Decodex could accidentally overwrite your changes.
+> * Incorrectly edited files will be considered as invalid and will not be loaded on program start up.
+> * The recipe files would also not be loaded successfully if Decodex does not have access rights to the files, or it is not in the valid filetype.
 
 #### Load Recipe Files on Startup
 
