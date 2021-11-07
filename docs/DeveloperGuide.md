@@ -350,11 +350,11 @@ There are two groups of modules supported by Decodex:
 - Modules that do not take in any parameters
 - Modules that take in at least one parameter
 
-Modules that do not take in any parameters
+**Modules that do not take in any parameters**
 
 This group of modules do not require any additional parameters as their encoding and decoding processes are fixed. Hence, the constructors of these modules should not receive any parameters.
 
-Modules that take in at least one parameter
+**Modules that take in at least one parameter**
 
 This group of modules require at least one additional parameter as their encoding and decoding processes are dependent on the provided parameters. The constructors of these modules should receive parameters as required and stored in private variables. These variables will then be used in their respective `run(Data data)` method.
 
