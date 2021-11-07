@@ -834,43 +834,43 @@ The following test cases should be run in sequence:
 1. Test case: `recipe select special_Recipe1`. Select the recipe `special_Recipe1` for editing.
     1. Expected: The recipe `special_Recipe1` is selected for editing.
 
-```
-[+] Recipe special_Recipe1 selected for editing
-Decodex [Editing: special_Recipe1] >
-```
+    ```
+    [+] Recipe special_Recipe1 selected for editing
+    Decodex [Editing: special_Recipe1] >
+    ```
 2. Test case: `recipe push hexencode`. Add the `hexencode` module to the recipe.
     1. Expected: The `hexencode` module is added to the recipe.
 
-```
-[+] Added hexencode module to recipe special_Recipe1
-```
+    ```
+    [+] Added hexencode module to recipe special_Recipe1
+    ```
 3. Test case: `recipe push base64decode`. Add the `base64decode` module to the recipe.
     1. Expected: The `base64decode` module is added to the recipe.
 
-```
-[+] Added base64decode module to recipe special_Recipe1
-```
+    ```
+    [+] Added base64decode module to recipe special_Recipe1
+    ```
 
 4. Test case: `recipe pop`. If adding the `base64decode` module was a mistake, remove it from the recipe.
     1. Expected: The `base64decode` module is removed from the recipe.
 
-```
-[+] Removed base64decode module from recipe special_Recipe1
-```
+    ```
+    [+] Removed base64decode module from recipe special_Recipe1
+    ```
 
 5. Test case: `recipe push base64encode`. The correct module `base64encode` is added to the recipe.
     1. Expected: The `base64encode` module is added to the recipe.
 
-```
-[+] Added base64encode module to recipe special_Recipe1
-```
+    ```
+    [+] Added base64encode module to recipe special_Recipe1
+    ```
 
 6. Test case: `recipe push rotencode 5`. Add the `rotencode` module with argument `5` to the recipe.
     1. Expected: The `rotencode` module with argument `5` is added to the recipe.
 
-```
-[+] Added rotencode module to recipe special_Recipe1
-```
+    ```
+    [+] Added rotencode module to recipe special_Recipe1
+    ```
 
 ### Running Recipes
 
