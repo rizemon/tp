@@ -32,7 +32,7 @@ public class ShowCommand extends Command {
     public void run(DataManager dataManager, ModuleManager moduleManager, Ui ui, RecipeManager recipeManager,
             Storage storage) throws DataManagerException {
         Data currentData = dataManager.getCurrentData();
-        String currentDataInput = currentData.toString();
-        ui.printCurrentData(currentDataInput);
+        String currentDataString = currentData.toString();
+        ui.printCurrentData(currentDataString);
     }
 }

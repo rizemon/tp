@@ -27,8 +27,8 @@ public class Storage {
     // Specifies the default directories for recipes.
     private static final String DEFAULT_RECIPE_DIRECTORY = "recipe";
 
-    // Specifies the corresponding file prefixes.
-    private static final String RECIPE_FILE_PREFIX = ".txt";
+    // Specifies the corresponding file suffixes.
+    private static final String RECIPE_FILE_SUFFIX = ".txt";
 
     // Specifies the different regexes.
     private static final String LINE_BREAK_REGEX = "\\r?\\n";
@@ -110,7 +110,7 @@ public class Storage {
                 .filter(file -> file.isFile())
                 .filter(file -> {
                     String fileName = file.getName();
-                    return fileName.endsWith(RECIPE_FILE_PREFIX);
+                    return fileName.endsWith(RECIPE_FILE_SUFFIX);
                 })
                 .toArray(size -> new File[size]);
 
@@ -159,7 +159,7 @@ public class Storage {
      * @throws ModuleManagerException If provided module name is not an available module.
      * @throws RecipeException        If recipe name is not valid.
      */
-    public Recipe readRecipeFromFile(String recipeFilename, File recipeFile, ModuleManager moduleManager)
+    private Recipe readRecipeFromFile(String recipeFilename, File recipeFile, ModuleManager moduleManager)
             throws IOException, ModuleException, ModuleManagerException, RecipeException {
         Path recipeFilePath = recipeFile.toPath();
 
@@ -199,7 +199,7 @@ public class Storage {
     public void saveRecipeToFile(Recipe recipe) throws IOException, StorageException {
         instantiateDirectoryIfNotExist(DEFAULT_RECIPE_DIRECTORY);
 
-        String newRecipeFileName = recipe.getName() + RECIPE_FILE_PREFIX;
+        String newRecipeFileName = recipe.getName() + RECIPE_FILE_SUFFIX;
 
         File recipeDirectory = new File(DEFAULT_RECIPE_DIRECTORY);
         File outputRecipeFile = new File(recipeDirectory, newRecipeFileName);
@@ -259,7 +259,7 @@ public class Storage {
      * @throws StorageException If the recipe file is not an actual file.
      */
     public void deleteRecipeFile(String recipeName) throws IOException, StorageException {
-        String newRecipeFileName = recipeName + RECIPE_FILE_PREFIX;
+        String newRecipeFileName = recipeName + RECIPE_FILE_SUFFIX;
 
         File recipeDirectory = new File(DEFAULT_RECIPE_DIRECTORY);
         File outputRecipeFile = new File(recipeDirectory, newRecipeFileName);
