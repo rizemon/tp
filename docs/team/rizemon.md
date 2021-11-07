@@ -48,5 +48,10 @@ Code contributed: more than 2000 lines of code ([Reposense](https://nus-cs2113-a
 2. Reported bugs/comments for other teams: ([1](https://github.com/rizemon/ped/issues/5), [2](https://github.com/rizemon/ped/issues/12), [3](https://github.com/rizemon/ped/issues/13), [4](https://github.com/rizemon/ped/issues/7), [5](https://github.com/rizemon/ped/issues/1))
 
 ### User Guide
+1. Created all example screenshots using [`carbon`](https://carbon.now.sh/) and maintained them.
+2. Added documentation for `input` and `reset` command: [#118](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/118)
+3. Added list of supported modules: [#243](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/243)
+4. Added section on understanding the application's prompt: [#243](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/243) 
 
 ### Developer Guide
+1. 
