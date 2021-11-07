@@ -32,7 +32,7 @@ activate RecipeManager
 RecipePopCommand <-- RecipeManager: :Recipe
 deactivate RecipeManager
 
-RecipePopCommand -> Ui: printModuleRemovedFromRecipe(:String, :String)
+RecipePopCommand -> Ui: printModuleRemovedFromRecipe(moduleName:String, recipeName:String)
 activate Ui
 RecipePopCommand <-- Ui
 deactivate Ui

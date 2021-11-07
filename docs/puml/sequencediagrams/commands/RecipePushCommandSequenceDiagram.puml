@@ -43,7 +43,7 @@ else moduleName is not blank
   RecipePushCommand <-- Storage
   deactivate Storage
 
-  RecipePushCommand -> Ui: printModuleAddedToRecipe(:String, :String)
+  RecipePushCommand -> Ui: printModuleAddedToRecipe(moduleName:String, recipeName:String)
   activate Ui
   RecipePushCommand <-- Ui
   deactivate Ui

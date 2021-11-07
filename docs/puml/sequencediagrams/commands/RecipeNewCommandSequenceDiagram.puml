@@ -27,15 +27,15 @@ else recipeName is not blank
   RecipeNewCommand <-- Recipe
   deactivate Recipe
 
-  RecipeNewCommand -> Storage: saveRecipeToFile(:Recipe)
-  activate Storage
-  RecipeNewCommand <-- Storage
-  deactivate Storage
-
   RecipeNewCommand -> RecipeManager: addRecipe(:Recipe)
   activate RecipeManager
   RecipeNewCommand <-- RecipeManager
   deactivate RecipeManager
+
+  RecipeNewCommand -> Storage: saveRecipeToFile(:Recipe)
+  activate Storage
+  RecipeNewCommand <-- Storage
+  deactivate Storage
 
   RecipeNewCommand -> RecipeManager: selectRecipeForEditing(:String)
   activate RecipeManager

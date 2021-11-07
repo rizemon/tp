@@ -343,8 +343,7 @@ The abstract `Module` class serves as the base class for all modules to be inher
 
 The `name` and `description` variables must be set during the instantiation of the module, that is to say in the constructor.
 
-The abstract `run(Data data)` method should be implemented to return a `Data` object as the purpose of this method is solely for data processing.
-
+The abstract `run(Data data)` method should be implemented to access the bytes inside the given `Data` object, perform some processing on them, construct a new `Data` object from the results and return it.
 There are two groups of modules supported by Decodex:
 
 - Modules that do not take in any parameters
@@ -364,7 +363,7 @@ The current implementation of the abstract `Module` class provides a strong foun
 
 | No Parameters                                                                                | At Least One Parameter |
 | -------------------------------------------------------------------------------------------- | ---------------------- |
-| Base64Encoder<br>Base64Decoder<br>HexEncoder<br>HexDecoder<br>BinaryEncoder<br>BinaryDecoder | RotEncoder             |
+| [`Base64Encoder`](https://github.com/AY2122S1-CS2113T-T10-3/tp/blob/master/src/main/java/decodex/modules/base64/Base64Encoder.java) <br> [`Base64Decoder`](https://github.com/AY2122S1-CS2113T-T10-3/tp/blob/master/src/main/java/decodex/modules/base64/Base64Decoder.java) <br> [`HexEncoder`](https://github.com/AY2122S1-CS2113T-T10-3/tp/blob/master/src/main/java/decodex/modules/hex/HexEncoder.java) <br> [`HexDecoder`](https://github.com/AY2122S1-CS2113T-T10-3/tp/blob/master/src/main/java/decodex/modules/hex/HexDecoder.java) <br> [`BinaryEncoder`](https://github.com/AY2122S1-CS2113T-T10-3/tp/blob/master/src/main/java/decodex/modules/binary/BinaryEncoder.java) <br> [`BinaryDecoder`](https://github.com/AY2122S1-CS2113T-T10-3/tp/blob/master/src/main/java/decodex/modules/binary/BinaryDecoder.java) | [`RotEncoder`](https://github.com/AY2122S1-CS2113T-T10-3/tp/blob/master/src/main/java/decodex/modules/rot/RotEncoder.java)             |
 
 ### List of Commands
 
@@ -386,7 +385,7 @@ When the `Parser` recognises the `input` keyword from the user input, an `InputC
 
 1. Create a `Data` object from the user input.
 2. Set the created `Data` object as the `originalData` in the `DataManager` .
-3. Prints `input` to the console.
+3. Prints the provided user input back to the console.
 
 #### ShowCommand
 
@@ -422,8 +421,8 @@ When the `Parser` recognises the `reset` keyword from the user input, a `ResetCo
 When the `Parser` recognises the `select` keyword from the user input, a `SelectCommand` is instantiated.
 
 1. If `selectCategory` is
-    1. `module`, The selected `Module` is retrieved and executed on the provided `Data`. See [SelectCommand (Module)](#selectcommand-module) for the full sequence diagram.
-    2. `recipe`, The selected `Recipe` is retrieved and its `Module`objects are executed on the provided `Data`. See [SelectCommand (Recipe)](#selectcommand-recipe) for the full sequence diagram.
+    1. `module`, the selected `Module` is retrieved and executed on the provided `Data`. See [SelectCommand (Module)](#selectcommand-module) for the full sequence diagram.
+    2. `recipe`, the selected `Recipe` is retrieved and its `Module`objects are executed on the provided `Data`. See [SelectCommand (Recipe)](#selectcommand-recipe) for the full sequence diagram.
 
 ##### SelectCommand (Module)
 
@@ -434,10 +433,6 @@ When the `Parser` recognises the `select` keyword from the user input, a `Select
 3. Executes the selected `Module` on the retrieved `Data` object and stores the processed content in a new `Data` object.
 4. Sets the new `Data` object as the current data in `DataManager`.
 5. Prints the contents of the new `Data` object to the console.
-6. Retrieves the current `Data` object from `DataManager`.
-7. Executes the selected `Module` on the retrieved `Data` object and creates a new `Data` object.
-8. Sets the new `Data` object as the current data in `DataManager`.
-9. Prints the content of the new `Data` object to the console.
 
 ##### SelectCommand (Recipe)
 
@@ -447,7 +442,7 @@ When the `Parser` recognises the `select` keyword from the user input, a `Select
 2. Retrieves the current `Data` object from `DataManager`.
 3. Executes the selected `Recipe` on the retrieved `Data` object and stores the processed content in a new `Data` object.
 4. Sets the new `Data` object as the current data in `DataManager`.
-5. Prints the `Module`s in the `Recipe` to the console.
+5. Prints the `Module` objects in the executed `Recipe` to the console.
 6. Prints the content of the new `Data` object to the console.
 
 #### ListCommand
