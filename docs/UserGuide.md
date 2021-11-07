@@ -59,7 +59,6 @@ This section serves to help you better understand the terminologies used in this
 | Argument                    | Additional information that you provide to the program's command.                                                                                                                         |
 | Module                      | A self-contained set of instructions to process your data into another form.                                                                                                              |
 | Recipe                      | Acts as a container for you to link several modules together that will be executed back-to-back on your data.<br>By default, the application does not have any default recipes installed. |
-| Data transformtions         | Refers to any process that converts data from one format to another which includes encoding, decoding, encryption and decryption.                                                         |
 
 ## Symbols
 
