@@ -11,7 +11,7 @@ end box
 
 -> HelpCommand: run()
 activate HelpCommand
-HelpCommand -> Ui: printCommandHelp(BASIC_COMMAND_HELP_MESSAGES: String[],  \nRECIPE_COMMAND_HELP_MESSAGES:String[])
+HelpCommand -> Ui: printCommandHelp(basicCommandHelpList: String[],\nrecipeCommandHelpList:String[])
 activate Ui
 HelpCommand <-- Ui
 deactivate Ui
