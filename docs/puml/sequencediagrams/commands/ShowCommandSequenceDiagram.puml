@@ -10,7 +10,6 @@ Participant ":Ui" as Ui
 end box
 
 box DATA_COLOR
-Participant ":Data" as Data
 Participant ":DataManager" as DataManager
 end box
 
@@ -20,16 +19,16 @@ ShowCommand -> DataManager: getCurrentData()
 activate DataManager
 ShowCommand <-- DataManager: currentData: Data
 deactivate DataManager
-ShowCommand -> Data: toString()
-activate Data
-ShowCommand <-- Data
-deactivate Data
 
+note left
+The toString() method has been
+omitted as it is trivial.
+end note
 ShowCommand -> Ui: printCurrentData(currentDataString: String)
 activate Ui
 ShowCommand <-- Ui
 deactivate Ui
 <-- ShowCommand
-
 deactivate ShowCommand
+
 @enduml
