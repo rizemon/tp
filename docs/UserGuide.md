@@ -121,7 +121,7 @@ Below, you can see the list of available modules and what they do. <a name="sele
 
 #### Help: `help`
 
-Lists the syntax and descriptions of all available commands.
+Lists the syntax(s) and descriptions of all available commands.
 
 Format: `help`
 
@@ -332,7 +332,7 @@ Coming soon to a cinema near you in the future…
 
 | Action                                      | Command Format                                                             | Example Usage                                                                             |
 | ------------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| View the syntax and description of commands | `help`                                                                     | `help`                                                                                    |
+| View the syntax(s) and description of commands | `help`                                                                     | `help`                                                                                    |
 | Enter input data                            | `input <data>`                                                             | `input HelloWorld!`                                                                       |
 | List available modules/recipe               | `list {category}`                                                          | `list` `list module` <br>`list recipe`                                                    |
 | Select processing module/recipe             | `select module <moduleName>` <br>&ensp;OR<br> `select recipe <recipeName>` | `select module base64decode`<br> `select module rotencode 13` `select recipe testRecipe1` |
