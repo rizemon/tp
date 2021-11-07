@@ -14,31 +14,47 @@ import decodex.recipes.RecipeManager;
 import decodex.storage.Storage;
 import decodex.ui.Ui;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 // @@author rizemon
 class RecipeResetCommandTest {
 
+    private ModuleManager moduleManager;
+    private RecipeManager recipeManager;
+    private DataManager dataManager;
+    private Ui ui;
+    private Storage storage;
+    private RecipeResetCommand testCommand;
+
+    private String testRecipeName;
+    private Recipe testRecipe;
+
+    @BeforeEach
+    public void createInstances() throws RecipeException {
+        dataManager = new DataManager();
+        recipeManager = new RecipeManager();
+        moduleManager = new ModuleManager();
+        ui = new Ui();
+        storage = new Storage();
+        testCommand = new RecipeResetCommand();
+
+        testRecipeName = "test";
+        testRecipe = new Recipe(testRecipeName);
+    }
+
     @Test
-    public void run_oneModuleInEditingRecipe_recipeSizeIsZero() throws RecipeException, RecipeManagerException,
-            ModuleManagerException, ModuleException, IOException {
-        RecipeManager recipeManager = new RecipeManager();
-        String testRecipeName = "test";
-        Recipe testRecipe = new Recipe(testRecipeName);
+    public void run_oneModuleInEditingRecipe_recipeSizeIsZero() throws RecipeManagerException, ModuleManagerException,
+            ModuleException, IOException {
         recipeManager.addRecipe(testRecipe);
         recipeManager.selectRecipeForEditing(testRecipeName);
 
-        ModuleManager moduleManager = new ModuleManager();
         String moduleName = "base64encode";
         String[] parameters = {};
         Module module = moduleManager.selectModule(moduleName, parameters);
         testRecipe.push(module);
 
-        RecipeResetCommand testCommand = new RecipeResetCommand();
-        DataManager dataManager = new DataManager();
-        Ui ui = new Ui();
-        Storage storage = new Storage();
         testCommand.run(dataManager, moduleManager, ui, recipeManager, storage);
 
         assertEquals(recipeManager.getEditingRecipe().getModuleList().size(), 0);
