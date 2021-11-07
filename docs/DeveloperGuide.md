@@ -177,6 +177,7 @@ The `Logic` component consists of:
 - `RecipeCommandParser`: When `Parser` detects that a `RecipeXYZComand` object needs to be created, the user input is handed over from `Parser` and will decide the `Command` object to create.
 - `Command`: An abstract class that defines the blueprint for the derived `*Command` classes.
     - `InputCommand`: Takes in a string from the user and sets it as the current `Data` object to perform operations on.
+    - `ShowCommand`: Shows the current Data object.
     - `HelpCommand`: Displays all command syntaxes to the user.
     - `ListCommand`: Displays all `Module` objects and loaded `Recipe` objects to the user.
     - `SelectCommand`: Executes a supported `Module` object or a loaded `Recipe` object on the current `Data` object and replaces it with the resulting `Data` object from the execution.
@@ -351,6 +352,16 @@ The current implementation of the abstract `Module` class provides a strong foun
 
 ### List of Commands
 
+> :information_source: For the following sequence diagrams for XYZCommands, the parameters in the run() method is omitted to improve readability.
+
+#### HelpCommand
+
+![HelpCommand](images/dg/HelpCommandSequenceDiagram.png)
+
+When the `Parser` recognises the `help` keyword from the user input, a `HelpCommand` is instantiated.
+
+1. Prints out the list of all available command (`XYZCommand` and `RecipeXYZCommand`) syntaxes, and their corresponding descriptions.
+
 #### InputCommand
 
 ![InputCommand](images/dg/InputCommand.png)
@@ -360,6 +371,16 @@ When the `Parser` recognises the `input` keyword from the user input, an `InputC
 1. Create a `Data` object from the user input.
 2. Set the created `Data` object as the `originalData` in the `DataManager` .
 3. Prints `input` to the console.
+
+#### ShowCommand
+
+![ShowCommand](images/dg/ShowCommandSequenceDiagram.png)
+
+When the `Parser` recognises the `show` keyword from the user input, an `ShowCommand` is instantiated.
+
+1. Gets the current `Data` object stored in DataManager.
+2. Gets the String version of the current `Data` object.
+3. Prints the current data string to the console.
 
 #### ExitCommand
 
