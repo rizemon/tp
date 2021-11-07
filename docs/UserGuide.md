@@ -21,10 +21,10 @@ This guide serves to help you understand the usage of the program, which include
     - [Help: `help`](#help-help)
     - [Input of Data: `input`](#input-of-data-input)
     - [List Available Modules or Recipes: `list`](#list-available-modules-or-recipes-list)
-    - [Selecting a Module or Recipe: `select`](#selecting-a-module-or-recipe-select)
+    - [Select a Module or Recipe: `select`](#select-a-module-or-recipe-select)
     - [Show Current Data: `show`](#show-current-data-show)
-    - [Resetting Data: `reset`](#resetting-data-reset)
-    - [Exiting the Program: `exit`](#exiting-the-program-exit)
+    - [Reset Data: `reset`](#reset-data-reset)
+    - [Exit the Program: `exit`](#exit-the-program-exit)
   - [Recipe Commands: `recipe`](#recipe-commands-recipe)
     - [Create a New Recipe: `recipe new`](#create-a-new-recipe-recipe-new)
     - [Select a Recipe for Editing: `recipe select`](#select-a-recipe-for-editing-recipe-select)
@@ -120,7 +120,7 @@ Below, you can see the list of available modules and what they do. <a name="sele
 
 #### Help: `help`
 
-List all syntaxes and descriptions of available commands.
+Lists all syntaxes and descriptions of available commands.
 
 Format: `help`
 
@@ -148,7 +148,7 @@ Examples:
 > * **Non-printable characters** (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
 
 
-#### List Available Modules or Recipes: `list`
+#### List Available [Modules](#terminologies) or [Recipes](#terminologies): `list`
 
 Shows a list of all available modules or recipes.
 
@@ -166,7 +166,7 @@ Examples:
 
 ![carbon(8).png](images/ug/ListCommandExample.png)
 
-#### Selecting a Module or Recipe: `select`
+#### Select a [Module](#list-of-available-modules) or [Recipe](#terminologies): `select`
 
 Selects a module or recipe and processes the data accordingly. Subsequent selection of modules or recipes will process the transformed data output from the previous module or recipe.
 
@@ -199,19 +199,19 @@ Format: `reset`
 
 #### Exit the Program: `exit`
 
-Exit the program.
+Exits the program.
 
 Format: `exit`
 
 > :video_game: If you are trying out the side-quest from earlier and can't seem to find the solution to it, you may refer to the solution in the picture at the start of the user guide!
 
-### Recipe Commands: `recipe`
+### [Recipe](#terminologies) Commands: `recipe`
 
 > :information_source: During the execution of the application, it would display the name of the recipe that is "currently being edited" (if any) in `[]` of the application's prompt. This currently edited recipe will be the target for some `recipe` commands such as [`recipe push`](#add-a-module-into-a-recipe-recipe-push), [`recipe pop`](#remove-a-module-from-a-recipe-recipe-pop) and [`recipe reset`](#clear-all-modules-in-a-recipe-recipe-reset).
 > 
 > ![carbon(17).png](images/carbon(17).png)
 
-#### Create a New Recipe: `recipe new`
+#### Create a New [Recipe](#terminologies): `recipe new`
 
 Creates a new recipe and sets it as currently being edited.
 
@@ -225,7 +225,7 @@ Example:
 
 ![recipeNew.png](images/recipeNew.png)
 
-#### Select a Recipe for Editing: `recipe select`
+#### Select a [Recipe](#terminologies) for Editing: `recipe select`
 
 Sets a recipe as currently being edited.
 
@@ -237,7 +237,7 @@ Example:
 
 ![recipeSelect.png](images/recipeSelect.png)
 
-#### Deselect the Current Editing Recipe: `recipe deselect`
+#### Deselect the Current Editing [Recipe](#terminologies): `recipe deselect`
 
 Deselects the recipe currently being edited.
 
@@ -247,7 +247,7 @@ Example:
 
 ![recipeDeselect.png](images/recipeDeselect.png)
 
-#### List Modules in a Recipe: `recipe list`
+#### List [Modules](#list-of-available-modules) in a [Recipe](#terminologies): `recipe list`
 
 Show all the modules in a recipe, in the order they were added.
 
@@ -261,7 +261,7 @@ Example:
 
 ![recipeList.png](images/recipeList.png)
 
-#### Add a Module into a Recipe: `recipe push`
+#### Add a [Module](#list-of-available-modules) into a [Recipe](#terminologies): `recipe push`
 
 Adds a module into the recipe that is currently being edited.
 
@@ -274,7 +274,7 @@ Example:
 
 ![recipePush.png](images/recipePush.png)
 
-#### Remove a Module from a Recipe: `recipe pop`
+#### Remove a [Module](#list-of-available-modules) from a [Recipe](#terminologies): `recipe pop`
 
 Removes the most recently added module from the recipe that is currently being edited.
 
@@ -282,7 +282,7 @@ Format: `recipe pop`
 
 ![recipePop.png](images/recipePop.png)
 
-#### Clear All Modules in a Recipe: `recipe reset`
+#### Clear All [Modules](#list-of-available-modules) in a [Recipe](#terminologies): `recipe reset`
 
 Removes all modules from the recipe that is currently being edited.
 
@@ -290,7 +290,7 @@ Format: `recipe reset`
 
 ![recipeReset.png](images/recipeReset.png)
 
-#### Delete a Recipe: `recipe delete`
+#### Delete a [Recipe](#terminologies): `recipe delete`
 
 Deletes a recipe from the program.
 
