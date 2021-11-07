@@ -44,4 +44,12 @@ Below are my contributions to `Decodex`
 
 ## Documentation
 - [User Guide](https://ay2122s1-cs2113t-t10-3.github.io/tp/UserGuide.html)
+  - Added exit command and summary - [#119](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/119)
+  - Update terminology table - [#221](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/221)
 - [Developer Guide](https://ay2122s1-cs2113t-t10-3.github.io/tp/DeveloperGuide.html)
+  - Added Table of contents w/ hyperlinks - [#182](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/182), [#188](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/188)
+  - Added Design section - [#232](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/232)
+
+## Community
+- Reviewed team members' PRs - [PRs Reviewed](https://github.com/AY2122S1-CS2113T-T10-3/tp/pulls?q=is%3Apr+is%3Aclosed+-author%3A%40me+commenter%3ASeenFang+reviewed-by%3ASeenFang)
+- Reported bugs for other teams - [1](https://github.com/SeenFang/ped/issues/1), [2](https://github.com/SeenFang/ped/issues/2), [3](https://github.com/SeenFang/ped/issues/3), [4](https://github.com/SeenFang/ped/issues/4), [5](https://github.com/SeenFang/ped/issues/5), [6](https://github.com/SeenFang/ped/issues/6), [7](https://github.com/SeenFang/ped/issues/7), [8](https://github.com/SeenFang/ped/issues/8), [9](https://github.com/SeenFang/ped/issues/9), [10](https://github.com/SeenFang/ped/issues/10)
