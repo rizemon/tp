@@ -34,6 +34,7 @@ alt isPrintModuleList or isPrintRecipeList
   <-- ListCommand
 else not isPrintModuleList and not isPrintRecipeList
   <-- ListCommand: CommandException
+  deactivate ListCommand
 end
 
 deactivate ListCommand

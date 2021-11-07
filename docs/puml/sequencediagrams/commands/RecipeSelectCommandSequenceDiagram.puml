@@ -28,6 +28,8 @@ else recipeName is not blank
   deactivate Ui
 
   <-- RecipeSelectCommand
+  deactivate RecipeSelectCommand
+
 end
 
 @enduml

@@ -92,7 +92,7 @@ public class Parser {
      */
     public String getInputString(String userInput) throws ParserException {
         String strippedUserInput = userInput.stripLeading();
-        String[] tokens = strippedUserInput.split(SPLIT_REGEX, SPLIT_LIMIT_VALUE);
+        String[] tokens = strippedUserInput.split(SPACE_SEPARATOR, SPLIT_LIMIT_VALUE);
 
         String[] argumentArray = Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length);
         String argumentString = String.join(SPACE_SEPARATOR, argumentArray);

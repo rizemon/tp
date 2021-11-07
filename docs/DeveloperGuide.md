@@ -1,27 +1,12 @@
 # Developer Guide <!-- omit in toc -->
 
-## Introduction
-
-Decodex is a **Command Line Interface (CLI) application for Capture-The-Flag (CTF) players to quickly transform data from one format to another with extreme ease**. The intuitive interaction can help speed up a player's performance during CTFs and save time without having to manually code the tedious data transformations.
-
-### Purpose of This Guide
-
-The purpose of this guide is to provide more information on our application, Decodex, such as the overall architecture, implementation and design rationales to developers who wish to contribute and enhance Decodex to it's fullest potential. As of the release of this developer guide, it is written for Decodex V2.0.
-
-> :information_source: This guide may also serve as a start for software testers to find bugs and possibly edge cases within our applications.
-
-### Developer Guide Usage
-
-This developer guide is made for developers who wish to further understand and/or develop **Decodex**.
-This guide includes the setup instructions, design, implementation, testing, product scope, and other sections to give developers a better understanding of the application.
-
 ## Table of Contents <!-- omit in toc -->
 - [Introduction](#introduction)
   - [Purpose of This Guide](#purpose-of-this-guide)
   - [Developer Guide Usage](#developer-guide-usage)
 - [Acknowledgements](#acknowledgements)
-  - [Terminologies](#terminologies)
-  - [Symbols](#symbols)
+- [Terminologies](#terminologies)
+- [Symbols](#symbols)
 - [Getting Started](#getting-started)
   - [Setting Up the Project](#setting-up-the-project)
   - [Additional Considerations](#additional-considerations)
@@ -41,7 +26,9 @@ This guide includes the setup instructions, design, implementation, testing, pro
   - [Modules](#modules)
     - [Implemented Modules:](#implemented-modules)
   - [List of Commands](#list-of-commands)
+    - [HelpCommand](#helpcommand)
     - [InputCommand](#inputcommand)
+    - [ShowCommand](#showcommand)
     - [ExitCommand](#exitcommand)
     - [ResetCommand](#resetcommand)
     - [SelectCommand](#selectcommand)
@@ -51,6 +38,7 @@ This guide includes the setup instructions, design, implementation, testing, pro
   - [Recipe Commands](#recipe-commands)
     - [RecipeNewCommand](#recipenewcommand)
     - [RecipeSelectCommand](#recipeselectcommand)
+    - [RecipeDeselectCommand](#recipedeselectcommand)
     - [RecipeListCommand](#recipelistcommand)
     - [RecipePushCommand](#recipepushcommand)
     - [RecipePopCommand](#recipepopcommand)
@@ -63,6 +51,32 @@ This guide includes the setup instructions, design, implementation, testing, pro
 - [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
 - [Appendix D: Glossary](#appendix-d-glossary)
 - [Appendix E: Instructions for Manual Testing](#appendix-e-instructions-for-manual-testing)
+  - [Start-up and Shutdown](#start-up-and-shutdown)
+  - [Inputting Data](#inputting-data)
+  - [Listing Modules and Recipes](#listing-modules-and-recipes)
+  - [Running Modules and Resetting](#running-modules-and-resetting)
+  - [Listing Modules in Recipes](#listing-modules-in-recipes)
+  - [Creating Recipes](#creating-recipes)
+  - [Switching Recipes for Modification](#switching-recipes-for-modification)
+  - [Modifying Recipes](#modifying-recipes)
+  - [Running Recipes](#running-recipes)
+  - [Deleting Recipes](#deleting-recipes)
+  - [Storage of Recipe Files](#storage-of-recipe-files)
+- [Appendix F - Examples of Saved Recipe Files](#appendix-f---examples-of-saved-recipe-files)
+
+## Introduction
+
+Decodex is a **Command Line Interface (CLI) application for Capture-The-Flag (CTF) players to perform [encoding](#terminologies), [decoding](#terminologies), [encryption](#terminologies) and [decryption](#terminologies) of data**, which come in the form of [modules](#terminologies) that can be **executed with ease** and **without any programming** needed. Decodex also provides [recipes](#terminologies) that can also be used to link several of these [modules](#terminologies) together so that they could be executed in one go to speed up repetitive tasks. The intuitive interaction can thus help to speed up a player’s performance during CTFs and save time without having to manually code the tedious [data transformations](#terminologies).
+
+### Purpose of This Guide
+
+The purpose of this guide is to provide more information on our application, Decodex, such as the overall architecture, implementation and design rationales to developers who wish to contribute and enhance Decodex to it's fullest potential. As of the release of this developer guide, it is written for Decodex V2.1.
+
+> :information_source: This guide may also serve as a start for software testers to find bugs and possibly edge cases within our applications.
+
+### Developer Guide Usage
+
+To better understand this developer guide, it is recommended to start off from the [Architecture](#architecture) section to have a high-level view of the application, before diving into each of the specific components to understand Decodex's design and implementation.
 
 ## Acknowledgements
 
@@ -74,12 +88,12 @@ This guide includes the setup instructions, design, implementation, testing, pro
     5. [AB2 Code Structure](https://github.com/se-edu/addressbook-level2)
 2. [AY2021S2-CS2113-T10-1's Developer Guide](https://ay2021s2-cs2113-t10-1.github.io/tp/DeveloperGuide.html)
 
-### Terminologies
+## Terminologies
 
 | Terminology                 | Definition                                                                                                                                                    |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Data transformation         | The conversion of one data format to another.                                                                                                                 |
-| Application, Program        | Refer to the `Decodex` program. This two terms are used interchangeably in this User Guide.                                                                   |
+| Application, Program        | Refers to the `Decodex` program. This two terms are used interchangeably in this Developer Guide.                                                             |
 | Encoding                    | Convert a message into a coded form.                                                                                                                          |
 | Decoding                    | Convert a coded message into an intelligible form                                                                                                             |
 | Base64, Binary, Hexadecimal | Common types of data encoding standards.                                                                                                                      |
@@ -87,8 +101,10 @@ This guide includes the setup instructions, design, implementation, testing, pro
 | Argument                    | The additional information you provide to the program's command.                                                                                              |
 | Module                      | A self-contained set of instructions to process your data into another form.                                                                                  |
 | Recipe                      | Acts as a container for you to select your modules. When multiple modules are selected, this forms a "module chain". By default, you do not have any recipes. |
+| XYZ                         | Represents a wildcard of the specific mentioned. eg. `XYZCommand` can be `SelectCommand`, `ListCommand` etc.                                                  |
+| Suffix                      | Something that comes at the end. <br>e.g. For for text files like `recipe.txt` then `.txt` is the suffix.                                                     |
 
-### Symbols
+## Symbols
 
 | Name                 | Definition                                                                                            |
 | -------------------- | ----------------------------------------------------------------------------------------------------- |
@@ -115,7 +131,7 @@ This guide includes the setup instructions, design, implementation, testing, pro
 4. Importing project
     1. Follow the guide at *[[se-edu/guides] IDEA: Importing a Gradle project](https://se-education.org/guides/tutorials/intellijImportGradleProject.html)* to import the forked project into Intellij.
 
-    > ❗Note: Importing a Gradle project is slightly different from importing a normal Java project.
+    > :exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
 
 5. Verifying setup
     1. Run the `decodex.Decodex.java` and try a few commands.
@@ -135,6 +151,8 @@ This guide includes the setup instructions, design, implementation, testing, pro
         1. Any changes/additions to the current commands would simply require the changes within `Parser.java`.
         2. For any changes/additions to the modules, would simply require changes within the `src/main/java/decodex/modules` folder.
     3. This structure makes it easier for us as well as developers like you to maintain and further extend the capabilities of our application.
+
+> :exclamation: Before continuing to the Design and Implementation sections, please note that "XYZ" represents a wildcard that is used to mention commands and modules. eg. `XYZCommand` refers to `SelectCommand`, `ListCommand` etc, and `XYZModule` refers to `Base64Encoder`, `HexDecoder`, etc.
 
 ## Design
 
@@ -174,8 +192,10 @@ Below is a partial class diagram that shows an overview of the `Logic` component
 The `Logic` component consists of:
 
 - `Parser`: Handles user input and decides the `Command` object to create.
-- `Command`: An abstract class that defines the blueprint for the derived `*Command` classes.
+- `RecipeCommandParser`: When `Parser` detects that a `RecipeXYZComand` object needs to be created, the user input is handed over from `Parser` and will decide the `Command` object to create.
+- `Command`: An abstract class that defines the blueprint for the derived `*Command` classes. <a name="designListOfCommands"></a>
     - `InputCommand`: Takes in a string from the user and sets it as the current `Data` object to perform operations on.
+    - `ShowCommand`: Shows the current Data object.
     - `HelpCommand`: Displays all command syntaxes to the user.
     - `ListCommand`: Displays all `Module` objects and loaded `Recipe` objects to the user.
     - `SelectCommand`: Executes a supported `Module` object or a loaded `Recipe` object on the current `Data` object and replaces it with the resulting `Data` object from the execution.
@@ -183,6 +203,7 @@ The `Logic` component consists of:
     - `ExitCommand`: Exits the application.
     - `RecipeNewCommand`: Creates a new `Recipe` object with name provided by the user and creates a save file for it on the file system.
     - `RecipeSelectCommand`: Set a `Recipe` object as the recipe that is currently being edited.
+    - `RecipeDeselectCommand`: Set the currently edited `Recipe` object as no longer being edited.
     - `RecipeListCommand`: Display all `Module` objects in a `Recipe` object.
     - `RecipePushCommand`: Appends a `Module` object to the `Recipe` object that is currently being edited.
     - `RecipePopCommand`: Removes the latest `Module` object from the `Recipe` object that is currently being edited.
@@ -194,16 +215,15 @@ Below is the class diagram showing the association between the `Decodex` class a
 
 ![ParserClass.png](images/dg/ParserClass.png)
 
-Below is the class diagram showing the association between the abstract `Command` class and its derived `*Command` classes.
+Below is the class diagram showing the association between the abstract `Command` class and its `XYZCommand` and `RecipeXYZCommand` classes mentioned [earlier](#designListOfCommands).
 
-![CommandClass1.png](images/dg/CommandClass1.png)
+![CommandClassDiagram](images/dg/CommandClassDiagram.png)
 
-![CommandClass2.png](images/dg/CommandClass2.png)
 ### Data Component
 
 Below is a partial class diagram that shows an overview of the `Data` component.
 
-![DataComponent.png](images/dg/DataComponent.png)
+![DataComponent.png](images/dg/dataComponentPartialClass.png)
 
 The `Data` component consists of:
 
@@ -233,9 +253,9 @@ Below is the class diagram showing the association between the `Decodex` class, 
 
 ![ModuleManagerClass.png](images/dg/ModuleManagerClass.png)
 
-Below is the class diagram showing the association between the abstract `Module` class and its derived `*Decoder` classes.
+Below is the class diagram showing the association between the abstract `Module` class and its derived `XYZEncoder` and `XYZDecoder` classes.
 
-![ModuleClass.png](images/dg/ModuleClass.png)
+![ModuleClassDiagram](images/dg/ModuleClassDiagramv2.png)
 
 ### Recipe Component
 
@@ -263,10 +283,8 @@ The `Storage` component consists of:
 To add on, the `Storage` component is designed to access only the following folders:
 
 1. `recipe/` : For recipe files.
-2. `output/` : For output data files.
-3. `input/` : For input data file.
 
-> :pen: The rationale behind standardizing the specific folders to read/save to, is to ensure that all relevant files can be found in the same location, which makes it easier for users to find the files they are looking for.
+> :pen: The rationale behind standardizing a specific folder to read/save to, is to ensure that all relevant files can be found in the same location, which makes it easier for users to find the files they are looking for.
 
 ## Implementation
 
@@ -350,6 +368,16 @@ The current implementation of the abstract `Module` class provides a strong foun
 
 ### List of Commands
 
+> :information_source: For the following sequence diagrams for XYZCommands, the parameters in the run() method is omitted to improve readability.
+
+#### HelpCommand
+
+![HelpCommand](images/dg/HelpCommandSequenceDiagram.png)
+
+When the `Parser` recognises the `help` keyword from the user input, a `HelpCommand` is instantiated.
+
+1. Prints out the list of all available command (`XYZCommand` and `RecipeXYZCommand`) syntaxes, and their corresponding descriptions.
+
 #### InputCommand
 
 ![InputCommand](images/dg/InputCommand.png)
@@ -359,6 +387,16 @@ When the `Parser` recognises the `input` keyword from the user input, an `InputC
 1. Create a `Data` object from the user input.
 2. Set the created `Data` object as the `originalData` in the `DataManager` .
 3. Prints `input` to the console.
+
+#### ShowCommand
+
+![ShowCommand](images/dg/ShowCommandSequenceDiagram.png)
+
+When the `Parser` recognises the `show` keyword from the user input, an `ShowCommand` is instantiated.
+
+1. Gets the current `Data` object stored in DataManager.
+2. Gets the String version of the current `Data` object.
+3. Prints the current data string to the console.
 
 #### ExitCommand
 
@@ -457,6 +495,16 @@ When the `RecipeCommandParser` recognises the `select` subcommand keyword from t
 1. Retrieves the `Recipe` corresponding with the provided `recipeName` from `RecipeManager`.
 2. Sets `recipeName` as the `editingRecipeName` in `RecipeManager`.
 3. Prints a successful selection message containing the `recipeName` to the console.
+
+#### RecipeDeselectCommand
+
+![RecipeDeselectCommand](images/dg/RecipeDeselectCommand.png)
+
+When the `RecipeCommandParser` recognises the `deselect` subcommand keyword from the user input, a `RecipeDeselectCommand` is instantiated.
+
+1. Retrieves the `recipeName` of the `Recipe` corresponding to `editingRecipeName` in `RecipeManager`.
+2. Sets the `editingRecipeName` in `RecipeManager` as `null`.
+3. Prints a successful deselection message containing the `recipeName` to the console.
 
 #### RecipeListCommand
 
@@ -562,3 +610,71 @@ To sum it up, this application helps users to reduce the time needed to transfor
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 ## Appendix E: Instructions for Manual Testing
+
+### Start-up and Shutdown
+
+### Inputting Data
+
+### Listing Modules and Recipes
+
+### Running Modules and Resetting
+
+### Listing Modules in Recipes
+
+### Creating Recipes
+
+### Switching Recipes for Modification
+
+### Modifying Recipes
+
+### Running Recipes
+
+### Deleting Recipes
+
+### Storage of Recipe Files
+
+*Testing of invalid recipe files on startup*
+
+All recipes are stored in their respective files with the name `recipeName.txt` in the `recipe/` directory where `recipeName` denotes their actual recipe name in Decodex. It is highly recommended to ensure that Decodex can access these files/directory to work properly.
+
+Details of Recipe Files:
+
+- If the `recipe/` directory does not exist yet (first time running it), Decodex will create it automatically.
+- All recipe files are found in the `recipe/` directory and is loaded into Decodex on startup. Only valid recipe files (e.g. correct filetype and suffix of `.txt`) with the valid stored formats are loaded successfully into Decodex.
+- Created automatically when a new recipe is created on Decodex is successfully created using `recipe new` command, but the contents of the corresponding recipe file will be empty.
+- Updated automatically whenever a change (e.g. adding/removing modules) happens successfully in the respective recipe on Decodex.
+- Deleted automatically whenever the corresponding recipe on Decodex is deleted successfully using `recipe delete`.
+- The table below denotes the different behaviours on startup for an invalid `recipe/` directory and 2 invalid recipe files, assuming they are `myRecipe.txt` and `iRecipe.md`.
+
+
+| Invalid Type                                                                                                                                                                                                                  | Error Message                                                 | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Wrong `recipe` directory filetype -  the `recipe/` directory is actually a file.                                                                                                                                              | `[x] The recipe directory is not a valid directory`           | Decodex will try to look for files in the `recipe/` directory, but since it is not an actual directory, it flags to the user that it is not a valid directory. However, Decodex continues running, but users may choose to stop it to fix their directory. A simple fix would be to delete this invalid `recipe/`.                                                                                                                                                                                                  |
+| Wrong recipe file filetype - `myRecipe.txt` is a directory instead.                                                                                                                                                           | No error messages.                                            | Decodex will try to load the contents of `myRecipe.txt` on startup, but since it is actually a directory, Decodex will treat  it as not a recipe file and ignore it.                                                                                                                                                                                                                                                                                                                                                |
+| Wrong recipe file suffix - `iRecipe.md` is not of `.txt`.                                                                                                                                                                      | No error messages.                                            | Decodex will find that `iRecipe.md` is the `recipe/` directory, but it does not match the valid `.txt` suffix, so it simply ignores it. User can simply change the extension to `.txt` to fix it.                                                                                                                                                                                                                                                                                                                   |
+| Wrong module syntaxes (e.g. If `rotencode` is missing an argument) - `myRecipe.txt` contains invalid module syntaxes.<br><br> For more information on what are some examples of valid/invalid syntaxes, please refer to [Appendix F]() | `[x] Failed to load following recipes into Decodex: myRecipe` | Decodex will try to load the contents of `myRecipe.txt` line by line to translate them into modules which are then loaded into the recipe called `myRecipe` in Decodex. Since, in this case, one of the module syntax is incorrect, the recipe fails to be loaded. If there are multiple recipe files that also failed to be loaded due to module syntaxes, then  they are appended in the error message. <br>To avoid this from happening, users are recommended to only use Decodex to make changes to these recipes. |
+
+## Appendix F - Examples of Saved Recipe Files
+
+> :information_source: The modules in a recipe are stored in the recipe file in the format of `<moduleName> {moduleArgument}` where values in `<>` are compulsory while those in `{}` are optional.
+
+**Below shows some of the case scenarios for valid and invalid module syntaxes in the saved recipe files.**
+
+Sample of valid module syntaxes in recipe file:
+
+1. An example of a recipe file with valid module syntaxes on each line
+
+   ![correctSyntax](images/dg/correctSyntax.png)
+
+
+Samples of invalid module syntaxes in recipe file:
+
+1. An example of a recipe file with invalid module argument.
+    1. An argument is expected for rotencode module but is missing as denoted in red.
+
+   ![correctSyntax](images/dg/wrongSyntax1.png)
+
+2. An example of a recipe file with invalid module name.
+    1. The module name of "base64" does not exist/available on Decodex.
+
+   ![correctSyntax](images/dg/wrongSyntax2.png)

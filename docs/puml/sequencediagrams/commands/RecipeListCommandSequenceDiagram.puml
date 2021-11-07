@@ -37,5 +37,6 @@ RecipeListCommand <-- Ui
 deactivate Ui
 
 <-- RecipeListCommand
+deactivate RecipeListCommand
 
 @enduml

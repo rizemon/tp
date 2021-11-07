@@ -25,6 +25,7 @@ Given below are my notable contributions to the project.
    - What it does: `Ui` manages all UI related activities (e.g. Prints messages to the user with the appropriate statuses) while `RegularMessages` and `ErrorMessages` servers as a central location for all messages to be printed.
    - Justification: Serves as the centralised location to conduct all UI related activities.
    - Pull request: ([#154](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/154))
+<div style="page-break-after: always;"></div>
 - Added the ability to process data to and from binary format along with tests.
    - What it does: Allows the user to encode data into binary format and decode from binary format.
    - Pull request: ([#155](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/155))
@@ -44,9 +45,9 @@ Given below are my notable contributions to the project.
     - Added introduction and FAQ ([#244](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/244)).
     - Added `recipe deselect` usage ([#275](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/275/files))
   - [Developer Guide](https://ay2122s1-cs2113t-t10-3.github.io/tp/DeveloperGuide.html)
-    - Added arhitecture diagram and details ([#181](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/181)).
+    - Added architecture diagram and details ([#181](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/181)).
     - Added implementation details of logic, module and basic commands ([#234](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/234)). 
 
 ## Community
-- Non-trivial reviewed of team members' PRs ([#39](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/39), [#52](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/52), [#208](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/208)).
+- Non-trivial review of team members' PRs ([#39](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/39), [#52](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/52), [#208](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/208)).
 - Reported bugs for other teams ([1](https://github.com/arraysius/ped/issues/4), [2](https://github.com/arraysius/ped/issues/9), [3](https://github.com/arraysius/ped/issues/12), [4](https://github.com/arraysius/ped/issues/13), [5](https://github.com/arraysius/ped/issues/14)).

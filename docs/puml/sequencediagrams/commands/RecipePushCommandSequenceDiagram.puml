@@ -10,6 +10,9 @@ end box
 box RECIPE_COLOR
 Participant ":RecipeManager" as RecipeManager
 end box
+box STORAGE_COLOR
+Participant ":Storage" as Storage
+end box
 box UI_COLOR
 Participant ":Ui" as Ui
 end box
@@ -35,12 +38,18 @@ else moduleName is not blank
   RecipePushCommand <-- RecipeManager
   deactivate RecipeManager
 
+  RecipePushCommand -> Storage: saveRecipeToFile(:Recipe)
+  activate Storage
+  RecipePushCommand <-- Storage
+  deactivate Storage
+
   RecipePushCommand -> Ui: printModuleAddedToRecipe(:String, :String)
   activate Ui
   RecipePushCommand <-- Ui
   deactivate Ui
 
   <-- RecipePushCommand
+  deactivate RecipePushCommand
 end
 
 @enduml

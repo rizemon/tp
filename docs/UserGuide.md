@@ -21,10 +21,10 @@ This guide serves to help you understand the usage of the program, which include
     - [Help: `help`](#help-help)
     - [Input of Data: `input`](#input-of-data-input)
     - [List Available Modules or Recipes: `list`](#list-available-modules-or-recipes-list)
-    - [Selecting a Module or Recipe: `select`](#selecting-a-module-or-recipe-select)
+    - [Select a Module or Recipe: `select`](#select-a-module-or-recipe-select)
     - [Show Current Data: `show`](#show-current-data-show)
-    - [Resetting Data: `reset`](#resetting-data-reset)
-    - [Exiting the Program: `exit`](#exiting-the-program-exit)
+    - [Reset Data: `reset`](#reset-data-reset)
+    - [Exit the Program: `exit`](#exit-the-program-exit)
   - [Recipe Commands: `recipe`](#recipe-commands-recipe)
     - [Create a New Recipe: `recipe new`](#create-a-new-recipe-recipe-new)
     - [Select a Recipe for Editing: `recipe select`](#select-a-recipe-for-editing-recipe-select)
@@ -88,8 +88,9 @@ This section serves to help you better understand the terminologies used in this
    3. `select module base64encode`: Selects and runs the base64-encoding module on the data.
    4. `reset`: Resets the changes made to data - resetting to its original data.
    5. `exit`: Exits the application.
-   > :video_game: To make things more interesting while learning how to use Decodex, you may try to find out what `NTEgMzEgNTIgNDcgNjUgMzAgNGUgNTQgNGQgNmEgNDUgNzggNGQgMzEgNTIgMzk=` using our application! If you are new here, you can continue reading this guide to understand how to unravel this mysterious text!
 6. For more information on Decodex's features, please refer to the Features Section.
+
+> :video_game: To make things more interesting while learning how to use Decodex, you may try to find out what `NTEgMzEgNTIgNDcgNjUgMzAgNGUgNTQgNGQgNmEgNDUgNzggNGQgMzEgNTIgMzk=` using our application! If you are new here, you can continue reading this guide to understand how to unravel this mysterious text!
 
 ## List of Available [Modules](#moduleDefinition)
 Below, you can see the list of available modules and what they do. <a name="selectModuleExamples"></a>
@@ -119,7 +120,7 @@ Below, you can see the list of available modules and what they do. <a name="sele
 
 #### Help: `help`
 
-List all syntaxes and descriptions of available commands.
+Lists all syntaxes and descriptions of available commands.
 
 Format: `help`
 
@@ -147,7 +148,7 @@ Examples:
 > * **Non-printable characters** (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
 
 
-#### List Available Modules or Recipes: `list`
+#### List Available [Modules](#terminologies) or [Recipes](#terminologies): `list`
 
 Shows a list of all available modules or recipes.
 
@@ -165,7 +166,7 @@ Examples:
 
 ![carbon(8).png](images/ug/ListCommandExample.png)
 
-#### Selecting a Module or Recipe: `select`
+#### Select a [Module](#list-of-available-modules) or [Recipe](#terminologies): `select`
 
 Selects a module or recipe and processes the data accordingly. Subsequent selection of modules or recipes will process the transformed data output from the previous module or recipe.
 
@@ -198,19 +199,19 @@ Format: `reset`
 
 #### Exit the Program: `exit`
 
-Exit the program.
+Exits the program.
 
 Format: `exit`
 
 > :video_game: If you are trying out the side-quest from earlier and can't seem to find the solution to it, you may refer to the solution in the picture at the start of the user guide!
 
-### Recipe Commands: `recipe`
+### [Recipe](#terminologies) Commands: `recipe`
 
 > :information_source: During the execution of the application, it would display the name of the recipe that is "currently being edited" (if any) in `[]` of the application's prompt. This currently edited recipe will be the target for some `recipe` commands such as [`recipe push`](#add-a-module-into-a-recipe-recipe-push), [`recipe pop`](#remove-a-module-from-a-recipe-recipe-pop) and [`recipe reset`](#clear-all-modules-in-a-recipe-recipe-reset).
 > 
 > ![carbon(17).png](images/carbon(17).png)
 
-#### Create a New Recipe: `recipe new`
+#### Create a New [Recipe](#terminologies): `recipe new`
 
 Creates a new recipe and sets it as currently being edited.
 
@@ -224,7 +225,7 @@ Example:
 
 ![recipeNew.png](images/recipeNew.png)
 
-#### Select a Recipe for Editing: `recipe select`
+#### Select a [Recipe](#terminologies) for Editing: `recipe select`
 
 Sets a recipe as currently being edited.
 
@@ -236,7 +237,7 @@ Example:
 
 ![recipeSelect.png](images/recipeSelect.png)
 
-#### Deselect the Current Editing Recipe: `recipe deselect`
+#### Deselect the Current Editing [Recipe](#terminologies): `recipe deselect`
 
 Deselects the recipe currently being edited.
 
@@ -246,7 +247,7 @@ Example:
 
 ![recipeDeselect.png](images/recipeDeselect.png)
 
-#### List Modules in a Recipe: `recipe list`
+#### List [Modules](#list-of-available-modules) in a [Recipe](#terminologies): `recipe list`
 
 Show all the modules in a recipe, in the order they were added.
 
@@ -260,7 +261,7 @@ Example:
 
 ![recipeList.png](images/recipeList.png)
 
-#### Add a Module into a Recipe: `recipe push`
+#### Add a [Module](#list-of-available-modules) into a [Recipe](#terminologies): `recipe push`
 
 Adds a module into the recipe that is currently being edited.
 
@@ -273,7 +274,7 @@ Example:
 
 ![recipePush.png](images/recipePush.png)
 
-#### Remove a Module from a Recipe: `recipe pop`
+#### Remove a [Module](#list-of-available-modules) from a [Recipe](#terminologies): `recipe pop`
 
 Removes the most recently added module from the recipe that is currently being edited.
 
@@ -281,7 +282,7 @@ Format: `recipe pop`
 
 ![recipePop.png](images/recipePop.png)
 
-#### Clear All Modules in a Recipe: `recipe reset`
+#### Clear All [Modules](#list-of-available-modules) in a [Recipe](#terminologies): `recipe reset`
 
 Removes all modules from the recipe that is currently being edited.
 
@@ -289,7 +290,7 @@ Format: `recipe reset`
 
 ![recipeReset.png](images/recipeReset.png)
 
-#### Delete a Recipe: `recipe delete`
+#### Delete a [Recipe](#terminologies): `recipe delete`
 
 Deletes a recipe from the program.
 
@@ -305,10 +306,10 @@ Example:
 
 > :exclamation: Notes about the recipe files
 > * A recipe will correspond to a recipe file which is a plaintext file with the name `<recipeName>.txt` where `recipeName` is the name of the recipe.
-> * It is highly recommended that you only modify recipe files through the `recipe` commands in `Decodex` and not manually edit the recipe files.
-> * If you choose to manually edit the recipe files, they should not be edited while `Decodex` is running as `Decodex` could accidentally overwrite your changes.
-> * Take note that incorrectly edited files will be considered as invalid and will not be loaded on program start up.
-> * Additional note would be that the recipe files would not be loaded successfully if Decodex does not have access rights to the files, or it is not in the valid filetype.
+> * It is highly recommended that you only modify recipe files through the [`recipe`](#recipe-commands-recipe) commands in Decodex and not manually edit the recipe files.
+> * If you choose to manually edit the recipe files, the correct format would be that each line in the respective recipe file should contain only one module, and they should be formatted in the following syntax of `<moduleName> {moduleArgument}`. You should also not be editing while Decodex is running as Decodex could accidentally overwrite your changes.
+> * Incorrectly edited files will be considered as invalid and will not be loaded on program start up.
+> * The recipe files would also not be loaded successfully if Decodex does not have access rights to the files, or it is not in the valid filetype.
 
 #### Load Recipe Files on Startup
 

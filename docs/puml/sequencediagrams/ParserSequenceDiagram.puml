@@ -51,6 +51,7 @@ else commandType is "recipe"
   end note
 else commandType is not valid
   <-- Parser : ParserException
+  deactivate Parser
 end
 
 @enduml

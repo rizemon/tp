@@ -7,6 +7,9 @@ end box
 box RECIPE_COLOR
 Participant ":RecipeManager" as RecipeManager
 end box
+box STORAGE_COLOR
+Participant ":Storage" as Storage
+end box
 box UI_COLOR
 Participant ":Ui" as Ui
 end box
@@ -19,6 +22,11 @@ activate RecipeManager
 RecipePopCommand <-- RecipeManager: :Module
 deactivate RecipeManager
 
+RecipePopCommand -> Storage: saveRecipeToFile(:Recipe)
+activate Storage
+RecipePopCommand <-- Storage
+deactivate Storage
+
 RecipePopCommand -> RecipeManager: getEditingRecipe()
 activate RecipeManager
 RecipePopCommand <-- RecipeManager: :Recipe
@@ -30,5 +38,6 @@ RecipePopCommand <-- Ui
 deactivate Ui
 
 <-- RecipePopCommand
+deactivate RecipePopCommand
 
 @enduml

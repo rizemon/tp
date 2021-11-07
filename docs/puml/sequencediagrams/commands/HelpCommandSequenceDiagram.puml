@@ -1,0 +1,23 @@
+@startuml
+!include ../../Style.puml
+
+box LOGIC_COLOR
+Participant ":ExitCommand" as ExitCommand
+end box
+
+box UI_COLOR
+Participant ":Ui" as Ui
+end box
+
+-> ExitCommand: run()
+activate ExitCommand
+ExitCommand -> Ui: printCommandHelp(RECIPE_COMMAND_HELP_MESSAGES: String[],  \nRECIPE_COMMAND_HELP_MESSAGES:String[])
+activate Ui
+ExitCommand <-- Ui
+deactivate Ui
+<-- ExitCommand
+
+deactivate ExitCommand
+
+
+@enduml
