@@ -41,7 +41,9 @@ This guide includes the setup instructions, design, implementation, testing, pro
   - [Modules](#modules)
     - [Implemented Modules:](#implemented-modules)
   - [List of Commands](#list-of-commands)
+    - [HelpCommand](#helpcommand)
     - [InputCommand](#inputcommand)
+    - [ShowCommand](#showcommand)
     - [ExitCommand](#exitcommand)
     - [ResetCommand](#resetcommand)
     - [SelectCommand](#selectcommand)
@@ -63,6 +65,7 @@ This guide includes the setup instructions, design, implementation, testing, pro
 - [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
 - [Appendix D: Glossary](#appendix-d-glossary)
 - [Appendix E: Instructions for Manual Testing](#appendix-e-instructions-for-manual-testing)
+- [Appendix F: Examples of Saved Recipe Files](#appendix-f---examples-of-saved-recipe-files)
 
 ## Acknowledgements
 
@@ -87,7 +90,7 @@ This guide includes the setup instructions, design, implementation, testing, pro
 | Argument                    | The additional information you provide to the program's command.                                                                                              |
 | Module                      | A self-contained set of instructions to process your data into another form.                                                                                  |
 | Recipe                      | Acts as a container for you to select your modules. When multiple modules are selected, this forms a "module chain". By default, you do not have any recipes. |
-
+| Suffix                      | Something that comes at the end. <br>e.g. For for text files like `recipe.txt` then `.txt` is the suffix.
 ### Symbols
 
 | Name                 | Definition                                                                                            |
@@ -264,10 +267,8 @@ The `Storage` component consists of:
 To add on, the `Storage` component is designed to access only the following folders:
 
 1. `recipe/` : For recipe files.
-2. `output/` : For output data files.
-3. `input/` : For input data file.
 
-> :pen: The rationale behind standardizing the specific folders to read/save to, is to ensure that all relevant files can be found in the same location, which makes it easier for users to find the files they are looking for.
+> :pen: The rationale behind standardizing a specific folder to read/save to, is to ensure that all relevant files can be found in the same location, which makes it easier for users to find the files they are looking for.
 
 ## Implementation
 
@@ -583,3 +584,51 @@ To sum it up, this application helps users to reduce the time needed to transfor
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 ## Appendix E: Instructions for Manual Testing
+
+### Storage of Recipe Files
+
+*Testing of invalid recipe files on startup*
+
+All recipes are stored in their respective files with the name `recipeName.txt` in the `recipe/` directory where `recipeName` denotes their actual recipe name in Decodex. It is highly recommended to ensure that Decodex can access these files/directory to work properly.
+
+Details of Recipe Files:
+
+- If the `recipe/` directory does not exist yet (first time running it), Decodex will create it automatically.
+- All recipe files are found in the `recipe/` directory and is loaded into Decodex on startup. Only valid recipe files (e.g. correct filetype and suffix of `.txt`) with the valid stored formats are loaded successfully into Decodex.
+- Created automatically when a new recipe is created on Decodex is successfully created using `recipe new` command, but the contents of the corresponding recipe file will be empty.
+- Updated automatically whenever a change (e.g. adding/removing modules) happens successfully in the respective recipe on Decodex.
+- Deleted automatically whenever the corresponding recipe on Decodex is deleted successfully using `recipe delete`.
+- The table below denotes the different behaviours on startup for an invalid `recipe/` directory and 2 invalid recipe files, assuming they are `myRecipe.txt` and `iRecipe.md`.
+
+
+| Invalid Type                                                                                                                                                                                                                  | Error Message                                                 | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Wrong `recipe` directory filetype -  the `recipe/` directory is actually a file.                                                                                                                                              | `[x] The recipe directory is not a valid directory`           | Decodex will try to look for files in the `recipe/` directory, but since it is not an actual directory, it flags to the user that it is not a valid directory. However, Decodex continues running, but users may choose to stop it to fix their directory. A simple fix would be to delete this invalid `recipe/`.                                                                                                                                                                                                  |
+| Wrong recipe file filetype - `myRecipe.txt` is a directory instead.                                                                                                                                                           | No error messages.                                            | Decodex will try to load the contents of `myRecipe.txt` on startup, but since it is actually a directory, Decodex will treat  it as not a recipe file and ignore it.                                                                                                                                                                                                                                                                                                                                                |
+| Wrong recipe file suffix - `iRecipe.md` is not of `.txt`.                                                                                                                                                                      | No error messages.                                            | Decodex will find that `iRecipe.md` is the `recipe/` directory, but it does not match the valid `.txt` suffix, so it simply ignores it. User can simply change the extension to `.txt` to fix it.                                                                                                                                                                                                                                                                                                                   |
+| Wrong module syntaxes (e.g. If `rotencode` is missing an argument) - `myRecipe.txt` contains invalid module syntaxes.<br><br> For more information on what are some examples of valid/invalid syntaxes, please refer to [Appendix F]() | `[x] Failed to load following recipes into Decodex: myRecipe` | Decodex will try to load the contents of `myRecipe.txt` line by line to translate them into modules which are then loaded into the recipe called `myRecipe` in Decodex. Since, in this case, one of the module syntax is incorrect, the recipe fails to be loaded. If there are multiple recipe files that also failed to be loaded due to module syntaxes, then  they are appended in the error message. <br>To avoid this from happening, users are recommended to only use Decodex to make changes to these recipes. |
+
+## Appendix F - Examples of Saved Recipe Files
+
+> :information_source: The modules in a recipe are stored in the recipe file in the format of `<moduleName> {moduleArgument}` where values in `<>` are compulsory while those in `{}` are optional.
+
+**Below shows some of the case scenarios for valid and invalid module syntaxes in the saved recipe files.**
+
+Sample of valid module syntaxes in recipe file:
+
+1. An example of a recipe file with valid module syntaxes on each line
+
+   ![correctSyntax](images/dg/correctSyntax.png)
+
+
+Samples of invalid module syntaxes in recipe file:
+
+1. An example of a recipe file with invalid module argument.
+    1. An argument is expected for rotencode module but is missing as denoted in red.
+
+   ![correctSyntax](images/dg/wrongSyntax1.png)
+
+2. An example of a recipe file with invalid module name.
+    1. The module name of "base64" does not exist/available on Decodex.
+
+   ![correctSyntax](images/dg/wrongSyntax2.png)
