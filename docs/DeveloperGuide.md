@@ -255,7 +255,7 @@ Below is the class diagram showing the association between the `Decodex` class, 
 
 Below is the class diagram showing the association between the abstract `Module` class and its derived `XYZModule` classes.
 
-![ModuleClassDiagram](images/dg/ModuleClassDiagramv2.png)
+![ModuleClassDiagram](images/dg/ModuleClassDiagramv3.png)
 
 ### Recipe Component
 
