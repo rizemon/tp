@@ -179,7 +179,7 @@ The `Logic` component consists of:
 
 - `Parser`: Handles user input and decides the `Command` object to create.
 - `RecipeCommandParser`: When `Parser` detects that a `RecipeXYZComand` object needs to be created, the user input is handed over from `Parser` and will decide the `Command` object to create.
-- `Command`: An abstract class that defines the blueprint for the derived `*Command` classes. <a name="designListOfCommands"></a>
+- `Command`: An abstract class that defines the blueprint for the derived `XYZCommand` classes. <a name="designListOfCommands"></a>
     - `InputCommand`: Takes in a string from the user and sets it as the current `Data` object to perform operations on.
     - `ShowCommand`: Shows the current Data object.
     - `HelpCommand`: Displays all command syntaxes to the user.
@@ -228,7 +228,7 @@ Below is a partial class diagram that shows an overview of the `Module` componen
 
 The `Module` component consists of:
 
-- `Module`: An abstract class that defines the blueprint for the derived `*Encoder` or `*Decoder` classes.
+- `Module`: An abstract class that defines the blueprint for the derived `XYZEncoder` or `XYZDecoder` classes.
     - `Base64Encoder`, `Base64Decoder`: Performs base64 encoding/decoding operations
     - `HexEncoder`, `HexDecoder`: Performs hexadecimal encoding/decoding operations
     - `BinaryEncoder`, `BinaryDecoder`: Performs binary encoding/decoding operations
@@ -304,7 +304,7 @@ The flow of the `Parser` logic:
 
 1. Receives the user input and parses it to get the command type.
 2. Prepares the corresponding `XYZCommand`.
-    1. However, if the command is a `Recipe*Command` , it will be passed to `RecipeCommandParser` for subcommand parsing.
+    1. However, if the command is a `RecipeXYZCommand` , it will be passed to `RecipeCommandParser` for subcommand parsing.
 3. Returns the command back to `Decodex`.
 
 ### Parser - Recipe Command Logic
