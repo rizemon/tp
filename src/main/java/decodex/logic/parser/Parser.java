@@ -26,7 +26,7 @@ public class Parser {
     protected static final int STARTING_ARGUMENTS_INDEX = 1;
 
     // Specifies the tokens used to split the user input by.
-    private static final String SPLIT_REGEX = "\\s+";
+    private static final String SPLIT_REGEX = "\\s+|\\t+";
     private static final int SPLIT_LIMIT_VALUE = -1;
 
     // Specifies the separator used to reconstruct a string from a list of tokens.
