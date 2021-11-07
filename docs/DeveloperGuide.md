@@ -93,7 +93,7 @@ To better understand this developer guide, it is recommended to start off from t
 | Terminology                 | Definition                                                                                                                                                    |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Data transformation         | The conversion of one data format to another.                                                                                                                 |
-| Application, Program        | Refers to the `Decodex` program. This two terms are used interchangeably in this Developer Guide.                                                             |
+| Application, Program        | Refers to the `Decodex` program. These two terms are used interchangeably in this User Guide.                                                                   |
 | Encoding                    | Convert a message into a coded form.                                                                                                                          |
 | Decoding                    | Convert a coded message into an intelligible form                                                                                                             |
 | Base64, Binary, Hexadecimal | Common types of data encoding standards.                                                                                                                      |
