@@ -40,8 +40,9 @@ Code contributed: more than 2000 lines of code ([Reposense](https://nus-cs2113-a
 ### Enhancements to Existing Features
 
 1. Wrote tests for `RecipeManager` class: [#171](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/171)
-2. Decoupled `Storage` class from the `RecipeManager` class: [#250](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/250)
-3. Added naming restrictions to recipes using Regex: [#206](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/206)
+2. Added capabilities for `RecipeManager` to make changes to a particular recipe: [#171](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/171)
+3. Decoupled `Storage` class from the `RecipeManager` class: [#250](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/250)
+4. Added naming restrictions to recipes using Regex: [#206](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/206)
 
 ### Review/mentoring contributions
 1. Reviewed teammates' PRs: [69 out of 132 PRs](https://github.com/AY2122S1-CS2113T-T10-3/tp/pulls?q=is%3Apr+is%3Aclosed+-author%3A%40me+commenter%3A%40me+reviewed-by%3A%40me) (Also ranked #2 on [tP comments dashboard](https://nus-cs2113-ay2122s1.github.io/dashboards/contents/tp-comments.html))
