@@ -8,6 +8,9 @@ box RECIPE_COLOR
 Participant ":RecipeManager" as RecipeManager
 Participant ":Recipe" as Recipe
 end box
+box STORAGE_COLOR
+Participant ":Storage" as Storage
+end box
 box UI_COLOR
 Participant ":Ui" as Ui
 end box
@@ -23,6 +26,11 @@ else recipeName is not blank
   activate Recipe
   RecipeNewCommand <-- Recipe
   deactivate Recipe
+
+  RecipeNewCommand -> Storage: saveRecipeToFile(:Recipe)
+  activate Storage
+  RecipeNewCommand <-- Storage
+  deactivate Storage
 
   RecipeNewCommand -> RecipeManager: addRecipe(:Recipe)
   activate RecipeManager
