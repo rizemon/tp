@@ -3,15 +3,23 @@ package decodex.modules.base64;
 import decodex.data.Data;
 import decodex.data.exception.ModuleException;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class Base64DecoderTest {
 
+    private Base64Decoder base64Decoder;
+
+    @BeforeEach
+    public void setUpBase64DecoderTest() {
+        base64Decoder = new Base64Decoder();
+    }
+
     @Test
-    void run_encodedString_base64DecodedData() throws ModuleException {
-        Base64Decoder base64Decoder = new Base64Decoder();
+    public void run_encodedString_base64DecodedData() throws ModuleException {
+
         String encodedString = "dGVzdA==";
         String expectedString = "test";
 
@@ -21,8 +29,7 @@ class Base64DecoderTest {
     }
 
     @Test
-    void run_emptyString_emptyDecodedData() throws ModuleException {
-        Base64Decoder base64Decoder = new Base64Decoder();
+    public void run_emptyString_emptyDecodedData() throws ModuleException {
         String encodedString = "";
         String expectedString = "";
 
@@ -32,8 +39,7 @@ class Base64DecoderTest {
     }
 
     @Test
-    void run_nullByteBase64EncodedInput_expectNullByte() throws ModuleException {
-        Base64Decoder base64Decoder = new Base64Decoder();
+    public void run_nullByteBase64EncodedInput_expectNullByte() throws ModuleException {
         String encodedString = "AA==";
         String expectedString = "\00";
 
@@ -43,8 +49,7 @@ class Base64DecoderTest {
     }
 
     @Test
-    void run_stringWithOneSpace_throwsModuleException() {
-        Base64Decoder base64Decoder = new Base64Decoder();
+    public void run_stringWithOneSpace_throwsModuleException() {
         String encodedString = " ";
 
         Data encodedData = new Data(encodedString);
@@ -52,8 +57,7 @@ class Base64DecoderTest {
     }
 
     @Test
-    void run_nullByteString_throwsModuleException() {
-        Base64Decoder base64Decoder = new Base64Decoder();
+    public void run_nullByteString_throwsModuleException() {
         String encodedString = "\00";
 
         Data encodedData = new Data(encodedString);
