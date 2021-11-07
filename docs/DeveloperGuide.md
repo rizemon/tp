@@ -96,6 +96,8 @@ To better understand this developer guide, it is recommended to start off from t
 | Application, Program        | Refers to the `Decodex` program. These two terms are used interchangeably in this User Guide.                                                                   |
 | Encoding                    | Convert a message into a coded form.                                                                                                                          |
 | Decoding                    | Convert a coded message into an intelligible form                                                                                                             |
+| Encryption                  | Converting a message into a form where only authorized parties are able to decipher it.                                                                       |
+| Decryption                  | Converting an encrypted message back to its original form by deciphering it.                                                                                  |
 | Base64, Binary, Hexadecimal | Common types of data encoding standards.                                                                                                                      |
 | Console                     | This refers to your command prompt window.                                                                                                                    |
 | Argument                    | The additional information you provide to the program's command.                                                                                              |
