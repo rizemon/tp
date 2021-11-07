@@ -45,9 +45,9 @@ Given below are my notable contributions to the project.
     - Added introduction and FAQ ([#244](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/244)).
     - Added `recipe deselect` usage ([#275](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/275/files))
   - [Developer Guide](https://ay2122s1-cs2113t-t10-3.github.io/tp/DeveloperGuide.html)
-    - Added arhitecture diagram and details ([#181](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/181)).
+    - Added architecture diagram and details ([#181](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/181)).
     - Added implementation details of logic, module and basic commands ([#234](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/234)). 
 
 ## Community
-- Non-trivial reviewed of team members' PRs ([#39](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/39), [#52](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/52), [#208](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/208)).
+- Non-trivial review of team members' PRs ([#39](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/39), [#52](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/52), [#208](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/208)).
 - Reported bugs for other teams ([1](https://github.com/arraysius/ped/issues/4), [2](https://github.com/arraysius/ped/issues/9), [3](https://github.com/arraysius/ped/issues/12), [4](https://github.com/arraysius/ped/issues/13), [5](https://github.com/arraysius/ped/issues/14)).
