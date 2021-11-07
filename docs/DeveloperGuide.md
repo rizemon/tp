@@ -363,7 +363,7 @@ The current implementation of the abstract `Module` class provides a strong foun
 
 | No Parameters                                                                                | At Least One Parameter |
 | -------------------------------------------------------------------------------------------- | ---------------------- |
-| [`Base64Encoder`](https://github.com/AY2122S1-CS2113T-T10-3/tp/blob/master/src/main/java/decodex/modules/base64/Base64Encoder.java) <br> [`Base64Decoder`](https://github.com/AY2122S1-CS2113T-T10-3/tp/blob/master/src/main/java/decodex/modules/base64/Base64Decoder.java) <br> [`HexEncoder`](https://github.com/AY2122S1-CS2113T-T10-3/tp/blob/master/src/main/java/decodex/modules/hex/HexEncoder.java) <br> [`HexDecoder`](https://github.com/AY2122S1-CS2113T-T10-3/tp/blob/master/src/main/java/decodex/modules/hex/HexDecoder.java) <br> [`BinaryEncoder`](https://github.com/AY2122S1-CS2113T-T10-3/tp/blob/master/src/main/java/decodex/modules/binary/BinaryEncoder.java) <br> [`BinaryDecoder`](https://github.com/AY2122S1-CS2113T-T10-3/tp/blob/master/src/main/java/decodex/modules/binary/BinaryDecoder.java) | [`RotEncoder`](https://github.com/AY2122S1-CS2113T-T10-3/tp/blob/master/src/main/java/decodex/modules/rot/RotEncoder.java)             |
+| `Base64Encoder` <br> `Base64Decoder` <br> `HexEncoder` <br> `HexDecoder` <br> `BinaryEncoder` <br> `BinaryDecoder` | `RotEncoder`             |
 
 ### List of Commands
 
