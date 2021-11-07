@@ -26,6 +26,8 @@ class HelpCommandTest {
     private final RecipeManager recipeManager = new RecipeManager();
     private final Ui ui = new Ui();
 
+    private final HelpCommand command = new HelpCommand();
+
     @BeforeEach
     public void setOutputStream() {
         outputStream = new ByteArrayOutputStream();
@@ -39,7 +41,6 @@ class HelpCommandTest {
 
     @Test
     public void run_allCommands_success() {
-        HelpCommand command = new HelpCommand();
         command.run(dataManager, moduleManager, ui, recipeManager, storage);
         assertFalse(outputStream.toString().isBlank());
     }
