@@ -69,6 +69,17 @@ create Ui
   Decodex <-- Ui
   deactivate Ui
 
+Decodex -> Decodex: loadSavedRecipes()
+activate Decodex
+
+Decodex -> Storage: loadRecipesFromDirectory()
+activate Storage
+Decodex <-- Storage
+deactivate Storage
+
+Decodex --> Decodex
+deactivate Decodex
+
 Decodex --> Decodex
 deactivate Decodex
 
