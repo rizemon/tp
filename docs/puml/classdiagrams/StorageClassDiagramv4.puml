@@ -6,7 +6,7 @@ hide circle
 
 Decodex -> "1" Storage
 
-note right of Storage:"Only the public methods of Storage are shown in this Class Diagram." as omittedMessage
+note right of Storage: Only the public methods of Storage \nare shown in this Class Diagram.
 
 class Decodex DECODEX_COLOR {
   - initDecodex(): void
