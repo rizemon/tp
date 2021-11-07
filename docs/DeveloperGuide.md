@@ -223,7 +223,7 @@ Below is the class diagram showing the association between the abstract `Command
 
 Below is a partial class diagram that shows an overview of the `Data` component.
 
-![DataComponent.png](images/dg/dataComponentPartialClass.png)
+![DataComponent.png](images/dg/DataComponentPartialDiagram.png)
 
 The `Data` component consists of:
 
