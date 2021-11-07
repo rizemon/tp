@@ -242,7 +242,7 @@ Below is a partial class diagram that shows an overview of the `Module` componen
 
 The `Module` component consists of:
 
-- `Module`: An abstract class that defines the blueprint for the derived `*Encoder` or `*Decoder` classes.
+- `Module`: An abstract class that defines the blueprint for the derived `XYZModule` classes.
     - `Base64Encoder`, `Base64Decoder`: Performs base64 encoding/decoding operations
     - `HexEncoder`, `HexDecoder`: Performs hexadecimal encoding/decoding operations
     - `BinaryEncoder`, `BinaryDecoder`: Performs binary encoding/decoding operations
@@ -253,7 +253,7 @@ Below is the class diagram showing the association between the `Decodex` class, 
 
 ![ModuleManagerClass.png](images/dg/ModuleManagerClass.png)
 
-Below is the class diagram showing the association between the abstract `Module` class and its derived `XYZEncoder` and `XYZDecoder` classes.
+Below is the class diagram showing the association between the abstract `Module` class and its derived `XYZModule` classes.
 
 ![ModuleClassDiagram](images/dg/ModuleClassDiagramv2.png)
 
