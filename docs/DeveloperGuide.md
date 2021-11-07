@@ -318,7 +318,7 @@ The flow of the `Parser` logic:
 
 1. Receives the user input and parses it to get the command type.
 2. Prepares the corresponding `XYZCommand`.
-    1. However, if the command is a `Recipe*Command` , it will be passed to `RecipeCommandParser` for subcommand parsing.
+    1. However, if the command is a `RecipeXYZCommand` , it will be passed to `RecipeCommandParser` for subcommand parsing.
 3. Returns the command back to `Decodex`.
 
 ### Parser - Recipe Command Logic
