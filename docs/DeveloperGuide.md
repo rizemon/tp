@@ -395,8 +395,7 @@ When the `Parser` recognises the `input` keyword from the user input, an `InputC
 When the `Parser` recognises the `show` keyword from the user input, an `ShowCommand` is instantiated.
 
 1. Gets the current `Data` object stored in DataManager.
-2. Gets the String version of the current `Data` object.
-3. Prints the current data string to the console.
+2. Prints the current data to the console.
 
 #### ExitCommand
 
