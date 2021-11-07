@@ -159,7 +159,7 @@ public class Storage {
      * @throws ModuleManagerException If provided module name is not an available module.
      * @throws RecipeException        If recipe name is not valid.
      */
-    public Recipe readRecipeFromFile(String recipeFilename, File recipeFile, ModuleManager moduleManager)
+    private Recipe readRecipeFromFile(String recipeFilename, File recipeFile, ModuleManager moduleManager)
             throws IOException, ModuleException, ModuleManagerException, RecipeException {
         Path recipeFilePath = recipeFile.toPath();
 
