@@ -175,7 +175,7 @@ The `Logic` component consists of:
 
 - `Parser`: Handles user input and decides the `Command` object to create.
 - `RecipeCommandParser`: When `Parser` detects that a `RecipeXYZComand` object needs to be created, the user input is handed over from `Parser` and will decide the `Command` object to create.
-- `Command`: An abstract class that defines the blueprint for the derived `*Command` classes.
+- `Command`: An abstract class that defines the blueprint for the derived `*Command` classes. <a name="designListOfCommands"></a>
     - `InputCommand`: Takes in a string from the user and sets it as the current `Data` object to perform operations on.
     - `ShowCommand`: Shows the current Data object.
     - `HelpCommand`: Displays all command syntaxes to the user.
@@ -196,16 +196,15 @@ Below is the class diagram showing the association between the `Decodex` class a
 
 ![ParserClass.png](images/dg/ParserClass.png)
 
-Below is the class diagram showing the association between the abstract `Command` class and its derived `*Command` classes.
+Below is the class diagram showing the association between the abstract `Command` class and its `XYZCommand` and `RecipeXYZCommand` classes mentioned [earlier](#designListOfCommands).
 
-![CommandClass1.png](images/dg/CommandClass1.png)
+![CommandClassDiagram](images/dg/CommandClassDiagram.png)
 
-![CommandClass2.png](images/dg/CommandClass2.png)
 ### Data Component
 
 Below is a partial class diagram that shows an overview of the `Data` component.
 
-![DataComponent.png](images/dg/DataComponent.png)
+![DataComponent.png](images/dg/dataComponentPartialClass.png)
 
 The `Data` component consists of:
 
@@ -235,9 +234,9 @@ Below is the class diagram showing the association between the `Decodex` class, 
 
 ![ModuleManagerClass.png](images/dg/ModuleManagerClass.png)
 
-Below is the class diagram showing the association between the abstract `Module` class and its derived `*Decoder` classes.
+Below is the class diagram showing the association between the abstract `Module` class and its derived `XYZEncoder` and `XYZDecoder` classes.
 
-![ModuleClass.png](images/dg/ModuleClass.png)
+![ModuleClassDiagram](images/dg/ModuleClassDiagramv2.png)
 
 ### Recipe Component
 
