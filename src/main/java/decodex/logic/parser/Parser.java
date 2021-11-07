@@ -26,7 +26,7 @@ public class Parser {
     protected static final int STARTING_ARGUMENTS_INDEX = 1;
 
     // Specifies the tokens used to split the user input by.
-    private static final String SPLIT_REGEX = "\\s+|\\t+";
+    private static final String SPLIT_REGEX = "\\s+";
     private static final int SPLIT_LIMIT_VALUE = -1;
 
     // Specifies the separator used to reconstruct a string from a list of tokens.
@@ -92,7 +92,7 @@ public class Parser {
      */
     public String getInputString(String userInput) throws ParserException {
         String strippedUserInput = userInput.stripLeading();
-        String[] tokens = strippedUserInput.split(SPLIT_REGEX, SPLIT_LIMIT_VALUE);
+        String[] tokens = strippedUserInput.split(SPACE_SEPARATOR, SPLIT_LIMIT_VALUE);
 
         String[] argumentArray = Arrays.copyOfRange(tokens, STARTING_ARGUMENTS_INDEX, tokens.length);
         String argumentString = String.join(SPACE_SEPARATOR, argumentArray);
