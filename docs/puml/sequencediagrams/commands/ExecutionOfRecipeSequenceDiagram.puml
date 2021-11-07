@@ -52,6 +52,7 @@ else itemName is not blank
     deactivate Ui
 
   <-- SelectCommand
+  deactivate SelectCommand
 end
 
 @enduml
