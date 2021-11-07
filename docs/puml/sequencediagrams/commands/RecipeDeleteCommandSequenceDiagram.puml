@@ -27,6 +27,7 @@ else recipeName is not blank
   RecipeDeleteCommand <-- Ui
   deactivate Ui
   <-- RecipeDeleteCommand
+  deactivate RecipeDeleteCommand
 end
 
 @enduml

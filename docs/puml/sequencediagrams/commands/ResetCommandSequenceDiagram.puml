@@ -25,5 +25,6 @@ ResetCommand <-- Ui
 deactivate Ui
 
 <-- ResetCommand
+deactivate ResetCommand
 
 @enduml

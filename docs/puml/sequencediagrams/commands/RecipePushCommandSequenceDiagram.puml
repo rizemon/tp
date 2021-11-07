@@ -41,6 +41,7 @@ else moduleName is not blank
   deactivate Ui
 
   <-- RecipePushCommand
+  deactivate RecipePushCommand
 end
 
 @enduml

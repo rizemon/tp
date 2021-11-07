@@ -35,6 +35,7 @@ else itemName is not blank
   activate Module
   SelectCommand <-- Module: :Data
   deactivate Module
+  destroy Module
 
   SelectCommand -> DataManager: setCurrentData(:Data)
   activate DataManager
@@ -47,8 +48,8 @@ else itemName is not blank
   deactivate Ui
 
   SelectCommand <-[hidden]- Ui
-  destroy Module
   <-- SelectCommand
+  deactivate SelectCommand
 end
 
 @enduml

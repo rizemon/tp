@@ -39,6 +39,7 @@ else recipeName is not blank
   RecipeNewCommand <-- Ui
   deactivate Ui
   <-- RecipeNewCommand
+  deactivate RecipeNewCommand
 end
 
 @enduml

@@ -174,6 +174,7 @@ Below is a partial class diagram that shows an overview of the `Logic` component
 The `Logic` component consists of:
 
 - `Parser`: Handles user input and decides the `Command` object to create.
+- `RecipeCommandParser`: When `Parser` detects that a `RecipeXYZComand` object needs to be created, the user input is handed over from `Parser` and will decide the `Command` object to create.
 - `Command`: An abstract class that defines the blueprint for the derived `*Command` classes.
     - `InputCommand`: Takes in a string from the user and sets it as the current `Data` object to perform operations on.
     - `HelpCommand`: Displays all command syntaxes to the user.

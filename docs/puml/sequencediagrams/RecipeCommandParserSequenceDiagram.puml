@@ -41,11 +41,12 @@ else length of subCommandTokens >= SUBCOMMAND_NO_ARGUMENT_LENGTH
     RecipeCommandParser --> RecipeCommandParser: :RecipeXYZCommand
     deactivate RecipeCommandParser
     <-- RecipeCommandParser: :RecipeXYZCommand
+
   else subCommand is not valid
-    <-- RecipeCommandParser: CommandException
+    <-- RecipeCommandParser:
+    deactivate RecipeCommandParser
   end
 end
 
-deactivate RecipeCommandParser
 
 @enduml
