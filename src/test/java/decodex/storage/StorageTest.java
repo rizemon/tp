@@ -1,14 +1,9 @@
 package decodex.storage;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import decodex.data.exception.RecipeException;
@@ -18,10 +13,14 @@ import decodex.recipes.Recipe;
 import decodex.recipes.RecipeManager;
 import decodex.ui.Ui;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class StorageTest {
     private static final String RECIPE_FILE_PREFIX = ".txt";
@@ -29,6 +28,10 @@ class StorageTest {
     // Used for creating test recipes and files.
     private static final String TEST_FILE_NAME_1 = "testfile1.txt";
     private static final String TEST_RECIPE_NAME = "testfile1";
+
+    // Used for one time set up for storage test.
+    private static boolean isRecipeDirectoryExistAtStart;
+    private static File recipeDirectory;
 
     File file1;
     Path path1;
@@ -43,9 +46,25 @@ class StorageTest {
     // that already exist on the user/developer's recipe directory.
     String[] preExistingRecipeFiles;
 
-
     @TempDir
     Path tempDir;
+
+    @BeforeAll
+    public static void oneTimeSetUpStorageTest() {
+        recipeDirectory = new File(System.getProperty("user.dir") + "/recipe");
+        if (recipeDirectory.exists()) {
+            isRecipeDirectoryExistAtStart = true;
+        } else {
+            recipeDirectory.mkdir();
+        }
+    }
+
+    @AfterAll
+    public static void oneTimeTearDownStorageTest() {
+        if (!isRecipeDirectoryExistAtStart) {
+            recipeDirectory.delete();
+        }
+    }
 
     // Acknowledgements - JUnit testing for storage.
     // https://blogs.oracle.com/javamagazine/post/working-and-unit-testing-with-temporary-files-in-java.
@@ -53,7 +72,7 @@ class StorageTest {
     @BeforeEach
     public void setUpStorageTest() throws RecipeException {
         testRecipe = new Recipe(TEST_RECIPE_NAME);
-        tempDir = Path.of(System.getProperty("user.dir") + "/recipe");
+        tempDir = recipeDirectory.toPath();
         moduleManager = new ModuleManager();
         recipeManager = new RecipeManager();
         storage = new Storage();
@@ -67,7 +86,7 @@ class StorageTest {
      * Tears down and resets the current test state for the next JUnit test.
      */
     @AfterEach
-    public void resetStorageTest() {
+    public void tearDownStorageTest() {
         if (file1.exists()) {
             file1.delete();
         }
@@ -96,7 +115,7 @@ class StorageTest {
     }
 
     @Test
-    void saveRecipeToFile_newRecipe_newCorrespondingRecipeFile() throws RecipeException, IOException, StorageException {
+    void saveRecipeToFile_newRecipe_newCorrespondingRecipeFile() throws IOException, StorageException {
         storage.saveRecipeToFile(testRecipe);
 
         boolean isExistAndFile = file1.exists() && file1.isFile();
@@ -118,7 +137,6 @@ class StorageTest {
     private void getAllExistingRecipeFiles() {
         File recipeDir = tempDir.toFile();
         File[] files = recipeDir.listFiles();
-
 
         preExistingRecipeFiles = Arrays.stream(files)
                 .filter(file -> file.isFile())
