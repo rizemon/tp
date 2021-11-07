@@ -15,7 +15,7 @@ class Decodex DECODEX_COLOR {
 }
 
 class Storage STORAGE_COLOR {
-    + loadRecipesFromDirectory(moduleManager: ModuleManager, recipeManager: RecipeManager, ui: Ui): void
+    + loadRecipesFromDirectory(moduleManager: ModuleManager,\n recipeManager: RecipeManager, ui: Ui): void
     + saveRecipeToFile(recipe: Recipe): void
     + deleteRecipeFile(recipeName: String): void
 }
