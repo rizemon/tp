@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class StorageTest {
-    private static final String RECIPE_FILE_PREFIX = ".txt";
+    private static final String RECIPE_FILE_SUFFIX = ".txt";
 
     // Used for creating test recipes and files.
     private static final String TEST_FILE_NAME_1 = "testfile1.txt";
@@ -107,7 +107,7 @@ class StorageTest {
         String[] loadedRecipes = recipeManager.getRecipeNames();
         String[] newLoadedRecipes = Arrays.stream(loadedRecipes)
                 .filter(recipeName -> {
-                    String correspondingRecipeFileName = recipeName + RECIPE_FILE_PREFIX;
+                    String correspondingRecipeFileName = recipeName + RECIPE_FILE_SUFFIX;
                     return !Arrays.asList(preExistingRecipeFiles).contains(correspondingRecipeFileName);
                 })
                 .toArray(size -> new String[size]);
@@ -142,7 +142,7 @@ class StorageTest {
                 .filter(file -> file.isFile())
                 .filter(file -> {
                     String fileName = file.getName();
-                    return fileName.endsWith(RECIPE_FILE_PREFIX);
+                    return fileName.endsWith(RECIPE_FILE_SUFFIX);
                 })
                 .map(file -> file.getName())
                 .toArray(size -> new String[size]);
