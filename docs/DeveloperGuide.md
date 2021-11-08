@@ -625,14 +625,14 @@ To sum it up, this application helps users to reduce the time needed to transfor
 
 When entering data, `Decodex` requires a specific format such that the data is entered correctly.
 
-<aside>
-ℹ️ - Note that the program will consider **all characters as data following the first space character** in the input command. You may observe leading and trailing whitespaces in the output.
 
-- **Non-printable characters** (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
+> :information_source: Notes about the input data
+> - The program will consider **all characters as data following the first space character** in the input command. You may observe leading and trailing whitespaces in the output.
+>
+> - **Non-printable characters** (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
+> 
+> - There will only be one instance of data at any time. Running the `input` command will overwrite the current data that is stored in the program.
 
-- There will only be one instance of data at any time. Running the `input` command will overwrite the current data that is stored in the program.
-
-</aside>
 
 Here are some example inputs you can try:
 ```
