@@ -627,7 +627,7 @@ When entering data, `Decodex` requires a specific format such that the data is e
 
 
 > :information_source: Notes about the input data
-> - The program will consider **all characters as data following the first space character** in the input command. You may observe leading and trailing whitespaces in the output.
+> - The program will consider **all characters following the first space character as data** in the input command. You may observe leading and trailing whitespaces in the output.
 >
 > - **Non-printable characters** (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
 > 
