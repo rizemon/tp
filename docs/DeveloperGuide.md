@@ -923,21 +923,30 @@ Details of Recipe Files:
 
 **Below shows some of the case scenarios for valid and invalid module syntaxes in the saved recipe files.**
 
-Sample of valid module syntaxes in recipe file:
+Sample of valid module syntaxes in a recipe file:
 
-1. An example of a recipe file with valid module syntaxes on each line
+1. An example of the contents of a recipe file with valid module syntax on each line
 
-   ![correctSyntax](images/dg/correctSyntax.png)
+```
+    base64encode
+    rotencode 13
+    hexencode
+```
 
+Samples of invalid module syntaxes in a recipe file:
 
-Samples of invalid module syntaxes in recipe file:
+1. An example of the contents of a recipe file with invalid module argument.
+    1. On line 2, an argument is expected for rotencode module, but it is missing.
+```
+    base64encode
+    rotencode
+    hexencode
+```
 
-1. An example of a recipe file with invalid module argument.
-    1. An argument is expected for rotencode module but is missing as denoted in red.
-
-   ![correctSyntax](images/dg/wrongSyntax1.png)
-
-2. An example of a recipe file with invalid module name.
-    1. The module name of "base64" does not exist/available on Decodex.
-
-   ![correctSyntax](images/dg/wrongSyntax2.png)
+2. An example of the contents of a recipe file with invalid module name.
+    1. On line 1, the module name of "base64" does not exist/available on Decodex.
+```
+    base64
+    rotencode 13
+    hexencode
+```
