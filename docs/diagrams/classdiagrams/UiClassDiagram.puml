@@ -6,11 +6,16 @@ hide circle
 
 Decodex -> "1" Ui
 
+note left of Decodex
+    For this and subsequent
+    class diagrams containing Decodex,
+    the loadSavedRecipes() method
+    is omitted to avoid complexity.
+end note
 class Decodex DECODEX_COLOR {
   - initDecodex(): void
   + run(): void
   + {static} main(): void
-  - loadSavedRecipes(): void
 }
 
 
@@ -22,8 +27,8 @@ class Ui UI_COLOR {
 }
 
 note right
-  Only the commonly used
-  methods are listed.
+    Only the commonly used
+    methods are listed.
 end note
 
 @enduml

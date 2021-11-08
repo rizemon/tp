@@ -179,7 +179,7 @@ The rest of the program consists of 6 other components:
 
 ### UI Component
 
-![UiClass.png](images/dg/UiClass.png)
+![UiClass.png](images/dg/UiClassDiagramV2.png)
 
 The `Ui` component consists of:
 
