@@ -19,7 +19,7 @@ activate DataManager
 ResetCommand <-- DataManager
 deactivate DataManager
 
-ResetCommand -> Ui: printSuccess()
+ResetCommand -> Ui: printSuccess(:String)
 activate Ui
 ResetCommand <-- Ui
 deactivate Ui

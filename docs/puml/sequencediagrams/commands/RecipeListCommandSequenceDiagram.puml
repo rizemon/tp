@@ -31,7 +31,7 @@ activate RecipeListCommand
 RecipeListCommand --> RecipeListCommand: :String
 deactivate RecipeListCommand
 
-RecipeListCommand -> Ui: printRecipeModulesList(:String, :String)
+RecipeListCommand -> Ui: printRecipeModulesList(moduleList:String, recipeName:String)
 activate Ui
 RecipeListCommand <-- Ui
 deactivate Ui
