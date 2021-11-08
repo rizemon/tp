@@ -701,14 +701,13 @@ Here is the list of supported modules:
 ```
 
 - Test case `list recipes`
-
-Expected (if no recipes exists):*do bullet point indent on github*
+    - Expected (if no recipes exists):
 
 ```
 You do not have any recipes
 ```
 
-Expected (if some recipes exists):*do bullet point indent on github*
+    - Expected (if some recipes exists):
 
 ```
 Here is the list of available recipes:
