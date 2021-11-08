@@ -635,11 +635,11 @@ When entering data, `Decodex` requires a specific format such that the data is e
 </aside>
 
 Here are some example inputs you can try:
-
-- input `hello world` : Inputs `hello world` as data into the Decodex.
-- input    `hello world`    : Inputs    `hello world`    as data into Decodex.
-- input `goodbye world` : Inputs `hello world` as data into the Decodex.
-
+```
+- input hello world : Inputs "hello world" as data into the Decodex.
+- input <space>hello world<space> : Inputs "<space>hello world<space>" as data into Decodex.
+- input goodbye world : Inputs "goodbye world" as data into the Decodex.
+```
 For subsequent examples below, this guide assumes that the original input data is `goodbye world`.
 
 ### Listing Modules and Recipes
