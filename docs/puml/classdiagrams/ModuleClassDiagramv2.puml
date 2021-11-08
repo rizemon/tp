@@ -10,16 +10,11 @@ abstract class "Module\n{abstract}" as Module MODULE_COLOR {
   {abstract} +run(data: Data): Data
 }
 
-note "The run() method is omitted from inheriting classes.\nThe attributes and methods are also omitted to improve readability \nsince each respective XYZEncoder and XYZDecoder\nhas their own attributes and even additional methods." as omitMessage
+note "The run() method is omitted from the inheriting class.\nThe attributes and methods are also omitted to improve readability \nsince each respective XYZModule has their own attributes\nand even additional methods." as omitMessage
 
-Module <|-down- XYZDecoder
-Module <|-up- XYZEncoder
+Module <|-down- XYZModule
 
-class XYZDecoder MODULE_COLOR{
-
-}
-
-class XYZEncoder MODULE_COLOR {
+class XYZModule MODULE_COLOR{
 
 }
 

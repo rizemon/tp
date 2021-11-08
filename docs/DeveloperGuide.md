@@ -96,6 +96,8 @@ To better understand this developer guide, it is recommended to start off from t
 | Application, Program        | Refers to the `Decodex` program. These two terms are used interchangeably in this User Guide.                                                                   |
 | Encoding                    | Convert a message into a coded form.                                                                                                                          |
 | Decoding                    | Convert a coded message into an intelligible form                                                                                                             |
+| Encryption                  | Conversion of a message into a form where only authorized parties are able to decipher it.                                                                       |
+| Decryption                  | Conversion of an encrypted message back to its original form by deciphering it.                                                                                  |
 | Base64, Binary, Hexadecimal | Common types of data encoding standards.                                                                                                                      |
 | Console                     | This refers to your command prompt window.                                                                                                                    |
 | Argument                    | The additional information you provide to the program's command.                                                                                              |
@@ -223,7 +225,7 @@ Below is the class diagram showing the association between the abstract `Command
 
 Below is a partial class diagram that shows an overview of the `Data` component.
 
-![DataComponent.png](images/dg/dataComponentPartialClass.png)
+![DataComponent.png](images/dg/DataComponentPartialDiagramV2.png)
 
 The `Data` component consists of:
 
@@ -242,7 +244,7 @@ Below is a partial class diagram that shows an overview of the `Module` componen
 
 The `Module` component consists of:
 
-- `Module`: An abstract class that defines the blueprint for the derived `XYZEncoder` or `XYZDecoder` classes.
+- `Module`: An abstract class that defines the blueprint for the derived `XYZModule` classes.
     - `Base64Encoder`, `Base64Decoder`: Performs base64 encoding/decoding operations
     - `HexEncoder`, `HexDecoder`: Performs hexadecimal encoding/decoding operations
     - `BinaryEncoder`, `BinaryDecoder`: Performs binary encoding/decoding operations
@@ -253,9 +255,9 @@ Below is the class diagram showing the association between the `Decodex` class, 
 
 ![ModuleManagerClass.png](images/dg/ModuleManagerClass.png)
 
-Below is the class diagram showing the association between the abstract `Module` class and its derived `XYZEncoder` and `XYZDecoder` classes.
+Below is the class diagram showing the association between the abstract `Module` class and its derived `XYZModule` classes.
 
-![ModuleClassDiagram](images/dg/ModuleClassDiagramv2.png)
+![ModuleClassDiagram](images/dg/ModuleClassDiagramv3.png)
 
 ### Recipe Component
 
@@ -349,11 +351,11 @@ There are two groups of modules supported by Decodex:
 - Modules that do not take in any parameters
 - Modules that take in at least one parameter
 
-Modules that do not take in any parameters
+**Modules that do not take in any parameters**
 
 This group of modules do not require any additional parameters as their encoding and decoding processes are fixed. Hence, the constructors of these modules should not receive any parameters.
 
-Modules that take in at least one parameter
+**Modules that take in at least one parameter**
 
 This group of modules require at least one additional parameter as their encoding and decoding processes are dependent on the provided parameters. The constructors of these modules should receive parameters as required and stored in private variables. These variables will then be used in their respective `run(Data data)` method.
 
@@ -394,8 +396,7 @@ When the `Parser` recognises the `input` keyword from the user input, an `InputC
 When the `Parser` recognises the `show` keyword from the user input, an `ShowCommand` is instantiated.
 
 1. Gets the current `Data` object stored in DataManager.
-2. Gets the String version of the current `Data` object.
-3. Prints the current data string to the console.
+2. Prints the current data to the console.
 
 #### ExitCommand
 
@@ -604,27 +605,289 @@ To sum it up, this application helps users to reduce the time needed to transfor
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 
-## Appendix E: Instructions for Manual Testing
+**Note:** These instructions only provide a starting point for testers to work on, testers are expected to do more *exploratory* testing.
 
-### Start-up and Shutdown
+### Start and Shutdown
+
+1. Ensure you have Java version `11` or above installed on your computer.
+2. Next, download the latest `decodex.jar` [here](https://github.com/AY2122S1-CS2113T-T10-3/tp/releases).
+3. Copy the `decodex.jar` into an empty folder.
+4. Run the `decodex.jar` on your command prompt by typing in `java -jar decodex.jar` the press `Enter`.
+5. Type a command in the command box after the `Decodex [] >` prompt and press Enter to execute it. e.g. typing `help` and pressing `Enter` will show a list available commands, their respective descriptions and syntaxes.
+6. To exit Decodex, use the `exit` command. Alternatively, Decodex can be exited using `Ctrl+C` or by closing the command prompt window.
 
 ### Inputting Data
 
+When entering data, `Decodex` requires a specific format such that the data is entered correctly.
+
+
+> :information_source: Notes about the input data
+> - The program will consider **all characters following the first space character as data** in the input command. You may observe leading and trailing whitespaces in the output.
+>
+> - **Non-printable characters** (e.g. null characters) may not be correctly displayed and could potentially scramble the user interface.
+> 
+> - There will only be one instance of data at any time. Running the `input` command will overwrite the current data that is stored in the program.
+
+
+Here are some example inputs you can try:
+```
+- input hello world : Inputs "hello world" as data into the Decodex.
+- input <space>hello world<space> : Inputs "<space>hello world<space>" as data into Decodex.
+- input goodbye world : Inputs "goodbye world" as data into the Decodex.
+```
+For subsequent examples below, this guide assumes that the original input data is `goodbye world`.
+
 ### Listing Modules and Recipes
+
+The `list` command has 3 variations:
+
+- List all modules and recipes
+- List all modules
+- List all recipes
+
+The first command lists every single modules and recipes which is the combined output of the other 2 commands. No recipes will be found if no recipes have been created.
+
+- Test case `list`
+  - Expected (if no recipes exists):
+
+```
+Here is the list of supported modules:
+  base64encode - Encodes the data using Base64 format.
+  base64decode - Decodes the data using Base64 format.
+  hexencode    - Converts the input string to hexadecimal bytes.
+  hexdecode    - Converts a hexadecimal string back into its raw value.
+  binencode    - Encodes the data using binary format.
+  bindecode    - Decodes the data using binary format.
+  rotencode    - Rotates alphabetical characters by a specified integer offset.
+
+You do not have any recipes
+```
+- Test case `list`
+  - Expected (if some recipes exists):
+
+```
+Here is the list of supported modules:
+  base64encode - Encodes the data using Base64 format.
+  base64decode - Decodes the data using Base64 format.
+  hexencode    - Converts the input string to hexadecimal bytes.
+  hexdecode    - Converts a hexadecimal string back into its raw value.
+  binencode    - Encodes the data using binary format.
+  bindecode    - Decodes the data using binary format.
+  rotencode    - Rotates alphabetical characters by a specified integer offset.
+
+Here is the list of available recipes:
+  myRecipe1
+  myRecipe_123
+```
+
+- Test case `list modules`
+    - Expected:
+
+```
+Here is the list of supported modules:
+  base64encode - Encodes the data using Base64 format.
+  base64decode - Decodes the data using Base64 format.
+  hexencode    - Converts the input string to hexadecimal bytes.
+  hexdecode    - Converts a hexadecimal string back into its raw value.
+  binencode    - Encodes the data using binary format.
+  bindecode    - Decodes the data using binary format.
+  rotencode    - Rotates alphabetical characters by a specified integer offset.
+```
+
+- Test case `list recipes`
+    - Expected (if no recipes exists):
+
+```
+You do not have any recipes
+```
+
+- Test case `list recipes`
+    - Expected (if some recipes exists):
+
+```
+Here is the list of available recipes:
+  myRecipe1
+  myRecipe_123
+```
 
 ### Running Modules and Resetting
 
+Running the data through multiple modules and resetting it to its original data is shown below. Here, the current data refers to the output from the previous ran module and by default, if no modules is ran, then current data is the same as input data, i.e. `goodbye world`.
+
+1. Following this order of execution:
+    1. `select module hexencode` : Encodes the (original) data with Hexadecimal encoding.
+    2. `select module base64encode` : Encodes the current data with Base64 encoding.
+    3. `select module rotencode 5` : Encodes the current data by rotating the alphabetic characters by offset of +5.
+    4. `select module binencode` : Encodes the current data with Binary encoding.
+2. The resulting output would be something unintelligible.
+3. In order to obtain the original data, running `reset` will return the current data back to the original data that was inputted. i.e. `goodbye world` .
+
 ### Listing Modules in Recipes
+
+List the module sequences in previously created recipes.
+
+- Test case: `recipe list`
+    - Expected (if a non-empty recipe was selected for editing):
+
+```
+Here is the list of modules in recipe myRecipe1:
+  1. base64encode
+  2. base64encode
+  3. hexencode
+```
+
+- Test case: `recipe list`
+  - Expected (if an empty recipe was selected for editing):
+
+```
+[x] There are no modules in the recipe
+```
+
+- Test case: `recipe list`
+  - Expected (if no recipe was selected for editing):
+
+```
+[x] No recipe selected for editing.
+```
+
+- Test case: `recipe list <recipe name>` (i.e. `<recipe name>` is `recipe1`)
+  - Expected (if recipe is not empty):
+
+```
+Here is the list of modules in recipe myRecipe1:
+  1. base64encode
+  2. base64encode
+  3. hexencode
+```
+
+- Test case: `recipe list <recipe name>`
+  - Expected (if recipe is empty):
+
+```
+[+] There are no modules in the recipe
+```
 
 ### Creating Recipes
 
+Creating recipes can be done using the `recipe new` command.
+
+An example of a valid recipe creation command is shown below.
+
+- Test case: `recipe new special_Recipe1`
+    - Expected:
+
+```
+[+] Recipe special_Recipe1 created successfully
+```
+
+Some examples of invalid recipe creation commands are shown below.
+
+- Test case: `recipe new Invalid Recipe N@me!`
+    - Expected:
+
+```
+[x] Too many command arguments
+```
+
+- Test case: `recipe new XÆA-12`
+    - Expected:
+
+```
+[x] Recipe names can contain only alphabets, numbers and underscores and must be non-empty.
+```
+
 ### Switching Recipes for Modification
+
+Switching of recipes to modify them. Below shows an example of the switch from one recipe to another. The `recipe deselect` command is optional when switching between recipes.
+
+Assuming there are 3 recipes `myRecipe1`, `myRecipe_123` and `special_Recipe1`.
+
+- Test case: `recipe select myRecipe1`
+    - Expected: Selects the recipe `myRecipe1` for editing.
+
+```
+[+] Recipe myRecipe selected for editing
+Decodex [Editing: myRecipe] >
+```
+
+- Test case: `recipe deselect`
+    - Expected: deselects the recipe currently being edited
+
+```
+[+] Recipe myRecipe deselected
+Decodex [] >
+```
 
 ### Modifying Recipes
 
+Modifies the sequence of modules in a recipe.
+
+The following test cases should be run in sequence:
+
+1. Test case: `recipe select special_Recipe1`. Select the recipe `special_Recipe1` for editing.
+    1. Expected: The recipe `special_Recipe1` is selected for editing.
+
+    ```
+    [+] Recipe special_Recipe1 selected for editing
+    Decodex [Editing: special_Recipe1] >
+    ```
+2. Test case: `recipe push hexencode`. Add the `hexencode` module to the recipe.
+    1. Expected: The `hexencode` module is added to the recipe.
+
+    ```
+    [+] Added hexencode module to recipe special_Recipe1
+    ```
+3. Test case: `recipe push base64decode`. Add the `base64decode` module to the recipe.
+    1. Expected: The `base64decode` module is added to the recipe.
+
+    ```
+    [+] Added base64decode module to recipe special_Recipe1
+    ```
+
+4. Test case: `recipe pop`. If adding the `base64decode` module was a mistake, remove it from the recipe.
+    1. Expected: The `base64decode` module is removed from the recipe.
+
+    ```
+    [+] Removed base64decode module from recipe special_Recipe1
+    ```
+
+5. Test case: `recipe push base64encode`. The correct module `base64encode` is added to the recipe.
+    1. Expected: The `base64encode` module is added to the recipe.
+
+    ```
+    [+] Added base64encode module to recipe special_Recipe1
+    ```
+
+6. Test case: `recipe push rotencode 5`. Add the `rotencode` module with argument `5` to the recipe.
+    1. Expected: The `rotencode` module with argument `5` is added to the recipe.
+
+    ```
+    [+] Added rotencode module to recipe special_Recipe1
+    ```
+
 ### Running Recipes
 
+Runs the modules in a recipe.
+
+Assuming the input data is `hello world` and the previously created recipe `special_Recipe1` is available.
+
+- Test case: `select recipe special_Recipe1`
+    - Expected: The modules in `special_Recipe1` is run.
+
+```
+[+] Modules executed: hexencode, base64encode, rotencode 5
+[+] Output: "Sol2SYEoSrR2EoNbSeh2EohdSrR2SF=="
+```
+
 ### Deleting Recipes
+
+Deleting a recipe.
+
+- Test case: `recipe delete special_Recipe1`
+  - Expected:
+```
+[+] Recipe special_Recipe1 has been deleted
+```
 
 ### Storage of Recipe Files
 
@@ -655,21 +918,30 @@ Details of Recipe Files:
 
 **Below shows some of the case scenarios for valid and invalid module syntaxes in the saved recipe files.**
 
-Sample of valid module syntaxes in recipe file:
+Sample of valid module syntaxes in a recipe file:
 
-1. An example of a recipe file with valid module syntaxes on each line
+1. An example of the contents of a recipe file with valid module syntax on each line
 
-   ![correctSyntax](images/dg/correctSyntax.png)
+```
+    base64encode
+    rotencode 13
+    hexencode
+```
 
+Samples of invalid module syntaxes in a recipe file:
 
-Samples of invalid module syntaxes in recipe file:
+1. An example of the contents of a recipe file with invalid module argument.
+    1. On line 2, an argument is expected for rotencode module, but it is missing.
+```
+    base64encode
+    rotencode
+    hexencode
+```
 
-1. An example of a recipe file with invalid module argument.
-    1. An argument is expected for rotencode module but is missing as denoted in red.
-
-   ![correctSyntax](images/dg/wrongSyntax1.png)
-
-2. An example of a recipe file with invalid module name.
-    1. The module name of "base64" does not exist/available on Decodex.
-
-   ![correctSyntax](images/dg/wrongSyntax2.png)
+2. An example of the contents of a recipe file with invalid module name.
+    1. On line 1, the module name of "base64" does not exist/available on Decodex.
+```
+    base64
+    rotencode 13
+    hexencode
+```
