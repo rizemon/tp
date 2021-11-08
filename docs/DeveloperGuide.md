@@ -725,7 +725,7 @@ Running the data through multiple modules and resetting it to its original data 
     2. `select module base64encode` : Encodes the current data with Base64 encoding.
     3. `select module rotencode 5` : Encodes the current data by rotating the alphabetic characters by offset of +5.
     4. `select module binencode` : Encodes the current data with Binary encoding.
-2. The resulting output would be something [gibberish](#terminologies).
+2. The resulting output would be something unintelligible.
 3. In order to obtain the original data, running `reset` will return the current data back to the original data that was inputted. i.e. `goodbye world` .
 
 ### Listing Modules in Recipes
