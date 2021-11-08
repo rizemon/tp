@@ -732,8 +732,7 @@ Running the data through multiple modules and resetting it to its original data 
 List the module sequences in previously created recipes.
 
 - Test case: `recipe list`
-
-Expected (if a non-empty recipe was selected for editing):*do bullet point indent on github*
+    - Expected (if a non-empty recipe was selected for editing):
 
 ```
 Here is the list of modules in recipe myRecipe1:
@@ -742,23 +741,22 @@ Here is the list of modules in recipe myRecipe1:
   3. hexencode
 ```
 
-Expected (if an empty recipe was selected for editing):*do bullet point indent on github*
+- Test case: `recipe list`
+  - Expected (if an empty recipe was selected for editing):
 
 ```
 [x] There are no modules in the recipe
 ```
 
-Expected (if no recipe was selected for editing):*do bullet point indent on github*
+- Test case: `recipe list`
+  - Expected (if no recipe was selected for editing):
 
 ```
 [x] No recipe selected for editing.
 ```
 
-- Test case: `recipe list <recipe name>`
-
-E.g. if `<recipe name>` is `myRecipe1`.
-
-Expected (if recipe is not empty):*do bullet point indent on github*
+- Test case: `recipe list <recipe name>` (i.e. `<recipe name>` is `recipe1`)
+  - Expected (if recipe is not empty):
 
 ```
 Here is the list of modules in recipe myRecipe1:
@@ -767,7 +765,8 @@ Here is the list of modules in recipe myRecipe1:
   3. hexencode
 ```
 
-Expected (if recipe is empty):*do bullet point indent on github*
+- Test case: `recipe list <recipe name>`
+  - Expected (if recipe is empty):
 
 ```
 [+] There are no modules in the recipe
@@ -877,7 +876,7 @@ Runs the modules in a recipe.
 
 Assuming the input data is `hello world` and the previously created recipe `special_Recipe1` is available.
 
-- Test case: select recipe `special_Recipe1`
+- Test case: `select recipe special_Recipe1`
     - Expected: The modules in `special_Recipe1` is run.
 
 ```
@@ -887,12 +886,10 @@ Assuming the input data is `hello world` and the previously created recipe `spec
 
 ### Deleting Recipes
 
-Deleting a recipe
+Deleting a recipe.
 
-- `recipe delete special_Recipe1`
-
-Expected:
-
+- Test case: `recipe delete special_Recipe1`
+  - Expected:
 ```
 [+] Recipe special_Recipe1 has been deleted
 ```
