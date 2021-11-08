@@ -93,7 +93,7 @@ To better understand this developer guide, it is recommended to start off from t
 | Terminology                 | Definition                                                                                                                                                    |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Data transformation         | The conversion of one data format to another.                                                                                                                 |
-| Application, Program        | Refers to the `Decodex` program. These two terms are used interchangeably in this User Guide.                                                                   |
+| Application, Program        | Refers to the `Decodex` program. These two terms are used interchangeably in this Developer Guide.                                                                   |
 | Encoding                    | Convert a message into a coded form.                                                                                                                          |
 | Decoding                    | Convert a coded message into an intelligible form                                                                                                             |
 | Encryption                  | Conversion of a message into a form where only authorized parties are able to decipher it.                                                                       |
@@ -179,7 +179,7 @@ The rest of the program consists of 6 other components:
 
 ### UI Component
 
-![UiClass.png](images/dg/UiClass.png)
+![UiClass.png](images/dg/UiClassDiagramV2.png)
 
 The `Ui` component consists of:
 
