@@ -75,7 +75,7 @@ This section serves to help you better understand the terminologies used in this
 1. Ensure you have Java version `11` or above installed on your computer.
    1. If you haven't, you may download it [here](https://www.oracle.com/java/technologies/downloads/#java11-linux).
     > :exclamation: You should download the installation relative to your Operating System.
-2. Next, download the latest `decodex.jar` [here](https://github.com/AY2122S1-CS2113T-T10-3/tp/releases).
+2. Next, download the latest `decodex.jar` [here](https://github.com/AY2122S1-CS2113T-T10-3/tp/releases/latest).
    1. Simply click on `decodex.jar` under "Assets" and the download should start.
 3. After downloading, you can open up `command prompt`.
     > :bulb: To open command prompt, press `win + r` at the same time, then type and enter `cmd`.
