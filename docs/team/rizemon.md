@@ -45,7 +45,7 @@ Code contributed: more than 2000 lines of code ([Reposense](https://nus-cs2113-a
 4. Added naming restrictions to recipes using Regex: [#206](https://github.com/AY2122S1-CS2113T-T10-3/tp/pull/206)
 
 ### Review/mentoring contributions
-1. Reviewed teammates' PRs: [69 out of 132 PRs](https://github.com/AY2122S1-CS2113T-T10-3/tp/pulls?q=is%3Apr+is%3Aclosed+-author%3A%40me+commenter%3A%40me+reviewed-by%3A%40me) (Also ranked #2 on [tP comments dashboard](https://nus-cs2113-ay2122s1.github.io/dashboards/contents/tp-comments.html))
+1. Reviewed teammates' PRs: [85 out of 187 PRs](https://github.com/AY2122S1-CS2113T-T10-3/tp/pulls?q=is%3Apr+is%3Aclosed+-author%3A%40me+commenter%3A%40me+reviewed-by%3A%40me) (Also ranked #2 on [tP comments dashboard](https://nus-cs2113-ay2122s1.github.io/dashboards/contents/tp-comments.html))
 2. Reported bugs/comments for other teams: ([1](https://github.com/rizemon/ped/issues/5), [2](https://github.com/rizemon/ped/issues/12), [3](https://github.com/rizemon/ped/issues/13), [4](https://github.com/rizemon/ped/issues/7), [5](https://github.com/rizemon/ped/issues/1))
 
 ### [User Guide](https://ay2122s1-cs2113t-t10-3.github.io/tp/UserGuide.html)
