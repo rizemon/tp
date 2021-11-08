@@ -653,8 +653,7 @@ The `list` command has 3 variations:
 The first command lists every single modules and recipes which is the combined output of the other 2 commands. No recipes will be found if no recipes have been created.
 
 - Test case `list`
-
-Expected (if no recipes exists): *do bullet point indent on github*
+  - Expected (if no recipes exists):
 
 ```
 Here is the list of supported modules:
@@ -668,8 +667,8 @@ Here is the list of supported modules:
 
 You do not have any recipes
 ```
-
-Expected (if some recipes exists):*do bullet point indent on github*
+- Test case `list`
+  - Expected (if some recipes exists):
 
 ```
 Here is the list of supported modules:
@@ -707,6 +706,7 @@ Here is the list of supported modules:
 You do not have any recipes
 ```
 
+- Test case `list recipes`
     - Expected (if some recipes exists):
 
 ```
